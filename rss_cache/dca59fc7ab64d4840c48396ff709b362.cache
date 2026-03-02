@@ -1,0 +1,2405 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <language>ru</language>
+    <title>Lenta.ru : Новости</title>
+    <description>Новости, статьи, фотографии, видео. Семь дней в неделю, 24 часа в сутки.</description>
+    <link>https://lenta.ru</link>
+    <image>
+      <url>https://lenta.ru/images/small_logo.png</url>
+      <title>Lenta.ru</title>
+      <link>https://lenta.ru</link>
+      <width>134</width>
+      <height>22</height>
+    </image>
+    <atom:link rel="self" type="application/rss+xml" href="http://lenta.ru/rss/news"/>
+<item>
+  <guid>https://lenta.ru/news/2026/03/02/iran-nachal-novuyu-volnu-atak-na-bazy-ssha/</guid>
+  <author>Владислав Китов</author>
+  <title>Иран начал новую волну атак на базы США</title>
+  <link>https://lenta.ru/news/2026/03/02/iran-nachal-novuyu-volnu-atak-na-bazy-ssha/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Mon, 02 Mar 2026 09:14:55 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/02/09/20260302091322562/pic_b4ec0429ae722de839915fa7a6a7d371.jpg" type="image/jpeg" length="28762"/>
+  <category>Мир</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/02/ssha-i-izrail-atakovali-iran-v-moment-utrenney-molitvy/</guid>
+  <author>Виктория Кондратьева</author>
+  <title>США и Израиль атаковали Иран в момент утренней молитвы</title>
+  <link>https://lenta.ru/news/2026/03/02/ssha-i-izrail-atakovali-iran-v-moment-utrenney-molitvy/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Mon, 02 Mar 2026 09:13:06 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/assets/webpack/images/lenta_og.8735b949.png" type="image/png" length="14407"/>
+  <category>Мир</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/02/eks-sotrudnik-sbu-nazval-delo-epshteyna-operatsiey-razvedki-izrailya/</guid>
+  <author>Валентин Карант</author>
+  <title>Бывший сотрудник СБУ назвал дело Эпштейна операцией разведки Израиля</title>
+  <link>https://lenta.ru/news/2026/03/02/eks-sotrudnik-sbu-nazval-delo-epshteyna-operatsiey-razvedki-izrailya/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Mon, 02 Mar 2026 09:12:00 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/02/09/20260302091220856/pic_cd36fc8f8ed9682ea48acd477c1d6f5d.jpg" type="image/jpeg" length="20474"/>
+  <category>Бывший СССР</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/02/joke/</guid>
+  <author>Олег Давыдов</author>
+  <title>Телеведущая пошло пошутила в прямом эфире и лишила коллегу дара речи</title>
+  <link>https://lenta.ru/news/2026/03/02/joke/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Mon, 02 Mar 2026 09:08:40 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/02/27/16/20260227163538933/pic_842f74f2094230d0fa3e8ecbbd1529b4.jpg" type="image/jpeg" length="35992"/>
+  <category>Интернет и СМИ</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/02/upalo/</guid>
+  <author>Платон Щукин</author>
+  <title>Промышленное производство в России упало</title>
+  <link>https://lenta.ru/news/2026/03/02/upalo/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Mon, 02 Mar 2026 09:08:27 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/02/09/20260302090434945/pic_3861d65e3f874c76ac05bce270de6181.jpg" type="image/jpeg" length="28463"/>
+  <category>Экономика</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/02/brent/</guid>
+  <author>Платон Щукин</author>
+  <title>Мировые цены на нефть взлетели</title>
+  <link>https://lenta.ru/news/2026/03/02/brent/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Mon, 02 Mar 2026 09:06:53 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/02/08/20260302083709606/pic_74462e36f0dc6217e7a0e0866397c808.jpg" type="image/jpeg" length="13617"/>
+  <category>Экономика</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/02/v-evrope-raskritikovali-operatsiyu-ssha-i-izrailya-irane-kto-risknul-vystupit-protiv-trampa-i-evrotroyki/</guid>
+  <author>Марина Совина</author>
+  <title>В Европе раскритиковали операцию США и Израиля в Иране. Кто рискнул выступить против Трампа и «Евротройки»?</title>
+  <link>https://lenta.ru/news/2026/03/02/v-evrope-raskritikovali-operatsiyu-ssha-i-izrailya-irane-kto-risknul-vystupit-protiv-trampa-i-evrotroyki/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Mon, 02 Mar 2026 09:06:48 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/02/08/20260302085712013/pic_e047ee40739769456c8b69016d571796.jpg" type="image/jpeg" length="18592"/>
+  <category>Мир</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/02/kaprizov-povtoril-klubnyy-rekord-minnesoty-po-chislu-golov-v-nhl/</guid>
+  <author>Алексей Гусев</author>
+  <title>Капризов повторил клубный рекорд «Миннесоты» по числу голов в НХЛ</title>
+  <link>https://lenta.ru/news/2026/03/02/kaprizov-povtoril-klubnyy-rekord-minnesoty-po-chislu-golov-v-nhl/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Mon, 02 Mar 2026 09:06:23 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/02/09/20260302090412778/pic_fa42e42baece8cfc2fb199eabe497969.jpg" type="image/jpeg" length="29158"/>
+  <category>Спорт</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/02/stalo-izvestno-o-perebroske-aydara-k-rossiyskoy-granitse/</guid>
+  <author>Александр Курбатов</author>
+  <title>Стало известно о переброске «Айдара» к российской границе</title>
+  <link>https://lenta.ru/news/2026/03/02/stalo-izvestno-o-perebroske-aydara-k-rossiyskoy-granitse/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Mon, 02 Mar 2026 09:04:52 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/02/09/20260302090501605/pic_44bf77163cb4007ee065f486489da567.jpg" type="image/jpeg" length="27532"/>
+  <category>Бывший СССР</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/02/otkrovennyy-naryad-dzhulii-foks-na-prezentatsii-vysmeyali-v-seti-frazoy-kakoy-bardak/</guid>
+  <author>Карина Черных</author>
+  <title>Откровенный наряд Джулии Фокс на презентации высмеяли в сети фразой «какой бардак»</title>
+  <link>https://lenta.ru/news/2026/03/02/otkrovennyy-naryad-dzhulii-foks-na-prezentatsii-vysmeyali-v-seti-frazoy-kakoy-bardak/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Mon, 02 Mar 2026 09:04:49 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/02/27/17/20260227170929658/pic_a46054c83346f47e35a101835edcd5c7.jpg" type="image/jpeg" length="30406"/>
+  <category>Ценности</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/02/stali-izvestny-novye-podrobnosti-o-slishkom-krasivoy-20-letney-seriynoy-ubiytse/</guid>
+  <author>Олег Парамонов</author>
+  <title>Стали известны новые подробности о «слишком красивой» 20-летней серийной убийце</title>
+  <link>https://lenta.ru/news/2026/03/02/stali-izvestny-novye-podrobnosti-o-slishkom-krasivoy-20-letney-seriynoy-ubiytse/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Mon, 02 Mar 2026 09:04:23 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/02/27/17/20260227175911239/pic_7ed166779a2942c752f333b976c6e883.jpg" type="image/jpeg" length="31688"/>
+  <category>Из жизни</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/02/vozroslo-chislo-postradavshih-pri-massirovannoy-atake-dronov-vsu-po-novorossiysku/</guid>
+  <author>Майя Назарова</author>
+  <title>Возросло число пострадавших при массированной атаке дронов ВСУ по Новороссийску</title>
+  <link>https://lenta.ru/news/2026/03/02/vozroslo-chislo-postradavshih-pri-massirovannoy-atake-dronov-vsu-po-novorossiysku/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Mon, 02 Mar 2026 09:03:00 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/02/09/20260302090249649/pic_91200e37dc839df77ea187db7ad3e2ac.jpg" type="image/jpeg" length="16382"/>
+  <category>Россия</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/02/passazhir-prizhalsya-golovoy-k-grudi-poputchitsy-v-samolete-i-ugodil-pod-arest/</guid>
+  <author>Александра Статных</author>
+  <title>Пассажир прижался головой к груди попутчицы в самолете и угодил под арест</title>
+  <link>https://lenta.ru/news/2026/03/02/passazhir-prizhalsya-golovoy-k-grudi-poputchitsy-v-samolete-i-ugodil-pod-arest/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Mon, 02 Mar 2026 09:02:39 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/02/27/17/20260227175621536/pic_c6244e0b527cdc2c4f13793fe42824c9.jpg" type="image/jpeg" length="25312"/>
+  <category>Путешествия</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/02/leica/</guid>
+  <author>Андрей Ставицкий</author>
+  <title>Xiaomi представила самый дорогой смартфон</title>
+  <link>https://lenta.ru/news/2026/03/02/leica/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Mon, 02 Mar 2026 09:02:20 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/02/09/20260302090248735/pic_6ababebedd98035fd8ea1d00e64a67c6.jpg" type="image/jpeg" length="9740"/>
+  <category>Наука и техника</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/02/baza-vvs-britanii-podverglas-udaru-bpla/</guid>
+  <author>Дарья Устьянцева</author>
+  <title>База ВВС Британии подверглась удару БПЛА</title>
+  <link>https://lenta.ru/news/2026/03/02/baza-vvs-britanii-podverglas-udaru-bpla/</link>
+  <description>
+  </description>
+  <pubDate>Mon, 02 Mar 2026 09:02:18 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/02/09/20260302090347643/pic_20e1f1fddd3933dbf37f434b6a122024.jpg" type="image/jpeg" length="30964"/>
+  <category>Мир</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/02/record-mart/</guid>
+  <author>Виктория Клабукова</author>
+  <title>В России март начался с тепловых рекордов</title>
+  <link>https://lenta.ru/news/2026/03/02/record-mart/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Mon, 02 Mar 2026 09:01:06 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/02/08/20260302084935581/pic_36dedde4d8af1893631db2be34792eb7.jpg" type="image/jpeg" length="30465"/>
+  <category>Экономика</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/02/rejeem/</guid>
+  <author>Марк Леонов</author>
+  <title>Режим ЧС ввели после массированной атаки на крупный российский город</title>
+  <link>https://lenta.ru/news/2026/03/02/rejeem/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Mon, 02 Mar 2026 08:59:00 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/02/09/20260302090153487/pic_9a3c052e7bfa162c25b26bd6ac4fee80.jpg" type="image/jpeg" length="36272"/>
+  <category>Россия</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/02/bazu-nato-atakovali-v-irake/</guid>
+  <author>Андрей Прокопьев</author>
+  <title>Базу НАТО атаковали в Ираке</title>
+  <link>https://lenta.ru/news/2026/03/02/bazu-nato-atakovali-v-irake/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Mon, 02 Mar 2026 08:56:00 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/02/08/20260302085523989/pic_360245e01257f54d8799b9616db72d6b.jpg" type="image/jpeg" length="21645"/>
+  <category>Мир</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/02/stalo-izvestno-o-blizhayshih-deystviyah-es-po-konfliktu-s-iranom/</guid>
+  <author>Владислав Китов</author>
+  <title>Стало известно о ближайших действиях ЕС по конфликту с Ираном</title>
+  <link>https://lenta.ru/news/2026/03/02/stalo-izvestno-o-blizhayshih-deystviyah-es-po-konfliktu-s-iranom/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Mon, 02 Mar 2026 08:55:58 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/02/09/20260302090117467/pic_5ac8a756fd63f2cbffe92db913775669.jpg" type="image/jpeg" length="31201"/>
+  <category>Мир</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/02/raskryt-ukravshiy-iz-mashiny-sportivnuyu-sumku-s-36-millionami-rubley-moskvich/</guid>
+  <author>Анна Габай</author>
+  <title>Раскрыт укравший из машины спортивную сумку с 36 миллионами рублей россиянин</title>
+  <link>https://lenta.ru/news/2026/03/02/raskryt-ukravshiy-iz-mashiny-sportivnuyu-sumku-s-36-millionami-rubley-moskvich/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Mon, 02 Mar 2026 08:54:00 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/02/08/20260302085958616/pic_073fb883f819bd216504e081529c1a43.jpg" type="image/jpeg" length="28092"/>
+  <category>Силовые структуры</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/02/nazvan-samyy-podorozhavshiy-v-mire-tovar/</guid>
+  <author>Анатолий Акулов</author>
+  <title>Назван самый подорожавший в мире товар</title>
+  <link>https://lenta.ru/news/2026/03/02/nazvan-samyy-podorozhavshiy-v-mire-tovar/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Mon, 02 Mar 2026 08:48:00 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/02/08/20260302084047909/pic_6fcb35fb66f2c18b233482cf348651f6.jpg" type="image/jpeg" length="24138"/>
+  <category>Экономика</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/02/rossiyanka-pozhalovalas-na-otkaz-vrachey-prinyat-syna-s-amputirovannoy-nogoy-v-bolnitse/</guid>
+  <author>Майя Назарова</author>
+  <title>Россиянка пожаловалась на отказ врачей принять сына с ампутированной ногой в больнице</title>
+  <link>https://lenta.ru/news/2026/03/02/rossiyanka-pozhalovalas-na-otkaz-vrachey-prinyat-syna-s-amputirovannoy-nogoy-v-bolnitse/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Mon, 02 Mar 2026 08:45:42 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/02/08/20260302084157631/pic_67b1c3ca6da0f73fb49f51683136301c.jpg" type="image/jpeg" length="16062"/>
+  <category>Россия</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/02/v-kongresse-ssha-predrekli-vechnuyu-voynu-na-blizhnem-vostoke/</guid>
+  <author>Дарья Устьянцева</author>
+  <title>В Конгрессе США предрекли вечную войну на Ближнем Востоке</title>
+  <link>https://lenta.ru/news/2026/03/02/v-kongresse-ssha-predrekli-vechnuyu-voynu-na-blizhnem-vostoke/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Mon, 02 Mar 2026 08:43:19 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/02/08/20260302085008844/pic_4458fc4b3131f5c5a6b3c98d144f00be.jpg" type="image/jpeg" length="17036"/>
+  <category>Мир</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/02/byvshiy-premier-izrailya-raskryl-slaboe-mesto-plana-netanyahu-i-trampa-po-iranu/</guid>
+  <author>Владислав Китов</author>
+  <title>Бывший премьер Израиля раскрыл слабое место плана Нетаньяху и Трампа по Ирану</title>
+  <link>https://lenta.ru/news/2026/03/02/byvshiy-premier-izrailya-raskryl-slaboe-mesto-plana-netanyahu-i-trampa-po-iranu/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Mon, 02 Mar 2026 08:32:25 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/02/08/20260302083343875/pic_931c1acf035128c68cef455ac49b5e71.jpg" type="image/jpeg" length="17486"/>
+  <category>Мир</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/02/rossiyskie-voyska-nanesli-udar-po-stantsiyam-starlink-vsu/</guid>
+  <author>Валентин Карант</author>
+  <title>Российские войска нанесли удар по станциям Starlink ВСУ</title>
+  <link>https://lenta.ru/news/2026/03/02/rossiyskie-voyska-nanesli-udar-po-stantsiyam-starlink-vsu/</link>
+  <description>
+  </description>
+  <pubDate>Mon, 02 Mar 2026 08:31:32 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/02/08/20260302083219257/pic_9c4aa8a3da112b5c0dee5c739fdc3e95.jpg" type="image/jpeg" length="45712"/>
+  <category>Бывший СССР</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/02/nazvana-neobychnaya-poza-dlya-chuvstvennogo-seksa/</guid>
+  <author>Екатерина Улитина</author>
+  <title>Названа необычная поза для чувственного секса</title>
+  <link>https://lenta.ru/news/2026/03/02/nazvana-neobychnaya-poza-dlya-chuvstvennogo-seksa/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Mon, 02 Mar 2026 08:31:07 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/02/27/12/20260227120904551/pic_22660c6c12b962119a0d595e5c8a2962.jpg" type="image/jpeg" length="26524"/>
+  <category>Забота о себе</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/02/nazvan-prioritet-es-posle-nachala-konflikta-mezhdu-ssha-i-iranom/</guid>
+  <author>Александр Курбатов</author>
+  <title>Назван приоритет ЕС после начала конфликта между США и Ираном</title>
+  <link>https://lenta.ru/news/2026/03/02/nazvan-prioritet-es-posle-nachala-konflikta-mezhdu-ssha-i-iranom/</link>
+  <description>
+  </description>
+  <pubDate>Mon, 02 Mar 2026 08:30:44 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/02/09/20260302091706098/pic_5f784a63bc9a12125dc982bef447b60e.jpg" type="image/jpeg" length="24976"/>
+  <category>Бывший СССР</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/02/v-dubae-razdalis-novye-vzryvy/</guid>
+  <author>Марина Совина</author>
+  <title>В Дубае раздались новые взрывы</title>
+  <link>https://lenta.ru/news/2026/03/02/v-dubae-razdalis-novye-vzryvy/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Mon, 02 Mar 2026 08:30:00 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/02/08/20260302083259275/pic_f99649d6f6862ef1868f391bfb4b2282.jpg" type="image/jpeg" length="34839"/>
+  <category>Мир</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/02/iran-sbil-amerikanskiy-istrebitel-nad-kuveytom/</guid>
+  <author>Артём Верейкин</author>
+  <title>Иран сбил американский истребитель над Кувейтом</title>
+  <link>https://lenta.ru/news/2026/03/02/iran-sbil-amerikanskiy-istrebitel-nad-kuveytom/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Mon, 02 Mar 2026 08:26:00 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/02/08/20260302082516442/pic_dc791cb8fe37ed0bb1334c5aa0d69cbc.jpg" type="image/jpeg" length="4653"/>
+  <category>Мир</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/02/iran-otkazalsya-vesti-peregovory-s-ssha/</guid>
+  <author>Марина Совина</author>
+  <title>Иран отказался вести переговоры с США</title>
+  <link>https://lenta.ru/news/2026/03/02/iran-otkazalsya-vesti-peregovory-s-ssha/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Mon, 02 Mar 2026 08:26:00 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/02/08/20260302081658660/pic_c651608a9f2d09d287a263c329cd84fc.jpg" type="image/jpeg" length="14639"/>
+  <category>Мир</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/02/evropeyskie-korabli-popali-v-avariyu-vblizi-ormuzskogo-proliva/</guid>
+  <author>Дарья Устьянцева</author>
+  <title>Европейские корабли попали в аварию вблизи Ормузского пролива</title>
+  <link>https://lenta.ru/news/2026/03/02/evropeyskie-korabli-popali-v-avariyu-vblizi-ormuzskogo-proliva/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Mon, 02 Mar 2026 08:24:39 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/02/08/20260302082605513/pic_fbdbf716538f2218fddf537f63c6299f.jpg" type="image/jpeg" length="18922"/>
+  <category>Мир</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/02/v-izraile-raskryli-finalnuyu-tsel-konflikta-s-iranom/</guid>
+  <author>Владислав Китов</author>
+  <title>В Израиле раскрыли финальную цель конфликта с Ираном</title>
+  <link>https://lenta.ru/news/2026/03/02/v-izraile-raskryli-finalnuyu-tsel-konflikta-s-iranom/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Mon, 02 Mar 2026 08:14:22 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/02/08/20260302081501765/pic_e19ae50c173d88f7d5921c27ea998a38.jpg" type="image/jpeg" length="23165"/>
+  <category>Мир</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/02/sud-opredelil-sudbu-podozrevaemogo-v-rasprave-nad-rossiyskoy-supruzheskoy-paroy/</guid>
+  <author>Анна Габай</author>
+  <title>Суд определил судьбу подозреваемого в расправе над российской супружеской парой</title>
+  <link>https://lenta.ru/news/2026/03/02/sud-opredelil-sudbu-podozrevaemogo-v-rasprave-nad-rossiyskoy-supruzheskoy-paroy/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Mon, 02 Mar 2026 08:12:00 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/02/08/20260302081339039/pic_b53f2db373c5bb1c9c2f061944f985a2.jpg" type="image/jpeg" length="12352"/>
+  <category>Силовые структуры</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/02/rossii-sprognozirovali-zatyazhnoe-padenie-vylova-klyuchevogo-vida-ryb/</guid>
+  <author>Анатолий Акулов</author>
+  <title>России спрогнозировали затяжное падение вылова ключевого вида рыб</title>
+  <link>https://lenta.ru/news/2026/03/02/rossii-sprognozirovali-zatyazhnoe-padenie-vylova-klyuchevogo-vida-ryb/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Mon, 02 Mar 2026 08:09:03 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/02/08/20260302081228458/pic_a0dbb89caf26a8ad4d0fd63b4e267ace.jpg" type="image/jpeg" length="44313"/>
+  <category>Экономика</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/02/evropeyskiy-lider-vystupil-protiv-ssha-i-evropy-iz-za-irana/</guid>
+  <author>Владислав Китов</author>
+  <title>Европейский лидер выступил против США и Европы из-за Ирана</title>
+  <link>https://lenta.ru/news/2026/03/02/evropeyskiy-lider-vystupil-protiv-ssha-i-evropy-iz-za-irana/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Mon, 02 Mar 2026 08:02:00 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/02/08/20260302080614263/pic_45569c5735b30a70c61a9929fd4b63a0.jpg" type="image/jpeg" length="18720"/>
+  <category>Мир</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/02/evropeyskiy-lider-vystupil-protiv-ssha-i-evropy-iz-za-irana/</guid>
+  <author>Владислав Китов</author>
+  <title>Европейский лидер выступил против США и Европы из-за Ирана</title>
+  <link>https://lenta.ru/news/2026/03/02/evropeyskiy-lider-vystupil-protiv-ssha-i-evropy-iz-za-irana/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Mon, 02 Mar 2026 08:02:00 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/02/08/20260302080614263/pic_45569c5735b30a70c61a9929fd4b63a0.jpg" type="image/jpeg" length="18720"/>
+  <category>Мир</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/02/glavu-hezbolly-v-parlamente-ubili-v-rezultate-ataki-izrailya/</guid>
+  <author>Андрей Прокопьев</author>
+  <title>Главу «Хезболлы» в парламенте убили в результате атаки Израиля</title>
+  <link>https://lenta.ru/news/2026/03/02/glavu-hezbolly-v-parlamente-ubili-v-rezultate-ataki-izrailya/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Mon, 02 Mar 2026 08:01:00 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/02/08/20260302080124703/pic_fb2ff733b4aa7a9d26adda6ed673fa2f.jpg" type="image/jpeg" length="19177"/>
+  <category>Мир</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/02/skonchalsya-dramaturg-nikolay-kolyada/</guid>
+  <author>Марина Совина</author>
+  <title>Скончался драматург Николай Коляда</title>
+  <link>https://lenta.ru/news/2026/03/02/skonchalsya-dramaturg-nikolay-kolyada/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Mon, 02 Mar 2026 08:01:00 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/02/08/20260302080317369/pic_8be21f6d3df5baad47a8e23c44b4b250.jpg" type="image/jpeg" length="16748"/>
+  <category>Культура</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/02/skandalnaya-pornozvezda-bonni-blyu-nazvala-lyubimyy-tip-muzhchin-dlya-seksa/</guid>
+  <author>Алиса Дмитриева</author>
+  <title>Скандальная порнозвезда Бонни Блю назвала любимый тип мужчин для секса</title>
+  <link>https://lenta.ru/news/2026/03/02/skandalnaya-pornozvezda-bonni-blyu-nazvala-lyubimyy-tip-muzhchin-dlya-seksa/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Mon, 02 Mar 2026 08:00:51 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/02/26/16/20260226164213728/pic_4d5d8cb218ec6d9c12372d36b220b6d7.jpg" type="image/jpeg" length="42569"/>
+  <category>Из жизни</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/02/v-rossiyskom-regione-raskryty-tri-glavarya-totalitarnoy-sekty/</guid>
+  <author>Анна Габай</author>
+  <title>В российском регионе раскрыты три главаря тоталитарной секты</title>
+  <link>https://lenta.ru/news/2026/03/02/v-rossiyskom-regione-raskryty-tri-glavarya-totalitarnoy-sekty/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Mon, 02 Mar 2026 07:53:17 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/02/07/20260302075437754/pic_948afb22fa08515ceba1819e3dde6635.jpg" type="image/jpeg" length="47273"/>
+  <category>Силовые структуры</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/02/plennyy-boevik-vsu-pozhalovalsya-na-kanadskiy-suhpaek/</guid>
+  <author>Марина Совина</author>
+  <title>Пленный боец ВСУ пожаловался на канадский сухпаек</title>
+  <link>https://lenta.ru/news/2026/03/02/plennyy-boevik-vsu-pozhalovalsya-na-kanadskiy-suhpaek/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Mon, 02 Mar 2026 07:51:00 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/02/07/20260302075536386/pic_c2f0114644d5a4d9527b6a4e8d133da1.jpg" type="image/jpeg" length="20164"/>
+  <category>Бывший СССР</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/02/davayte-sperva-zakonchim-rabotu-tramp-rasskazal-o-treh-ochen-horoshih-kandidaturah-na-post-lidera-irana/</guid>
+  <author>Марина Совина</author>
+  <title>«Давайте сначала закончим работу». Трамп рассказал о трех очень хороших кандидатурах на пост лидера Ирана</title>
+  <link>https://lenta.ru/news/2026/03/02/davayte-sperva-zakonchim-rabotu-tramp-rasskazal-o-treh-ochen-horoshih-kandidaturah-na-post-lidera-irana/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Mon, 02 Mar 2026 07:50:00 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/02/07/20260302075024705/pic_080b0c87658304f3f9f959f498556509.jpg" type="image/jpeg" length="33388"/>
+  <category>Мир</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/02/stalo-izvestno-o-rezkom-prizyve-soratnikov-trampa-v-otnoshenii-irana/</guid>
+  <author>Артём Верейкин</author>
+  <title>Стало известно о резком призыве соратников Трампа в отношении Ирана</title>
+  <link>https://lenta.ru/news/2026/03/02/stalo-izvestno-o-rezkom-prizyve-soratnikov-trampa-v-otnoshenii-irana/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Mon, 02 Mar 2026 07:39:22 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/02/07/20260302073730239/pic_498d762649a27a4c3a30359235e521fe.jpg" type="image/jpeg" length="42968"/>
+  <category>Мир</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/02/samsung-fail/</guid>
+  <author>Андрей Ставицкий</author>
+  <title>Samsung признала провал своих смартфонов</title>
+  <link>https://lenta.ru/news/2026/03/02/samsung-fail/</link>
+  <description>
+  </description>
+  <pubDate>Mon, 02 Mar 2026 07:38:19 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/02/27/20/20260227203600366/pic_0ce28c84c93e21c13a632968502c79b1.jpg" type="image/jpeg" length="17471"/>
+  <category>Наука и техника</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/02/rossiyskaya-trevel-blogersha-opisala-uklad-zhizni-v-germanii-slovami-dogovoritsya-slozhnee/</guid>
+  <author>Елизавета Гринберг</author>
+  <title>Российская тревел-блогерша описала уклад жизни в Германии словами «договориться сложнее»</title>
+  <link>https://lenta.ru/news/2026/03/02/rossiyskaya-trevel-blogersha-opisala-uklad-zhizni-v-germanii-slovami-dogovoritsya-slozhnee/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Mon, 02 Mar 2026 07:38:17 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/02/27/20/20260227205422857/pic_6ef3e4e78b1d98d1496b20c01e4a5a6b.jpg" type="image/jpeg" length="36783"/>
+  <category>Путешествия</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/02/zhenschina-vsyu-zhizn-boyalas-dozhdya-po-neobychnoy-prichine/</guid>
+  <author>Олег Давыдов</author>
+  <title>Женщина всю жизнь боялась дождя по необычной причине</title>
+  <link>https://lenta.ru/news/2026/03/02/zhenschina-vsyu-zhizn-boyalas-dozhdya-po-neobychnoy-prichine/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Mon, 02 Mar 2026 07:38:15 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/02/27/17/20260227173438079/pic_1f686d9cfb23b081cbd3b0e96606ed89.jpg" type="image/jpeg" length="36707"/>
+  <category>Интернет и СМИ</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/02/raskryty-dve-versii-prichin-shoda-vagonov-v-rossiyskom-regione/</guid>
+  <author>Анна Габай</author>
+  <title>Раскрыты две версии причин схода вагонов в российском регионе</title>
+  <link>https://lenta.ru/news/2026/03/02/raskryty-dve-versii-prichin-shoda-vagonov-v-rossiyskom-regione/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Mon, 02 Mar 2026 07:32:44 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/02/07/20260302073733481/pic_09609471a949e6ba65d1b706b439458d.jpg" type="image/jpeg" length="28997"/>
+  <category>Силовые структуры</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/02/tsena-otkaza-evropeyskoy-strany-ot-rossiyskoy-nefti-okazalas-vnushitelnoy/</guid>
+  <author>Анатолий Акулов</author>
+  <title>Цена отказа европейской страны от российской нефти оказалась внушительной</title>
+  <link>https://lenta.ru/news/2026/03/02/tsena-otkaza-evropeyskoy-strany-ot-rossiyskoy-nefti-okazalas-vnushitelnoy/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Mon, 02 Mar 2026 07:32:35 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/02/07/20260302073536863/pic_0b59905d1630080d7bea303931b3b094.jpg" type="image/jpeg" length="17187"/>
+  <category>Экономика</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/02/details/</guid>
+  <author>Марк Леонов</author>
+  <title>Раскрыты детали масштабной атаки ВСУ на регионы России</title>
+  <link>https://lenta.ru/news/2026/03/02/details/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Mon, 02 Mar 2026 07:30:00 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/02/07/20260302073113392/pic_c641aa2ae42db24f8d562e292e79305d.jpg" type="image/jpeg" length="22033"/>
+  <category>Россия</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/02/chinovniki-trampa-raskryli-ego-optimizm-o-smene-vlasti-v-esche-odnoy-strane/</guid>
+  <author>Андрей Прокопьев</author>
+  <title>Чиновники Трампа раскрыли его оптимизм о смене власти в еще одной стране</title>
+  <link>https://lenta.ru/news/2026/03/02/chinovniki-trampa-raskryli-ego-optimizm-o-smene-vlasti-v-esche-odnoy-strane/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Mon, 02 Mar 2026 07:28:00 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/02/07/20260302072849155/pic_878b75fef8aeb2a3cf0c74f2bc04f97f.jpg" type="image/jpeg" length="10357"/>
+  <category>Мир</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/02/posledstviya/</guid>
+  <author>Марк Леонов</author>
+  <title>Объявлено о последствиях массированной атаки Украины на Новороссийск</title>
+  <link>https://lenta.ru/news/2026/03/02/posledstviya/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Mon, 02 Mar 2026 07:28:00 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/02/07/20260302072907036/pic_c2b58a9e8f90c827519472d143f0f5bb.jpg" type="image/jpeg" length="21676"/>
+  <category>Россия</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/02/raskryto-reshenie-dlya-pohitivshego-83-7-milliona-rubley-u-rosgvardii-glavy-vitu-proekta/</guid>
+  <author>Анна Габай</author>
+  <title>Раскрыто решение для похитившего 83,7 миллиона рублей у Росгвардии главы «Виту проекта»</title>
+  <link>https://lenta.ru/news/2026/03/02/raskryto-reshenie-dlya-pohitivshego-83-7-milliona-rubley-u-rosgvardii-glavy-vitu-proekta/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Mon, 02 Mar 2026 07:18:37 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/02/07/20260302071959869/pic_24348b4a8e6e0abc37696278c50250d7.jpg" type="image/jpeg" length="18938"/>
+  <category>Силовые структуры</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/02/gorbachov/</guid>
+  <author>Инга Разумовская</author>
+  <title>Отношение россиян к Горбачеву назвали закрепившимся навсегда</title>
+  <link>https://lenta.ru/news/2026/03/02/gorbachov/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Mon, 02 Mar 2026 07:15:31 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/01/16/20260301164058232/pic_46f5f89ec7a8267c2575ce2424de91c4.jpg" type="image/jpeg" length="20482"/>
+  <category>Россия</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/02/zastryavshim-v-dubae-turistam-iz-rossii-dali-tri-finika-na-obed/</guid>
+  <author>Марина Совина</author>
+  <title>Застрявшим в Дубае туристам из России дали три финика на обед</title>
+  <link>https://lenta.ru/news/2026/03/02/zastryavshim-v-dubae-turistam-iz-rossii-dali-tri-finika-na-obed/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Mon, 02 Mar 2026 07:01:58 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/02/06/20260302065123165/pic_e0cb9a7d210d0987f6fb8e848201af49.jpg" type="image/jpeg" length="48267"/>
+  <category>Путешествия</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/02/v-seti-obsudili-vneshnost-52-letnego-kristiana-beyla-na-foto-s-krasnoy-dorozhki/</guid>
+  <author>Мария Винар</author>
+  <title>В сети обсудили внешность 52-летнего Кристиана Бэйла на фото с красной дорожки</title>
+  <link>https://lenta.ru/news/2026/03/02/v-seti-obsudili-vneshnost-52-letnego-kristiana-beyla-na-foto-s-krasnoy-dorozhki/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Mon, 02 Mar 2026 07:00:38 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/02/27/13/20260227133632302/pic_29e4d0d8b0cd561cbff32774f06dde37.jpg" type="image/jpeg" length="22624"/>
+  <category>Ценности</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/01/znamenosets-sbornoy-rossii-stantsevala-v-obtyagivayuschih-leopardovyh-shortah-i-mehovom-lifchike/</guid>
+  <author>Андрей Стрельцов</author>
+  <title>Знаменосец сборной России станцевала в обтягивающих леопардовых шортах и меховом лифчике</title>
+  <link>https://lenta.ru/news/2026/03/01/znamenosets-sbornoy-rossii-stantsevala-v-obtyagivayuschih-leopardovyh-shortah-i-mehovom-lifchike/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Mon, 02 Mar 2026 07:00:36 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/01/22/20260301224653928/pic_a2179e39ab05d27c4abdcd97a90163db.jpg" type="image/jpeg" length="14810"/>
+  <category>Спорт</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/02/izvestnogo-millionera-bodibildera-mashiny-ne-stalo-pri-zagadochnyh-obstoyatelstvah/</guid>
+  <author>Никита Савин</author>
+  <title>Известного миллионера-бодибилдера Машины не стало при загадочных обстоятельствах</title>
+  <link>https://lenta.ru/news/2026/03/02/izvestnogo-millionera-bodibildera-mashiny-ne-stalo-pri-zagadochnyh-obstoyatelstvah/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Mon, 02 Mar 2026 07:00:34 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/02/27/14/20260227143319933/pic_f9002bdeb6e12829b483d4f875a9ea56.jpg" type="image/jpeg" length="25723"/>
+  <category>Из жизни</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/02/devushka-pozhalovalas-na-trudnosti-vo-vremya-oralnogo-seksa-i-byla-raskritikovana/</guid>
+  <author>Александра Лисица</author>
+  <title>Девушка пожаловалась на трудности во время орального секса и была раскритикована</title>
+  <link>https://lenta.ru/news/2026/03/02/devushka-pozhalovalas-na-trudnosti-vo-vremya-oralnogo-seksa-i-byla-raskritikovana/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Mon, 02 Mar 2026 07:00:32 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/02/27/12/20260227120118806/pic_73f3e5bbf9e2afe5e4251574770d4302.jpg" type="image/jpeg" length="19130"/>
+  <category>Забота о себе</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/02/uhod-prodavtsov-s-marketpleysov-ob-yasnili/</guid>
+  <author>Лилиана Набиуллина</author>
+  <title>Уход продавцов с маркетплейсов объяснили</title>
+  <link>https://lenta.ru/news/2026/03/02/uhod-prodavtsov-s-marketpleysov-ob-yasnili/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Mon, 02 Mar 2026 07:00:30 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/02/27/18/20260227183459127/pic_28f42324ddf7d5ec0abc94b54f291938.jpg" type="image/jpeg" length="30810"/>
+  <category>Экономика</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/02/raskryty-detali-poiskov-pohischennoy-v-smolenske-devochki/</guid>
+  <author>Марина Совина</author>
+  <title>Раскрыты детали поисков похищенной в Смоленске девочки</title>
+  <link>https://lenta.ru/news/2026/03/02/raskryty-detali-poiskov-pohischennoy-v-smolenske-devochki/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Mon, 02 Mar 2026 07:00:00 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/02/07/20260302070310433/pic_016c59e5ddf4f537b324d24f546e9c34.jpg" type="image/jpeg" length="13596"/>
+  <category>Россия</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/02/v-ssha-prokommentirovali-zayavlenie-ukrainy-o-diktatore-hamenei/</guid>
+  <author>Артём Верейкин</author>
+  <title>В США прокомментировали заявление Украины о «диктаторе» Хаменеи</title>
+  <link>https://lenta.ru/news/2026/03/02/v-ssha-prokommentirovali-zayavlenie-ukrainy-o-diktatore-hamenei/</link>
+  <description>
+  </description>
+  <pubDate>Mon, 02 Mar 2026 06:58:05 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/02/06/20260302065743409/pic_41e0e93b2e6985ee255a81609e777cba.jpg" type="image/jpeg" length="13517"/>
+  <category>Интернет и СМИ</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/02/spetsbort-s-84-rossiyanami-iz-egipta-priletel-v-rossiyu/</guid>
+  <author>Марина Совина</author>
+  <title>Спецборт с 84 россиянами из Египта прилетел в Россию</title>
+  <link>https://lenta.ru/news/2026/03/02/spetsbort-s-84-rossiyanami-iz-egipta-priletel-v-rossiyu/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Mon, 02 Mar 2026 06:51:00 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/02/06/20260302065648468/pic_843d58a691d7e0ac74d7b21e9a7e3f80.jpg" type="image/jpeg" length="16651"/>
+  <category>Россия</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/02/iran-udaril-po-voennomu-lageryu-ssha-v-kuveyte/</guid>
+  <author>Андрей Прокопьев</author>
+  <title>Иран ударил по военному лагерю США в Кувейте</title>
+  <link>https://lenta.ru/news/2026/03/02/iran-udaril-po-voennomu-lageryu-ssha-v-kuveyte/</link>
+  <description>
+  </description>
+  <pubDate>Mon, 02 Mar 2026 06:50:00 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/02/06/20260302065001581/pic_401c706eb26df78b752354fc515aa288.jpg" type="image/jpeg" length="26861"/>
+  <category>Мир</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/02/v-ssha-zayavili-o-provale-operatsii-protiv-irana/</guid>
+  <author>Артём Верейкин</author>
+  <title>В США заявили о провале операции против Ирана</title>
+  <link>https://lenta.ru/news/2026/03/02/v-ssha-zayavili-o-provale-operatsii-protiv-irana/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Mon, 02 Mar 2026 06:42:00 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/02/06/20260302064117227/pic_c078788fa818482306906b607f55ac21.jpg" type="image/jpeg" length="22897"/>
+  <category>Мир</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/02/ssha-i-izrail-planirovali-atakovat-iran-ranshe/</guid>
+  <author>Марина Совина</author>
+  <title>США и Израиль планировали атаковать Иран раньше</title>
+  <link>https://lenta.ru/news/2026/03/02/ssha-i-izrail-planirovali-atakovat-iran-ranshe/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Mon, 02 Mar 2026 06:31:18 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/02/06/20260302063446360/pic_03f31714d4a4030d762fb2617029a574.jpg" type="image/jpeg" length="26441"/>
+  <category>Мир</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/02/usb/</guid>
+  <author>Андрей Ставицкий</author>
+  <title>Описаны скрытые функции USB-порта смартфона</title>
+  <link>https://lenta.ru/news/2026/03/02/usb/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Mon, 02 Mar 2026 06:30:20 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/02/27/20/20260227201741261/pic_5e06364b3756eec4d8510bbf9bb2b76e.jpg" type="image/jpeg" length="8053"/>
+  <category>Наука и техника</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/02/rossiyanina-zaderzhali-po-podozreniyu-v-ubiystve-supruzheskoy-pary/</guid>
+  <author>Андрей Прокопьев</author>
+  <title>Россиянина задержали по подозрению в убийстве супружеской пары</title>
+  <link>https://lenta.ru/news/2026/03/02/rossiyanina-zaderzhali-po-podozreniyu-v-ubiystve-supruzheskoy-pary/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Mon, 02 Mar 2026 06:12:00 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/02/06/20260302061229696/pic_9f7ed86fb30d0d58d1afccbe5b643981.jpg" type="image/jpeg" length="24392"/>
+  <category>Силовые структуры</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/02/zhurnalistka-otpravilas-v-elitnyy-seks-klub-i-rasskazala-o-vpechatleniyah/</guid>
+  <author>Антонина Черташ</author>
+  <title>Журналистка отправилась в элитный секс-клуб и рассказала о впечатлениях</title>
+  <link>https://lenta.ru/news/2026/03/02/zhurnalistka-otpravilas-v-elitnyy-seks-klub-i-rasskazala-o-vpechatleniyah/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Mon, 02 Mar 2026 06:00:24 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/02/26/19/20260226191931938/pic_f51bd723aa5fc1f02052f53ed11a1743.jpg" type="image/jpeg" length="17514"/>
+  <category>Из жизни</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/02/devushka-zhestoko-otomstila-boyfrendu-za-izmenu-i-unizila-ego-pered-vsey-semiey/</guid>
+  <author>Олег Давыдов</author>
+  <title>Девушка жестоко отомстила бойфренду за измену и унизила его перед всей семьей</title>
+  <link>https://lenta.ru/news/2026/03/02/devushka-zhestoko-otomstila-boyfrendu-za-izmenu-i-unizila-ego-pered-vsey-semiey/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Mon, 02 Mar 2026 06:00:22 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/02/27/17/20260227174040664/pic_f617c8c9604c9715a3ec6808698ebc23.jpg" type="image/jpeg" length="17029"/>
+  <category>Интернет и СМИ</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/02/ministr-oborony-italii-sbezhal-iz-obstrelivaemogo-dubaya-i-brosil-semyu/</guid>
+  <author>Марина Совина</author>
+  <title>Министр обороны Италии сбежал из обстреливаемого Дубая и бросил семью</title>
+  <link>https://lenta.ru/news/2026/03/02/ministr-oborony-italii-sbezhal-iz-obstrelivaemogo-dubaya-i-brosil-semyu/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Mon, 02 Mar 2026 05:43:41 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/02/05/20260302054441955/pic_0fb720863114f38ef3d8491b82da958e.jpg" type="image/jpeg" length="19633"/>
+  <category>Мир</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/02/rossiyskiy-trevel-bloger-rasskazal-o-naloge-na-dozhd-dlya-mestnyh-v-shveytsarii/</guid>
+  <author>Елизавета Гринберг</author>
+  <title>Российский тревел-блогер рассказал о налоге на дождь для местных в Швейцарии</title>
+  <link>https://lenta.ru/news/2026/03/02/rossiyskiy-trevel-bloger-rasskazal-o-naloge-na-dozhd-dlya-mestnyh-v-shveytsarii/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Mon, 02 Mar 2026 05:31:22 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/02/27/20/20260227202303350/pic_30dfc0744bdb28117cfdab5f9eec14df.jpg" type="image/jpeg" length="32430"/>
+  <category>Путешествия</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/02/trampa-predupredili-o-posledstviyah-operatsii-protiv-irana/</guid>
+  <author>Артём Верейкин</author>
+  <title>Трампа предупредили о последствиях операции против Ирана</title>
+  <link>https://lenta.ru/news/2026/03/02/trampa-predupredili-o-posledstviyah-operatsii-protiv-irana/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Mon, 02 Mar 2026 05:15:18 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/02/05/20260302051316880/pic_878b75fef8aeb2a3cf0c74f2bc04f97f.jpg" type="image/jpeg" length="10357"/>
+  <category>Мир</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/02/nazvany-neozhidannye-nedostatki-krossovera-haval/</guid>
+  <author>Марина Аверкина</author>
+  <title>Названы неожиданные недостатки кроссовера Haval</title>
+  <link>https://lenta.ru/news/2026/03/02/nazvany-neozhidannye-nedostatki-krossovera-haval/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Mon, 02 Mar 2026 05:15:11 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/02/08/20260302083544697/pic_2edd1b23158e906bee99d3354efddc08.jpg" type="image/jpeg" length="20259"/>
+  <category>Авто</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/02/raskryty-zadachi-inostrannyh-diversantov-v-vsu/</guid>
+  <author>Марина Совина</author>
+  <title>Раскрыты задачи иностранных диверсантов в ВСУ</title>
+  <link>https://lenta.ru/news/2026/03/02/raskryty-zadachi-inostrannyh-diversantov-v-vsu/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Mon, 02 Mar 2026 05:13:00 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/02/05/20260302051451004/pic_f3e1203e75798d435d52e7822b45ec5e.jpg" type="image/jpeg" length="35069"/>
+  <category>Бывший СССР</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/02/tramp-vyskazalsya-o-zaschite-zhiteley-irana/</guid>
+  <author>Марина Совина</author>
+  <title>Трамп высказался о защите жителей Ирана</title>
+  <link>https://lenta.ru/news/2026/03/02/tramp-vyskazalsya-o-zaschite-zhiteley-irana/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Mon, 02 Mar 2026 05:10:11 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/02/05/20260302051038714/pic_f98fb5791a60ac5158e16f2d5de1e622.jpg" type="image/jpeg" length="18225"/>
+  <category>Мир</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/02/tramp-zayavil-o-gotovnosti-ssha-atakovat-iran/</guid>
+  <author>Марина Совина</author>
+  <title>Трамп заявил о готовности США атаковать Иран в течение месяца</title>
+  <link>https://lenta.ru/news/2026/03/02/tramp-zayavil-o-gotovnosti-ssha-atakovat-iran/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Mon, 02 Mar 2026 05:06:00 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/02/05/20260302050121846/pic_07ff1234ab816f8f63da56be8b0a7f52.jpg" type="image/jpeg" length="22563"/>
+  <category>Мир</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/02/muzhchina-opisal-napadenie-ogromnogo-medvedya-frazoy-on-hotel-s-est-menya-kak-desert/</guid>
+  <author>Никита Савин</author>
+  <title>Мужчина описал нападение огромного медведя фразой «он хотел съесть меня как десерт»</title>
+  <link>https://lenta.ru/news/2026/03/02/muzhchina-opisal-napadenie-ogromnogo-medvedya-frazoy-on-hotel-s-est-menya-kak-desert/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Mon, 02 Mar 2026 05:02:24 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/02/25/15/20260225151327140/pic_8d73106234168efc2a05821f9be9cf23.jpg" type="image/jpeg" length="40605"/>
+  <category>Из жизни</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/02/nazvan-vozrast-pika-seksualnoy-udovletvorennosti/</guid>
+  <author>Екатерина Улитина</author>
+  <title>Назван возраст пика сексуальной удовлетворенности</title>
+  <link>https://lenta.ru/news/2026/03/02/nazvan-vozrast-pika-seksualnoy-udovletvorennosti/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Mon, 02 Mar 2026 05:02:22 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/02/27/12/20260227122238190/pic_65a15a265a38582b5bb5a20e07106ddc.jpg" type="image/jpeg" length="22642"/>
+  <category>Забота о себе</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/02/tramp-nazval-idealnyy-stsenariy-smeny-vlasti-v-irane/</guid>
+  <author>Артём Верейкин</author>
+  <title>Трамп назвал идеальный сценарий смены власти в Иране</title>
+  <link>https://lenta.ru/news/2026/03/02/tramp-nazval-idealnyy-stsenariy-smeny-vlasti-v-irane/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Mon, 02 Mar 2026 04:51:06 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/02/04/20260302045058330/pic_b30906995c7ac9dadc625635c4e2f831.jpg" type="image/jpeg" length="8478"/>
+  <category>Мир</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/02/tramp-zayavil-o-treh-kandidatah-na-post-lidera-irana/</guid>
+  <author>Марина Совина</author>
+  <title>Трамп заявил о трех кандидатах на пост лидера Ирана</title>
+  <link>https://lenta.ru/news/2026/03/02/tramp-zayavil-o-treh-kandidatah-na-post-lidera-irana/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Mon, 02 Mar 2026 04:46:00 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/02/04/20260302044742699/pic_fcfee16325b3f4a05f13693f76fd963e.jpg" type="image/jpeg" length="18498"/>
+  <category>Мир</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/02/v-ssha-sochli-politicheskim-samoubiystvom-trampa-operatsiyu-v-irane/</guid>
+  <author>Марина Совина</author>
+  <title>В США сочли политическим самоубийством Трампа операцию в Иране</title>
+  <link>https://lenta.ru/news/2026/03/02/v-ssha-sochli-politicheskim-samoubiystvom-trampa-operatsiyu-v-irane/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Mon, 02 Mar 2026 04:41:32 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/02/04/20260302044206696/pic_878b75fef8aeb2a3cf0c74f2bc04f97f.jpg" type="image/jpeg" length="10357"/>
+  <category>Мир</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/02/nazvan-pomogayuschiy-sohranit-myshtsy-v-pozhilom-vozraste-vitamin/</guid>
+  <author>Екатерина Графская</author>
+  <title>Назван помогающий сохранить мышцы в пожилом возрасте витамин</title>
+  <link>https://lenta.ru/news/2026/03/02/nazvan-pomogayuschiy-sohranit-myshtsy-v-pozhilom-vozraste-vitamin/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Mon, 02 Mar 2026 04:33:50 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/02/27/14/20260227141918594/pic_cc046566c0c1693d8a2506fcb04a06c1.jpg" type="image/jpeg" length="30614"/>
+  <category>Наука и техника</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/02/ssha-podveli-itog-pervyh-sutok-epicheskoy-yarosti-protiv-irana/</guid>
+  <author>Марина Совина</author>
+  <title>США подвели итог первых суток «Эпической ярости» против Ирана</title>
+  <link>https://lenta.ru/news/2026/03/02/ssha-podveli-itog-pervyh-sutok-epicheskoy-yarosti-protiv-irana/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Mon, 02 Mar 2026 04:24:42 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/02/04/20260302042442301/pic_5f784a63bc9a12125dc982bef447b60e.jpg" type="image/jpeg" length="24976"/>
+  <category>Мир</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/02/pensioneram-rasskazali-o-sposobe-sohranit-lgoty/</guid>
+  <author>Марина Совина</author>
+  <title>Пенсионерам рассказали о способе сохранить льготы</title>
+  <link>https://lenta.ru/news/2026/03/02/pensioneram-rasskazali-o-sposobe-sohranit-lgoty/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Mon, 02 Mar 2026 04:21:00 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/02/03/20260302035929661/pic_89c6e18692dec964707eebb17035f17d.jpg" type="image/jpeg" length="33119"/>
+  <category>Экономика</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/02/tramp-neobychno-otvetil-na-vopros-pro-iran/</guid>
+  <author>Артём Верейкин</author>
+  <title>Трамп необычно ответил на вопрос про Иран</title>
+  <link>https://lenta.ru/news/2026/03/02/tramp-neobychno-otvetil-na-vopros-pro-iran/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Mon, 02 Mar 2026 04:12:37 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/02/04/20260302041005137/pic_7184119063d543df6c2a1df01e821553.jpg" type="image/jpeg" length="30122"/>
+  <category>Мир</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/02/muzhchina-vorvalsya-v-kvartiru-neznakomtsev-i-stal-prichinoy-biologicheskoy-opasnosti/</guid>
+  <author>Олег Давыдов</author>
+  <title>Мужчина ворвался в квартиру незнакомцев и стал причиной «биологической опасности»</title>
+  <link>https://lenta.ru/news/2026/03/02/muzhchina-vorvalsya-v-kvartiru-neznakomtsev-i-stal-prichinoy-biologicheskoy-opasnosti/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Mon, 02 Mar 2026 04:01:04 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/02/27/17/20260227173053660/pic_ca3253d44a272982f1a9d2d2f73fe8f2.jpg" type="image/jpeg" length="12930"/>
+  <category>Интернет и СМИ</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/02/zhenschina-58-raz-ukusila-lyubovnika-za-genitalii-i-raspravilas-s-nim-cherez-mesyats/</guid>
+  <author>Алиса Дмитриева</author>
+  <title>Женщина 58 раз укусила любовника за гениталии и расправилась с ним через месяц</title>
+  <link>https://lenta.ru/news/2026/03/02/zhenschina-58-raz-ukusila-lyubovnika-za-genitalii-i-raspravilas-s-nim-cherez-mesyats/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Mon, 02 Mar 2026 04:01:02 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/02/27/14/20260227142957308/pic_3918f07c347161b9210f804c8b4245e3.jpg" type="image/jpeg" length="32679"/>
+  <category>Из жизни</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/02/novuyu-s-emku-sidni-suini-v-nizhnem-belie-otsenili-v-seti-frazoy-stanovitsya-nekomfortno/</guid>
+  <author>Карина Черных</author>
+  <title>Новую съемку Сидни Суини в нижнем белье оценили в сети фразой «становится некомфортно»</title>
+  <link>https://lenta.ru/news/2026/03/02/novuyu-s-emku-sidni-suini-v-nizhnem-belie-otsenili-v-seti-frazoy-stanovitsya-nekomfortno/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Mon, 02 Mar 2026 04:00:59 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/02/27/11/20260227111024142/pic_c188071c9d7cb0a19c9cb9bdcb3e1349.jpg" type="image/jpeg" length="14192"/>
+  <category>Ценности</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/02/sem-domov-okazalis-povrezhdeny-v-rossiyskom-gorode-iz-za-ataki-vsu/</guid>
+  <author>Андрей Прокопьев</author>
+  <title>Семь домов оказались повреждены в российском городе из-за атаки ВСУ</title>
+  <link>https://lenta.ru/news/2026/03/02/sem-domov-okazalis-povrezhdeny-v-rossiyskom-gorode-iz-za-ataki-vsu/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Mon, 02 Mar 2026 03:52:00 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/02/03/20260302035235163/pic_2172213772d98afc021646a83688ab76.jpg" type="image/jpeg" length="10001"/>
+  <category>Россия</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/02/v-britanii-usomnilis-v-nadezhnosti-pvo-ssha-posle-otveta-irana/</guid>
+  <author>Марина Совина</author>
+  <title>В Британии усомнились в надежности ПВО США после ответа Ирана</title>
+  <link>https://lenta.ru/news/2026/03/02/v-britanii-usomnilis-v-nadezhnosti-pvo-ssha-posle-otveta-irana/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Mon, 02 Mar 2026 03:36:33 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/02/03/20260302033910543/pic_09cd6e34e5fd561e34e22980e1cc4225.jpg" type="image/jpeg" length="9376"/>
+  <category>Интернет и СМИ</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/02/mid-irana-nazval-ubiystvo-hamenei-yaschik-pandory/</guid>
+  <author>Марина Совина</author>
+  <title>МИД Ирана назвал убийство Хаменеи открытием «ящика Пандоры»</title>
+  <link>https://lenta.ru/news/2026/03/02/mid-irana-nazval-ubiystvo-hamenei-yaschik-pandory/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Mon, 02 Mar 2026 03:26:00 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/02/03/20260302032507280/pic_21e505fc3ec322e71023fe9f5fa87032.jpg" type="image/jpeg" length="24775"/>
+  <category>Мир</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/02/ssha-ekstrenno-prizvali-grazhdan-otkazatsya-ot-poezdok-v-kuveyt/</guid>
+  <author>Андрей Прокопьев</author>
+  <title>США экстренно призвали граждан отказаться от поездок в Кувейт</title>
+  <link>https://lenta.ru/news/2026/03/02/ssha-ekstrenno-prizvali-grazhdan-otkazatsya-ot-poezdok-v-kuveyt/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Mon, 02 Mar 2026 03:12:25 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/02/03/20260302031229827/pic_a4dd0952e6d374afc765f8440d74fb11.jpg" type="image/jpeg" length="32917"/>
+  <category>Путешествия</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/02/v-britanii-vysmeyali-neudachnoe-vystuplenie-starmera/</guid>
+  <author>Марина Совина</author>
+  <title>В Британии высмеяли неудачное выступление Стармера</title>
+  <link>https://lenta.ru/news/2026/03/02/v-britanii-vysmeyali-neudachnoe-vystuplenie-starmera/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Mon, 02 Mar 2026 03:11:45 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/02/03/20260302031210527/pic_80c0fede64154c6d032f093e89aad4e0.jpg" type="image/jpeg" length="23159"/>
+  <category>Интернет и СМИ</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/02/ubito-vse/</guid>
+  <author>Марина Совина</author>
+  <title>Высшее руководство Ирана убито. Как Тегеран решил ответить на операцию США и Израиля?</title>
+  <link>https://lenta.ru/news/2026/03/02/ubito-vse/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Mon, 02 Mar 2026 03:07:00 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/02/02/20260302025309253/pic_75eb30dea415dd8f7f2e2c2d0f14d1ed.jpg" type="image/jpeg" length="19304"/>
+  <category>Мир</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/02/muzhu-zhenschiny-s-neobychnym-fetishem-posovetovali-sposoby-ee-udovletvorit/</guid>
+  <author>Александра Лисица</author>
+  <title>Мужу женщины с необычным фетишем посоветовали способы ее удовлетворить</title>
+  <link>https://lenta.ru/news/2026/03/02/muzhu-zhenschiny-s-neobychnym-fetishem-posovetovali-sposoby-ee-udovletvorit/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Mon, 02 Mar 2026 03:00:45 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/02/27/12/20260227120230841/pic_95e34fe6dea73981f36b73064da7f919.jpg" type="image/jpeg" length="12398"/>
+  <category>Забота о себе</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/02/zhenschina-poteryala-rabotu-iz-za-lyubvi-k-eroticheskim-romanam-o-sekse-s-drakonami/</guid>
+  <author>Антонина Черташ</author>
+  <title>Женщина потеряла работу из-за любви к эротическим романам о сексе с драконами</title>
+  <link>https://lenta.ru/news/2026/03/02/zhenschina-poteryala-rabotu-iz-za-lyubvi-k-eroticheskim-romanam-o-sekse-s-drakonami/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Mon, 02 Mar 2026 03:00:00 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/02/26/12/20260226122301616/pic_5572b315cec330666d50f5da1ac8ee2f.jpg" type="image/jpeg" length="16264"/>
+  <category>Из жизни</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/02/v-ssha-zayavili-o-vozmozhnosti-mirovoy-voyny-posle-udarov-po-iranu/</guid>
+  <author>Марина Совина</author>
+  <title>В США заявили о возможности мировой войны после ударов по Ирану</title>
+  <link>https://lenta.ru/news/2026/03/02/v-ssha-zayavili-o-vozmozhnosti-mirovoy-voyny-posle-udarov-po-iranu/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Mon, 02 Mar 2026 02:50:17 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/02/02/20260302025937131/pic_02bfd707ab8432e172176aff81446909.jpg" type="image/jpeg" length="16379"/>
+  <category>Мир</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/02/paren-popytalsya-porazit-devushku-svoimi-kulinarnymi-talantami-i-poterpel-fiasko/</guid>
+  <author>Олег Давыдов</author>
+  <title>Парень попытался поразить девушку своими кулинарными талантами и потерпел фиаско</title>
+  <link>https://lenta.ru/news/2026/03/02/paren-popytalsya-porazit-devushku-svoimi-kulinarnymi-talantami-i-poterpel-fiasko/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Mon, 02 Mar 2026 02:30:34 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/02/27/16/20260227164827903/pic_2e62b66e55d5e1ea68d6ef16e0eabe9f.jpg" type="image/jpeg" length="22475"/>
+  <category>Интернет и СМИ</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/02/v-evrope-rezko-vyskazalis-o-zelenskom-posle-ego-slov-ob-irane/</guid>
+  <author>Артём Верейкин</author>
+  <title>В Европе резко высказались о Зеленском после его слов об Иране</title>
+  <link>https://lenta.ru/news/2026/03/02/v-evrope-rezko-vyskazalis-o-zelenskom-posle-ego-slov-ob-irane/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Mon, 02 Mar 2026 02:30:00 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/02/02/20260302022945833/pic_b03cc4770c5734f0cdb5e95da276e2cf.jpg" type="image/jpeg" length="15382"/>
+  <category>Интернет и СМИ</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/02/istrebiteli-britanii-vyleteli-posle-soobscheniy-o-vzryve-na-kipre/</guid>
+  <author>Андрей Прокопьев</author>
+  <title>Истребители Британии вылетели после сообщений о взрыве на Кипре</title>
+  <link>https://lenta.ru/news/2026/03/02/istrebiteli-britanii-vyleteli-posle-soobscheniy-o-vzryve-na-kipre/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Mon, 02 Mar 2026 02:25:38 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/02/02/20260302022539511/pic_13afb11d42ddb3683fdbe88d83421a1a.jpg" type="image/jpeg" length="19536"/>
+  <category>Мир</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/02/kallas-ulichili-vo-lzhi-o-gibeli-hamenei/</guid>
+  <author>Марина Совина</author>
+  <title>Каллас уличили во лжи о гибели Хаменеи</title>
+  <link>https://lenta.ru/news/2026/03/02/kallas-ulichili-vo-lzhi-o-gibeli-hamenei/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Mon, 02 Mar 2026 02:18:00 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/02/01/20260302015951709/pic_41a14960f6475e9ea9cae206b0cc46b2.jpg" type="image/jpeg" length="21417"/>
+  <category>Мир</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/02/moschnyy-vzryv-razdalsya-na-baze-britanii-na-kipre/</guid>
+  <author>Андрей Прокопьев</author>
+  <title>Мощный взрыв раздался на базе Британии на Кипре</title>
+  <link>https://lenta.ru/news/2026/03/02/moschnyy-vzryv-razdalsya-na-baze-britanii-na-kipre/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Mon, 02 Mar 2026 02:02:00 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/02/02/20260302020222230/pic_1088405f6815612ebc13ecdb96deb6df.jpg" type="image/jpeg" length="25334"/>
+  <category>Мир</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/02/izvraschenets-podglyadyval-za-zhenschinami-v-tualete-po-neozhidannoy-prichine/</guid>
+  <author>Олег Парамонов</author>
+  <title>Извращенец подглядывал за женщинами в туалете по неожиданной причине</title>
+  <link>https://lenta.ru/news/2026/03/02/izvraschenets-podglyadyval-za-zhenschinami-v-tualete-po-neozhidannoy-prichine/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Mon, 02 Mar 2026 02:00:32 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/02/27/17/20260227173034420/pic_347542105f4905120c315b1583b47561.jpg" type="image/jpeg" length="56940"/>
+  <category>Из жизни</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/02/27/tv-spy/</guid>
+  <author>Андрей Ставицкий</author>
+  <title>Телевизоры Samsung улучили в слежке</title>
+  <link>https://lenta.ru/news/2026/02/27/tv-spy/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Mon, 02 Mar 2026 02:00:30 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/02/27/19/20260227195551387/pic_358c556e83e91313c5167561595aebb3.jpg" type="image/jpeg" length="44342"/>
+  <category>Наука и техника</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/02/v-rossii-sprognozirovali-hod-voyny-ssha-s-iranom/</guid>
+  <author>Артём Верейкин</author>
+  <title>В России спрогнозировали ход войны США с Ираном</title>
+  <link>https://lenta.ru/news/2026/03/02/v-rossii-sprognozirovali-hod-voyny-ssha-s-iranom/</link>
+  <description>
+  </description>
+  <pubDate>Mon, 02 Mar 2026 01:43:18 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/02/01/20260302014200857/pic_8657de02f77c5aa9ec5ce46aef678ab3.jpg" type="image/jpeg" length="29654"/>
+  <category>Мир</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/02/iz-irana-v-azerbaydzhan-evakuirovali-svyshe-30-rossiyan/</guid>
+  <author>Марина Совина</author>
+  <title>Из Ирана в Азербайджан эвакуировали свыше 30 россиян</title>
+  <link>https://lenta.ru/news/2026/03/02/iz-irana-v-azerbaydzhan-evakuirovali-svyshe-30-rossiyan/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Mon, 02 Mar 2026 01:41:00 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/02/01/20260302013925663/pic_2f5547001e57dd7553268c8f1d31268f.jpg" type="image/jpeg" length="25936"/>
+  <category>Бывший СССР</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/02/ssha-atakovali-iran-kopiyami-geraney/</guid>
+  <author>Марина Совина</author>
+  <title>США атаковали Иран копиями «Гераней»</title>
+  <link>https://lenta.ru/news/2026/03/02/ssha-atakovali-iran-kopiyami-geraney/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Mon, 02 Mar 2026 01:40:07 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/02/01/20260302013803849/pic_211c7ec676f2a7c9660a81b1e9734fd8.jpg" type="image/jpeg" length="8471"/>
+  <category>Наука и техника</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/02/oblomki-bespilotnika-popali-v-mnogoetazhku-iz-za-ataki-vsu-na-rossiyskiy-gorod/</guid>
+  <author>Андрей Прокопьев</author>
+  <title>Обломки дрона попали в многоэтажку из-за атаки ВСУ на российский город</title>
+  <link>https://lenta.ru/news/2026/03/02/oblomki-bespilotnika-popali-v-mnogoetazhku-iz-za-ataki-vsu-na-rossiyskiy-gorod/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Mon, 02 Mar 2026 01:29:32 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/02/01/20260302012924407/pic_6d35ceb3c11314f22542a91b96629342.jpg" type="image/jpeg" length="7897"/>
+  <category>Россия</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/02/evrotroyka-prigrozila-iranu/</guid>
+  <author>Марина Совина</author>
+  <title>«Евротройка» пригрозила Ирану</title>
+  <link>https://lenta.ru/news/2026/03/02/evrotroyka-prigrozila-iranu/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Mon, 02 Mar 2026 01:17:57 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/02/01/20260302011919354/pic_30cdda2ecbcfaf02f0c04a347e224650.jpg" type="image/jpeg" length="26768"/>
+  <category>Мир</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/02/posolstvo-soobschilo-o-popytkah-diversiy-na-turetskom-potoke/</guid>
+  <author>Марина Совина</author>
+  <title>Посольство сообщило о попытках диверсий на «Турецком потоке»</title>
+  <link>https://lenta.ru/news/2026/03/02/posolstvo-soobschilo-o-popytkah-diversiy-na-turetskom-potoke/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Mon, 02 Mar 2026 01:10:00 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/02/00/20260302005846424/pic_ea4997106a51baa9db61f76585b3c5e1.jpg" type="image/jpeg" length="22127"/>
+  <category>Мир</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/02/posol-rasskazal-o-plane-stran-nato-protiv-rossii/</guid>
+  <author>Марина Совина</author>
+  <title>Посол рассказал о планах стран НАТО против России</title>
+  <link>https://lenta.ru/news/2026/03/02/posol-rasskazal-o-plane-stran-nato-protiv-rossii/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Mon, 02 Mar 2026 01:06:00 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/02/01/20260302010722453/pic_85f54d04f737171aa8960807dd0cf861.jpg" type="image/jpeg" length="13115"/>
+  <category>Мир</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/02/zvezda-nominirovannogo-na-oskar-filma-vyshla-v-svet-v-prozrachnom-naryade/</guid>
+  <author>Карина Черных</author>
+  <title>Звезда номинированного на «Оскар» фильма вышла в свет в прозрачном наряде</title>
+  <link>https://lenta.ru/news/2026/03/02/zvezda-nominirovannogo-na-oskar-filma-vyshla-v-svet-v-prozrachnom-naryade/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Mon, 02 Mar 2026 01:05:38 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/02/27/10/20260227103639015/pic_5870e07c2c3dcf6dedc2fd05b30164ff.jpg" type="image/jpeg" length="33042"/>
+  <category>Ценности</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/02/zamuzhnyaya-zhenschina-stolknulas-s-problemoy-iz-za-oralnogo-seksa/</guid>
+  <author>Александра Лисица</author>
+  <title>Замужняя женщина столкнулась с проблемой из-за орального секса</title>
+  <link>https://lenta.ru/news/2026/03/02/zamuzhnyaya-zhenschina-stolknulas-s-problemoy-iz-za-oralnogo-seksa/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Mon, 02 Mar 2026 01:05:36 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/02/26/14/20260226143217855/pic_07d4b511e355ca1bf6438da8c0064cb4.jpg" type="image/jpeg" length="20399"/>
+  <category>Забота о себе</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/02/ukrainu-poprosili-pomoch-v-otrazhenii-atak-irana/</guid>
+  <author>Артём Верейкин</author>
+  <title>Украину попросили помочь в отражении атак Ирана</title>
+  <link>https://lenta.ru/news/2026/03/02/ukrainu-poprosili-pomoch-v-otrazhenii-atak-irana/</link>
+  <description>
+  </description>
+  <pubDate>Mon, 02 Mar 2026 00:58:00 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/02/00/20260302005740004/pic_a3ef3c86a53edf3785fa2c8d1caf834c.jpg" type="image/jpeg" length="23380"/>
+  <category>Мир</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/02/britaniya-odobrila-prosbu-ssha-ob-udarah-v-irane/</guid>
+  <author>Андрей Прокопьев</author>
+  <title>Британия одобрила просьбу США об ударах в Иране</title>
+  <link>https://lenta.ru/news/2026/03/02/britaniya-odobrila-prosbu-ssha-ob-udarah-v-irane/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Mon, 02 Mar 2026 00:57:00 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/02/00/20260302005738610/pic_d6c91d475a6a79f3d9ce05d2edb12755.jpg" type="image/jpeg" length="19916"/>
+  <category>Мир</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/02/tramp-obratilsya-k-iranskim-voennym-s-ultimatumom/</guid>
+  <author>Марина Совина</author>
+  <title>Трамп обратился к иранским военным с ультиматумом</title>
+  <link>https://lenta.ru/news/2026/03/02/tramp-obratilsya-k-iranskim-voennym-s-ultimatumom/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Mon, 02 Mar 2026 00:42:41 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/02/00/20260302004353501/pic_f8e5ac5015170f562abc1f094d92eeeb.jpg" type="image/jpeg" length="18477"/>
+  <category>Мир</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/02/stalo-izvestno-o-massirovannoy-atake-dronov-vsu-na-rossiyskiy-gorod/</guid>
+  <author>Марина Совина</author>
+  <title>Стало известно о массированной атаке дронов ВСУ на российский город</title>
+  <link>https://lenta.ru/news/2026/03/02/stalo-izvestno-o-massirovannoy-atake-dronov-vsu-na-rossiyskiy-gorod/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Mon, 02 Mar 2026 00:35:00 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/02/00/20260302003601766/pic_221d0a98b470507673b8c5315bfa5c84.jpg" type="image/jpeg" length="38271"/>
+  <category>Россия</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/02/v-irane-raskryli-posledstviya-ataki-na-bazu-ssha-v-irakskom-kurdistane/</guid>
+  <author>Андрей Прокопьев</author>
+  <title>В Иране раскрыли последствия атаки на базу США в Иракском Курдистане</title>
+  <link>https://lenta.ru/news/2026/03/02/v-irane-raskryli-posledstviya-ataki-na-bazu-ssha-v-irakskom-kurdistane/</link>
+  <description>
+  </description>
+  <pubDate>Mon, 02 Mar 2026 00:34:00 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/02/00/20260302003440092/pic_ac0f3e8e660bc0c5a0369a7103dd1f6a.jpg" type="image/jpeg" length="11842"/>
+  <category>Мир</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/02/veteran-nasa-rasskazal-ob-inoplanetyanah/</guid>
+  <author>Олег Парамонов</author>
+  <title>Ветеран НАСА рассказал об инопланетянах</title>
+  <link>https://lenta.ru/news/2026/03/02/veteran-nasa-rasskazal-ob-inoplanetyanah/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Mon, 02 Mar 2026 00:30:22 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/02/26/20/20260226200008289/pic_ff298b67cc74bc1bdaeac2670d8a4c54.jpg" type="image/jpeg" length="24675"/>
+  <category>Из жизни</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/02/tramp-poobeschal-dostich-vseh-tseley-voennoy-operatsii-protiv-irana/</guid>
+  <author>Артём Верейкин</author>
+  <title>Трамп пообещал достичь всех целей военной операции против Ирана</title>
+  <link>https://lenta.ru/news/2026/03/02/tramp-poobeschal-dostich-vseh-tseley-voennoy-operatsii-protiv-irana/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Mon, 02 Mar 2026 00:28:14 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/02/00/20260302002438362/pic_f1af9437f82db670a7c2145f2e279f2f.jpg" type="image/jpeg" length="31258"/>
+  <category>Мир</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/02/strany-persidskogo-zaliva-sdelali-preduprezhdenie-iranu/</guid>
+  <author>Марина Совина</author>
+  <title>Страны Персидского залива сделали предупреждение Ирану</title>
+  <link>https://lenta.ru/news/2026/03/02/strany-persidskogo-zaliva-sdelali-preduprezhdenie-iranu/</link>
+  <description>
+    <![CDATA[<br />]]>
+  </description>
+  <pubDate>Mon, 02 Mar 2026 00:28:00 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/02/00/20260302003604573/pic_3b2789b9b71e2589d38a4553665a4b91.jpg" type="image/jpeg" length="22150"/>
+  <category>Мир</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/02/ssha-otsenili-ataku-na-shtab-kvartiru-ksir-odnoy-frazoy/</guid>
+  <author>Марина Совина</author>
+  <title>США оценили атаку на штаб-квартиру КСИР одной фразой</title>
+  <link>https://lenta.ru/news/2026/03/02/ssha-otsenili-ataku-na-shtab-kvartiru-ksir-odnoy-frazoy/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Mon, 02 Mar 2026 00:22:27 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/02/00/20260302002317756/pic_82ba7ddd7867c18b488ec29da6e93c85.jpg" type="image/jpeg" length="9612"/>
+  <category>Мир</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/02/italiya-peredast-kievu-sidam-25/</guid>
+  <author>Даниил Иринин</author>
+  <title>Италия передаст Киеву SIDAM-25</title>
+  <link>https://lenta.ru/news/2026/03/02/italiya-peredast-kievu-sidam-25/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Mon, 02 Mar 2026 00:15:34 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/02/27/18/20260227182539140/pic_22ea33b712558a1d6a91de43a1ac9d46.jpg" type="image/jpeg" length="23357"/>
+  <category>Наука и техника</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/01/spasennye-ukraintsy-zahoteli-ostatsya-v-rossii/</guid>
+  <author>Марина Совина</author>
+  <title>Спасенные украинцы из зоны СВО захотели остаться в России</title>
+  <link>https://lenta.ru/news/2026/03/01/spasennye-ukraintsy-zahoteli-ostatsya-v-rossii/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Mon, 02 Mar 2026 00:12:00 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/01/23/20260301235506828/pic_25d52350552ef1271c6f7e63bdc89f5a.jpg" type="image/jpeg" length="23356"/>
+  <category>Россия</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/01/rost-populyarnosti-magazinov-dlya-bednyh-v-rossii-ob-yasnili/</guid>
+  <author>Платон Щукин</author>
+  <title>Рост популярности «магазинов для бедных» в России объяснили</title>
+  <link>https://lenta.ru/news/2026/03/01/rost-populyarnosti-magazinov-dlya-bednyh-v-rossii-ob-yasnili/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Mon, 02 Mar 2026 00:10:24 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/02/27/11/20260227110856341/pic_731cd7d8cebf191863d07b5b980e8af6.jpg" type="image/jpeg" length="44551"/>
+  <category>Экономика</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/01/durov-nazval-obstrelivaemyy-dubay-bezopasnee-evropy/</guid>
+  <author>Артём Верейкин</author>
+  <title>Дуров назвал обстреливаемый Дубай безопаснее Европы</title>
+  <link>https://lenta.ru/news/2026/03/01/durov-nazval-obstrelivaemyy-dubay-bezopasnee-evropy/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Mon, 02 Mar 2026 00:07:49 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/02/00/20260302000633732/pic_b1cec70f8d4c23421bff7539693688eb.jpg" type="image/jpeg" length="23021"/>
+  <category>Интернет и СМИ</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/02/2-marta-kakoy-prazdnik-segodnya-otmechayut-v-rossii-i-mire/</guid>
+  <author>Екатерина Керсипова</author>
+  <title>2 марта: какой праздник отмечают в России и мире</title>
+  <link>https://lenta.ru/news/2026/03/02/2-marta-kakoy-prazdnik-segodnya-otmechayut-v-rossii-i-mire/</link>
+  <description>
+    <![CDATA[2 марта в мире отмечают один из самых необычных праздников — Международный день спичек. А еще в этот день особое внимание уделяют кошкам. «Лента.ру» рассказывает, какие еще праздники отмечают в России и мире 2 марта, а также в какие приметы верили наши предки во второй день весны.<br />]]>
+  </description>
+  <pubDate>Mon, 02 Mar 2026 00:05:00 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2024/02/28/18/20240228180007761/pic_6035f2c4c2d86a2a6320fb65f405b942.jpg" type="image/jpeg" length="40447"/>
+  <category>Россия</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/02/moschnyy-vzryv-proizoshel-v-dubae/</guid>
+  <author>Андрей Прокопьев</author>
+  <title>Мощный взрыв произошел в Дубае</title>
+  <link>https://lenta.ru/news/2026/03/02/moschnyy-vzryv-proizoshel-v-dubae/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Mon, 02 Mar 2026 00:01:00 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/02/00/20260302000132686/pic_97423b0fa432e123fc8a8b1634b56c21.jpg" type="image/jpeg" length="17427"/>
+  <category>Мир</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/01/tramp-derzko-vyskazalsya-o-peregovorah-s-iranom/</guid>
+  <author>Марина Совина</author>
+  <title>Трамп дерзко высказался о переговорах с Ираном</title>
+  <link>https://lenta.ru/news/2026/03/01/tramp-derzko-vyskazalsya-o-peregovorah-s-iranom/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Sun, 01 Mar 2026 23:53:29 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/01/23/20260301235429446/pic_f98fb5791a60ac5158e16f2d5de1e622.jpg" type="image/jpeg" length="18225"/>
+  <category>Мир</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/01/tramp-nazval-vozmozhnye-sroki-operatsii-protiv-irana/</guid>
+  <author>Марина Совина</author>
+  <title>Трамп назвал возможные сроки операции против Ирана</title>
+  <link>https://lenta.ru/news/2026/03/01/tramp-nazval-vozmozhnye-sroki-operatsii-protiv-irana/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Sun, 01 Mar 2026 23:41:25 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/01/23/20260301234305084/pic_65e9eba6ad41d7cc70d39adb37da27ec.jpg" type="image/jpeg" length="18595"/>
+  <category>Мир</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/02/sprognozirovan-vzlet-tsen-na-neft-iz-za-udarov-ssha-po-iranu/</guid>
+  <author>Андрей Прокопьев</author>
+  <title>Спрогнозирован взлет цен на нефть из-за ударов США по Ирану</title>
+  <link>https://lenta.ru/news/2026/03/02/sprognozirovan-vzlet-tsen-na-neft-iz-za-udarov-ssha-po-iranu/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Sun, 01 Mar 2026 23:33:00 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/01/23/20260301233345820/pic_a6c6a6121f1930f2332df66fcf64a24c.jpg" type="image/jpeg" length="15817"/>
+  <category>Экономика</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/01/stalo-izvestno-ob-othode-amerikanskogo-avianostsa-ot-irana-posle-ataki-ksir/</guid>
+  <author>Марина Совина</author>
+  <title>Стало известно об отходе американского авианосца от Ирана после атаки КСИР</title>
+  <link>https://lenta.ru/news/2026/03/01/stalo-izvestno-ob-othode-amerikanskogo-avianostsa-ot-irana-posle-ataki-ksir/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Sun, 01 Mar 2026 23:26:00 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/01/23/20260301232749891/pic_80b53ea279810002b3962dd205165cc0.jpg" type="image/jpeg" length="14636"/>
+  <category>Мир</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/01/zelenskiy-prizval-ssha-prodolzhit-udary-po-iranu/</guid>
+  <author>Артём Верейкин</author>
+  <title>Зеленский призвал США продолжить удары по Ирану</title>
+  <link>https://lenta.ru/news/2026/03/01/zelenskiy-prizval-ssha-prodolzhit-udary-po-iranu/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Sun, 01 Mar 2026 23:24:03 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/01/23/20260301232158231/pic_35da8b3b99b5bd7d16f3680266276cd3.jpg" type="image/jpeg" length="17446"/>
+  <category>Бывший СССР</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/01/vs-ssha-primenili-sekretnye-spetsialnye-vozmozhnosti-protiv-irana/</guid>
+  <author>Марина Совина</author>
+  <title>ВС США применили секретные «специальные возможности» против Ирана</title>
+  <link>https://lenta.ru/news/2026/03/01/vs-ssha-primenili-sekretnye-spetsialnye-vozmozhnosti-protiv-irana/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Sun, 01 Mar 2026 23:17:09 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/01/23/20260301231931819/pic_2449d96d730b4c47461133d4bef33ac7.jpg" type="image/jpeg" length="23268"/>
+  <category>Мир</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/01/iran-udaril-dronami-po-tankeru-zapravschiku-avianosnoy-gruppy-ssha/</guid>
+  <author>Марина Совина</author>
+  <title>Иран ударил дронами по танкеру-заправщику авианосной группы США</title>
+  <link>https://lenta.ru/news/2026/03/01/iran-udaril-dronami-po-tankeru-zapravschiku-avianosnoy-gruppy-ssha/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Sun, 01 Mar 2026 23:14:00 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/01/23/20260301232835486/pic_9db0e4947c17a628d70f558254f50bf7.jpg" type="image/jpeg" length="10048"/>
+  <category>Мир</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/01/v-britanii-udivilis-oprometchivomu-shagu-trampa-protiv-irana/</guid>
+  <author>Артём Верейкин</author>
+  <title>В Британии удивились «опрометчивому» шагу Трампа против Ирана</title>
+  <link>https://lenta.ru/news/2026/03/01/v-britanii-udivilis-oprometchivomu-shagu-trampa-protiv-irana/</link>
+  <description>
+  </description>
+  <pubDate>Sun, 01 Mar 2026 23:08:45 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/01/23/20260301230749968/pic_a9127c444307136fd4e25e87c55e5a5e.jpg" type="image/jpeg" length="15952"/>
+  <category>Мир</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/01/iran-ob-yavil-o-prodolzhenii-operatsii-istinnoe-obeschanie-protiv-izrailya/</guid>
+  <author>Марина Совина</author>
+  <title>Иран объявил о продолжении операции «Истинное обещание» против Израиля</title>
+  <link>https://lenta.ru/news/2026/03/01/iran-ob-yavil-o-prodolzhenii-operatsii-istinnoe-obeschanie-protiv-izrailya/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Sun, 01 Mar 2026 23:04:00 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/01/23/20260301230532683/pic_328843117a9858dd7c6447658ecdea17.jpg" type="image/jpeg" length="12694"/>
+  <category>Мир</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/02/stalo-izvestno-o-planah-esche-treh-stran-udarit-po-iranu/</guid>
+  <author>Андрей Прокопьев</author>
+  <title>Стало известно о планах еще трех стран ударить по Ирану</title>
+  <link>https://lenta.ru/news/2026/03/02/stalo-izvestno-o-planah-esche-treh-stran-udarit-po-iranu/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Sun, 01 Mar 2026 22:54:45 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/01/22/20260301225427749/pic_c48ba6fa1c068fb34f59adcff09f2a5c.jpg" type="image/jpeg" length="17647"/>
+  <category>Мир</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/01/tramp-nazval-uslovie-dlya-priostanovki-udarov-po-iranu/</guid>
+  <author>Марина Совина</author>
+  <title>Трамп назвал условие для приостановки ударов по Ирану</title>
+  <link>https://lenta.ru/news/2026/03/01/tramp-nazval-uslovie-dlya-priostanovki-udarov-po-iranu/</link>
+  <description>
+    <![CDATA[<br />]]>
+  </description>
+  <pubDate>Sun, 01 Mar 2026 22:53:00 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/01/22/20260301224359532/pic_0015ed6ec3a719e8760567ce9b36adf3.jpg" type="image/jpeg" length="19646"/>
+  <category>Мир</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/01/trener-magnitogorskogo-metallurga-sravnil-kanadtsa-iz-dinamo-s-kuritsey/</guid>
+  <author>Алексей Гусев</author>
+  <title>Тренер магнитогорского «Металлурга» сравнил канадца из «Динамо» с курицей</title>
+  <link>https://lenta.ru/news/2026/03/01/trener-magnitogorskogo-metallurga-sravnil-kanadtsa-iz-dinamo-s-kuritsey/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Sun, 01 Mar 2026 22:52:00 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/01/21/20260301213310078/pic_1bcb2bb415b8aca3f649b91da0ed00c9.jpg" type="image/jpeg" length="27923"/>
+  <category>Спорт</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/01/boytsy-vsu-pozhalovalis-na-vorovstvo-lichnyh-deneg-i-telefonov/</guid>
+  <author>Марина Совина</author>
+  <title>Бойцы ВСУ пожаловались на ворующих деньги и телефоны сослуживцев</title>
+  <link>https://lenta.ru/news/2026/03/01/boytsy-vsu-pozhalovalis-na-vorovstvo-lichnyh-deneg-i-telefonov/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Sun, 01 Mar 2026 22:40:00 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/01/22/20260301221653991/pic_f1135286169025c3ce477398528c6ef8.jpg" type="image/jpeg" length="28346"/>
+  <category>Бывший СССР</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/01/vasserman-predskazal-posledstviya-ubiystva-hamenei-dlya-ssha/</guid>
+  <author>Марина Совина</author>
+  <title>Вассерман предсказал последствие убийства Хаменеи для США</title>
+  <link>https://lenta.ru/news/2026/03/01/vasserman-predskazal-posledstviya-ubiystva-hamenei-dlya-ssha/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Sun, 01 Mar 2026 22:40:00 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/01/22/20260301224154102/pic_7b843bb0464004b6008f8712b6a5aeb0.jpg" type="image/jpeg" length="26260"/>
+  <category>Россия</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/01/ssha-predupredili-o-razocharovanii-iz-za-irana/</guid>
+  <author>Артём Верейкин</author>
+  <title>США предупредили о «разочаровании» из-за Ирана</title>
+  <link>https://lenta.ru/news/2026/03/01/ssha-predupredili-o-razocharovanii-iz-za-irana/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Sun, 01 Mar 2026 22:39:52 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/01/22/20260301223722719/pic_b3ce0600fe0dee5b87f81f989369620c.jpg" type="image/jpeg" length="15981"/>
+  <category>Мир</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/02/makron-otreagiroval-na-ataku-po-voennoy-baze-frantsii-v-oae/</guid>
+  <author>Андрей Прокопьев</author>
+  <title>Макрон отреагировал на атаку по военной базе Франции в ОАЭ</title>
+  <link>https://lenta.ru/news/2026/03/02/makron-otreagiroval-na-ataku-po-voennoy-baze-frantsii-v-oae/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Sun, 01 Mar 2026 22:30:00 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/01/22/20260301223006196/pic_9383b3b577a9232558dad00735f24e84.jpg" type="image/jpeg" length="16308"/>
+  <category>Мир</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/01/v-rossii-raskryli-detali-likvidatsii-hamenei/</guid>
+  <author>Артём Верейкин</author>
+  <title>В России раскрыли детали убийства Хаменеи</title>
+  <link>https://lenta.ru/news/2026/03/01/v-rossii-raskryli-detali-likvidatsii-hamenei/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Sun, 01 Mar 2026 22:23:00 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/01/22/20260301222115896/pic_dac49b659254508bc6b818217bd18359.jpg" type="image/jpeg" length="25127"/>
+  <category>Мир</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/01/v-ssha-soobschili-o-speshke-v-operatsii-protiv-irana-po-odnoy-prichine/</guid>
+  <author>Марина Совина</author>
+  <title>В США сообщили о спешке в операции против Ирана по одной причине</title>
+  <link>https://lenta.ru/news/2026/03/01/v-ssha-soobschili-o-speshke-v-operatsii-protiv-irana-po-odnoy-prichine/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Sun, 01 Mar 2026 22:18:00 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/01/22/20260301221937230/pic_59b47456f1b558f2d077420aa9ddbc9d.jpg" type="image/jpeg" length="23611"/>
+  <category>Мир</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/01/v-tehasskom-bare-migrant-s-simvolikoy-irana-rasstrelyal-lyudey/</guid>
+  <author>Марина Совина</author>
+  <title>В техасском баре мигрант с символикой Ирана расстрелял людей</title>
+  <link>https://lenta.ru/news/2026/03/01/v-tehasskom-bare-migrant-s-simvolikoy-irana-rasstrelyal-lyudey/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Sun, 01 Mar 2026 22:11:00 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/01/22/20260301221352078/pic_b1b9f1006b4ce98fe3dbc6d749a5071a.jpg" type="image/jpeg" length="53215"/>
+  <category>Мир</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/02/frantsiya-ekstrenno-napravila-avianosets-v-storonu-blizhnego-vostoka/</guid>
+  <author>Андрей Прокопьев</author>
+  <title>Франция экстренно направила авианосец в сторону Ближнего Востока</title>
+  <link>https://lenta.ru/news/2026/03/02/frantsiya-ekstrenno-napravila-avianosets-v-storonu-blizhnego-vostoka/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Sun, 01 Mar 2026 22:06:00 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/01/22/20260301220709124/pic_e0d4f79a046cde01ed73d0de39fba0a3.jpg" type="image/jpeg" length="26264"/>
+  <category>Мир</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/01/mid-kitaya-otreagiroval-na-ubiystvo-hamenei/</guid>
+  <author>Марина Совина</author>
+  <title>МИД Китая отреагировал на убийство Хаменеи</title>
+  <link>https://lenta.ru/news/2026/03/01/mid-kitaya-otreagiroval-na-ubiystvo-hamenei/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Sun, 01 Mar 2026 21:52:07 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/01/21/20260301215253172/pic_cf186a8dcab760839923b2e57751d075.jpg" type="image/jpeg" length="12358"/>
+  <category>Мир</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/01/v-ssha-predupredili-o-predstoyaschih-poteryah-iz-za-irana/</guid>
+  <author>Марина Совина</author>
+  <title>В США предупредили о предстоящих потерях из-за Ирана</title>
+  <link>https://lenta.ru/news/2026/03/01/v-ssha-predupredili-o-predstoyaschih-poteryah-iz-za-irana/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Sun, 01 Mar 2026 21:50:00 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/01/21/20260301214036093/pic_c43ec8bd3c32d7de5f5f4437269790b0.jpg" type="image/jpeg" length="10256"/>
+  <category>Мир</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/01/v-mid-izrailya-nazvali-tsel-udarov-po-iranu/</guid>
+  <author>Артём Верейкин</author>
+  <title>В МИД Израиля назвали цель ударов по Ирану</title>
+  <link>https://lenta.ru/news/2026/03/01/v-mid-izrailya-nazvali-tsel-udarov-po-iranu/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Sun, 01 Mar 2026 21:47:49 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/01/21/20260301214743080/pic_e0f444d2fc05d80abe904cf179fe73c1.jpg" type="image/jpeg" length="17729"/>
+  <category>Мир</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/02/v-ssha-uznali-o-blizhayshih-planah-trampa-na-iran/</guid>
+  <author>Андрей Прокопьев</author>
+  <title>В США узнали о ближайших планах Трампа на Иран</title>
+  <link>https://lenta.ru/news/2026/03/02/v-ssha-uznali-o-blizhayshih-planah-trampa-na-iran/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Sun, 01 Mar 2026 21:45:00 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/01/21/20260301214551679/pic_1721912725b847f2e33fee26ee51edb0.jpg" type="image/jpeg" length="19068"/>
+  <category>Мир</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/01/erdogan-vyskazalsya-ob-ubiystve-verhovnogo-lidera-irana/</guid>
+  <author>Марина Совина</author>
+  <title>Эрдоган высказался об убийстве верховного лидера Ирана</title>
+  <link>https://lenta.ru/news/2026/03/01/erdogan-vyskazalsya-ob-ubiystve-verhovnogo-lidera-irana/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Sun, 01 Mar 2026 21:43:35 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/01/21/20260301214317595/pic_d9ebaa9b2dadf90d109cb268dbf68e22.jpg" type="image/jpeg" length="22381"/>
+  <category>Мир</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/01/arsenal-pobedil-chelsi-i-uprochil-liderstvo-v-chempionate-anglii/</guid>
+  <author>Алексей Гусев</author>
+  <title>«Арсенал» победил «Челси» и упрочил лидерство в чемпионате Англии</title>
+  <link>https://lenta.ru/news/2026/03/01/arsenal-pobedil-chelsi-i-uprochil-liderstvo-v-chempionate-anglii/</link>
+  <description>
+  </description>
+  <pubDate>Sun, 01 Mar 2026 21:41:37 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/01/21/20260301214055112/pic_ce20870c82c57720213a6b1cc519edf7.jpg" type="image/jpeg" length="36072"/>
+  <category>Спорт</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/01/prezident-kuby-vyskazalsya-ob-omerzitelnom-ubiystve-hamenei/</guid>
+  <author>Артём Верейкин</author>
+  <title>Президент Кубы высказался об «омерзительном» убийстве Хаменеи</title>
+  <link>https://lenta.ru/news/2026/03/01/prezident-kuby-vyskazalsya-ob-omerzitelnom-ubiystve-hamenei/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Sun, 01 Mar 2026 21:32:35 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/01/21/20260301213121438/pic_d6ee2771dcebd22be3b6197113d7b3a0.jpg" type="image/jpeg" length="16738"/>
+  <category>Мир</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/01/v-irane-soobschili-ob-udare-ssha-i-izrailya-po-bolnitse/</guid>
+  <author>Марина Совина</author>
+  <title>В Иране сообщили об ударе США и Израиля по больнице</title>
+  <link>https://lenta.ru/news/2026/03/01/v-irane-soobschili-ob-udare-ssha-i-izrailya-po-bolnitse/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Sun, 01 Mar 2026 21:27:00 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/01/21/20260301212935982/pic_7f7913725ec4cfcaaa64b18abccc8d10.jpg" type="image/jpeg" length="20249"/>
+  <category>Мир</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/01/merts-prokommentiroval-udary-ssha-po-iranu/</guid>
+  <author>Артём Верейкин</author>
+  <title>Мерц прокомментировал удары США по Ирану</title>
+  <link>https://lenta.ru/news/2026/03/01/merts-prokommentiroval-udary-ssha-po-iranu/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Sun, 01 Mar 2026 21:24:06 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/01/21/20260301212316897/pic_8751049efc64d76a33c2a203e747308d.jpg" type="image/jpeg" length="24583"/>
+  <category>Мир</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/02/v-ssha-sdelali-zhestkoe-zayavlenie-o-beshrebetnosti-evropy/</guid>
+  <author>Андрей Прокопьев</author>
+  <title>В США сделали жесткое заявление о бесхребетности Европы</title>
+  <link>https://lenta.ru/news/2026/03/02/v-ssha-sdelali-zhestkoe-zayavlenie-o-beshrebetnosti-evropy/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Sun, 01 Mar 2026 21:20:00 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/01/21/20260301212024896/pic_1553b4041d3a694208f47d63af4978ac.jpg" type="image/jpeg" length="47086"/>
+  <category>Мир</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/01/tramp-vyskazalsya-o-smene-vlasti-v-irane/</guid>
+  <author>Артём Верейкин</author>
+  <title>Трамп высказался о смене власти в Иране</title>
+  <link>https://lenta.ru/news/2026/03/01/tramp-vyskazalsya-o-smene-vlasti-v-irane/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Sun, 01 Mar 2026 21:15:17 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/01/21/20260301211511299/pic_5fa1d1c41459e40812370e79fcca40cf.jpg" type="image/jpeg" length="15132"/>
+  <category>Мир</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/01/v-irane-otsenili-voennye-poteri-ssha/</guid>
+  <author>Артём Верейкин</author>
+  <title>В Иране оценили военные потери США</title>
+  <link>https://lenta.ru/news/2026/03/01/v-irane-otsenili-voennye-poteri-ssha/</link>
+  <description>
+  </description>
+  <pubDate>Sun, 01 Mar 2026 21:08:09 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/01/21/20260301210644000/pic_e0f9a5f275ff68f6b73f9db78995e668.jpg" type="image/jpeg" length="19121"/>
+  <category>Мир</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/01/v-irane-sdelali-rezkoe-zayavlenie-o-podchinenii-ssha/</guid>
+  <author>Марина Совина</author>
+  <title>В Иране сделали резкое заявление о подчинении США</title>
+  <link>https://lenta.ru/news/2026/03/01/v-irane-sdelali-rezkoe-zayavlenie-o-podchinenii-ssha/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Sun, 01 Mar 2026 21:07:00 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/01/21/20260301210956752/pic_9dabaf984d4ec4bb1ec0463a38b358c6.jpg" type="image/jpeg" length="31102"/>
+  <category>Мир</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/01/ahmat-obygral-tsska-v-matche-rpl/</guid>
+  <author>Алексей Гусев</author>
+  <title>«Ахмат» обыграл ЦСКА в матче РПЛ</title>
+  <link>https://lenta.ru/news/2026/03/01/ahmat-obygral-tsska-v-matche-rpl/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Sun, 01 Mar 2026 20:56:02 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/01/20/20260301204950992/pic_c3c27cbe85045e679154e59505f3dbc8.jpg" type="image/jpeg" length="24421"/>
+  <category>Спорт</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/01/klub-nhl-panarina-uvolil-glavnogo-trenera/</guid>
+  <author>Алексей Гусев</author>
+  <title>Клуб НХЛ Панарина уволил главного тренера</title>
+  <link>https://lenta.ru/news/2026/03/01/klub-nhl-panarina-uvolil-glavnogo-trenera/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Sun, 01 Mar 2026 20:55:18 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/01/20/20260301205006162/pic_7491defdb9954473aa47eb5edae5fe95.jpg" type="image/jpeg" length="36273"/>
+  <category>Спорт</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/01/tramp-soobschil-ob-unichtozhenii-iranskih-korabley-i-shtab-kvartiry-vms-irana/</guid>
+  <author>Александра Степашкина</author>
+  <title>Трамп сообщил об уничтожении иранских кораблей и штаб-квартиры ВМС Ирана</title>
+  <link>https://lenta.ru/news/2026/03/01/tramp-soobschil-ob-unichtozhenii-iranskih-korabley-i-shtab-kvartiry-vms-irana/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Sun, 01 Mar 2026 20:54:00 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/01/20/20260301205421363/pic_16c95114ce7073fbb352eb6e7376b269.jpg" type="image/jpeg" length="28115"/>
+  <category>Мир</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/01/tsahal-zayavil-o-likvidatsii-vsego-vysshego-rukovodstva-irana/</guid>
+  <author>Карина Черных</author>
+  <title>ЦАХАЛ заявил о смерти всего высшего руководства Ирана</title>
+  <link>https://lenta.ru/news/2026/03/01/tsahal-zayavil-o-likvidatsii-vsego-vysshego-rukovodstva-irana/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Sun, 01 Mar 2026 20:51:00 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/01/20/20260301204246728/pic_4c3d43fbedf56bc63d727cb325c91845.jpeg" type="image/jpeg" length="31103"/>
+  <category>Мир</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/01/odni-shpioni-krugom/</guid>
+  <author>Платон Щукин</author>
+  <title>Стало известно о слежке ЦРУ за перемещением руководства Ирана</title>
+  <link>https://lenta.ru/news/2026/03/01/odni-shpioni-krugom/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Sun, 01 Mar 2026 20:48:00 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/01/20/20260301203916618/pic_7d1e9d27044ee6810eae44c765d64e60.jpg" type="image/jpeg" length="22557"/>
+  <category>Мир</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/01/v-irane-soobschili-ob-unichtozhenii-vysokopostavlennyh-ofitserov-tsru/</guid>
+  <author>Анастасия Алимпиева</author>
+  <title>В Иране сообщили об уничтожении высокопоставленных офицеров ЦРУ</title>
+  <link>https://lenta.ru/news/2026/03/01/v-irane-soobschili-ob-unichtozhenii-vysokopostavlennyh-ofitserov-tsru/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Sun, 01 Mar 2026 20:43:00 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/01/20/20260301204618358/pic_3a4ccc4e9b2e26ce26bc66dfc1c7c327.jpg" type="image/jpeg" length="40806"/>
+  <category>Мир</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/01/tsenam-na-neft-sprognozirovali-rost-posle-perekrytiya-iranom-ormuzskogo-proliva/</guid>
+  <author>Алена Шевченко</author>
+  <title>Ценам на нефть спрогнозировали рост после перекрытия Ираном Ормузского пролива</title>
+  <link>https://lenta.ru/news/2026/03/01/tsenam-na-neft-sprognozirovali-rost-posle-perekrytiya-iranom-ormuzskogo-proliva/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Sun, 01 Mar 2026 20:37:46 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/01/20/20260301203707053/pic_2cafd9013cd699afb53f4830b0205a44.jpg" type="image/jpeg" length="18931"/>
+  <category>Экономика</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/01/senator-ssha-prizval-dovesti-do-kontsa-operatsiyu-v-irane/</guid>
+  <author>Майя Назарова</author>
+  <title>Сенатор США призвал довести до конца операцию в Иране</title>
+  <link>https://lenta.ru/news/2026/03/01/senator-ssha-prizval-dovesti-do-kontsa-operatsiyu-v-irane/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Sun, 01 Mar 2026 20:27:38 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/01/20/20260301202154909/pic_4ae67085f2f91b6e1bafa580b53cad0a.jpg" type="image/jpeg" length="16916"/>
+  <category>Мир</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/01/v-seti-vspomnili-slova-vensa-o-vysokoy-tsene-napadeniya-ssha-na-iran/</guid>
+  <author>Карина Черных</author>
+  <title>В сети вспомнили слова Вэнса о высокой цене нападения США на Иран</title>
+  <link>https://lenta.ru/news/2026/03/01/v-seti-vspomnili-slova-vensa-o-vysokoy-tsene-napadeniya-ssha-na-iran/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Sun, 01 Mar 2026 20:21:50 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/01/20/20260301201413763/pic_179341e2585fcbb4bbe456f62ca3666b.jpg" type="image/jpeg" length="19058"/>
+  <category>Интернет и СМИ</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/01/maybe/</guid>
+  <author>Платон Щукин</author>
+  <title>Россия предупредила о последствиях перекрытия Ормузского пролива</title>
+  <link>https://lenta.ru/news/2026/03/01/maybe/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Sun, 01 Mar 2026 20:18:00 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/02/09/20260302090955421/pic_f195c746fe0f7efd17a2cc737d25e0c2.jpg" type="image/jpeg" length="26509"/>
+  <category>Мир</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/01/iran-nanes-udary-raketami-po-trem-tankeram-ssha-i-britanii/</guid>
+  <author>Карина Черных</author>
+  <title>Иран нанес удары ракетами по трем танкерам США и Британии</title>
+  <link>https://lenta.ru/news/2026/03/01/iran-nanes-udary-raketami-po-trem-tankeram-ssha-i-britanii/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Sun, 01 Mar 2026 20:07:00 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/01/20/20260301200312134/pic_30cc3303161e3efce984d827cbee504f.jpg" type="image/jpeg" length="11374"/>
+  <category>Мир</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/01/v-mid-irana-vyskazalis-o-voennoy-kampanii/</guid>
+  <author>Майя Назарова</author>
+  <title>В МИД Ирана высказались о военной операции США</title>
+  <link>https://lenta.ru/news/2026/03/01/v-mid-irana-vyskazalis-o-voennoy-kampanii/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Sun, 01 Mar 2026 20:04:50 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/01/19/20260301195716811/pic_59b2800915cc678880f0d399b6abadfa.jpg" type="image/jpeg" length="17678"/>
+  <category>Мир</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/01/nazvany-data-i-vremya-provedeniya-perenesennoy-iz-za-ugrozy-bespilotnikov-igry-spartaka/</guid>
+  <author>Алексей Гусев</author>
+  <title>Названы дата и время проведения перенесенной из-за угрозы беспилотников игры «Спартака»</title>
+  <link>https://lenta.ru/news/2026/03/01/nazvany-data-i-vremya-provedeniya-perenesennoy-iz-za-ugrozy-bespilotnikov-igry-spartaka/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Sun, 01 Mar 2026 19:43:01 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/01/19/20260301194300452/pic_6fe26800844c3481eedf38497cb50ede.jpg" type="image/jpeg" length="24361"/>
+  <category>Спорт</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/01/tsahal-reshil-prizvat-na-sluzhbu-100-tysyach-rezervistov-na-fone-voyny-s-iranom/</guid>
+  <author>Карина Черных</author>
+  <title>ЦАХАЛ решил призвать на службу 100 тысяч резервистов на фоне войны с Ираном</title>
+  <link>https://lenta.ru/news/2026/03/01/tsahal-reshil-prizvat-na-sluzhbu-100-tysyach-rezervistov-na-fone-voyny-s-iranom/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Sun, 01 Mar 2026 19:39:00 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/01/19/20260301193315587/pic_d253bfccc8b3bec268ace21ad462f3ef.jpg" type="image/jpeg" length="38493"/>
+  <category>Мир</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/01/davaite/</guid>
+  <author>Платон Щукин</author>
+  <title>Трамп сообщил о готовности нового руководства Ирана к переговорам</title>
+  <link>https://lenta.ru/news/2026/03/01/davaite/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Sun, 01 Mar 2026 19:38:00 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/01/19/20260301193959743/pic_a98b5dd5612c864cd864fb9cc747e2bc.jpg" type="image/jpeg" length="24528"/>
+  <category>Мир</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/01/obraz-kiry-naytli-na-svetskom-vechere-vyzval-spory-v-seti/</guid>
+  <author>Мария Винар</author>
+  <title>Образ Киры Найтли на светском вечере вызвал споры в сети</title>
+  <link>https://lenta.ru/news/2026/03/01/obraz-kiry-naytli-na-svetskom-vechere-vyzval-spory-v-seti/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Sun, 01 Mar 2026 19:33:06 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/02/27/12/20260227124229288/pic_86897008a9b6a29544cffa00bfdd2153.jpg" type="image/jpeg" length="32794"/>
+  <category>Ценности</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/01/na-zapade-uzhasnulis-shagu-trampa-protiv-irana/</guid>
+  <author>Майя Назарова</author>
+  <title>На Западе ужаснулись шагу Трампа против Ирана</title>
+  <link>https://lenta.ru/news/2026/03/01/na-zapade-uzhasnulis-shagu-trampa-protiv-irana/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Sun, 01 Mar 2026 19:21:30 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/01/19/20260301191628767/pic_ba7515c9f4fee1e398e841d81dd1ff2c.jpg" type="image/jpeg" length="35160"/>
+  <category>Интернет и СМИ</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/01/rossiyskaya-lyzhnitsa-nepryaeva-zanyala-pyatoe-mesto-v-skiatlone-na-etape-kubka-mira/</guid>
+  <author>Алексей Гусев</author>
+  <title>Российская лыжница Непряева заняла пятое место в скиатлоне на этапе Кубка мира</title>
+  <link>https://lenta.ru/news/2026/03/01/rossiyskaya-lyzhnitsa-nepryaeva-zanyala-pyatoe-mesto-v-skiatlone-na-etape-kubka-mira/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Sun, 01 Mar 2026 19:16:58 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/01/19/20260301192017540/pic_f2f198eed9f4c1c5a0f672840d1c5cc3.jpg" type="image/jpeg" length="26546"/>
+  <category>Спорт</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/01/gde-khotite-tam--i-spite/</guid>
+  <author>Платон Щукин</author>
+  <title>Россиян начали выселять из отелей Дубая</title>
+  <link>https://lenta.ru/news/2026/03/01/gde-khotite-tam--i-spite/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Sun, 01 Mar 2026 19:14:00 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/01/19/20260301191713889/pic_42722ffc9efbfe192335976b5510748e.jpg" type="image/jpeg" length="26446"/>
+  <category>Путешествия</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/01/netanyahu-zayavil-o-namerenii-usilit-udary-po-iranu/</guid>
+  <author>Карина Черных</author>
+  <title>Нетаньяху заявил о намерении усилить удары по Ирану</title>
+  <link>https://lenta.ru/news/2026/03/01/netanyahu-zayavil-o-namerenii-usilit-udary-po-iranu/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Sun, 01 Mar 2026 19:08:00 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/01/19/20260301191040277/pic_6eab49a01d17b91381877deaedc494b3.jpg" type="image/jpeg" length="21345"/>
+  <category>Мир</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/01/iran-zayavil-ob-udare-po-amerikanskomu-avianostsu-abraham-lincoln-kak-na-eto-otvetili-v-ssha/</guid>
+  <author>Александра Степашкина</author>
+  <title>Иран заявил об ударе по американскому авианосцу Abraham Lincoln. Что на это ответили в США?</title>
+  <link>https://lenta.ru/news/2026/03/01/iran-zayavil-ob-udare-po-amerikanskomu-avianostsu-abraham-lincoln-kak-na-eto-otvetili-v-ssha/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Sun, 01 Mar 2026 19:06:00 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/01/19/20260301190451004/pic_2e994a5bcf6bba446bf5600bd7669c88.jpg" type="image/jpeg" length="20846"/>
+  <category>Мир</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/01/mamaev-rasskazal-o-vliyanii-situatsii-v-dubae-na-rabotu-ego-futbolnoy-akademii/</guid>
+  <author>Алексей Гусев</author>
+  <title>Мамаев рассказал о влиянии ситуации в Дубае на работу его футбольной академии</title>
+  <link>https://lenta.ru/news/2026/03/01/mamaev-rasskazal-o-vliyanii-situatsii-v-dubae-na-rabotu-ego-futbolnoy-akademii/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Sun, 01 Mar 2026 19:04:09 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/01/19/20260301191355120/pic_21925f3c83df98f615af1956567fb4cb.jpg" type="image/jpeg" length="27933"/>
+  <category>Спорт</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/01/tramp-pohvastalsya-operatsiey-v-irane/</guid>
+  <author>Майя Назарова</author>
+  <title>Трамп похвастался операцией в Иране</title>
+  <link>https://lenta.ru/news/2026/03/01/tramp-pohvastalsya-operatsiey-v-irane/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Sun, 01 Mar 2026 18:55:19 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/01/19/20260301191122947/pic_5fa1d1c41459e40812370e79fcca40cf.jpg" type="image/jpeg" length="15132"/>
+  <category>Мир</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/01/v-ssha-oprovergli-dannye-ob-udare-irana-po-amerikanskomu-avianostsu/</guid>
+  <author>Карина Черных</author>
+  <title>В США опровергли данные об ударе Ирана по американскому авианосцу</title>
+  <link>https://lenta.ru/news/2026/03/01/v-ssha-oprovergli-dannye-ob-udare-irana-po-amerikanskomu-avianostsu/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Sun, 01 Mar 2026 18:43:00 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/01/18/20260301183533374/pic_eaf24c2abcfb7b2fe5cfebc59f3dfd5b.jpg" type="image/jpeg" length="25732"/>
+  <category>Мир</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/01/poyavilis-podrobnosti-ob-udarah-ssha-po-iranu/</guid>
+  <author>Майя Назарова</author>
+  <title>Появились подробности об ударах США по Ирану</title>
+  <link>https://lenta.ru/news/2026/03/01/poyavilis-podrobnosti-ob-udarah-ssha-po-iranu/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Sun, 01 Mar 2026 18:38:27 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/01/18/20260301183852122/pic_d3a3b292ef917752fef436326e9ee2c7.jpg" type="image/jpeg" length="10319"/>
+  <category>Интернет и СМИ</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/01/nazvan-favorit-matcha-chempionata-anglii-mezhu-arsenalom-i-chelsi/</guid>
+  <author>Алексей Гусев</author>
+  <title>Назван фаворит матча чемпионата Англии межу «Арсеналом» и «Челси»</title>
+  <link>https://lenta.ru/news/2026/03/01/nazvan-favorit-matcha-chempionata-anglii-mezhu-arsenalom-i-chelsi/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Sun, 01 Mar 2026 18:33:42 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/01/18/20260301183330955/pic_1ede93a0ff55f57d0b2532f8b09aa0e0.jpg" type="image/jpeg" length="30601"/>
+  <category>Спорт</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/01/dikiy-kaban-promchalsya-po-gorodu-i-ranil-chetyreh-chelovek-na-ulitse-i-v-torgovom-tsentre/</guid>
+  <author>Олег Парамонов</author>
+  <title>Дикий кабан промчался по городу и ранил четырех человек на улице и в торговом центре</title>
+  <link>https://lenta.ru/news/2026/03/01/dikiy-kaban-promchalsya-po-gorodu-i-ranil-chetyreh-chelovek-na-ulitse-i-v-torgovom-tsentre/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Sun, 01 Mar 2026 18:31:59 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/02/27/17/20260227173350880/pic_7511de014ff9f13cb5e150c656d17d52.jpg" type="image/jpeg" length="26023"/>
+  <category>Из жизни</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/01/iranskiy-bespilotnik-vletel-v-mnogoetazhku-v-dubae/</guid>
+  <author>Карина Черных</author>
+  <title>Иранский беспилотник влетел в многоэтажку в Дубае</title>
+  <link>https://lenta.ru/news/2026/03/01/iranskiy-bespilotnik-vletel-v-mnogoetazhku-v-dubae/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Sun, 01 Mar 2026 18:26:00 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/01/18/20260301183028099/pic_9329fbb112e349988eac26c11ceca1a4.jpg" type="image/jpeg" length="16643"/>
+  <category>Мир</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/01/ogon-ohvatil-neftyanuyu-platformu-v-persidskom-zalive/</guid>
+  <author>Майя Назарова</author>
+  <title>Огонь охватил нефтяную платформу в Персидском заливе</title>
+  <link>https://lenta.ru/news/2026/03/01/ogon-ohvatil-neftyanuyu-platformu-v-persidskom-zalive/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Sun, 01 Mar 2026 18:17:29 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/01/18/20260301181232612/pic_fbc6ca7581bdb154738caf0583c4831c.jpg" type="image/jpeg" length="22509"/>
+  <category>Мир</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/01/dno/</guid>
+  <author>Платон Щукин</author>
+  <title>США сообщили о затоплении эсминца иранских ВМС</title>
+  <link>https://lenta.ru/news/2026/03/01/dno/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Sun, 01 Mar 2026 18:11:00 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/01/18/20260301180544073/pic_44f7a35ff1e12c0583f8b2da83eaea94.jpg" type="image/jpeg" length="15826"/>
+  <category>Мир</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/01/na-voennoy-baze-v-oae-proizoshlo-vozgoranie-iz-za-iranskih-bpla/</guid>
+  <author>Олег Давыдов</author>
+  <title>На военной базе в ОАЭ произошло возгорание из-за иранских БПЛА</title>
+  <link>https://lenta.ru/news/2026/03/01/na-voennoy-baze-v-oae-proizoshlo-vozgoranie-iz-za-iranskih-bpla/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Sun, 01 Mar 2026 18:10:11 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/01/17/20260301175202599/pic_3368af12d18bda990992800c690bd62f.jpg" type="image/jpeg" length="19783"/>
+  <category>Мир</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/01/troe-amerikanskih-voennyh/</guid>
+  <author>Майя Назарова</author>
+  <title>Стало известно о жертвах среди военных США в ходе операции в Иране</title>
+  <link>https://lenta.ru/news/2026/03/01/troe-amerikanskih-voennyh/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Sun, 01 Mar 2026 18:06:00 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/01/17/20260301175801752/pic_4915c8eff811846821e889f33410cede.jpg" type="image/jpeg" length="24627"/>
+  <category>Мир</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/01/v-portu-abu-dabi-ryadom-s-kruiznym-laynerom-upala-raketa/</guid>
+  <author>Алиса Дмитриева</author>
+  <title>В порту Абу-Даби рядом с круизным лайнером упала ракета</title>
+  <link>https://lenta.ru/news/2026/03/01/v-portu-abu-dabi-ryadom-s-kruiznym-laynerom-upala-raketa/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Sun, 01 Mar 2026 18:01:33 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/01/17/20260301174608119/pic_e6daf4294d61b54e4e89a0de5bb2fb69.jpg" type="image/jpeg" length="21976"/>
+  <category>Мир</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/01/match-spartaka-s-sochi-perenesli-iz-za-ugrozy-ataki-bespilotnikov/</guid>
+  <author>Алексей Гусев</author>
+  <title>Матч «Спартака» с «Сочи» перенесли из-за угрозы атаки беспилотников</title>
+  <link>https://lenta.ru/news/2026/03/01/match-spartaka-s-sochi-perenesli-iz-za-ugrozy-ataki-bespilotnikov/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Sun, 01 Mar 2026 17:54:41 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/01/17/20260301173751037/pic_c213a8c138c3247caaedf2f04c809c21.jpg" type="image/jpeg" length="38469"/>
+  <category>Спорт</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/01/rodstvenniki-oprovergli-novost-o-smerti-eks-prezidenta-irana/</guid>
+  <author>Карина Черных</author>
+  <title>Родственники опровергли новость о смерти экс-президента Ирана</title>
+  <link>https://lenta.ru/news/2026/03/01/rodstvenniki-oprovergli-novost-o-smerti-eks-prezidenta-irana/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Sun, 01 Mar 2026 17:49:00 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/01/17/20260301174806271/pic_ace2874c66e70082b902caa9379d525f.jpg" type="image/jpeg" length="18388"/>
+  <category>Мир</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/01/medvedev-zhestko-otreagiroval-na-smert-hamenei/</guid>
+  <author>Ольга Коровина</author>
+  <title>Медведев жестко отреагировал на смерть Хаменеи</title>
+  <link>https://lenta.ru/news/2026/03/01/medvedev-zhestko-otreagiroval-na-smert-hamenei/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Sun, 01 Mar 2026 17:47:16 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/01/17/20260301173053454/pic_0a2dbcbb000b5644a52756b5865cd6f4.jpg" type="image/jpeg" length="14912"/>
+  <category>Мир</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/01/rossiyanam-raskryli-posledstviya-ezhednevnogo-upotrebleniya-ostroy-aziatskoy-lapshi/</guid>
+  <author>Наталья Обрядина</author>
+  <title>Россиянам раскрыли последствия ежедневного употребления острой азиатской лапши</title>
+  <link>https://lenta.ru/news/2026/03/01/rossiyanam-raskryli-posledstviya-ezhednevnogo-upotrebleniya-ostroy-aziatskoy-lapshi/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Sun, 01 Mar 2026 17:39:09 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/01/17/20260301172038837/pic_c49b130727fc872f6a564141041a383a.jpg" type="image/jpeg" length="46669"/>
+  <category>Забота о себе</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/03/01/v-mid-zayavili-o-vozmuschenii-moskvy-iz-za-smerti-hamenei/</guid>
+  <author>Маргарита Щигарева</author>
+  <title>В МИД заявили о возмущении Москвы из-за смерти Хаменеи</title>
+  <link>https://lenta.ru/news/2026/03/01/v-mid-zayavili-o-vozmuschenii-moskvy-iz-za-smerti-hamenei/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Sun, 01 Mar 2026 17:37:50 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/03/01/17/20260301172330990/pic_a201bc5ec6638e82f709e54c2224ba71.jpg" type="image/jpeg" length="32482"/>
+  <category>Мир</category>
+</item>
+<item>
+  <guid>https://lenta.ru/news/2026/02/25/vrach-raskryla-sposoby-uluchshit-son-bez-lekarstv/</guid>
+  <author>Наталья Обрядина</author>
+  <title>Врач раскрыл способы улучшить сон без лекарств</title>
+  <link>https://lenta.ru/news/2026/02/25/vrach-raskryla-sposoby-uluchshit-son-bez-lekarstv/</link>
+  <description>
+    <![CDATA[]]>
+  </description>
+  <pubDate>Sun, 01 Mar 2026 17:35:00 +0300</pubDate>
+  <enclosure url="https://icdn.lenta.ru/images/2026/02/25/11/20260225115922910/pic_33d26820fabf6207f2237da8236963d5.jpg" type="image/jpeg" length="14070"/>
+  <category>Забота о себе</category>
+</item>
+  </channel>
+</rss>

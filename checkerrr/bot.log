@@ -1,0 +1,632 @@
+⚠️ Redis не установлен. Используем in-memory кэш.
+2026-02-26 17:42:48,111 - database - INFO - ✅ Подключение к БД установлено: movies.db
+2026-02-26 17:42:48,114 - database - INFO - ✅ Таблицы БД созданы/проверены
+2026-02-26 17:42:48,114 - database - INFO - ✅ Таблицы БД проверены/созданы
+2026-02-26 17:42:48,207 - __main__ - INFO - ✅ Используем in-memory кэш
+2026-02-26 17:42:48,208 - __main__ - INFO - ✅ Health checker инициализирован
+2026-02-26 17:42:48,208 - __main__ - INFO - ✅ Бот инициализирован успешно
+2026-02-26 17:42:48,225 - __main__ - INFO - 🚀 Запуск бота...
+2026-02-26 17:42:48,227 - __main__ - INFO - ✅ Health check: healthy
+2026-02-26 17:42:48,228 - aiogram.dispatcher - INFO - Start polling
+2026-02-26 17:42:48,392 - aiogram.dispatcher - INFO - Run polling for bot @kinocode26_bot id=8554826085 - 'KinoCode26'
+2026-02-26 17:42:52,527 - aiogram.dispatcher - ERROR - Failed to fetch updates - TelegramConflictError: Telegram server says - Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2026-02-26 17:42:52,529 - aiogram.dispatcher - WARNING - Sleep for 1.000000 seconds and try again... (tryings = 0, bot id = 8554826085)
+2026-02-26 17:42:58,014 - aiogram.dispatcher - ERROR - Failed to fetch updates - TelegramConflictError: Telegram server says - Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2026-02-26 17:42:58,014 - aiogram.dispatcher - WARNING - Sleep for 1.305233 seconds and try again... (tryings = 1, bot id = 8554826085)
+2026-02-26 17:43:04,318 - aiogram.dispatcher - ERROR - Failed to fetch updates - TelegramConflictError: Telegram server says - Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2026-02-26 17:43:04,318 - aiogram.dispatcher - WARNING - Sleep for 1.704832 seconds and try again... (tryings = 2, bot id = 8554826085)
+2026-02-26 17:43:11,770 - aiogram.dispatcher - ERROR - Failed to fetch updates - TelegramConflictError: Telegram server says - Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2026-02-26 17:43:11,782 - aiogram.dispatcher - WARNING - Sleep for 2.303115 seconds and try again... (tryings = 3, bot id = 8554826085)
+2026-02-26 17:43:17,546 - aiogram.dispatcher - ERROR - Failed to fetch updates - TelegramConflictError: Telegram server says - Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2026-02-26 17:43:17,548 - aiogram.dispatcher - WARNING - Sleep for 2.921649 seconds and try again... (tryings = 4, bot id = 8554826085)
+2026-02-26 17:43:25,242 - aiogram.dispatcher - ERROR - Failed to fetch updates - TelegramConflictError: Telegram server says - Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2026-02-26 17:43:25,247 - aiogram.dispatcher - WARNING - Sleep for 3.932119 seconds and try again... (tryings = 5, bot id = 8554826085)
+2026-02-26 17:43:34,159 - aiogram.dispatcher - ERROR - Failed to fetch updates - TelegramConflictError: Telegram server says - Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2026-02-26 17:43:34,160 - aiogram.dispatcher - WARNING - Sleep for 4.902958 seconds and try again... (tryings = 6, bot id = 8554826085)
+2026-02-26 17:43:46,974 - aiogram.dispatcher - ERROR - Failed to fetch updates - TelegramConflictError: Telegram server says - Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2026-02-26 17:43:47,015 - aiogram.dispatcher - WARNING - Sleep for 5.102508 seconds and try again... (tryings = 7, bot id = 8554826085)
+2026-02-26 17:44:02,811 - aiogram.dispatcher - INFO - Connection established (tryings = 8, bot id = 8554826085)
+2026-02-26 17:44:03,648 - aiogram.dispatcher - ERROR - Failed to fetch updates - TelegramConflictError: Telegram server says - Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2026-02-26 17:44:03,660 - aiogram.dispatcher - WARNING - Sleep for 1.000000 seconds and try again... (tryings = 0, bot id = 8554826085)
+2026-02-26 17:44:08,998 - aiogram.dispatcher - ERROR - Failed to fetch updates - TelegramConflictError: Telegram server says - Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2026-02-26 17:44:09,000 - aiogram.dispatcher - WARNING - Sleep for 1.210674 seconds and try again... (tryings = 1, bot id = 8554826085)
+2026-02-26 17:44:14,749 - aiogram.dispatcher - ERROR - Failed to fetch updates - TelegramConflictError: Telegram server says - Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2026-02-26 17:44:14,763 - aiogram.dispatcher - WARNING - Sleep for 1.737381 seconds and try again... (tryings = 2, bot id = 8554826085)
+2026-02-26 17:44:17,505 - aiogram.dispatcher - WARNING - Received SIGTERM signal
+2026-02-26 17:44:17,532 - aiogram.dispatcher - INFO - Polling stopped for bot @kinocode26_bot id=8554826085 - 'KinoCode26'
+2026-02-26 17:44:17,536 - aiogram.dispatcher - INFO - Polling stopped
+2026-02-26 17:44:17,799 - database - INFO - ✅ Соединение с БД закрыто
+2026-02-26 17:44:17,800 - __main__ - INFO - ✅ Бот остановлен корректно
+egramConflictError: Telegram server says - Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2026-02-26 17:43:20,565 - aiogram.dispatcher - WARNING - Sleep for 4.560634 seconds and try again... (tryings = 5, bot id = 8554826085)
+2026-02-26 17:43:25,242 - aiogram.dispatcher - ERROR - Failed to fetch updates - TelegramConflictError: Telegram server says - Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2026-02-26 17:43:25,247 - aiogram.dispatcher - WARNING - Sleep for 3.932119 seconds and try again... (tryings = 5, bot id = 8554826085)
+2026-02-26 17:43:29,291 - aiogram.dispatcher - ERROR - Failed to fetch updates - TelegramConflictError: Telegram server says - Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2026-02-26 17:43:29,292 - aiogram.dispatcher - WARNING - Sleep for 4.771324 seconds and try again... (tryings = 6, bot id = 8554826085)
+2026-02-26 17:43:34,159 - aiogram.dispatcher - ERROR - Failed to fetch updates - TelegramConflictError: Telegram server says - Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2026-02-26 17:43:34,160 - aiogram.dispatcher - WARNING - Sleep for 4.902958 seconds and try again... (tryings = 6, bot id = 8554826085)
+2026-02-26 17:43:39,353 - aiogram.dispatcher - ERROR - Failed to fetch updates - TelegramConflictError: Telegram server says - Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2026-02-26 17:43:39,387 - aiogram.dispatcher - WARNING - Sleep for 4.933828 seconds and try again... (tryings = 7, bot id = 8554826085)
+2026-02-26 17:43:46,974 - aiogram.dispatcher - ERROR - Failed to fetch updates - TelegramConflictError: Telegram server says - Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2026-02-26 17:43:47,015 - aiogram.dispatcher - WARNING - Sleep for 5.102508 seconds and try again... (tryings = 7, bot id = 8554826085)
+2026-02-26 17:43:51,515 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2026-02-26 17:43:51,617 - aiogram.dispatcher - INFO - Polling stopped for bot @kinocode26_bot id=8554826085 - 'KinoCode26'
+2026-02-26 17:43:51,668 - aiogram.dispatcher - INFO - Polling stopped
+2026-02-26 17:43:52,018 - database - INFO - ✅ Соединение с БД закрыто
+2026-02-26 17:43:52,034 - __main__ - INFO - ✅ Бот остановлен корректно
+2026-02-26 17:44:02,731 - database - INFO - ✅ Подключение к БД установлено: movies.db
+2026-02-26 17:44:02,735 - database - INFO - ✅ Таблицы БД созданы/проверены
+2026-02-26 17:44:02,737 - database - INFO - ✅ Таблицы БД проверены/созданы
+2026-02-26 17:44:02,811 - aiogram.dispatcher - INFO - Connection established (tryings = 8, bot id = 8554826085)
+2026-02-26 17:44:02,930 - __main__ - INFO - ✅ Используем in-memory кэш
+2026-02-26 17:44:02,933 - __main__ - INFO - ✅ Health checker инициализирован
+2026-02-26 17:44:02,934 - __main__ - INFO - ✅ Бот инициализирован успешно
+2026-02-26 17:44:02,977 - __main__ - INFO - 🚀 Запуск бота...
+2026-02-26 17:44:03,040 - __main__ - INFO - ✅ Health check: healthy
+2026-02-26 17:44:03,044 - aiogram.dispatcher - INFO - Start polling
+2026-02-26 17:44:03,479 - aiogram.dispatcher - INFO - Run polling for bot @kinocode26_bot id=8554826085 - 'KinoCode26'
+2026-02-26 17:44:03,648 - aiogram.dispatcher - ERROR - Failed to fetch updates - TelegramConflictError: Telegram server says - Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2026-02-26 17:44:03,660 - aiogram.dispatcher - WARNING - Sleep for 1.000000 seconds and try again... (tryings = 0, bot id = 8554826085)
+2026-02-26 17:44:07,857 - aiogram.dispatcher - ERROR - Failed to fetch updates - TelegramConflictError: Telegram server says - Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2026-02-26 17:44:07,858 - aiogram.dispatcher - WARNING - Sleep for 1.000000 seconds and try again... (tryings = 0, bot id = 8554826085)
+2026-02-26 17:44:08,998 - aiogram.dispatcher - ERROR - Failed to fetch updates - TelegramConflictError: Telegram server says - Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2026-02-26 17:44:09,000 - aiogram.dispatcher - WARNING - Sleep for 1.210674 seconds and try again... (tryings = 1, bot id = 8554826085)
+2026-02-26 17:44:13,314 - aiogram.dispatcher - ERROR - Failed to fetch updates - TelegramConflictError: Telegram server says - Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2026-02-26 17:44:13,317 - aiogram.dispatcher - WARNING - Sleep for 1.289982 seconds and try again... (tryings = 1, bot id = 8554826085)
+2026-02-26 17:44:14,749 - aiogram.dispatcher - ERROR - Failed to fetch updates - TelegramConflictError: Telegram server says - Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2026-02-26 17:44:14,763 - aiogram.dispatcher - WARNING - Sleep for 1.737381 seconds and try again... (tryings = 2, bot id = 8554826085)
+2026-02-26 17:44:17,505 - aiogram.dispatcher - WARNING - Received SIGTERM signal
+2026-02-26 17:44:17,532 - aiogram.dispatcher - INFO - Polling stopped for bot @kinocode26_bot id=8554826085 - 'KinoCode26'
+2026-02-26 17:44:17,536 - aiogram.dispatcher - INFO - Polling stopped
+2026-02-26 17:44:17,799 - database - INFO - ✅ Соединение с БД закрыто
+2026-02-26 17:44:17,800 - __main__ - INFO - ✅ Бот остановлен корректно
+2026-02-26 17:44:19,585 - aiogram.dispatcher - ERROR - Failed to fetch updates - TelegramConflictError: Telegram server says - Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2026-02-26 17:44:19,586 - aiogram.dispatcher - WARNING - Sleep for 1.635990 seconds and try again... (tryings = 2, bot id = 8554826085)
+2026-02-26 17:44:20,424 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2026-02-26 17:44:20,425 - aiogram.dispatcher - INFO - Polling stopped for bot @kinocode26_bot id=8554826085 - 'KinoCode26'
+2026-02-26 17:44:20,426 - aiogram.dispatcher - INFO - Polling stopped
+2026-02-26 17:44:20,681 - database - INFO - ✅ Соединение с БД закрыто
+2026-02-26 17:44:20,681 - __main__ - INFO - ✅ Бот остановлен корректно
+2026-02-26 17:44:29,362 - database - INFO - ✅ Подключение к БД установлено: movies.db
+2026-02-26 17:44:29,370 - database - INFO - ✅ Таблицы БД созданы/проверены
+2026-02-26 17:44:29,371 - database - INFO - ✅ Таблицы БД проверены/созданы
+2026-02-26 17:44:29,588 - __main__ - INFO - ✅ Используем in-memory кэш
+2026-02-26 17:44:29,589 - __main__ - INFO - ✅ Health checker инициализирован
+2026-02-26 17:44:29,589 - __main__ - INFO - ✅ Бот инициализирован успешно
+2026-02-26 17:44:29,614 - __main__ - INFO - 🚀 Запуск бота...
+2026-02-26 17:44:29,632 - __main__ - INFO - ✅ Health check: healthy
+2026-02-26 17:44:29,634 - aiogram.dispatcher - INFO - Start polling
+2026-02-26 17:44:29,818 - aiogram.dispatcher - INFO - Run polling for bot @kinocode26_bot id=8554826085 - 'KinoCode26'
+2026-02-26 17:45:37,625 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2026-02-26 17:45:37,636 - aiogram.dispatcher - INFO - Polling stopped for bot @kinocode26_bot id=8554826085 - 'KinoCode26'
+2026-02-26 17:45:37,643 - aiogram.dispatcher - INFO - Polling stopped
+2026-02-26 17:45:37,934 - database - INFO - ✅ Соединение с БД закрыто
+2026-02-26 17:45:37,934 - __main__ - INFO - ✅ Бот остановлен корректно
+2026-02-26 17:46:07,796 - database - INFO - ✅ Подключение к БД установлено: movies.db
+2026-02-26 17:46:07,809 - database - INFO - ✅ Таблицы БД созданы/проверены
+2026-02-26 17:46:07,815 - database - INFO - ✅ Таблицы БД проверены/созданы
+2026-02-26 17:46:08,181 - __main__ - INFO - ✅ Используем in-memory кэш
+2026-02-26 17:46:08,185 - __main__ - INFO - ✅ Health checker инициализирован
+2026-02-26 17:46:08,185 - __main__ - INFO - ✅ Бот инициализирован успешно
+2026-02-26 17:46:08,250 - __main__ - INFO - 🚀 Запуск бота...
+2026-02-26 17:46:08,269 - __main__ - INFO - ✅ Health check: healthy
+2026-02-26 17:46:08,273 - aiogram.dispatcher - INFO - Start polling
+2026-02-26 17:46:08,456 - aiogram.dispatcher - INFO - Run polling for bot @kinocode26_bot id=8554826085 - 'KinoCode26'
+2026-02-26 17:46:08,805 - aiogram.event - INFO - Update id=375091545 is handled. Duration 257 ms by bot id=8554826085
+2026-02-26 17:46:09,009 - aiogram.event - INFO - Update id=375091544 is handled. Duration 462 ms by bot id=8554826085
+2026-02-26 17:46:17,252 - aiogram.event - INFO - Update id=375091546 is handled. Duration 78 ms by bot id=8554826085
+2026-02-26 17:46:18,546 - aiogram.event - INFO - Update id=375091547 is handled. Duration 145 ms by bot id=8554826085
+2026-02-26 17:46:20,208 - aiogram.event - INFO - Update id=375091548 is handled. Duration 310 ms by bot id=8554826085
+2026-02-26 17:46:21,773 - aiogram.event - INFO - Update id=375091549 is handled. Duration 135 ms by bot id=8554826085
+2026-02-26 17:46:23,193 - aiogram.event - INFO - Update id=375091550 is handled. Duration 139 ms by bot id=8554826085
+2026-02-26 17:46:24,020 - aiogram.event - INFO - Update id=375091551 is handled. Duration 174 ms by bot id=8554826085
+2026-02-26 17:47:27,229 - aiogram.event - INFO - Update id=375091552 is handled. Duration 239 ms by bot id=8554826085
+2026-02-26 17:47:28,456 - aiogram.event - INFO - Update id=375091553 is handled. Duration 321 ms by bot id=8554826085
+2026-02-26 17:47:29,860 - aiogram.event - INFO - Update id=375091554 is handled. Duration 136 ms by bot id=8554826085
+2026-02-26 17:47:31,862 - aiogram.event - INFO - Update id=375091555 is handled. Duration 255 ms by bot id=8554826085
+2026-02-26 17:47:32,918 - aiogram.event - INFO - Update id=375091556 is handled. Duration 319 ms by bot id=8554826085
+2026-02-26 17:47:34,104 - aiogram.event - INFO - Update id=375091557 is handled. Duration 317 ms by bot id=8554826085
+2026-02-26 17:47:35,913 - aiogram.event - INFO - Update id=375091558 is handled. Duration 308 ms by bot id=8554826085
+2026-02-26 17:47:37,889 - aiogram.event - INFO - Update id=375091559 is handled. Duration 401 ms by bot id=8554826085
+2026-02-26 17:47:39,385 - aiogram.event - INFO - Update id=375091560 is handled. Duration 527 ms by bot id=8554826085
+2026-02-26 17:48:56,335 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2026-02-26 17:48:56,337 - aiogram.dispatcher - INFO - Polling stopped for bot @kinocode26_bot id=8554826085 - 'KinoCode26'
+2026-02-26 17:48:56,339 - aiogram.dispatcher - INFO - Polling stopped
+2026-02-26 17:48:56,592 - database - INFO - ✅ Соединение с БД закрыто
+2026-02-26 17:48:56,594 - __main__ - INFO - ✅ Бот остановлен корректно
+2026-02-26 17:49:09,353 - database - INFO - ✅ Подключение к БД установлено: movies.db
+2026-02-26 17:49:09,356 - database - INFO - ✅ Таблицы БД созданы/проверены
+2026-02-26 17:49:09,357 - database - INFO - ✅ Таблицы БД проверены/созданы
+2026-02-26 17:49:09,435 - __main__ - INFO - ✅ Используем in-memory кэш
+2026-02-26 17:49:09,436 - __main__ - INFO - ✅ Health checker инициализирован
+2026-02-26 17:49:09,437 - __main__ - INFO - ✅ Бот инициализирован успешно
+2026-02-26 17:49:09,457 - __main__ - INFO - 🚀 Запуск бота...
+2026-02-26 17:49:09,462 - __main__ - INFO - ✅ Health check: healthy
+2026-02-26 17:49:09,464 - aiogram.dispatcher - INFO - Start polling
+2026-02-26 17:49:09,619 - aiogram.dispatcher - INFO - Run polling for bot @kinocode26_bot id=8554826085 - 'KinoCode26'
+2026-02-26 17:49:14,687 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2026-02-26 17:49:14,689 - aiogram.dispatcher - INFO - Polling stopped for bot @kinocode26_bot id=8554826085 - 'KinoCode26'
+2026-02-26 17:49:14,691 - aiogram.dispatcher - INFO - Polling stopped
+2026-02-26 17:49:14,943 - database - INFO - ✅ Соединение с БД закрыто
+2026-02-26 17:49:14,943 - __main__ - INFO - ✅ Бот остановлен корректно
+2026-02-26 17:49:21,856 - database - INFO - ✅ Подключение к БД установлено: movies.db
+2026-02-26 17:49:21,859 - database - INFO - ✅ Таблицы БД созданы/проверены
+2026-02-26 17:49:21,860 - database - INFO - ✅ Таблицы БД проверены/созданы
+2026-02-26 17:49:21,938 - __main__ - INFO - ✅ Используем in-memory кэш
+2026-02-26 17:49:21,938 - __main__ - INFO - ✅ Health checker инициализирован
+2026-02-26 17:49:21,939 - __main__ - INFO - ✅ Бот инициализирован успешно
+2026-02-26 17:49:21,955 - __main__ - INFO - 🚀 Запуск бота...
+2026-02-26 17:49:21,959 - __main__ - INFO - ✅ Health check: healthy
+2026-02-26 17:49:21,961 - aiogram.dispatcher - INFO - Start polling
+2026-02-26 17:49:22,116 - aiogram.dispatcher - INFO - Run polling for bot @kinocode26_bot id=8554826085 - 'KinoCode26'
+2026-02-26 17:49:49,404 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2026-02-26 17:49:49,405 - aiogram.dispatcher - INFO - Polling stopped for bot @kinocode26_bot id=8554826085 - 'KinoCode26'
+2026-02-26 17:49:49,406 - aiogram.dispatcher - INFO - Polling stopped
+2026-02-26 17:49:49,659 - database - INFO - ✅ Соединение с БД закрыто
+2026-02-26 17:49:49,660 - __main__ - INFO - ✅ Бот остановлен корректно
+2026-02-26 17:49:56,180 - database - INFO - ✅ Подключение к БД установлено: movies.db
+2026-02-26 17:49:56,183 - database - INFO - ✅ Таблицы БД созданы/проверены
+2026-02-26 17:49:56,184 - database - INFO - ✅ Таблицы БД проверены/созданы
+2026-02-26 17:49:56,264 - __main__ - INFO - ✅ Используем in-memory кэш
+2026-02-26 17:49:56,265 - __main__ - INFO - ✅ Health checker инициализирован
+2026-02-26 17:49:56,265 - __main__ - INFO - ✅ Бот инициализирован успешно
+2026-02-26 17:49:56,281 - __main__ - INFO - 🚀 Запуск бота...
+2026-02-26 17:49:56,285 - __main__ - INFO - ✅ Health check: healthy
+2026-02-26 17:49:56,287 - aiogram.dispatcher - INFO - Start polling
+2026-02-26 17:49:56,429 - aiogram.dispatcher - INFO - Run polling for bot @kinocode26_bot id=8554826085 - 'KinoCode26'
+2026-02-26 17:49:56,830 - aiogram.event - INFO - Update id=375091561 is handled. Duration 338 ms by bot id=8554826085
+2026-02-26 17:49:59,472 - aiogram.event - INFO - Update id=375091562 is handled. Duration 358 ms by bot id=8554826085
+2026-02-26 17:50:00,497 - aiogram.event - INFO - Update id=375091563 is handled. Duration 301 ms by bot id=8554826085
+2026-02-26 17:50:01,799 - aiogram.event - INFO - Update id=375091564 is handled. Duration 393 ms by bot id=8554826085
+2026-02-26 17:50:03,037 - aiogram.event - INFO - Update id=375091565 is handled. Duration 226 ms by bot id=8554826085
+2026-02-26 17:51:08,959 - aiogram.event - INFO - Update id=375091566 is handled. Duration 163 ms by bot id=8554826085
+2026-02-26 17:51:11,899 - aiogram.event - INFO - Update id=375091567 is handled. Duration 138 ms by bot id=8554826085
+2026-02-26 17:51:13,470 - aiogram.event - INFO - Update id=375091568 is handled. Duration 140 ms by bot id=8554826085
+2026-02-26 17:53:40,905 - aiogram.event - INFO - Update id=375091569 is handled. Duration 107 ms by bot id=8554826085
+2026-02-26 17:53:42,657 - aiogram.event - INFO - Update id=375091570 is handled. Duration 109 ms by bot id=8554826085
+2026-02-26 17:57:21,278 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2026-02-26 17:57:21,281 - aiogram.dispatcher - INFO - Polling stopped for bot @kinocode26_bot id=8554826085 - 'KinoCode26'
+2026-02-26 17:57:21,281 - aiogram.dispatcher - INFO - Polling stopped
+2026-02-26 17:57:21,536 - database - INFO - ✅ Соединение с БД закрыто
+2026-02-26 17:57:21,536 - __main__ - INFO - ✅ Бот остановлен корректно
+2026-02-26 17:57:30,634 - database - INFO - ✅ Подключение к БД установлено: movies.db
+2026-02-26 17:57:30,641 - database - INFO - ✅ Таблицы БД созданы/проверены
+2026-02-26 17:57:30,643 - database - INFO - ✅ Таблицы БД проверены/созданы
+2026-02-26 17:57:30,816 - __main__ - INFO - ✅ Используем in-memory кэш
+2026-02-26 17:57:30,818 - __main__ - INFO - ✅ Health checker инициализирован
+2026-02-26 17:57:30,818 - __main__ - INFO - ✅ Бот инициализирован успешно
+2026-02-26 17:57:30,849 - __main__ - INFO - 🚀 Запуск бота...
+2026-02-26 17:57:30,855 - __main__ - INFO - ✅ Health check: healthy
+2026-02-26 17:57:30,858 - aiogram.dispatcher - INFO - Start polling
+2026-02-26 17:57:31,032 - aiogram.dispatcher - INFO - Run polling for bot @kinocode26_bot id=8554826085 - 'KinoCode26'
+2026-02-26 17:58:02,773 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2026-02-26 17:58:02,775 - aiogram.dispatcher - INFO - Polling stopped for bot @kinocode26_bot id=8554826085 - 'KinoCode26'
+2026-02-26 17:58:02,776 - aiogram.dispatcher - INFO - Polling stopped
+2026-02-26 17:58:03,027 - database - INFO - ✅ Соединение с БД закрыто
+2026-02-26 17:58:03,028 - __main__ - INFO - ✅ Бот остановлен корректно
+2026-02-26 17:58:09,752 - database - INFO - ✅ Подключение к БД установлено: movies.db
+2026-02-26 17:58:09,755 - database - INFO - ✅ Таблицы БД созданы/проверены
+2026-02-26 17:58:09,756 - database - INFO - ✅ Таблицы БД проверены/созданы
+2026-02-26 17:58:09,820 - __main__ - INFO - ✅ Используем in-memory кэш
+2026-02-26 17:58:09,820 - __main__ - INFO - ✅ Health checker инициализирован
+2026-02-26 17:58:09,820 - __main__ - INFO - ✅ Бот инициализирован успешно
+2026-02-26 17:58:09,838 - __main__ - INFO - 🚀 Запуск бота...
+2026-02-26 17:58:09,842 - __main__ - INFO - ✅ Health check: healthy
+2026-02-26 17:58:09,843 - aiogram.dispatcher - INFO - Start polling
+2026-02-26 17:58:09,999 - aiogram.dispatcher - INFO - Run polling for bot @kinocode26_bot id=8554826085 - 'KinoCode26'
+2026-02-26 17:58:10,252 - aiogram.event - INFO - Update id=375091571 is handled. Duration 191 ms by bot id=8554826085
+2026-02-26 17:58:13,674 - aiogram.event - INFO - Update id=375091572 is handled. Duration 258 ms by bot id=8554826085
+2026-02-26 17:58:17,389 - aiogram.event - INFO - Update id=375091573 is handled. Duration 321 ms by bot id=8554826085
+2026-02-26 17:58:19,046 - aiogram.event - INFO - Update id=375091574 is handled. Duration 312 ms by bot id=8554826085
+2026-02-26 17:58:19,839 - aiogram.event - INFO - Update id=375091575 is handled. Duration 77 ms by bot id=8554826085
+2026-02-26 18:07:59,233 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2026-02-26 18:07:59,237 - aiogram.dispatcher - INFO - Polling stopped for bot @kinocode26_bot id=8554826085 - 'KinoCode26'
+2026-02-26 18:07:59,237 - aiogram.dispatcher - INFO - Polling stopped
+2026-02-26 18:07:59,492 - database - INFO - ✅ Соединение с БД закрыто
+2026-02-26 18:07:59,493 - __main__ - INFO - ✅ Бот остановлен корректно
+2026-02-26 18:08:08,519 - database - INFO - ✅ Подключение к БД установлено: movies.db
+2026-02-26 18:08:08,522 - database - INFO - ✅ Таблицы БД созданы/проверены
+2026-02-26 18:08:08,523 - database - INFO - ✅ Таблицы БД проверены/созданы
+2026-02-26 18:08:08,606 - __main__ - INFO - ✅ Используем in-memory кэш
+2026-02-26 18:08:08,606 - __main__ - INFO - ✅ Health checker инициализирован
+2026-02-26 18:08:08,607 - __main__ - INFO - ✅ Бот инициализирован успешно
+2026-02-26 18:08:08,623 - __main__ - INFO - 🚀 Запуск бота...
+2026-02-26 18:08:08,629 - __main__ - INFO - ✅ Health check: healthy
+2026-02-26 18:08:08,631 - aiogram.dispatcher - INFO - Start polling
+2026-02-26 18:08:08,776 - aiogram.dispatcher - INFO - Run polling for bot @kinocode26_bot id=8554826085 - 'KinoCode26'
+2026-02-26 18:09:08,573 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2026-02-26 18:09:08,577 - aiogram.dispatcher - INFO - Polling stopped for bot @kinocode26_bot id=8554826085 - 'KinoCode26'
+2026-02-26 18:09:08,578 - aiogram.dispatcher - INFO - Polling stopped
+2026-02-26 18:09:08,830 - database - INFO - ✅ Соединение с БД закрыто
+2026-02-26 18:09:08,831 - __main__ - INFO - ✅ Бот остановлен корректно
+2026-02-26 18:09:15,891 - database - INFO - ✅ Подключение к БД установлено: movies.db
+2026-02-26 18:09:15,895 - database - INFO - ✅ Таблицы БД созданы/проверены
+2026-02-26 18:09:15,897 - database - INFO - ✅ Таблицы БД проверены/созданы
+2026-02-26 18:09:15,979 - __main__ - INFO - ✅ Используем in-memory кэш
+2026-02-26 18:09:15,980 - __main__ - INFO - ✅ Health checker инициализирован
+2026-02-26 18:09:15,981 - __main__ - INFO - ✅ Бот инициализирован успешно
+2026-02-26 18:09:15,994 - __main__ - INFO - 🚀 Запуск бота...
+2026-02-26 18:09:15,997 - __main__ - INFO - ✅ Health check: healthy
+2026-02-26 18:09:15,998 - aiogram.dispatcher - INFO - Start polling
+2026-02-26 18:09:16,154 - aiogram.dispatcher - INFO - Run polling for bot @kinocode26_bot id=8554826085 - 'KinoCode26'
+2026-02-26 18:09:20,839 - aiogram.event - INFO - Update id=375091576 is handled. Duration 344 ms by bot id=8554826085
+2026-02-26 18:09:24,253 - aiogram.event - INFO - Update id=375091577 is handled. Duration 145 ms by bot id=8554826085
+2026-02-26 18:09:27,556 - aiogram.event - INFO - Update id=375091578 is handled. Duration 97 ms by bot id=8554826085
+2026-02-26 18:09:29,642 - aiogram.event - INFO - Update id=375091579 is handled. Duration 162 ms by bot id=8554826085
+2026-02-26 18:09:32,096 - aiogram.event - INFO - Update id=375091580 is handled. Duration 347 ms by bot id=8554826085
+2026-02-26 18:09:33,624 - aiogram.event - INFO - Update id=375091581 is handled. Duration 206 ms by bot id=8554826085
+2026-02-26 18:09:38,481 - aiogram.event - INFO - Update id=375091582 is handled. Duration 298 ms by bot id=8554826085
+2026-02-26 18:09:40,025 - aiogram.event - INFO - Update id=375091583 is handled. Duration 307 ms by bot id=8554826085
+2026-02-26 18:09:42,158 - aiogram.event - INFO - Update id=375091584 is handled. Duration 220 ms by bot id=8554826085
+2026-02-26 18:09:46,475 - aiogram.event - INFO - Update id=375091585 is handled. Duration 210 ms by bot id=8554826085
+2026-02-26 18:09:47,198 - aiogram.event - INFO - Update id=375091586 is handled. Duration 75 ms by bot id=8554826085
+2026-02-26 18:09:48,588 - aiogram.event - INFO - Update id=375091587 is handled. Duration 68 ms by bot id=8554826085
+2026-02-26 18:45:53,148 - aiogram.event - INFO - Update id=375091588 is handled. Duration 194 ms by bot id=8554826085
+2026-02-26 18:45:55,093 - aiogram.event - INFO - Update id=375091589 is handled. Duration 156 ms by bot id=8554826085
+2026-02-26 18:45:56,393 - aiogram.event - INFO - Update id=375091590 is handled. Duration 158 ms by bot id=8554826085
+2026-02-26 18:48:25,986 - aiogram.event - INFO - Update id=375091591 is handled. Duration 710 ms by bot id=8554826085
+2026-02-26 18:49:21,755 - aiogram.event - INFO - Update id=375091592 is handled. Duration 248 ms by bot id=8554826085
+2026-02-26 18:49:33,272 - aiogram.event - INFO - Update id=375091593 is handled. Duration 152 ms by bot id=8554826085
+2026-02-26 18:50:52,784 - aiogram.event - INFO - Update id=375091594 is handled. Duration 181 ms by bot id=8554826085
+2026-02-26 18:50:57,248 - aiogram.event - INFO - Update id=375091595 is handled. Duration 188 ms by bot id=8554826085
+2026-02-26 18:50:58,470 - aiogram.event - INFO - Update id=375091596 is handled. Duration 162 ms by bot id=8554826085
+2026-02-26 18:51:00,943 - aiogram.event - INFO - Update id=375091597 is handled. Duration 246 ms by bot id=8554826085
+2026-02-26 18:51:02,226 - aiogram.event - INFO - Update id=375091598 is handled. Duration 434 ms by bot id=8554826085
+2026-02-26 18:51:03,338 - aiogram.event - INFO - Update id=375091599 is handled. Duration 177 ms by bot id=8554826085
+2026-02-26 18:51:08,499 - aiogram.event - INFO - Update id=375091600 is handled. Duration 181 ms by bot id=8554826085
+2026-02-26 18:51:09,639 - aiogram.event - INFO - Update id=375091601 is handled. Duration 206 ms by bot id=8554826085
+2026-02-26 18:51:24,554 - aiogram.event - INFO - Update id=375091602 is handled. Duration 2836 ms by bot id=8554826085
+2026-02-26 18:51:32,528 - aiogram.event - INFO - Update id=375091603 is handled. Duration 544 ms by bot id=8554826085
+2026-02-26 18:51:51,252 - aiogram.event - INFO - Update id=375091604 is handled. Duration 454 ms by bot id=8554826085
+2026-02-26 18:51:54,584 - aiogram.event - INFO - Update id=375091605 is handled. Duration 378 ms by bot id=8554826085
+2026-02-26 18:52:00,217 - aiogram.event - INFO - Update id=375091606 is handled. Duration 342 ms by bot id=8554826085
+2026-02-26 18:52:04,208 - aiogram.event - INFO - Update id=375091607 is handled. Duration 371 ms by bot id=8554826085
+2026-02-26 18:52:09,254 - aiogram.event - INFO - Update id=375091608 is handled. Duration 469 ms by bot id=8554826085
+2026-02-26 18:52:17,103 - aiogram.event - INFO - Update id=375091609 is handled. Duration 315 ms by bot id=8554826085
+2026-02-26 18:52:26,752 - __main__ - INFO - Поиск: user=1262505096, type=unknown, query=Универ
+2026-02-26 18:52:26,832 - aiogram.event - INFO - Update id=375091610 is handled. Duration 95 ms by bot id=8554826085
+2026-02-26 18:52:43,368 - __main__ - INFO - Поиск: user=1262505096, type=unknown, query=Универ
+2026-02-26 18:52:43,582 - aiogram.event - INFO - Update id=375091611 is handled. Duration 228 ms by bot id=8554826085
+2026-02-26 18:54:18,196 - aiogram.event - INFO - Update id=375091612 is handled. Duration 232 ms by bot id=8554826085
+2026-02-26 18:54:20,192 - aiogram.event - INFO - Update id=375091613 is handled. Duration 437 ms by bot id=8554826085
+2026-02-26 18:54:21,182 - aiogram.event - INFO - Update id=375091614 is handled. Duration 135 ms by bot id=8554826085
+2026-02-26 18:54:22,612 - aiogram.event - INFO - Update id=375091615 is handled. Duration 242 ms by bot id=8554826085
+2026-02-26 18:54:24,022 - aiogram.event - INFO - Update id=375091616 is handled. Duration 230 ms by bot id=8554826085
+2026-02-26 18:54:25,629 - aiogram.event - INFO - Update id=375091617 is handled. Duration 263 ms by bot id=8554826085
+2026-02-26 18:54:31,838 - aiogram.event - INFO - Update id=375091618 is handled. Duration 75 ms by bot id=8554826085
+2026-02-26 21:07:15,460 - aiogram.event - INFO - Update id=375091619 is handled. Duration 491 ms by bot id=8554826085
+2026-02-26 21:07:16,798 - aiogram.event - INFO - Update id=375091620 is handled. Duration 69 ms by bot id=8554826085
+2026-02-26 21:07:18,144 - aiogram.event - INFO - Update id=375091621 is handled. Duration 155 ms by bot id=8554826085
+2026-02-26 21:07:24,692 - aiogram.event - INFO - Update id=375091622 is handled. Duration 133 ms by bot id=8554826085
+2026-02-26 21:07:26,567 - aiogram.event - INFO - Update id=375091623 is handled. Duration 138 ms by bot id=8554826085
+2026-02-26 21:07:56,484 - aiogram.event - INFO - Update id=375091624 is handled. Duration 135 ms by bot id=8554826085
+2026-02-26 21:07:58,606 - aiogram.event - INFO - Update id=375091625 is handled. Duration 149 ms by bot id=8554826085
+2026-02-26 21:08:01,103 - aiogram.event - INFO - Update id=375091626 is handled. Duration 126 ms by bot id=8554826085
+2026-02-26 21:18:09,075 - aiogram.event - INFO - Update id=375091627 is handled. Duration 93 ms by bot id=8554826085
+2026-02-26 21:18:10,796 - aiogram.event - INFO - Update id=375091628 is handled. Duration 243 ms by bot id=8554826085
+2026-02-26 21:18:15,262 - aiogram.event - INFO - Update id=375091629 is handled. Duration 91 ms by bot id=8554826085
+2026-02-26 21:18:16,732 - aiogram.event - INFO - Update id=375091630 is handled. Duration 125 ms by bot id=8554826085
+2026-02-27 01:10:45,542 - aiogram.dispatcher - ERROR - Failed to fetch updates - TelegramServerError: Telegram server says - Bad Gateway
+2026-02-27 01:10:45,542 - aiogram.dispatcher - WARNING - Sleep for 1.000000 seconds and try again... (tryings = 0, bot id = 8554826085)
+2026-02-27 01:10:46,587 - aiogram.dispatcher - ERROR - Failed to fetch updates - TelegramServerError: Telegram server says - Bad Gateway
+2026-02-27 01:10:46,588 - aiogram.dispatcher - WARNING - Sleep for 1.233036 seconds and try again... (tryings = 1, bot id = 8554826085)
+2026-02-27 01:11:17,046 - aiogram.dispatcher - INFO - Connection established (tryings = 2, bot id = 8554826085)
+2026-02-27 03:41:26,352 - aiogram.event - INFO - Update id=375091631 is handled. Duration 164 ms by bot id=8554826085
+2026-02-27 03:41:28,296 - aiogram.event - INFO - Update id=375091632 is handled. Duration 134 ms by bot id=8554826085
+2026-02-27 03:42:07,877 - aiogram.event - INFO - Update id=375091633 is handled. Duration 123 ms by bot id=8554826085
+2026-02-27 03:42:08,988 - aiogram.event - INFO - Update id=375091634 is handled. Duration 135 ms by bot id=8554826085
+2026-02-27 03:42:14,884 - aiogram.event - INFO - Update id=375091635 is handled. Duration 264 ms by bot id=8554826085
+2026-02-27 11:28:05,534 - aiogram.event - INFO - Update id=375091636 is handled. Duration 215 ms by bot id=8554826085
+2026-02-27 11:28:07,230 - aiogram.event - INFO - Update id=375091637 is handled. Duration 164 ms by bot id=8554826085
+2026-02-27 11:33:00,320 - aiogram.dispatcher - ERROR - Failed to fetch updates - TelegramNetworkError: HTTP Client says - ClientOSError: [Errno 104] Connection reset by peer
+2026-02-27 11:33:00,320 - aiogram.dispatcher - WARNING - Sleep for 1.000000 seconds and try again... (tryings = 0, bot id = 8554826085)
+2026-02-27 11:33:11,375 - aiogram.dispatcher - INFO - Connection established (tryings = 1, bot id = 8554826085)
+2026-02-27 16:13:39,469 - aiogram.dispatcher - ERROR - Failed to fetch updates - TelegramNetworkError: HTTP Client says - Request timeout error
+2026-02-27 16:13:41,341 - aiogram.dispatcher - WARNING - Sleep for 1.000000 seconds and try again... (tryings = 0, bot id = 8554826085)
+2026-02-27 16:15:30,924 - aiogram.dispatcher - ERROR - Failed to fetch updates - TelegramNetworkError: HTTP Client says - Request timeout error
+2026-02-27 16:15:31,651 - aiogram.dispatcher - WARNING - Sleep for 1.485268 seconds and try again... (tryings = 1, bot id = 8554826085)
+2026-02-27 16:16:03,801 - aiogram.dispatcher - INFO - Connection established (tryings = 2, bot id = 8554826085)
+2026-02-28 01:10:36,945 - aiogram.dispatcher - ERROR - Failed to fetch updates - TelegramRetryAfter: Telegram server says - Flood control exceeded on method 'GetUpdates'. Retry in 5 seconds.
+Original description: Too Many Requests: retry after 5
+(background on this error at: https://core.telegram.org/bots/faq#my-bot-is-hitting-limits-how-do-i-avoid-this)
+2026-02-28 01:10:36,947 - aiogram.dispatcher - WARNING - Sleep for 1.000000 seconds and try again... (tryings = 0, bot id = 8554826085)
+2026-02-28 01:10:37,994 - aiogram.dispatcher - ERROR - Failed to fetch updates - TelegramRetryAfter: Telegram server says - Flood control exceeded on method 'GetUpdates'. Retry in 5 seconds.
+Original description: Too Many Requests: retry after 5
+(background on this error at: https://core.telegram.org/bots/faq#my-bot-is-hitting-limits-how-do-i-avoid-this)
+2026-02-28 01:10:37,994 - aiogram.dispatcher - WARNING - Sleep for 1.290533 seconds and try again... (tryings = 1, bot id = 8554826085)
+2026-02-28 01:10:39,332 - aiogram.dispatcher - ERROR - Failed to fetch updates - TelegramRetryAfter: Telegram server says - Flood control exceeded on method 'GetUpdates'. Retry in 5 seconds.
+Original description: Too Many Requests: retry after 5
+(background on this error at: https://core.telegram.org/bots/faq#my-bot-is-hitting-limits-how-do-i-avoid-this)
+2026-02-28 01:10:39,332 - aiogram.dispatcher - WARNING - Sleep for 1.701348 seconds and try again... (tryings = 2, bot id = 8554826085)
+2026-02-28 01:10:43,095 - aiogram.dispatcher - ERROR - Failed to fetch updates - TelegramServerError: Telegram server says - Bad Gateway
+2026-02-28 01:10:43,095 - aiogram.dispatcher - WARNING - Sleep for 2.121354 seconds and try again... (tryings = 3, bot id = 8554826085)
+2026-02-28 01:11:08,577 - aiogram.dispatcher - INFO - Connection established (tryings = 4, bot id = 8554826085)
+2026-02-28 01:15:18,329 - aiogram.event - INFO - Update id=375091638 is handled. Duration 477 ms by bot id=8554826085
+2026-02-28 01:15:32,699 - aiogram.event - INFO - Update id=375091639 is handled. Duration 76 ms by bot id=8554826085
+2026-02-28 01:15:42,499 - aiogram.event - INFO - Update id=375091640 is handled. Duration 73 ms by bot id=8554826085
+2026-02-28 06:55:04,008 - aiogram.event - INFO - Update id=375091641 is handled. Duration 191 ms by bot id=8554826085
+2026-02-28 06:55:06,082 - aiogram.event - INFO - Update id=375091642 is handled. Duration 271 ms by bot id=8554826085
+2026-02-28 06:55:17,299 - aiogram.event - INFO - Update id=375091643 is handled. Duration 143 ms by bot id=8554826085
+2026-02-28 06:55:19,486 - aiogram.event - INFO - Update id=375091644 is handled. Duration 226 ms by bot id=8554826085
+2026-02-28 09:53:38,624 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2026-02-28 09:53:38,640 - aiogram.dispatcher - INFO - Polling stopped for bot @kinocode26_bot id=8554826085 - 'KinoCode26'
+2026-02-28 09:53:38,645 - aiogram.dispatcher - INFO - Polling stopped
+2026-02-28 09:53:38,915 - database - INFO - ✅ Соединение с БД закрыто
+2026-02-28 09:53:38,920 - __main__ - INFO - ✅ Бот остановлен корректно
+2026-02-28 09:54:11,803 - database - INFO - ✅ Подключение к БД установлено: movies.db
+2026-02-28 09:54:11,806 - database - INFO - ✅ Таблицы БД созданы/проверены
+2026-02-28 09:54:11,808 - database - INFO - ✅ Таблицы БД проверены/созданы
+2026-02-28 09:54:12,146 - __main__ - INFO - ✅ Используем in-memory кэш
+2026-02-28 09:54:12,148 - __main__ - INFO - ✅ Health checker инициализирован
+2026-02-28 09:54:12,150 - __main__ - INFO - ✅ Бот инициализирован успешно
+2026-02-28 09:54:12,206 - __main__ - INFO - 🚀 Запуск бота...
+2026-02-28 09:54:12,213 - __main__ - INFO - ✅ Health check: healthy
+2026-02-28 09:54:12,215 - aiogram.dispatcher - INFO - Start polling
+2026-02-28 09:54:12,398 - aiogram.dispatcher - INFO - Run polling for bot @kinocode26_bot id=8554826085 - 'KinoCode26'
+2026-02-28 10:02:40,687 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2026-02-28 10:02:40,691 - aiogram.dispatcher - INFO - Polling stopped for bot @kinocode26_bot id=8554826085 - 'KinoCode26'
+2026-02-28 10:02:40,697 - aiogram.dispatcher - INFO - Polling stopped
+2026-02-28 10:02:40,957 - database - INFO - ✅ Соединение с БД закрыто
+2026-02-28 10:02:40,960 - __main__ - INFO - ✅ Бот остановлен корректно
+2026-02-28 10:03:06,395 - database - INFO - ✅ Подключение к БД установлено: movies.db
+2026-02-28 10:03:06,402 - database - INFO - ✅ Таблицы БД созданы/проверены
+2026-02-28 10:03:06,403 - database - INFO - ✅ Таблицы БД проверены/созданы
+2026-02-28 10:03:06,646 - __main__ - INFO - ✅ Используем in-memory кэш
+2026-02-28 10:03:06,649 - __main__ - INFO - ✅ Health checker инициализирован
+2026-02-28 10:03:06,650 - __main__ - INFO - ✅ Бот инициализирован успешно
+2026-02-28 10:03:06,692 - __main__ - INFO - 🚀 Запуск бота...
+2026-02-28 10:03:06,700 - __main__ - INFO - ✅ Health check: healthy
+2026-02-28 10:03:06,703 - aiogram.dispatcher - INFO - Start polling
+2026-02-28 10:03:06,889 - aiogram.dispatcher - INFO - Run polling for bot @kinocode26_bot id=8554826085 - 'KinoCode26'
+2026-02-28 10:39:54,498 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2026-02-28 10:39:54,507 - aiogram.dispatcher - INFO - Polling stopped for bot @kinocode26_bot id=8554826085 - 'KinoCode26'
+2026-02-28 10:39:54,513 - aiogram.dispatcher - INFO - Polling stopped
+2026-02-28 10:39:54,796 - database - INFO - ✅ Соединение с БД закрыто
+2026-02-28 10:39:54,799 - __main__ - INFO - ✅ Бот остановлен корректно
+2026-02-28 10:40:26,475 - database - INFO - ✅ Подключение к БД установлено: movies.db
+2026-02-28 10:40:26,480 - database - INFO - ✅ Таблицы БД созданы/проверены
+2026-02-28 10:40:26,482 - database - INFO - ✅ Таблицы БД проверены/созданы
+2026-02-28 10:40:26,721 - __main__ - INFO - ✅ Используем in-memory кэш
+2026-02-28 10:40:26,725 - __main__ - INFO - ✅ Health checker инициализирован
+2026-02-28 10:40:26,726 - __main__ - INFO - ✅ Бот инициализирован успешно
+2026-02-28 10:40:26,770 - __main__ - INFO - 🚀 Запуск бота...
+2026-02-28 10:40:26,778 - __main__ - INFO - ✅ Health check: healthy
+2026-02-28 10:40:26,783 - aiogram.dispatcher - INFO - Start polling
+2026-02-28 10:40:26,966 - aiogram.dispatcher - INFO - Run polling for bot @kinocode26_bot id=8554826085 - 'KinoCode26'
+2026-02-28 13:22:11,421 - aiogram.dispatcher - ERROR - Failed to fetch updates - TelegramNetworkError: HTTP Client says - Request timeout error
+2026-02-28 13:23:50,376 - aiogram.dispatcher - WARNING - Sleep for 1.000000 seconds and try again... (tryings = 0, bot id = 8554826085)
+2026-02-28 13:25:17,301 - aiogram.dispatcher - INFO - Connection established (tryings = 1, bot id = 8554826085)
+2026-02-28 13:52:24,794 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2026-02-28 13:52:24,807 - aiogram.dispatcher - INFO - Polling stopped for bot @kinocode26_bot id=8554826085 - 'KinoCode26'
+2026-02-28 13:52:24,811 - aiogram.dispatcher - INFO - Polling stopped
+2026-02-28 13:52:25,076 - database - INFO - ✅ Соединение с БД закрыто
+2026-02-28 13:52:25,080 - __main__ - INFO - ✅ Бот остановлен корректно
+2026-02-28 13:53:04,927 - database - INFO - ✅ Подключение к БД установлено: movies.db
+2026-02-28 13:53:04,942 - database - INFO - ✅ Таблицы БД созданы/проверены
+2026-02-28 13:53:04,946 - database - INFO - ✅ Таблицы БД проверены/созданы
+2026-02-28 13:53:05,118 - __main__ - INFO - ✅ Используем in-memory кэш
+2026-02-28 13:53:05,119 - __main__ - INFO - ✅ Health checker инициализирован
+2026-02-28 13:53:05,119 - __main__ - INFO - ✅ Бот инициализирован успешно
+2026-02-28 13:53:05,166 - __main__ - INFO - 🚀 Запуск бота...
+2026-02-28 13:53:05,194 - __main__ - INFO - ✅ Health check: healthy
+2026-02-28 13:53:05,198 - aiogram.dispatcher - INFO - Start polling
+2026-02-28 13:53:05,399 - aiogram.dispatcher - INFO - Run polling for bot @kinocode26_bot id=8554826085 - 'KinoCode26'
+2026-02-28 14:13:40,394 - aiogram.event - INFO - Update id=375091645 is handled. Duration 204 ms by bot id=8554826085
+2026-02-28 14:13:41,792 - aiogram.event - INFO - Update id=375091646 is handled. Duration 545 ms by bot id=8554826085
+2026-02-28 14:13:56,965 - aiogram.event - INFO - Update id=375091647 is handled. Duration 129 ms by bot id=8554826085
+2026-02-28 14:14:01,231 - aiogram.event - INFO - Update id=375091648 is handled. Duration 133 ms by bot id=8554826085
+2026-02-28 14:14:03,040 - aiogram.event - INFO - Update id=375091649 is handled. Duration 94 ms by bot id=8554826085
+2026-02-28 14:14:06,864 - __main__ - INFO - Поиск: user=7231498707, type=unknown, query=🔍 Поиск фильма
+2026-02-28 14:14:06,956 - aiogram.event - INFO - Update id=375091650 is handled. Duration 414 ms by bot id=8554826085
+2026-02-28 14:14:07,824 - aiogram.event - INFO - Update id=375091651 is handled. Duration 142 ms by bot id=8554826085
+2026-02-28 14:14:15,371 - aiogram.event - INFO - Update id=375091652 is handled. Duration 135 ms by bot id=8554826085
+2026-02-28 14:14:22,885 - aiogram.event - INFO - Update id=375091653 is handled. Duration 135 ms by bot id=8554826085
+2026-02-28 14:14:24,450 - aiogram.event - INFO - Update id=375091654 is handled. Duration 136 ms by bot id=8554826085
+2026-02-28 16:14:36,600 - aiogram.event - INFO - Update id=375091655 is handled. Duration 178 ms by bot id=8554826085
+2026-02-28 16:14:38,038 - aiogram.event - INFO - Update id=375091656 is handled. Duration 129 ms by bot id=8554826085
+2026-02-28 17:23:03,108 - aiogram.event - INFO - Update id=375091657 is handled. Duration 272 ms by bot id=8554826085
+2026-02-28 17:23:11,422 - aiogram.event - INFO - Update id=375091658 is not handled. Duration 105 ms by bot id=8554826085
+2026-02-28 17:23:11,422 - aiogram.event - ERROR - Cause exception while process update id=375091658 by bot id=8554826085
+TelegramBadRequest: Telegram server says - Bad Request: message is not modified: specified new message content and reply markup are exactly the same as a current content and reply markup of the message
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/dist-packages/aiogram/dispatcher/dispatcher.py", line 320, in _process_update
+    response = await self.feed_update(bot, update, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/aiogram/dispatcher/dispatcher.py", line 164, in feed_update
+    response = await self.update.wrap_outer_middleware(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/aiogram/dispatcher/middlewares/error.py", line 27, in __call__
+    return await handler(event, data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/aiogram/dispatcher/middlewares/user_context.py", line 58, in __call__
+    return await handler(event, data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/aiogram/fsm/middleware.py", line 43, in __call__
+    return await handler(event, data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/aiogram/dispatcher/event/telegram.py", line 126, in trigger
+    return await wrapped_inner(event, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/aiogram/dispatcher/event/handler.py", line 71, in call
+    return await wrapped()
+           ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/aiogram/dispatcher/dispatcher.py", line 283, in _listen_update
+    return await self.propagate_event(update_type=update_type, event=event, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/aiogram/dispatcher/router.py", line 161, in propagate_event
+    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/aiogram/dispatcher/router.py", line 153, in _wrapped
+    return await self._propagate_event(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/aiogram/dispatcher/router.py", line 181, in _propagate_event
+    response = await observer.trigger(event, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/aiogram/dispatcher/event/telegram.py", line 126, in trigger
+    return await wrapped_inner(event, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/checkerrr/bot.py", line 65, in subscription_middleware
+    return await handler(event, data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/checkerrr/bot.py", line 130, in visits_middleware
+    return await handler(event, data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/aiogram/dispatcher/event/handler.py", line 71, in call
+    return await wrapped()
+           ^^^^^^^^^^^^^^^
+  File "/root/projectss/checkerrr/bot.py", line 1845, in user_stats_all
+    await callback.message.edit_text(text, reply_markup=get_user_stats_keyboard(lang))
+  File "/usr/local/lib/python3.12/dist-packages/aiogram/methods/base.py", line 82, in emit
+    return await bot(self)
+           ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/aiogram/client/bot.py", line 487, in __call__
+    return await self.session(self, method, timeout=request_timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/aiogram/client/session/base.py", line 259, in __call__
+    return cast(TelegramType, await middleware(bot, method))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/aiogram/client/session/aiohttp.py", line 177, in make_request
+    response = self.check_response(
+               ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/aiogram/client/session/base.py", line 121, in check_response
+    raise TelegramBadRequest(method=method, message=description)
+aiogram.exceptions.TelegramBadRequest: Telegram server says - Bad Request: message is not modified: specified new message content and reply markup are exactly the same as a current content and reply markup of the message
+2026-02-28 17:23:19,918 - aiogram.event - INFO - Update id=375091659 is handled. Duration 341 ms by bot id=8554826085
+2026-02-28 17:23:21,194 - aiogram.event - INFO - Update id=375091660 is handled. Duration 133 ms by bot id=8554826085
+2026-02-28 17:23:23,321 - aiogram.event - INFO - Update id=375091661 is handled. Duration 121 ms by bot id=8554826085
+2026-02-28 17:23:24,218 - aiogram.event - INFO - Update id=375091662 is handled. Duration 130 ms by bot id=8554826085
+2026-02-28 17:23:25,100 - aiogram.event - INFO - Update id=375091663 is not handled. Duration 97 ms by bot id=8554826085
+2026-02-28 17:23:25,102 - aiogram.event - ERROR - Cause exception while process update id=375091663 by bot id=8554826085
+TelegramBadRequest: Telegram server says - Bad Request: message is not modified: specified new message content and reply markup are exactly the same as a current content and reply markup of the message
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/dist-packages/aiogram/dispatcher/dispatcher.py", line 320, in _process_update
+    response = await self.feed_update(bot, update, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/aiogram/dispatcher/dispatcher.py", line 164, in feed_update
+    response = await self.update.wrap_outer_middleware(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/aiogram/dispatcher/middlewares/error.py", line 27, in __call__
+    return await handler(event, data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/aiogram/dispatcher/middlewares/user_context.py", line 58, in __call__
+    return await handler(event, data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/aiogram/fsm/middleware.py", line 43, in __call__
+    return await handler(event, data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/aiogram/dispatcher/event/telegram.py", line 126, in trigger
+    return await wrapped_inner(event, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/aiogram/dispatcher/event/handler.py", line 71, in call
+    return await wrapped()
+           ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/aiogram/dispatcher/dispatcher.py", line 283, in _listen_update
+    return await self.propagate_event(update_type=update_type, event=event, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/aiogram/dispatcher/router.py", line 161, in propagate_event
+    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/aiogram/dispatcher/router.py", line 153, in _wrapped
+    return await self._propagate_event(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/aiogram/dispatcher/router.py", line 181, in _propagate_event
+    response = await observer.trigger(event, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/aiogram/dispatcher/event/telegram.py", line 126, in trigger
+    return await wrapped_inner(event, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/checkerrr/bot.py", line 65, in subscription_middleware
+    return await handler(event, data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/checkerrr/bot.py", line 130, in visits_middleware
+    return await handler(event, data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/aiogram/dispatcher/event/handler.py", line 71, in call
+    return await wrapped()
+           ^^^^^^^^^^^^^^^
+  File "/root/projectss/checkerrr/bot.py", line 1845, in user_stats_all
+    await callback.message.edit_text(text, reply_markup=get_user_stats_keyboard(lang))
+  File "/usr/local/lib/python3.12/dist-packages/aiogram/methods/base.py", line 82, in emit
+    return await bot(self)
+           ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/aiogram/client/bot.py", line 487, in __call__
+    return await self.session(self, method, timeout=request_timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/aiogram/client/session/base.py", line 259, in __call__
+    return cast(TelegramType, await middleware(bot, method))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/aiogram/client/session/aiohttp.py", line 177, in make_request
+    response = self.check_response(
+               ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/aiogram/client/session/base.py", line 121, in check_response
+    raise TelegramBadRequest(method=method, message=description)
+aiogram.exceptions.TelegramBadRequest: Telegram server says - Bad Request: message is not modified: specified new message content and reply markup are exactly the same as a current content and reply markup of the message
+2026-02-28 17:23:26,048 - aiogram.event - INFO - Update id=375091664 is handled. Duration 132 ms by bot id=8554826085
+2026-02-28 17:23:27,180 - aiogram.event - INFO - Update id=375091665 is handled. Duration 282 ms by bot id=8554826085
+2026-02-28 17:23:27,963 - aiogram.event - INFO - Update id=375091666 is handled. Duration 309 ms by bot id=8554826085
+2026-02-28 17:23:29,489 - aiogram.event - INFO - Update id=375091667 is handled. Duration 134 ms by bot id=8554826085
+2026-02-28 17:23:32,541 - aiogram.event - INFO - Update id=375091668 is handled. Duration 239 ms by bot id=8554826085
+2026-02-28 23:22:09,056 - aiogram.dispatcher - ERROR - Failed to fetch updates - TelegramRetryAfter: Telegram server says - Flood control exceeded on method 'GetUpdates'. Retry in 5 seconds.
+Original description: Too Many Requests: retry after 5
+(background on this error at: https://core.telegram.org/bots/faq#my-bot-is-hitting-limits-how-do-i-avoid-this)
+2026-02-28 23:22:09,056 - aiogram.dispatcher - WARNING - Sleep for 1.000000 seconds and try again... (tryings = 0, bot id = 8554826085)
+2026-02-28 23:22:10,108 - aiogram.dispatcher - ERROR - Failed to fetch updates - TelegramRetryAfter: Telegram server says - Flood control exceeded on method 'GetUpdates'. Retry in 5 seconds.
+Original description: Too Many Requests: retry after 5
+(background on this error at: https://core.telegram.org/bots/faq#my-bot-is-hitting-limits-how-do-i-avoid-this)
+2026-02-28 23:22:10,108 - aiogram.dispatcher - WARNING - Sleep for 1.418920 seconds and try again... (tryings = 1, bot id = 8554826085)
+2026-02-28 23:22:16,273 - aiogram.dispatcher - ERROR - Failed to fetch updates - TelegramServerError: Telegram server says - Bad Gateway
+2026-02-28 23:22:16,274 - aiogram.dispatcher - WARNING - Sleep for 1.601078 seconds and try again... (tryings = 2, bot id = 8554826085)
+2026-02-28 23:22:17,925 - aiogram.dispatcher - ERROR - Failed to fetch updates - TelegramServerError: Telegram server says - Bad Gateway
+2026-02-28 23:22:17,925 - aiogram.dispatcher - WARNING - Sleep for 2.332030 seconds and try again... (tryings = 3, bot id = 8554826085)
+2026-02-28 23:23:16,485 - aiogram.dispatcher - INFO - Connection established (tryings = 4, bot id = 8554826085)
+2026-03-01 00:01:21,944 - aiogram.dispatcher - ERROR - Failed to fetch updates - TelegramServerError: Telegram server says - Bad Gateway
+2026-03-01 00:01:21,946 - aiogram.dispatcher - WARNING - Sleep for 1.000000 seconds and try again... (tryings = 0, bot id = 8554826085)
+2026-03-01 00:01:22,994 - aiogram.dispatcher - ERROR - Failed to fetch updates - TelegramServerError: Telegram server says - Bad Gateway
+2026-03-01 00:01:22,994 - aiogram.dispatcher - WARNING - Sleep for 1.313764 seconds and try again... (tryings = 1, bot id = 8554826085)
+2026-03-01 00:02:19,549 - aiogram.dispatcher - INFO - Connection established (tryings = 2, bot id = 8554826085)
+2026-03-01 06:29:04,188 - aiogram.dispatcher - ERROR - Failed to fetch updates - TelegramNetworkError: HTTP Client says - ClientOSError: [Errno 104] Connection reset by peer
+2026-03-01 06:29:04,189 - aiogram.dispatcher - WARNING - Sleep for 1.000000 seconds and try again... (tryings = 0, bot id = 8554826085)
+2026-03-01 06:29:15,335 - aiogram.dispatcher - INFO - Connection established (tryings = 1, bot id = 8554826085)
+2026-03-01 16:00:15,886 - aiogram.event - INFO - Update id=375091669 is handled. Duration 328 ms by bot id=8554826085
+2026-03-01 16:00:16,928 - aiogram.event - INFO - Update id=375091670 is handled. Duration 147 ms by bot id=8554826085
+2026-03-01 16:00:18,087 - aiogram.event - INFO - Update id=375091671 is handled. Duration 295 ms by bot id=8554826085
+2026-03-01 17:04:27,236 - aiogram.dispatcher - ERROR - Failed to fetch updates - TelegramNetworkError: HTTP Client says - ClientOSError: [Errno 104] Connection reset by peer
+2026-03-01 17:04:27,236 - aiogram.dispatcher - WARNING - Sleep for 1.000000 seconds and try again... (tryings = 0, bot id = 8554826085)
+2026-03-01 17:04:38,374 - aiogram.dispatcher - INFO - Connection established (tryings = 1, bot id = 8554826085)
+2026-03-01 17:48:15,328 - aiogram.dispatcher - ERROR - Failed to fetch updates - TelegramNetworkError: HTTP Client says - Request timeout error
+2026-03-01 17:48:28,967 - aiogram.dispatcher - WARNING - Sleep for 1.000000 seconds and try again... (tryings = 0, bot id = 8554826085)
+2026-03-01 17:49:26,019 - aiogram.dispatcher - INFO - Connection established (tryings = 1, bot id = 8554826085)
+2026-03-01 19:48:17,197 - aiogram.dispatcher - ERROR - Failed to fetch updates - TelegramNetworkError: HTTP Client says - Request timeout error
+2026-03-01 19:48:19,636 - aiogram.dispatcher - WARNING - Sleep for 1.000000 seconds and try again... (tryings = 0, bot id = 8554826085)
+2026-03-01 19:48:57,551 - aiogram.dispatcher - ERROR - Failed to fetch updates - TelegramNetworkError: HTTP Client says - ClientConnectorDNSError: Cannot connect to host api.telegram.org:443 ssl:default [Temporary failure in name resolution]
+2026-03-01 19:48:58,822 - aiogram.dispatcher - WARNING - Sleep for 1.320007 seconds and try again... (tryings = 1, bot id = 8554826085)
+2026-03-01 19:51:09,589 - aiogram.dispatcher - ERROR - Failed to fetch updates - TelegramNetworkError: HTTP Client says - Request timeout error
+2026-03-01 19:51:28,106 - aiogram.dispatcher - WARNING - Sleep for 1.783344 seconds and try again... (tryings = 2, bot id = 8554826085)
+2026-03-01 19:56:06,742 - aiogram.dispatcher - ERROR - Failed to fetch updates - TelegramNetworkError: HTTP Client says - Request timeout error
+2026-03-01 19:57:40,862 - aiogram.dispatcher - WARNING - Sleep for 2.280783 seconds and try again... (tryings = 3, bot id = 8554826085)
+2026-03-01 20:01:34,135 - aiogram.dispatcher - INFO - Connection established (tryings = 4, bot id = 8554826085)
+2026-03-01 22:27:13,039 - aiogram.event - INFO - Update id=375091672 is handled. Duration 518 ms by bot id=8554826085
+2026-03-02 01:01:50,123 - aiogram.dispatcher - ERROR - Failed to fetch updates - TelegramNetworkError: HTTP Client says - ClientOSError: [Errno 104] Connection reset by peer
+2026-03-02 01:01:50,124 - aiogram.dispatcher - WARNING - Sleep for 1.000000 seconds and try again... (tryings = 0, bot id = 8554826085)
+2026-03-02 01:02:01,267 - aiogram.dispatcher - INFO - Connection established (tryings = 1, bot id = 8554826085)
+2026-03-02 04:23:02,436 - aiogram.dispatcher - ERROR - Failed to fetch updates - TelegramNetworkError: HTTP Client says - ClientOSError: [Errno 104] Connection reset by peer
+2026-03-02 04:23:02,437 - aiogram.dispatcher - WARNING - Sleep for 1.000000 seconds and try again... (tryings = 0, bot id = 8554826085)
+2026-03-02 04:23:13,580 - aiogram.dispatcher - INFO - Connection established (tryings = 1, bot id = 8554826085)
+2026-03-02 06:03:13,208 - aiogram.dispatcher - ERROR - Failed to fetch updates - TelegramNetworkError: HTTP Client says - Request timeout error
+2026-03-02 06:03:13,265 - aiogram.dispatcher - WARNING - Sleep for 1.000000 seconds and try again... (tryings = 0, bot id = 8554826085)
+2026-03-02 06:03:24,685 - aiogram.dispatcher - INFO - Connection established (tryings = 1, bot id = 8554826085)
+2026-03-02 06:21:28,808 - database - INFO - ✅ Подключение к БД установлено: movies.db
+2026-03-02 06:21:28,829 - database - INFO - ✅ Таблицы БД созданы/проверены
+2026-03-02 06:21:28,836 - database - INFO - ✅ Таблицы БД проверены/созданы
+2026-03-02 06:21:29,510 - __main__ - INFO - ✅ Используем in-memory кэш
+2026-03-02 06:21:29,519 - __main__ - INFO - ✅ Health checker инициализирован
+2026-03-02 06:21:29,519 - __main__ - INFO - ✅ Бот инициализирован успешно
+2026-03-02 06:21:29,651 - __main__ - INFO - 🚀 Запуск бота...
+2026-03-02 06:21:29,680 - __main__ - INFO - ✅ Health check: healthy
+2026-03-02 06:21:29,693 - aiogram.dispatcher - INFO - Start polling
+2026-03-02 06:21:29,978 - aiogram.dispatcher - INFO - Run polling for bot @kinocode26_bot id=8554826085 - 'KinoCode26'
+2026-03-02 06:27:49,889 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2026-03-02 06:27:49,893 - aiogram.dispatcher - INFO - Polling stopped for bot @kinocode26_bot id=8554826085 - 'KinoCode26'
+2026-03-02 06:27:49,893 - aiogram.dispatcher - INFO - Polling stopped
+2026-03-02 06:27:50,150 - database - INFO - ✅ Соединение с БД закрыто
+2026-03-02 06:27:50,151 - __main__ - INFO - ✅ Бот остановлен корректно
