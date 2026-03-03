@@ -43,6 +43,14 @@ from dotenv import load_dotenv
 from difflib import SequenceMatcher
 from global_dedup import init_global_db, is_global_duplicate, mark_global_posted, get_universal_hash
 
+try:
+    import pymorphy3
+    MORPHY = pymorphy3.MorphAnalyzer()
+    LEMMATIZATION_AVAILABLE = True
+except ImportError:
+    LEMMATIZATION_AVAILABLE = False
+    MORPHY = None
+
 # ============ ГЛОБАЛЬНАЯ ДЕДУПЛИКАЦИЯ ============
 GLOBAL_DEDUP_ENABLED = False
 try:
@@ -60,55 +68,52 @@ except ImportError:
 
 load_dotenv()
 
-def cleanup_old_logs(max_age_days=7, max_file_size_mb=50):
-    """🧹 Очистка старых логов"""
+async def cleanup_old_logs(max_age_days=7, max_file_size_mb=50):
+    """🧹 Очистка старых логов через tail (не блокирует RAM)"""
     try:
         log_dir = Path("logs")
         if not log_dir.exists():
             return
-        
-        # 1. Удаляем логи старше max_age_days дней
+
+        import subprocess
         import time
+
         current_time = time.time()
         max_age_seconds = max_age_days * 86400
-        
+        max_size_bytes = max_file_size_mb * 1024 * 1024
+
         for log_file in log_dir.glob("*.log"):
             try:
                 file_age = current_time - log_file.stat().st_mtime
                 if file_age > max_age_seconds:
                     log_file.unlink()
                     logger.info(f"🧹 Удалён старый лог: {log_file.name}")
-            except Exception as e:
-                logger.error(f"❌ Ошибка удаления лога {log_file.name}: {e}")
-        
-        # 2. Ограничиваем размер файлов (если > max_file_size_mb)
-        max_size_bytes = max_file_size_mb * 1024 * 1024
-        
-        for log_file in log_dir.glob("*.log"):
-            try:
+                    continue
+
                 if log_file.stat().st_size > max_size_bytes:
-                    # Читаем последние N строк
-                    with open(log_file, 'r', encoding='utf-8', errors='ignore') as f:
-                        lines = f.readlines()
-                    
-                    # Оставляем последние 10000 строк
-                    keep_lines = lines[-10000:]
-                    
-                    # Перезаписываем
-                    with open(log_file, 'w', encoding='utf-8', errors='ignore') as f:
-                        f.writelines(keep_lines)
-                    
-                    logger.info(f"🧹 Лог {log_file.name} уменьшен до {len(keep_lines)} строк")
+                    temp_path = log_file.with_suffix(".tmp")
+                    result = subprocess.run(
+                        ["tail", "-n", "10000", str(log_file)],
+                        capture_output=True,
+                        text=True,
+                        timeout=30
+                    )
+                    if result.returncode == 0:
+                        async with aiofiles.open(temp_path, 'w', encoding='utf-8') as f:
+                            await f.write(result.stdout)
+                        os.replace(temp_path, log_file)
+                        logger.info(f"🧹 Лог {log_file.name} уменьшен до 10000 строк")
+                    else:
+                        temp_path.unlink(missing_ok=True)
+                        logger.warning(f"⚠️ Ошибка tail: {result.stderr[:100]}")
             except Exception as e:
-                logger.error(f"❌ Ошибка очистки лога {log_file.name}: {e}")
-        
-        # 3. Выводим статистику
+                logger.error(f"❌ Ошибка обработки лога {log_file.name}: {e}")
+
         total_size = sum(f.stat().st_size for f in log_dir.glob("*.log"))
         logger.info(f"📊 Логи: {len(list(log_dir.glob('*.log')))} файлов, {total_size / 1024 / 1024:.1f} MB")
-        
+
     except Exception as e:
         logger.error(f"❌ Ошибка cleanup_old_logs: {e}")
-
 
 
 # ================= АЛЕРТЫ =================
@@ -170,9 +175,12 @@ class AlertManager:
 
 
 # ================= УТИЛИТЫ =================
+# 🔐 ГЛОБАЛЬНЫЙ SSL CONTEXT (экономия 1-2 MB RAM)
+SSL_CONTEXT = ssl.create_default_context()
+
 def create_secure_ssl_context() -> ssl.SSLContext:
     """✅ Создание безопасного SSL контекста"""
-    return ssl.create_default_context()
+    return SSL_CONTEXT
 
 async def write_draft_atomic(draft_path: Path, data: dict):
     """✅ Атомарная запись черновика: пишем во временный файл → переименовываем"""
@@ -314,13 +322,32 @@ config = BotConfig()
 # ================= RSS FEEDS =================
 # ✅ ОСНОВНЫЕ ФИДЫ — только проверенные источники
 RSS_FEEDS = [
+    # 🇷🇺 РУССКИЕ ФИДЫ
     "https://www.kinonews.ru/rss",              # КиноНовости — главные новости кино
     "https://www.kg-portal.ru/rss/news",        # KG-Portal — кино и сериалы
     "https://www.mirf.ru/feed",                 # Мир Фантастики — кино, сериалы
-    
-    # ✅ ДОПОЛНИТЕЛЬНЫЕ ФИДЫ — для большего количества новостей
-    "https://www.intermedia.ru/rss/news",       # InterMedia — музыка, кино, шоу-бизнес (много новостей!)
+    "https://www.intermedia.ru/rss/news",       # InterMedia — музыка, кино, шоу-бизнес
+
+    # 🇺🇸 АНГЛИЙСКИЕ ФИДЫ — требуют перевода
+    "https://editorial.rottentomatoes.com/feed/",  # Rotten Tomatoes — кино, трейлеры, рецензии
+    "https://variety.com/feed/",                     # Variety — голливудские новости
+    "https://feeds.feedburner.com/Deadline",         # Deadline — индустриальные новости
 ]
+
+# ✅ ДОПОЛНИТЕЛЬНЫЕ КЛЮЧЕВЫЕ СЛОВА ДЛЯ АНГЛИЙСКИХ НОВОСТЕЙ
+EN_CINEMA_KEYWORDS = {
+    "movie", "film", "cinema", "actor", "actress", "director", "premiere", "trailer",
+    "series", "streaming", "box office", "oscar", "nomination", "award", "hollywood",
+    "screenplay", "producer", "screen", "film festival", "marvel", "dc comics",
+    "cannes", "venice", "berlinale", "golden globe", "netflix", "disney", "hbo",
+    "casting", "sequel", "remake", "adaptation", "blockbuster", "indie"
+}
+
+EN_HOT_TOPICS = {
+    "marvel", "dc comics", "premiere", "trailer", "oscar", "cannes", "venice",
+    "berlinale", "golden globe", "box office", "netflix", "disney", "streaming",
+    "sequel", "casting", "blockbuster"
+}
 
 # ================= ЧЁРНЫЙ СПИСОК ДОМЕНОВ =================
 # Источники которые публикуют фейки/кликбейт — игнорируем
@@ -365,6 +392,33 @@ NON_CINEMA_KEYWORDS = {
     "мчс", "пожар", "дтп", "криминал", "убийств", "суд", "приговор"
 }
 
+# ================= ЛЕММАТИЗАЦИЯ =================
+def lemmatize_text(text: str) -> str:
+    """🇷🇺 Лемматизация через pymorphy3"""
+    if not LEMMATIZATION_AVAILABLE or MORPHY is None:
+        return text.lower()
+    try:
+        words = text.lower().split()
+        lemmas = [MORPHY.parse(re.sub(r'[^\w\s]', '', w))[0].normal_form for w in words if w.strip()]
+        return ' '.join(lemmas)
+    except Exception as e:
+        logger.warning(f"⚠️ Ошибка лемматизации: {e}")
+        return text.lower()
+
+
+def lemmatize_keywords(keywords: set) -> set:
+    """🇷🇺 Лемматизация keywords"""
+    if not LEMMATIZATION_AVAILABLE or MORPHY is None:
+        return {kw.lower() for kw in keywords}
+    try:
+        return {MORPHY.parse(kw)[0].normal_form for kw in keywords}
+    except:
+        return {kw.lower() for kw in keywords}
+
+
+CINEMA_KEYWORDS_LEMMA = lemmatize_keywords(CINEMA_KEYWORDS)
+HOT_CINEMA_TOPICS_LEMMA = lemmatize_keywords(HOT_CINEMA_TOPICS)
+
 # ================= ЛОГИРОВАНИЕ =================
 log_dir = Path("logs")
 log_dir.mkdir(exist_ok=True)
@@ -385,7 +439,7 @@ logging.getLogger("asyncio").setLevel(logging.WARNING)
 
 # ================= МЕТРИКИ =================
 class BotMetrics:
-    """Расширенные метрики"""
+    """Расширенные метрики бота"""
     def __init__(self):
         self.metrics = {
             'posts_sent': 0,
@@ -393,6 +447,8 @@ class BotMetrics:
             'duplicates_exact': 0,
             'duplicates_fuzzy': 0,
             'duplicates_global': 0,
+            'duplicates_content': 0,
+            'duplicates_link': 0,
             'llm_calls': 0,
             'llm_cache_hits': 0,
             'llm_errors': 0,
@@ -400,21 +456,35 @@ class BotMetrics:
             'candidates_found': 0,
             'fake_dates_blocked': 0,
             'english_words_blocked': 0,
-            'blacklist_blocked': 0,    # 🚫 Заблокировано чёрным списком
+            'blacklist_blocked': 0,
             'errors': []
         }
         self.start_time = datetime.now()
         self.posts_today = 0
         self.last_reset_date = datetime.now().date()
-    
+
     def log_duplicate(self, method: str):
-        """Логирование типа дубликата"""
+        """Логирование дубликата + отправка в Prometheus"""
         if 'exact' in method:
             self.metrics['duplicates_exact'] += 1
+            if prom_metrics:
+                prom_metrics.inc_dup('exact')
         elif 'fuzzy' in method:
             self.metrics['duplicates_fuzzy'] += 1
+            if prom_metrics:
+                prom_metrics.inc_dup('fuzzy')
         elif 'global' in method:
             self.metrics['duplicates_global'] += 1
+            if prom_metrics:
+                prom_metrics.inc_dup('global')
+        elif 'content' in method:
+            self.metrics['duplicates_content'] += 1
+            if prom_metrics:
+                prom_metrics.inc_dup('content')
+        elif 'link' in method:
+            self.metrics['duplicates_link'] += 1
+            if prom_metrics:
+                prom_metrics.inc_dup('link')
 
     def increment_posts_today(self):
         """Увеличить счётчик постов за сегодня"""
@@ -433,19 +503,64 @@ class BotMetrics:
         return self.posts_today < config.max_posts_per_day
 
     def log_error(self, error: str):
-        """Логирование ошибки"""
+        """Логирование ошибки + отправка в Prometheus"""
         self.metrics['errors'].append({
             'time': datetime.now().isoformat(),
             'error': str(error)[:200]
         })
         self.metrics['llm_errors'] += 1
-    
+        if prom_metrics:
+            prom_metrics.inc_err()
+
+    def log_post_sent(self, channel: str, post_type: str):
+        """Логирование отправленного поста + отправка в Prometheus"""
+        self.metrics['posts_sent'] += 1
+        self.increment_posts_today()
+        if prom_metrics:
+            prom_metrics.inc_post(channel, post_type)
+
+    def log_fake_date(self):
+        """Логирование заблокированной фейковой даты"""
+        self.metrics['fake_dates_blocked'] += 1
+        if prom_metrics:
+            prom_metrics.inc_date()
+
+    def log_english_blocked(self):
+        """Логирование заблокированного английского текста"""
+        self.metrics['english_words_blocked'] += 1
+        if prom_metrics:
+            prom_metrics.inc_eng()
+
+    def log_blacklist_blocked(self):
+        """Логирование заблокированного чёрным списком"""
+        self.metrics['blacklist_blocked'] += 1
+
+    def log_llm_cache_hit(self):
+        """Логирование попадания в кэш LLM"""
+        self.metrics['llm_cache_hits'] += 1
+        if prom_metrics:
+            prom_metrics.inc_cache()
+
+    def log_llm_call(self, operation: str):
+        """Логирование вызова LLM"""
+        self.metrics['llm_calls'] += 1
+        if prom_metrics:
+            prom_metrics.inc_llm(operation)
+
+    def log_feed_processed(self):
+        """Логирование обработанного фида"""
+        self.metrics['feeds_processed'] += 1
+        if prom_metrics:
+            prom_metrics.set_candidates(self.metrics['candidates_found'])
+
     def print_summary(self):
         """Вывод статистики"""
         uptime = datetime.now() - self.start_time
         total_duplicates = (self.metrics['duplicates_exact'] +
                           self.metrics['duplicates_fuzzy'] +
-                          self.metrics['duplicates_global'])
+                          self.metrics['duplicates_global'] +
+                          self.metrics['duplicates_content'] +
+                          self.metrics['duplicates_link'])
         cache_rate = 0
         if self.metrics['llm_calls'] > 0:
             cache_rate = (self.metrics['llm_cache_hits'] /
@@ -459,7 +574,9 @@ class BotMetrics:
         logger.info(f"   Дубликатов всего: {total_duplicates}")
         logger.info(f"   ├─ Точных: {self.metrics['duplicates_exact']}")
         logger.info(f"   ├─ Fuzzy: {self.metrics['duplicates_fuzzy']}")
-        logger.info(f"   └─ Глобальных: {self.metrics['duplicates_global']}")
+        logger.info(f"   ├─ Global: {self.metrics['duplicates_global']}")
+        logger.info(f"   ├─ Content: {self.metrics['duplicates_content']}")
+        logger.info(f"   └─ Link: {self.metrics['duplicates_link']}")
         logger.info(f"   ")
         logger.info(f"   LLM вызовов: {self.metrics['llm_calls']}")
         logger.info(f"   Cache hits: {self.metrics['llm_cache_hits']} ({cache_rate:.1f}%)")
@@ -473,7 +590,26 @@ class BotMetrics:
         logger.info(f"   Кандидатов найдено: {self.metrics['candidates_found']}")
         logger.info("=" * 60)
 
+    def log_rejected(self):
+        """Логирование отклонённого поста"""
+        self.metrics['posts_rejected'] += 1
+
+    def set_candidates(self, count: int):
+        """Установка количества кандидатов"""
+        self.metrics['candidates_found'] = count
+        if prom_metrics:
+            prom_metrics.set_candidates(count)
+
 metrics = BotMetrics()
+
+# 📊 PROMETHEUS METRICS
+try:
+    from prometheus_metrics import PrometheusMetrics
+    prom_metrics = PrometheusMetrics(bot_name='cinema', port=8002)
+    logger.info("✅ Prometheus метрики запущены на порту 8002")
+except Exception as e:
+    logger.warning(f"⚠️ Prometheus metrics error: {e}")
+    prom_metrics = None
 
 # ================= СОСТОЯНИЕ =================
 class BotState:
@@ -662,17 +798,44 @@ def normalize_title(title: str) -> str:
     return ' '.join(words)
 
 def is_cinema_candidate(title: str, summary: str) -> Tuple[bool, int, int]:
-    """Предфильтрация по ключевым словам"""
+    """Предфильтрация по ключевым словам с лемматизацией (рус + англ)"""
     text = f"{title} {summary}".lower()
-    
+    text_lemma = lemmatize_text(f"{title} {summary}")
+
+    # Проверяем язык текста
+    is_english = not is_russian_text(text, min_ratio=0.5)
+
     non_cinema_count = sum(1 for word in NON_CINEMA_KEYWORDS if word in text)
     if non_cinema_count >= 2:
         return False, 0, 0
-    
-    cinema_matches = sum(1 for kw in CINEMA_KEYWORDS if kw in text)
-    hot_matches = sum(1 for kw in HOT_CINEMA_TOPICS if kw in text)
-    
+
+    # Считаем совпадения для лемматизированных keywords
+    cinema_matches = sum(1 for kw in CINEMA_KEYWORDS_LEMMA if kw in text_lemma)
+    hot_matches = sum(1 for kw in HOT_CINEMA_TOPICS_LEMMA if kw in text_lemma)
+
+    # Если лемматизация не нашла, пробуем обычные keywords
+    if cinema_matches == 0:
+        cinema_matches = sum(1 for kw in CINEMA_KEYWORDS if kw in text)
+        hot_matches = sum(1 for kw in HOT_CINEMA_TOPICS if kw in text)
+
+    # Для английских новостей — отдельные ключи
+    if is_english:
+        en_cinema_matches = sum(1 for kw in EN_CINEMA_KEYWORDS if kw in text)
+        en_hot_matches = sum(1 for kw in EN_HOT_TOPICS if kw in text)
+        cinema_matches = max(cinema_matches, en_cinema_matches)
+        hot_matches = max(hot_matches, en_hot_matches)
+
     return cinema_matches >= 1, cinema_matches, hot_matches
+
+
+def is_english_text(text: str) -> bool:
+    """Проверка: текст на английском"""
+    if not text:
+        return False
+    # Считаем латинские буквы
+    latin = sum(1 for c in text if 'a' <= c.lower() <= 'z')
+    alpha = sum(1 for c in text if c.isalpha())
+    return alpha > 0 and (latin / alpha) >= 0.7
 
 def is_russian_text(text: str, min_ratio: float = 0.6) -> bool:
     """Проверка русского текста по кириллице"""
@@ -741,12 +904,23 @@ def postprocess_text(raw) -> str:
         else:
             first_line = "🎬<b>" + first_line + "</b>"
     
-    # Убеждаемся что тег закрыт
+    # Убеждаемся что тег зак��ыт
     if first_line.count("<b>") > first_line.count("</b>"):
         if "</b>" not in first_line and len(lines) > 1:
             first_line = first_line.rstrip() + "</b>"
     
-    header = first_line[:120].strip()
+    # 🔧 АККУРАТНАЯ ОБРЕЗКА ЗАГОЛОВКА: не обрезать в середине слова
+    header_raw = first_line[:120].strip()
+    # Если обрезали в середине слова — находим последний пробел
+    if len(first_line) > 120 and header_raw and not header_raw[-1].isspace():
+        last_space = header_raw.rfind(' ')
+        if last_space > 80:  # Если есть пробел после 80 символа
+            header_raw = header_raw[:last_space]
+        # Если есть закрывающий тег </b>, убеждаемся что он в конце
+        if '</b>' not in header_raw and '<b>' in header_raw:
+            header_raw += '</b>'
+    
+    header = header_raw.strip()
     body_lines = lines[1:] if len(lines) > 1 else []
     body = "\n\n".join(body_lines[:5]) if body_lines else ""
 
@@ -755,7 +929,7 @@ def postprocess_text(raw) -> str:
 
     if len(formatted) > MAX_POST_LENGTH - 6:
         truncated = formatted[:TRUNCATE_LENGTH]
-        
+
         # 🔍 УМНАЯ ОБРЕЗКА: ищем конец последнего完整ного предложения
         # Приоритет: точка с пробелом → просто точка → перенос строки → пробел
         for ending in [". ", ".\n", "!\n", "?\n", ".</b>", "\n\n"]:
@@ -890,6 +1064,40 @@ class AdaptiveRateLimiter:
     def report_success(self):
         self.error_count = max(self.error_count - 1, 0)
 
+
+class TelegramRateLimiter:
+    """🛡️ Rate limiter для Telegram (защита от 429)"""
+    def __init__(self):
+        self.request_times = []
+        self.last_429_time = 0
+        self.cooldown = 60
+
+    async def wait(self):
+        now = asyncio.get_event_loop().time()
+        if self.last_429_time and now - self.last_429_time < self.cooldown:
+            wt = self.cooldown - (now - self.last_429_time)
+            logger.warning(f"⏳ RL: {wt:.0f} сек после 429")
+            await asyncio.sleep(wt)
+            now = asyncio.get_event_loop().time()
+        self.request_times = [t for t in self.request_times if now - t < 60]
+        if len(self.request_times) >= 18:
+            delay = 3.0 + (len(self.request_times) - 18) * 0.5
+            await asyncio.sleep(delay)
+        self.request_times.append(now)
+
+    def report_429(self):
+        self.last_429_time = asyncio.get_event_loop().time()
+        self.request_times = []
+        logger.warning("🚨 Telegram 429")
+
+    def report_success(self):
+        now = asyncio.get_event_loop().time()
+        if self.last_429_time and now - self.last_429_time > 3600:
+            self.last_429_time = 0
+
+
+telegram_rate_limiter = TelegramRateLimiter()
+
 # ================= LLM КЛИЕНТ =================
 class CachedLLMClient:
     """LLM клиент с кэшированием и circuit breaker"""
@@ -977,83 +1185,77 @@ class CachedLLMClient:
             return None
     
     def _contains_fake_dates(self, text: str) -> bool:
-        """Блокировка постов с выдуманными датами и событиями"""
-        current_year = datetime.now().year
+        """🧹 Блокировка постов с выдуманными датами (2023-2025)"""
+        # ✅ 2026 год — текущий, 2025 и старше — старые
+        old_years = ["2023", "2024", "2025"]
         text_lower = text.lower()
-
-        # 🚫 Блокируем старые годы (2015-2025) в контексте премьер/событий
-        # ✅ Разрешаем в биографии ("родился в 1980", "снялся в 2010")
-        old_years = list(range(2015, current_year))
         
-        # Паттерны которые блокируем: "премьера в 2022", "выйдет в 2023"
-        fake_patterns_with_year = [
-            rf'премьера\s+(состоится|будет|запланирована)?\s+(в\s+)?({2015}|{2016}|{2017}|{2018}|{2019}|{2020}|{2021}|{2022}|{2023}|{2024}|{2025})',
-            rf'выйдет\s+(в\s+)?({2015}|{2016}|{2017}|{2018}|{2019}|{2020}|{2021}|{2022}|{2023}|{2024}|{2025})',
-            rf'вышел\s+(в\s+)?({2015}|{2016}|{2017}|{2018}|{2019}|{2020}|{2021}|{2022}|{2023}|{2024}|{2025})',
-            rf'состоится\s+(в\s+)?({2015}|{2016}|{2017}|{2018}|{2019}|{2020}|{2021}|{2022}|{2023}|{2024}|{2025})',
-            rf'релиз\s+(в\s+)?({2015}|{2016}|{2017}|{2018}|{2019}|{2020}|{2021}|{2022}|{2023}|{2024}|{2025})',
-            rf'собрал\s+(в\s+)?({2015}|{2016}|{2017}|{2018}|{2019}|{2020}|{2021}|{2022}|{2023}|{2024}|{2025})',
-        ]
-        
-        for pattern in fake_patterns_with_year:
-            if re.search(pattern, text_lower):
-                logger.warning(f"🚨 Старая дата в контексте премьеры")
-                metrics.metrics['fake_dates_blocked'] += 1
+        for year in old_years:
+            if re.search(rf"\b{year}\b", text):
+                logger.warning(f"🚨 Обнаружен старый год: {year}")
+                metrics.log_fake_date()
                 return True
-
-        # Блокируем фразы типа "вышел в 2024", "премьера в 2023"
-        text_lower = text.lower()
-        old_years_pattern = '|'.join(str(y) for y in range(2015, current_year))
-        if re.search(
-            rf'(вышел|выйдет|состоится|премьера|релиз|собрал|открылся)\s+(в\s+)?({old_years_pattern})',
-            text_lower
-        ):
-            logger.warning(f"🚨 Старая дата в контексте события")
-            metrics.metrics['fake_dates_blocked'] += 1
+        
+        # Блокируем "в 2026 году", "2026 году"
+        if re.search(r"(в|году|года|год)\s*2026\b", text_lower):
+            metrics.log_fake_date()
             return True
-
-        # 🚨 БЛОКИРУЕМ выдуманные события будущего
-        fake_event_patterns = [
-            r'объявили победителей',
-            r'получил.*премию',
-            r'получил.*награду',
-            r'получил.*приз',
-            r'удостоился.*премии',
-            r'вручили.*премию',
-            r'вручили.*награду',
-            r'стал.*лауреатом',
-            r'победил в.*номинации',
-            r'объявлен.*победителем',
-            r'признан.*лучшим',
-            r'признан.*победителем',
-            r'в\s+18:00\s+объявили',
-            r'в\s+\d{1,2}:\d{2}\s+������остоится',
-            r'сегодня\s+в\s+\d{1,2}:\d{2}',
-            r'состоится\s+открытие',
-            r'начнётся\s+\d+\s+(июня|июля|августа|сентября|октября|ноября|декабря|января|февраля|марта|апреля|мая)',
-        ]
-
-        for pattern in fake_event_patterns:
-            if re.search(pattern, text_lower):
-                logger.warning(f"🚨 Обнаружен паттерн выдуманного события: {pattern}")
-                metrics.metrics['fake_dates_blocked'] += 1
-                return True
-
+        
         return False
     
     def _contains_too_much_english(self, text: str) -> bool:
+        """Проверка: слишком много английских слов (но пропускаем названия)"""
+        # ✅ Разрешённые английские слова — студии, сервисы, термины
         allowed_english = {
+            # Студии и компании
             'marvel', 'dc', 'netflix', 'hbo', 'disney', 'imax', 'oscar', 'emmy', 'prime',
             'usa', 'uk', 'eu', 'bbc', 'cnn', 'tmz', 'variety', 'hollywood',
             'warner', 'bros', 'paramount', 'sony', 'universal', 'lionsgate', 'mgm',
-            'apple', 'amazon', 'studio', 'pictures', 'entertainment'
+            'apple', 'amazon', 'studio', 'pictures', 'entertainment',
+            # Стриминги и сервисы
+            'hulu', 'peacock', 'paramount', 'showtime', 'starz', 'discovery',
+            'youtube', 'red', 'premium', 'plus', 'max',
+            # Кинокомпании
+            'legendary', 'bad', 'robot', 'syncopy', 'plan', 'entertainment',
+            'a24', 'neon', 'focus', 'features', 'searchlight', 'pixar',
+            # Термины
+            'tv', 'show', 'shows', 'movie', 'movies', 'film', 'films',
+            'trailer', 'teaser', 'clip', 'scene', 'cast', 'crew',
+            'director', 'producer', 'actor', 'actress', 'star', 'stars',
+            'season', 'episode', 'series', 'streaming', 'premiere',
+            # Награды
+            'golden', 'globe', 'globes', 'awards', 'award', 'nomination',
+            'cannes', 'venice', 'berlinale', 'sundance', 'toronto',
+            # Фразы-исключения (часто в переводах)
+            'right', 'now', 'what', 'watch', 'theaters', 'streaming',
+            'popular', 'most', 'best', 'top', 'new', 'latest',
+            # Названия (отдельные слова)
+            'dragon', 'house', 'blood', 'kingdom', 'knight', 'knights',
+            'seven', 'thrones', 'game', 'last', 'us', 'one', 'day',
+            'men', 'woman', 'man', 'love', 'time', 'life', 'world',
+            'dead', 'evil', 'good', 'bad', 'big', 'small', 'long',
+            # Источники
+            'rotten', 'tomatoes', 'deadline', 'indiewire', 'collider',
+            'screen', 'rant', 'empire', 'total', 'film',
+            # Прочее
+            'coming', 'soon', 'exclusive', 'interview', 'review', 'news',
+            # Простые слова (могут проскальзывать)
+            'video', 'story', 'about', 'working', 'says', 'said', 'set',
+            'prep', 'preps', 'bows', 'spirit', 'talks', 'reveals', 'teases',
+            'first', 'look', 'exclusive', 'red', 'carpet', 'live',
+            # Имена (короткие)
+            'lee', 'kim', 'park', 'chan', 'jin', 'wei', 'chen', 'wu',
+            # Индийские имена/слова
+            'kher', 'anupam', 'saaransh', 'tan', 'raj', 'kumar', 'singh',
+            'kapoor', 'shah', 'khan', 'patel', 'sharma', 'dev', 'priya'
         }
         english_words = re.findall(r'\b[a-zA-Z]{4,}\b', text.lower())
         suspicious_words = [w for w in english_words if w not in allowed_english]
-        if len(suspicious_words) > 3:
+        if len(suspicious_words) > 5:  # Увеличили порог до 5
             logger.warning(f"🚨 Много английских слов: {suspicious_words[:5]}")
-            metrics.metrics['english_words_blocked'] += 1
-            return True
+            metrics.log_english_blocked()
+            if prom_metrics:
+                return True
         return False
 
     def _verify_against_source(self, orig_title: str, orig_content: str, generated: str) -> bool:
@@ -1144,12 +1346,12 @@ class CachedLLMClient:
         cache_key = self._get_cache_key(title, summary, "classify")
         if cache_key in self.cache:
             logger.info(f"💾 Cache hit: classify")
-            metrics.metrics['llm_cache_hits'] += 1
+            metrics.log_llm_cache_hit()
             return self.cache[cache_key]
 
         await self._circuit_breaker_check()
         await self.rate_limiter.wait()
-        metrics.metrics['llm_calls'] += 1
+        metrics.log_llm_call('classify')
 
         current_date = datetime.now().strftime('%d.%m.%Y')
         current_year = datetime.now().year
@@ -1201,26 +1403,93 @@ NONE — если это:
             await asyncio.sleep(random.uniform(2, 4))
             return False
 
-    async def generate_post(self, title: str, content: str) -> Optional[str]:
-        cache_key = self._get_cache_key(title, content, "generate")
+    async def translate_to_russian(self, title: str, content: str) -> Optional[str]:
+        """🌍 Перевод английской новости на русский"""
+        cache_key = self._get_cache_key(title, content[:500], "translate")
         if cache_key in self.cache:
-            logger.info(f"💾 Cache hit: generate")
-            metrics.metrics['llm_cache_hits'] += 1
+            logger.info(f"💾 Cache hit: translate")
+            metrics.log_llm_cache_hit()
             return self.cache[cache_key]
 
         await self._circuit_breaker_check()
         await self.rate_limiter.wait()
-        metrics.metrics['llm_calls'] += 1
+        metrics.log_llm_call('translate')
+
+        prompt = f"""Ты профессиональный переводчик кино-новостей. Переведи текст на русский язык.
+
+ТРЕБОВАНИЯ:
+- Переводи ТОЧНО, сохраняя все факты
+- Имена собственные не переводи (актёры, режиссёры, названия)
+- Названия фильмов/сериалов оставь в оригинале, можно добавить перевод в скобках
+- Сохраняй цитаты дословно
+- Не добавляй от себя ничего
+
+ФОРМАТ ОТВЕТА:
+Просто переведённый текст без комментариев.
+
+Оригинал:
+{title}
+{content[:2000]}
+
+Перевод:"""
+
+        try:
+            response = await self.client.chat.completions.create(
+                model=config.model_name,
+                messages=[{"role": "user", "content": prompt}],
+                temperature=0.3,
+                max_tokens=2000,
+                timeout=30.0
+            )
+            result = self._extract_content_from_response(response)
+
+            if not result or len(result) < 100:
+                logger.warning(f"⚠️ Перевод слишком короткий: {len(result) if result else 0} символов")
+                return None
+
+            self.cache[cache_key] = result
+            if len(self.cache) % 10 == 0:
+                self._save_cache()
+            self.rate_limiter.report_success()
+            self.circuit_breaker_fails = max(0, self.circuit_breaker_fails - 1)
+            return result
+
+        except Exception as e:
+            logger.warning(f"⚠️ LLM translate error: {str(e)[:100]}")
+            metrics.log_error(f"translate: {e}")
+            self.rate_limiter.report_error()
+            self.circuit_breaker_fails += 1
+            if self.circuit_breaker_fails >= self.circuit_breaker_threshold:
+                self.circuit_breaker_open_until = asyncio.get_event_loop().time() + 60
+            await asyncio.sleep(random.uniform(2, 4))
+            return None
+
+    async def generate_post(self, title: str, content: str) -> Optional[str]:
+        cache_key = self._get_cache_key(title, content, "generate")
+        if cache_key in self.cache:
+            logger.info(f"💾 Cache hit: generate")
+            metrics.log_llm_cache_hit()
+            return self.cache[cache_key]
+
+        await self._circuit_breaker_check()
+        await self.rate_limiter.wait()
+        metrics.log_llm_call('generate')
 
         current_date = datetime.now().strftime('%d.%m.%Y')
         current_year = datetime.now().year
 
-        prompt = f"""Ты редактор кино-канала. Перепиши новость кратко и точно.
+        prompt = f"""Ты редактор кино-канала. Перепиши новость на РУССКОМ ЯЗЫКЕ.
 
-ГЛАВНОЕ:
-- Используй ТОЛЬКО факты из оригинала
-- Не выдумывай имена, даты, цитаты
-- Пиши на русском языке
+🚫 КРИТИЧЕСКИ ВАЖНО:
+- Пиши ПОЛНОСТЬЮ на русском языке
+- НЕ используй английские слова кроме: названий студий (Marvel, Netflix, HBO), имён актёров и режиссёров
+- Все остальные слова переводи на русский
+- Не пиши "video", "story", "about", "working" — пиши "видео", "история", "о", "работает"
+
+✅ ИСПОЛЬЗУЙ:
+- Имена собственные в оригинале: Anupam Kher, Saaransh
+- Названия студий: Marvel, Netflix, HBO, Disney
+- Всё остальное — по-русски!
 
 ФОРМАТ:
 🎬<b>Заголовок</b>
@@ -1459,7 +1728,7 @@ async def process_feed_entries(feed_results: Dict, session: aiohttp.ClientSessio
         # 🚫 ПРОВЕРКА ЧЁРНОГО СПИСКА
         if is_domain_blacklisted(feed_url):
             logger.info(f"🚫 Чёрный список: {feed_url}")
-            metrics.metrics['blacklist_blocked'] += 1
+            metrics.log_blacklist_blocked()
             continue
 
         metrics.metrics['feeds_processed'] += 1
@@ -1566,13 +1835,16 @@ async def collect_candidates(llm: CachedLLMClient, duplicate_detector: Duplicate
     logger.info(f"🏆 ТОП-1 новость: {top_entry['title'][:70]} (score={top_entry['score']})")
 
     metrics.metrics['candidates_found'] = len(all_entries)
+    if prom_metrics:
+        prom_metrics.set_candidates(1)
 
     return [top_entry]
 
 # ================= ОТПРАВКА В TELEGRAM =================
 async def send_to_suggestion(session: aiohttp.ClientSession, text: str, link: str,
-                            pub_date: Optional[datetime], original_title: str = "") -> bool:
-    """Отправка в предложку"""
+                            pub_date: Optional[datetime], original_title: str = "",
+                            max_retries: int = 3) -> bool:
+    """Отправка в предложку с retry логикой и rate limiting"""
     text = safe_to_string(text)
     text = validate_html_tags(text)
 
@@ -1623,45 +1895,64 @@ async def send_to_suggestion(session: aiohttp.ClientSession, text: str, link: st
         "disable_web_page_preview": False
     }
 
-    try:
-        url = f"https://api.telegram.org/bot{config.tg_token}/sendMessage"
-        ssl_context = create_secure_ssl_context()
-        connector = aiohttp.TCPConnector(ssl=ssl_context)
-        timeout = aiohttp.ClientTimeout(total=60, connect=15, sock_read=30)
+    url = f"https://api.telegram.org/bot{config.tg_token}/sendMessage"
 
-        async with aiohttp.ClientSession(connector=connector, timeout=timeout) as tg_session:
-            async with tg_session.post(url, json=payload) as response:
-                result = await response.json()
-                if result.get("ok"):
-                    metrics.metrics['posts_sent'] += 1
-                    logger.info(f"✅ Пост отправлен в предложку (ID: {post_id})")
+    for attempt in range(1, max_retries + 1):
+        try:
+            # 🛡️ Ждём разрешения от rate limiter
+            await telegram_rate_limiter.wait()
 
-                    # ✅ ОТМЕТКА В ГЛОБАЛЬНОЙ БД по оригинальному заголовку
-                    if GLOBAL_DEDUP_ENABLED:
-                        try:
-                            title_for_hash = original_title if original_title else text[:100]
-                            content_hash = get_universal_hash(title_for_hash, link, pub_date, config.category)
-                            await mark_global_posted(
-                                content_hash,
-                                config.tg_channel,
-                                config.category,
-                                title_for_hash[:100],
-                                config.category
-                            )
-                        except Exception as e:
-                            logger.warning(f"⚠️ Ошибка отметки в глобальной БД: {e}")
+            ssl_context = create_secure_ssl_context()
+            connector = aiohttp.TCPConnector(ssl=ssl_context)
+            timeout = aiohttp.ClientTimeout(total=60, connect=15, sock_read=30)
 
-                    return True
-                else:
-                    logger.error(f"❌ Ошибка Telegram: {result.get('description')}")
-                    return False
-    except asyncio.TimeoutError:
-        logger.error("❌ Таймаут при отправке в Telegram (60 сек)")
-        return False
-    except Exception as e:
-        logger.error(f"❌ Ошибка отправки: {e}")
-        metrics.log_error(f"send_to_suggestion: {e}")
-        return False
+            async with aiohttp.ClientSession(connector=connector, timeout=timeout) as tg_session:
+                async with tg_session.post(url, json=payload) as response:
+                    result = await response.json()
+                    if result.get("ok"):
+                        telegram_rate_limiter.report_success()
+                        metrics.log_post_sent('cinema', 'autopost')
+                        logger.info(f"✅ Пост отправлен в предложку (ID: {post_id})")
+
+                        # ✅ ОТМЕТКА В ГЛОБАЛЬНОЙ БД по оригинальному заголовку
+                        if GLOBAL_DEDUP_ENABLED:
+                            try:
+                                title_for_hash = original_title if original_title else text[:100]
+                                content_hash = get_universal_hash(title_for_hash, link, pub_date, config.category)
+                                await mark_global_posted(
+                                    content_hash,
+                                    config.tg_channel,
+                                    config.category,
+                                    title_for_hash[:100],
+                                    config.category
+                                )
+                            except Exception as e:
+                                logger.warning(f"⚠️ Ошибка отметки в глобальной БД: {e}")
+
+                        return True
+                    else:
+                        error_code = result.get('error_code')
+                        if error_code == 429:
+                            telegram_rate_limiter.report_429()
+                            retry_after = result.get('parameters', {}).get('retry_after', 60)
+                            logger.warning(f"⚠️ 429 ошибка, ожидание {retry_after} сек...")
+                            await asyncio.sleep(min(retry_after, 120))
+                            continue
+                        else:
+                            logger.error(f"❌ Ошибка Telegram: {result.get('description')}")
+                            return False
+        except asyncio.TimeoutError:
+            logger.error(f"❌ Таймаут при отправке (попытка {attempt}/{max_retries})")
+            if attempt < max_retries:
+                await asyncio.sleep(5 * attempt)
+        except Exception as e:
+            logger.error(f"❌ Ошибка отправки (попытка {attempt}/{max_retries}): {e}")
+            metrics.log_error(f"send_to_suggestion: {e}")
+            if attempt < max_retries:
+                await asyncio.sleep(5 * attempt)
+
+    logger.error(f"❌ Не удалось отправить после {max_retries} попыток")
+    return False
 
 async def send_to_suggestion_with_retry(session: aiohttp.ClientSession, text: str, link: str,
                                        pub_date: Optional[datetime], original_title: str = "",
@@ -1680,95 +1971,121 @@ async def send_to_suggestion_with_retry(session: aiohttp.ClientSession, text: st
 
 # ================= ОСНОВНОЙ ЦИКЛ =================
 async def collect_and_process_news(llm: CachedLLMClient, duplicate_detector: DuplicateDetector,
-                                  session: aiohttp.ClientSession):
+                                  session: aiohttp.ClientSession, start_time: float = None):
     """
     🎯 ОСНОВНОЙ ЦИКЛ — экономия токенов.
     1. Собираем все новости из 5 фидов (без LLM)
     2. Выбираем ТОП-1 по скорингу
     3. ТОЛЬКО ДЛЯ ТОП-1: LLM classify → LLM generate
     """
-    # 🚫 ПРОВЕРКА ДНЕВНОГО ЛИМИТА
-    if not metrics.can_post_today():
-        logger.info(f"🚫 Дневной лимит исчерпан ({config.max_posts_per_day} постов)")
-        return 0
+    import time
+    if start_time is None:
+        start_time = time.time()
 
-    # 📥 ШАГ 1: Сбор и отбор ТОП-1 новости (без LLM!)
-    candidates = await collect_candidates(llm, duplicate_detector, session)
-
-    if not candidates:
-        logger.warning("📭 Нет подходящих кандидатов")
-        return 0
-
-    # 🎯 ШАГ 2: Берём только ТОП-1
-    best = candidates[0]
-    logger.info(f"🏆 ТОП-1 для обработки: {best['title'][:70]}")
-
-    # 🔍 ШАГ 3: LLM classify (если не HOT тема)
-    if best["hot_matches"] < config.auto_approve_hot_threshold:
-        logger.info(f"🔍 LLM classify для ТОП-1...")
-        if not await llm.classify(best["title"][:100], best["body"]):
-            logger.info(f"⏭️ Отклонён LLM: {best['title'][:60]}")
-            metrics.metrics['posts_rejected'] += 1
+    try:
+        # 🚫 ПРОВЕРКА ДНЕВНОГО ЛИМИТА
+        if not metrics.can_post_today():
+            logger.info(f"🚫 Дневной лимит исчерпан ({config.max_posts_per_day} постов)")
             return 0
-        logger.info(f"✅ LLM одобрил ТОП-1")
-    else:
-        logger.info(f"⚡ Автоодобрено (HOT тема): {best['title'][:60]}")
 
-    # ✍️ ШАГ 4: LLM generate рерайт
-    generated = await llm.generate_post(best["title"][:100], best["body"])
-    if not generated:
-        logger.warning(f"⚠️ Генерация пуста: {best['title'][:60]}")
-        return 0
+        # 📥 ШАГ 1: Сбор и отбор ТОП-1 новости (без LLM!)
+        candidates = await collect_candidates(llm, duplicate_detector, session)
 
-    final_text = postprocess_text(generated)
+        if not candidates:
+            logger.warning("📭 Нет подходящих кандидатов")
+            return 0
 
-    if not final_text or len(final_text) < 50:
-        return 0
+        # 🎯 ШАГ 2: Берём только ТОП-1
+        best = candidates[0]
+        logger.info(f"🏆 ТОП-1 для обработки: {best['title'][:70]}")
+    
+        # 🌍 ПРОВЕРЯЕМ ЯЗЫК: если английский — сначала переводим
+        translated_body = best["body"]
+        if is_english_text(best["body"]):
+            logger.info(f"🌍 Обнаружен английский текст, переводим...")
+            translated = await llm.translate_to_russian(best["title"][:100], best["body"])
+            if translated:
+                translated_body = translated
+                logger.info(f"✅ Перевод выполнен: {len(translated)} символов")
+            else:
+                logger.warning(f"⚠️ Перевод не удался, пробуем оригинал")
 
-    if not is_russian_text(final_text):
-        return 0
+        # 🔍 ШАГ 3: LLM classify (если не HOT тема)
+        if best["hot_matches"] < config.auto_approve_hot_threshold:
+            logger.info(f"🔍 LLM classify для ТОП-1...")
+            if not await llm.classify(best["title"][:100], translated_body):
+                logger.info(f"⏭️ Отклонён LLM: {best['title'][:60]}")
+                metrics.metrics['posts_rejected'] += 1
+                return 0
+            logger.info(f"✅ LLM одобрил ТОП-1")
+        else:
+            logger.info(f"⚡ Автоодобрено (HOT тема): {best['title'][:60]}")
 
-    # 📤 ШАГ 5: Отправка в предложку
-    if await send_to_suggestion_with_retry(session, final_text, best["link"], best["pub_date"], best["title"]):
-        final_hash = get_content_hash(final_text[:200], best["link"])
-        await save_post(
-            best["link"],
-            final_hash,
-            best["source"],
-            normalize_title(final_text[:100]),
-            "posted"
-        )
+        # ✍️ ШАГ 4: LLM generate рерайт (на переведённом тексте)
+        generated = await llm.generate_post(best["title"][:100], translated_body)
+        if not generated:
+            logger.warning(f"⚠️ Генерация пуста: {best['title'][:60]}")
+            return 0
 
-        # ✅ Сохраняем content_dedup hash
-        content_dedup_hash = get_content_dedup_hash(best["title"], best["body"])
-        await save_content_dedup_hash(content_dedup_hash)
+        final_text = postprocess_text(generated)
 
-        # ✅ Отметка в глобальной БД
-        if GLOBAL_DEDUP_ENABLED:
-            try:
-                content_hash = get_universal_hash(best["title"], best["link"], best["pub_date"], config.category)
-                await mark_global_posted(
-                    content_hash,
-                    config.tg_channel,
-                    config.category,
-                    best["title"][:100],
-                    config.category
-                )
-            except Exception as e:
-                logger.warning(f"⚠️ Ошибка отметки в глобальной БД: {e}")
+        if not final_text or len(final_text) < 50:
+            return 0
 
-        metrics.increment_posts_today()
-        state.last_post_time = asyncio.get_event_loop().time()
-        logger.info(f"✅ ТОП-1 новость отправлена в предложку")
-        return 1
-    else:
-        logger.error("❌ Ошибка отправки в предложку")
-        if alert_manager:
-            await alert_manager.alert_critical(
-                f"Ошибка публикации — {config.channel}",
-                f"Не удалось отправить пост в предложку"
+        if not is_russian_text(final_text):
+            return 0
+
+        # 📤 ШАГ 5: Отправка в предложку
+        if await send_to_suggestion_with_retry(session, final_text, best["link"], best["pub_date"], best["title"]):
+            final_hash = get_content_hash(final_text[:200], best["link"])
+            await save_post(
+                best["link"],
+                final_hash,
+                best["source"],
+                normalize_title(final_text[:100]),
+                "posted"
             )
+
+            # ✅ Сохраняем content_dedup hash
+            content_dedup_hash = get_content_dedup_hash(best["title"], best["body"])
+            await save_content_dedup_hash(content_dedup_hash)
+
+            # ✅ Отметка в глобальной БД
+            if GLOBAL_DEDUP_ENABLED:
+                try:
+                    content_hash = get_universal_hash(best["title"], best["link"], best["pub_date"], config.category)
+                    await mark_global_posted(
+                        content_hash,
+                        config.tg_channel,
+                        config.category,
+                        best["title"][:100],
+                        config.category
+                    )
+                except Exception as e:
+                    logger.warning(f"⚠️ Ошибка отметки в глобальной БД: {e}")
+
+            metrics.increment_posts_today()
+            state.last_post_time = asyncio.get_event_loop().time()
+            logger.info(f"✅ ТОП-1 новость отправлена в предложку")
+            return 1
+        else:
+            logger.error("❌ Ошибка отправки в предложку")
+            if alert_manager:
+                await alert_manager.alert_critical(
+                    f"Ошибка публикации — {config.channel}",
+                    f"Не удалось отправить пост в предложку"
+                )
+            return 0
+    except Exception as e:
+        logger.error(f"❌ Ошибка в collect_and_process_news: {e}", exc_info=True)
         return 0
+    finally:
+        import time
+        elapsed = time.time() - start_time
+        if prom_metrics:
+            prom_metrics.observe_proc_time(elapsed)
+        logger.info(f"⏱️ Время обработки цикла: {elapsed:.2f} сек")
+
 
 # ================= GRACEFUL SHUTDOWN =================
 async def graceful_shutdown(llm: CachedLLMClient):
@@ -1845,8 +2162,10 @@ async def main():
             logger.info("=" * 60)
             
             try:
+                import time
+                start_time = time.time()
                 state.current_task = asyncio.create_task(
-                    collect_and_process_news(llm, duplicate_detector, session)
+                    collect_and_process_news(llm, duplicate_detector, session, start_time)
                 )
                 posts_published = (await state.current_task) or 0
                 

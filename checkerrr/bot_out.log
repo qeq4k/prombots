@@ -1,0 +1,17 @@
+⚠️ Redis не установлен. Используем in-memory кэш.
+2026-03-02 12:15:35,784 - database - INFO - ✅ Подключение к БД установлено: movies.db
+2026-03-02 12:15:35,786 - database - INFO - ✅ Таблицы БД созданы/проверены
+2026-03-02 12:15:35,787 - database - INFO - ✅ Таблицы БД проверены/созданы
+2026-03-02 12:15:35,869 - __main__ - INFO - ✅ Используем in-memory кэш
+2026-03-02 12:15:35,870 - __main__ - INFO - ✅ Health checker инициализирован
+2026-03-02 12:15:35,870 - __main__ - INFO - ✅ Бот инициализирован успешно
+2026-03-02 12:15:35,888 - __main__ - INFO - 🚀 Запуск бота...
+2026-03-02 12:15:35,890 - __main__ - INFO - ✅ Health check: healthy
+2026-03-02 12:15:35,891 - aiogram.dispatcher - INFO - Start polling
+2026-03-02 12:15:36,043 - aiogram.dispatcher - INFO - Run polling for bot @kinocode26_bot id=8554826085 - 'KinoCode26'
+2026-03-02 12:15:40,411 - aiogram.dispatcher - ERROR - Failed to fetch updates - TelegramConflictError: Telegram server says - Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2026-03-02 12:15:40,412 - aiogram.dispatcher - WARNING - Sleep for 1.000000 seconds and try again... (tryings = 0, bot id = 8554826085)
+2026-03-02 12:15:45,457 - aiogram.dispatcher - ERROR - Failed to fetch updates - TelegramConflictError: Telegram server says - Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2026-03-02 12:15:45,457 - aiogram.dispatcher - WARNING - Sleep for 1.170182 seconds and try again... (tryings = 1, bot id = 8554826085)
+2026-03-02 12:15:50,824 - aiogram.dispatcher - ERROR - Failed to fetch updates - TelegramConflictError: Telegram server says - Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2026-03-02 12:15:50,825 - aiogram.dispatcher - WARNING - Sleep for 1.469980 seconds and try again... (tryings = 2, bot id = 8554826085)

@@ -62,8 +62,8 @@ class BotConfig:
     autopost_day_max_minutes: int = 10
     autopost_night_min_minutes: int = 25
     autopost_night_max_minutes: int = 35
-    autopost_night_start_hour: int = 1
-    autopost_night_end_hour: int = 8
+    autopost_night_start_hour: int = 22
+    autopost_night_end_hour: int = 5
     autopost_check_interval: int = 60
 
     cleanup_age_hours: int = 48
@@ -406,14 +406,34 @@ class BotHandler:
         if loaded:
             logger.info(f"📦 Загружено сессий: {loaded}")
 
+    async def _find_draft_for_chat(self, chat_id: int) -> Optional[Draft]:
+        """Найти самый свежий черновик из pending_posts для данного чата"""
+        try:
+            drafts = []
+            for f in config.pending_dir.glob("*.json"):
+                try:
+                    draft = await read_draft(f)
+                    if draft and int(draft.suggestion_chat_id) == chat_id:
+                        drafts.append((f.stat().st_mtime, draft))
+                except Exception:
+                    continue
+            if not drafts:
+                return None
+            # Сортируем по времени создания (самые свежие первыми)
+            drafts.sort(key=lambda x: x[0], reverse=True)
+            return drafts[0][1]
+        except Exception as e:
+            logger.error(f"❌ Поиск черновика для чата {chat_id}: {e}")
+            return None
+
     # ── Дедупликация ────────────────────────────
     def _get_category(self, channel_id: str) -> str:
         """Определить категорию по ID канала"""
-        if channel_id == self.tg_channel_politics:
+        if channel_id == config.tg_channel_politics:
             return "politics"
-        elif channel_id == self.tg_channel_economy:
+        elif channel_id == config.tg_channel_economy:
             return "economy"
-        elif channel_id == self.tg_channel_cinema:
+        elif channel_id == config.tg_channel_cinema:
             return "cinema"
         return ""
 
@@ -490,6 +510,18 @@ class BotHandler:
             if not draft:
                 await delete_draft(draft_path)
                 return
+            
+            # ❌ Игнорируем черновики от filmtop.py (топ для TikTok)
+            source = draft.to_dict().get("source", "")
+            post_id = draft.post_id if hasattr(draft, 'post_id') else ""
+            
+            # Фильтры для filmtop черновиков
+            if ("Filmtop TikTok" in source) or \
+               ("filmtop" in source.lower()) or \
+               post_id.startswith(("top_", "hidden_", "horror_", "asian_", "trending_")):
+                logger.debug(f"⏭️ Пропущен черновик filmtop: {post_id} (source: {source})")
+                return
+            
             if draft.suggestion_chat_id not in config.autopost_allowed_suggestions:
                 return
 
@@ -537,6 +569,18 @@ class BotHandler:
             draft = await read_draft(draft_path)
             if not draft or draft.suggestion_chat_id not in config.autopost_allowed_suggestions:
                 return
+            
+            # ❌ Игнорируем черновики от filmtop.py (топ для TikTok)
+            source = draft.to_dict().get("source", "")
+            post_id = draft.post_id if hasattr(draft, 'post_id') else ""
+            
+            # Фильтры для filmtop черновиков
+            if ("Filmtop TikTok" in source) or \
+               ("filmtop" in source.lower()) or \
+               post_id.startswith(("top_", "hidden_", "horror_", "asian_", "trending_")):
+                logger.debug(f"⏭️ Пропущен черновик filmtop: {post_id} (source: {source})")
+                return
+            
             hour = datetime.now().hour
             delay_sec = max(10, config.get_autopost_delay_minutes(hour) * 60
                             - (datetime.now().timestamp() - draft_path.stat().st_mtime))
@@ -662,24 +706,46 @@ class BotHandler:
         session = self.edit_sessions.get(chat_id) or await self._load_session(chat_id)
 
         if text.lower() == "/publish":
-            if not session:
-                await self.telegram.send_message(chat_id, "❌ Нет активной сессии редактирования")
+            # Если есть активная сессия редактирования — используем её
+            if session:
+                if not session.text or len(session.text) < 10:
+                    await self.telegram.send_message(chat_id, "❌ Текст слишком короткий")
+                    return
+                try:
+                    self.cancel_autopost(session.post_id)
+                    success, result = await self.publish_post(session.text, session.channel_id, session.photo)
+                    await self.telegram.send_message(
+                        chat_id,
+                        f"{'✅' if success else '❌'} {result}\n"
+                        f"Пост: <code>{session.post_id}</code>\nКанал: <code>{session.channel_id}</code>"
+                    )
+                    if success and session.original_file and session.original_file.exists():
+                        await delete_draft(session.original_file)
+                    await self._delete_session(chat_id)
+                    logger.info(f"✅ /publish {session.post_id} → {session.channel_id}")
+                except Exception as e:
+                    logger.exception(f"❌ /publish: {e}")
+                    await self.telegram.send_message(chat_id, f"❌ Ошибка: {str(e)[:150]}")
                 return
-            if not session.text or len(session.text) < 10:
-                await self.telegram.send_message(chat_id, "❌ Текст слишком короткий")
-                return
+            
+            # Если сессии нет, ищем черновик из предложки для этого чата
             try:
-                self.cancel_autopost(session.post_id)
-                success, result = await self.publish_post(session.text, session.channel_id, session.photo)
+                draft = await self._find_draft_for_chat(chat_id)
+                if not draft:
+                    await self.telegram.send_message(chat_id, "❌ Черновики не найдены")
+                    return
+                self.cancel_autopost(draft.post_id)
+                success, result = await self.publish_post(draft.text, draft.channel_id, draft.photo)
                 await self.telegram.send_message(
                     chat_id,
                     f"{'✅' if success else '❌'} {result}\n"
-                    f"Пост: <code>{session.post_id}</code>\nКанал: <code>{session.channel_id}</code>"
+                    f"Пост: <code>{draft.post_id}</code>\nКанал: <code>{draft.channel_id}</code>"
                 )
-                if success and session.original_file and session.original_file.exists():
-                    await delete_draft(session.original_file)
-                await self._delete_session(chat_id)
-                logger.info(f"✅ /publish {session.post_id} → {session.channel_id}")
+                if success:
+                    draft_path = config.pending_dir / f"{draft.post_id}.json"
+                    if draft_path.exists():
+                        await delete_draft(draft_path)
+                    logger.info(f"✅ /publish {draft.post_id} → {draft.channel_id}")
             except Exception as e:
                 logger.exception(f"❌ /publish: {e}")
                 await self.telegram.send_message(chat_id, f"❌ Ошибка: {str(e)[:150]}")
@@ -693,7 +759,21 @@ class BotHandler:
                 await self._delete_session(chat_id)
                 await self.telegram.send_message(chat_id, f"✅ Черновик <code>{session.post_id}</code> отклонён")
             else:
-                await self.telegram.send_message(chat_id, "❌ Нет активной сессии")
+                # Если сессии нет, ищем черновик из предложки для этого чата
+                try:
+                    draft = await self._find_draft_for_chat(chat_id)
+                    if not draft:
+                        await self.telegram.send_message(chat_id, "❌ Черновики не найдены")
+                        return
+                    self.cancel_autopost(draft.post_id)
+                    draft_path = config.pending_dir / f"{draft.post_id}.json"
+                    if draft_path.exists():
+                        await delete_draft(draft_path)
+                    await self.telegram.send_message(chat_id, f"✅ Черновик <code>{draft.post_id}</code> отклонён")
+                    logger.info(f"❌ /reject {draft.post_id}")
+                except Exception as e:
+                    logger.exception(f"❌ /reject: {e}")
+                    await self.telegram.send_message(chat_id, f"❌ Ошибка: {str(e)[:150]}")
             return
 
         if session and not (text and text.lower().startswith("/")):

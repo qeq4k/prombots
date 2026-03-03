@@ -32,8 +32,16 @@ from pathlib import Path
 from datetime import datetime, timezone, timedelta
 from typing import Optional, Dict, List, Tuple
 from dotenv import load_dotenv
+from bs4 import BeautifulSoup
 
 # ✅ ИМПОРТ ГЛОБАЛЬНОЙ ДЕДУПЛИКАЦИИ
+try:
+    from openai import AsyncOpenAI
+    LLM_AVAILABLE = True
+except ImportError:
+    LLM_AVAILABLE = False
+    AsyncOpenAI = None
+
 try:
     from global_dedup import (
         get_content_dedup_hash,
@@ -95,9 +103,13 @@ class UrgentConfig:
     
     # БД для дедупликации
     DB_PATH = "urgent_news.db"
-    
+
     # Логирование
     LOG_FILE = "logs/urgent_news.log"
+
+    # ✅ LLM конфигурация
+    ROUTER_API_KEY = os.getenv("ROUTER_API_KEY", "")
+    LLM_MODEL = "openai/gpt-oss-20b"
 
 
 config = UrgentConfig()
@@ -282,6 +294,23 @@ async def mark_urgent_posted(link: str, content_hash: str, title: str, category:
         await mark_global_posted(content_hash, "urgent_news", "urgent_news", title, category)
 
 
+# ================= ОЧИСТКА ТЕКСТА =================
+# Фразы для удаления из новостей (повторяющиеся подписи/штампы)
+REMOVE_PHRASES = [
+    "28 февраля 2026 года Израиль и США начали военную операцию против Ирана",
+    "28 февраля 2026 года США и Израиль начали военную операцию против Ирана",
+]
+
+
+def clean_news_text(text: str) -> str:
+    """Удаляет повторяющиеся штампы и подписи из текста новости"""
+    for phrase in REMOVE_PHRASES:
+        text = text.replace(phrase, "")
+    # Удаляем лишние пробелы и пустые строки
+    text = re.sub(r'\s+', ' ', text).strip()
+    return text
+
+
 # ================= ПРИОРИТЕТЫ =================
 def calculate_priority(title: str, summary: str, category: str) -> Tuple[int, List[str]]:
     """
@@ -352,9 +381,9 @@ async def fetch_feed(session: aiohttp.ClientSession, url: str) -> List[dict]:
                     continue
 
                 entries.append({
-                    'title': title,
+                    'title': clean_news_text(title),
                     'link': link,
-                    'summary': summary,
+                    'summary': clean_news_text(summary),
                     'pub_date': pub_date,
                     'source': url
                 })
@@ -398,10 +427,11 @@ async def send_to_telegram(text: str, channel: str, parse_mode: str = "HTML") ->
         return False
 
 
-def format_urgent_post(title: str, summary: str, link: str, category: str, priority: int, triggers: List[str]) -> str:
+def format_urgent_post(title: str, summary: str, link: str, category: str, priority: int, triggers: List[str], rewritten_text: str = None) -> str:
     """
-    Форматирование срочного поста — как у обычных ботов.
-    Без лишних эмодзи и заголовков "СРОЧНО".
+    Форматирование срочного поста.
+    Если есть rewritten_text от LLM — используем его.
+    Иначе — заголовок + summary.
     """
     # Подпись канала
     if category == "politics":
@@ -410,44 +440,144 @@ def format_urgent_post(title: str, summary: str, link: str, category: str, prior
         signature = "@eco_steroid"
     else:
         signature = "@Film_orbita"
-    
+
+    # Если есть рерайт от LLM — используем его
+    if rewritten_text:
+        text = rewritten_text + f"\n\n{signature}"
+        return text
+
     # Формируем текст как обычный пост
     # Заголовок жирным
     text = f"<b>{title}</b>"
-    
+
     # Тело новости (если есть)
     if summary:
         summary_text = summary[:600]
         if len(summary) > 600:
             summary_text += "..."
         text += f"\n\n{summary_text}"
-    
+
     # Пустая строка + подпись канала
     text += f"\n\n{signature}"
-    
+
     return text
 
 
 # ================= ОСНОВНОЙ ЦИКЛ =================
 class UrgentNewsBot:
     """Бот для срочных новостей"""
-    
+
     def __init__(self):
         self.running = True
         self.last_post_time: Dict[str, float] = {}  # {channel: timestamp}
         self.session: Optional[aiohttp.ClientSession] = None
+        # ✅ LLM клиент
+        if LLM_AVAILABLE and config.ROUTER_API_KEY:
+            base_url = "https://router.patoggo.com/v1"
+            self.llm_client = AsyncOpenAI(api_key=config.ROUTER_API_KEY, base_url=base_url)
+            self.llm_cache: Dict[str, str] = {}
+            logger.info("✅ LLM клиент инициализирован")
+        else:
+            self.llm_client = None
+            logger.warning("⚠️ LLM клиент не инициализирован — посты без рерайта")
     
     async def init(self):
         """Инициализация"""
         await init_urgent_db()
         self.session = aiohttp.ClientSession()
         logger.info("✅ UrgentNewsBot инициализирован")
-    
+
     async def close(self):
         """Закрытие"""
         if self.session:
             await self.session.close()
         logger.info("👋 UrgentNewsBot остановлен")
+
+    # ✅ LLM РЕРАЙТ ДЛЯ СРОЧНЫХ НОВОСТЕЙ
+    async def rewrite_urgent(self, title: str, body: str, category: str) -> Optional[str]:
+        """
+        🔄 LLM-рерайт для срочных новостей.
+        Быстрый рерайт (температура 0.2, макс 250 токенов).
+        """
+        if not self.llm_client:
+            return None
+
+        cache_key = hashlib.md5(f"{title}|{body[:200]}".encode()).hexdigest()
+        if cache_key in self.llm_cache:
+            logger.info("💾 LLM cache hit (urgent)")
+            return self.llm_cache[cache_key]
+
+        current_date = datetime.now().strftime('%d.%m.%Y')
+        current_year = datetime.now().year
+
+        prompt = (
+            f"Ты — редактор Telegram-канала. СРОЧНО перепиши новость в информативном стиле.\n"
+            "ПРАВИЛА:\n"
+            "1. Первый абзац — **жирный заголовок** (2-3 предложения)\n"
+            "2. 1-2 коротких абзаца с деталями\n"
+            "3. Только факты, без воды\n"
+            "4. Максимум 500 символов\n"
+            "5. Сохраняй названия компаний/организаций\n"
+            "6. НЕ выдумывай даты\n"
+            f"7. Текущая дата: {current_date}\n\n"
+            f"Заголовок: {title}\n"
+            f"Текст: {body[:1500]}"
+        )
+
+        try:
+            response = await self.llm_client.chat.completions.create(
+                model=config.LLM_MODEL,
+                messages=[{"role": "user", "content": prompt}],
+                temperature=0.2,
+                max_tokens=400,
+                timeout=30.0
+            )
+
+            result = response.choices[0].message.content.strip()
+            if result and len(result) > 50:
+                self.llm_cache[cache_key] = result
+                # Кэш только для текущей сессии (не сохраняем)
+                return result
+            return None
+
+        except Exception as e:
+            logger.warning(f"⚠️ LLM rewrite error: {e}")
+            return None
+
+    # ✅ FETCH ПОЛНОЙ СТАТЬИ
+    async def fetch_full_article(self, link: str) -> Optional[str]:
+        """
+        📄 Загрузка полной статьи по ссылке.
+        """
+        try:
+            ssl_ctx = ssl.create_default_context()
+            async with self.session.get(link, ssl=ssl_ctx, timeout=aiohttp.ClientTimeout(total=20)) as resp:
+                if resp.status != 200:
+                    return None
+
+                html = await resp.text(encoding='utf-8')
+                soup = BeautifulSoup(html, 'html.parser')
+
+                # Удаляем скрипты, стили, навигацию
+                for tag in soup(['script', 'style', 'nav', 'header', 'footer']):
+                    tag.decompose()
+
+                # Пытаемся найти основной контент
+                article = soup.find('article') or soup.find('main') or soup.find('div', class_='article-body') or soup.body
+                if not article:
+                    return None
+
+                text = article.get_text(separator='\n', strip=True)
+                # Очищаем от лишних пробелов
+                text = re.sub(r'\n{3,}', '\n\n', text)
+                text = re.sub(r'[ \t]+', ' ', text)
+
+                # Берём первые 2000 символов
+                return text[:2000] if text else None
+
+        except Exception as e:
+            logger.warning(f"⚠️ Fetch error для {link}: {e}")
+            return None
     
     async def check_feeds(self, category: str) -> List[dict]:
         """Проверка всех фидов категории"""
@@ -509,18 +639,45 @@ class UrgentNewsBot:
         if not channel:
             logger.error(f"❌ Канал для {news['category']} не найден")
             return
+
+        # ✅ ПЫТАЕМСЯ СДЕЛАТЬ LLM-РЕРАЙТ
+        rewritten_text = None
         
+        # Сначала пробуем загрузить полную статью
+        full_text = await self.fetch_full_article(news['link'])
+        if full_text and len(full_text) > 150:
+            logger.info(f"📄 Загружена полная статья ({len(full_text)} символов)")
+            # Используем полную статью для рерайта
+            rewritten_text = await self.rewrite_urgent(
+                news['title'],
+                full_text,
+                news['category']
+            )
+        elif news['summary'] and len(news['summary']) > 100:
+            # Если полной статьи нет — используем summary
+            rewritten_text = await self.rewrite_urgent(
+                news['title'],
+                news['summary'],
+                news['category']
+            )
+
+        if rewritten_text:
+            logger.info(f"✅ LLM-рерайт выполнен ({len(rewritten_text)} символов)")
+        else:
+            logger.warning(f"⚠️ Рерайт не удался — публикуем как есть")
+
         text = format_urgent_post(
             news['title'],
             news['summary'],
             news['link'],
             news['category'],
             news['priority'],
-            news['triggers']
+            news['triggers'],
+            rewritten_text
         )
-        
+
         success = await send_to_telegram(text, channel)
-        
+
         if success:
             # Отмечаем как опубликованную
             await mark_urgent_posted(
@@ -530,10 +687,10 @@ class UrgentNewsBot:
                 news['category'],
                 news['priority']
             )
-            
+
             # Обновляем cooldown
             self.last_post_time[channel] = datetime.now().timestamp()
-            
+
             logger.info(f"🚨 ОПУБЛИКОВАНО: {news['title'][:50]} (priority={news['priority']})")
     
     async def cycle(self):

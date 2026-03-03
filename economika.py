@@ -44,6 +44,14 @@ from rapidfuzz import fuzz
 from global_dedup import init_global_db, is_global_duplicate, mark_global_posted, get_universal_hash, get_content_dedup_hash
 
 try:
+    import pymorphy3
+    MORPHY = pymorphy3.MorphAnalyzer()
+    LEMMATIZATION_AVAILABLE = True
+except ImportError:
+    LEMMATIZATION_AVAILABLE = False
+    MORPHY = None
+
+try:
     from langdetect import detect, LangDetectException
     LANGDETECT_AVAILABLE = True
 except ImportError:
@@ -55,6 +63,14 @@ try:
     translator_en_ru = GoogleTranslator(source='en', target='ru')
 except ImportError:
     TRANSLATOR_AVAILABLE = False
+
+# 📊 PROMETHEUS METRICS
+try:
+    from prometheus_metrics import PrometheusMetrics
+    PROMETHEUS_AVAILABLE = True
+except ImportError:
+    PROMETHEUS_AVAILABLE = False
+    PrometheusMetrics = None
 
 # ============ ГЛОБАЛЬНАЯ ДЕДУПЛИКАЦИЯ ============
 try:
@@ -72,52 +88,50 @@ except ImportError:
 
 load_dotenv()
 
-def cleanup_old_logs(max_age_days=7, max_file_size_mb=50):
-    """🧹 Очистка старых логов"""
+async def cleanup_old_logs(max_age_days=7, max_file_size_mb=50):
+    """🧹 Очистка старых логов через tail (не блокирует RAM)"""
     try:
         log_dir = Path("logs")
         if not log_dir.exists():
             return
-        
-        # 1. Удаляем логи старше max_age_days дней
+
+        import subprocess
         import time
+
         current_time = time.time()
         max_age_seconds = max_age_days * 86400
-        
+        max_size_bytes = max_file_size_mb * 1024 * 1024
+
         for log_file in log_dir.glob("*.log"):
             try:
                 file_age = current_time - log_file.stat().st_mtime
                 if file_age > max_age_seconds:
                     log_file.unlink()
                     logger.info(f"🧹 Удалён старый лог: {log_file.name}")
-            except Exception as e:
-                logger.error(f"❌ Ошибка удаления лога {log_file.name}: {e}")
-        
-        # 2. Ограничиваем размер файлов (если > max_file_size_mb)
-        max_size_bytes = max_file_size_mb * 1024 * 1024
-        
-        for log_file in log_dir.glob("*.log"):
-            try:
+                    continue
+
                 if log_file.stat().st_size > max_size_bytes:
-                    # Читаем последние N строк
-                    with open(log_file, 'r', encoding='utf-8', errors='ignore') as f:
-                        lines = f.readlines()
-                    
-                    # Оставляем последние 10000 строк
-                    keep_lines = lines[-10000:]
-                    
-                    # Перезаписываем
-                    with open(log_file, 'w', encoding='utf-8', errors='ignore') as f:
-                        f.writelines(keep_lines)
-                    
-                    logger.info(f"🧹 Лог {log_file.name} уменьшен до {len(keep_lines)} строк")
+                    temp_path = log_file.with_suffix(".tmp")
+                    result = subprocess.run(
+                        ["tail", "-n", "10000", str(log_file)],
+                        capture_output=True,
+                        text=True,
+                        timeout=30
+                    )
+                    if result.returncode == 0:
+                        async with aiofiles.open(temp_path, 'w', encoding='utf-8') as f:
+                            await f.write(result.stdout)
+                        os.replace(temp_path, log_file)
+                        logger.info(f"🧹 Лог {log_file.name} уменьшен до 10000 строк")
+                    else:
+                        temp_path.unlink(missing_ok=True)
+                        logger.warning(f"⚠️ Ошибка tail: {result.stderr[:100]}")
             except Exception as e:
-                logger.error(f"❌ Ошибка очистки лога {log_file.name}: {e}")
-        
-        # 3. Выводим статистику
+                logger.error(f"❌ Ошибка обработки лога {log_file.name}: {e}")
+
         total_size = sum(f.stat().st_size for f in log_dir.glob("*.log"))
         logger.info(f"📊 Логи: {len(list(log_dir.glob('*.log')))} файлов, {total_size / 1024 / 1024:.1f} MB")
-        
+
     except Exception as e:
         logger.error(f"❌ Ошибка cleanup_old_logs: {e}")
 
@@ -182,9 +196,12 @@ class AlertManager:
 
 
 # ================= УТИЛИТЫ =================
+# 🔐 ГЛОБАЛЬНЫЙ SSL CONTEXT (экономия 1-2 MB RAM)
+SSL_CONTEXT = ssl.create_default_context()
+
 def create_secure_ssl_context() -> ssl.SSLContext:
     """✅ Создание безопасного SSL контекста"""
-    return ssl.create_default_context()
+    return SSL_CONTEXT
 
 async def write_draft_atomic(draft_path: Path, data: dict):
     """✅ Атомарная запись черновика: пишем во временный файл → переименовываем"""
@@ -528,17 +545,44 @@ NON_ECONOMY_KEYWORDS = {
     'сериал', 'актёр', 'режиссёр', 'музык', 'концерт', 'альбом', 'спортсмен'
 }
 
+# ================= ЛЕММАТИЗАЦИЯ =================
+def lemmatize_text(text: str) -> str:
+    """🇷🇺 Лемматизация через pymorphy3"""
+    if not LEMMATIZATION_AVAILABLE or MORPHY is None:
+        return text.lower()
+    try:
+        words = text.lower().split()
+        lemmas = [MORPHY.parse(re.sub(r'[^\w\s]', '', w))[0].normal_form for w in words if w.strip()]
+        return ' '.join(lemmas)
+    except Exception as e:
+        logger.warning(f"⚠️ Ошибка лемматизации: {e}")
+        return text.lower()
+
+
+def lemmatize_keywords(keywords: set) -> set:
+    """🇷🇺 Лемматизация keywords"""
+    if not LEMMATIZATION_AVAILABLE or MORPHY is None:
+        return {kw.lower() for kw in keywords}
+    try:
+        return {MORPHY.parse(kw)[0].normal_form for kw in keywords}
+    except:
+        return {kw.lower() for kw in keywords}
+
+
+ECONOMY_KEYWORDS_LEMMA = lemmatize_keywords(ECONOMY_KEYWORDS)
+HIGH_PRIORITY_KEYWORDS_LEMMA = lemmatize_keywords(HIGH_PRIORITY_KEYWORDS)
+
 
 # ================= МЕТРИКИ =================
 class BotMetrics:
-    """Расширенные метрики"""
+    """Расширенные метрики бота"""
     def __init__(self):
         self.metrics = {
             'posts_sent': 0,
             'posts_rejected': 0,
             'duplicates_exact': 0,
             'duplicates_fuzzy': 0,
-            'duplicates_global': 0,  # ✅ НОВОЕ: глобальные дубликаты
+            'duplicates_global': 0,
             'llm_calls': 0,
             'llm_cache_hits': 0,
             'llm_errors': 0,
@@ -549,35 +593,73 @@ class BotMetrics:
             'errors': []
         }
         self.start_time = datetime.now()
-    
+
     def log_duplicate(self, method: str):
-        """Логирование типа дубликата"""
+        """Логирование дубликата + отправка в Prometheus"""
         if 'exact' in method:
             self.metrics['duplicates_exact'] += 1
+            if prom_metrics:
+                prom_metrics.inc_dup('exact')
         elif 'fuzzy' in method:
             self.metrics['duplicates_fuzzy'] += 1
+            if prom_metrics:
+                prom_metrics.inc_dup('fuzzy')
         elif 'global' in method:
             self.metrics['duplicates_global'] += 1
-    
+            if prom_metrics:
+                prom_metrics.inc_dup('global')
+
     def log_error(self, error: str):
-        """Логирование ошибки"""
+        """Логирование ошибки + отправка в Prometheus"""
         self.metrics['errors'].append({
             'time': datetime.now().isoformat(),
             'error': str(error)[:200]
         })
         self.metrics['llm_errors'] += 1
-    
+        if prom_metrics:
+            prom_metrics.inc_err()
+
+    def log_post_sent(self, channel: str, post_type: str):
+        """Логирование отправленного поста + отправка в Prometheus"""
+        self.metrics['posts_sent'] += 1
+        if prom_metrics:
+            prom_metrics.inc_post(channel, post_type)
+
+    def log_fake_date(self):
+        """Логирование заблокированной фейковой даты"""
+        self.metrics['fake_dates_blocked'] += 1
+        if prom_metrics:
+            prom_metrics.inc_date()
+
+    def log_english_blocked(self):
+        """Логирование заблокированного английского текста"""
+        self.metrics['english_words_blocked'] += 1
+        if prom_metrics:
+            prom_metrics.inc_eng()
+
+    def log_llm_cache_hit(self):
+        """Логирование попадания в кэш LLM"""
+        self.metrics['llm_cache_hits'] += 1
+        if prom_metrics:
+            prom_metrics.inc_cache()
+
+    def log_llm_call(self, operation: str):
+        """Логирование вызова LLM"""
+        self.metrics['llm_calls'] += 1
+        if prom_metrics:
+            prom_metrics.inc_llm(operation)
+
     def print_summary(self):
         """Вывод статистики"""
         uptime = datetime.now() - self.start_time
-        total_duplicates = (self.metrics['duplicates_exact'] + 
-                          self.metrics['duplicates_fuzzy'] + 
+        total_duplicates = (self.metrics['duplicates_exact'] +
+                          self.metrics['duplicates_fuzzy'] +
                           self.metrics['duplicates_global'])
         cache_rate = 0
         if self.metrics['llm_calls'] > 0:
-            cache_rate = (self.metrics['llm_cache_hits'] / 
+            cache_rate = (self.metrics['llm_cache_hits'] /
                          (self.metrics['llm_calls'] + self.metrics['llm_cache_hits'])) * 100
-        
+
         logger.info("=" * 60)
         logger.info("📊 СТАТИСТИКА РАБОТЫ БОТА")
         logger.info(f"   Время работы: {uptime}")
@@ -601,6 +683,15 @@ class BotMetrics:
         logger.info("=" * 60)
 
 metrics = BotMetrics()
+
+# 📊 PROMETHEUS METRICS
+prom_metrics = None
+if PROMETHEUS_AVAILABLE:
+    try:
+        prom_metrics = PrometheusMetrics(bot_name='economy', port=8001)
+        logger.info("✅ Prometheus метрики запущены на порту 8001")
+    except Exception as e:
+        logger.warning(f"⚠️ Не удалось запустить Prometheus метрики: {e}")
 
 # ================= СОСТОЯНИЕ =================
 class BotState:
@@ -787,17 +878,269 @@ def normalize_title(title: str) -> str:
     return ' '.join(words)
 
 def is_economy_candidate(title: str, summary: str) -> Tuple[bool, int, int]:
-    """Предфильтрация по ключевым словам"""
+    """Предфильтрация по ключевым словам с лемматизацией"""
     text = f"{title} {summary}".lower()
+    text_lemma = lemmatize_text(f"{title} {summary}")
 
     non_economy_count = sum(1 for word in NON_ECONOMY_KEYWORDS if word in text)
     if non_economy_count >= 2:
         return False, 0, 0
 
-    # ✅ Объединяем основные и дополнительные ключевые слова
-    all_keywords = ECONOMY_KEYWORDS | ADDITIONAL_ECONOMY_KEYWORDS
-    matches = sum(1 for kw in all_keywords if kw in text)
-    high_priority_matches = sum(1 for kw in HIGH_PRIORITY_KEYWORDS if kw in text)
+    all_keywords = ECONOMY_KEYWORDS_LEMMA | lemmatize_keywords(ADDITIONAL_ECONOMY_KEYWORDS)
+    matches = sum(1 for kw in all_keywords if kw in text_lemma)
+    high_priority_matches = sum(1 for kw in HIGH_PRIORITY_KEYWORDS_LEMMA if kw in text_lemma)
+
+    if matches == 0:
+        all_keywords_orig = ECONOMY_KEYWORDS | ADDITIONAL_ECONOMY_KEYWORDS
+        matches = sum(1 for kw in all_keywords_orig if kw in text)
+        high_priority_matches = sum(1 for kw in HIGH_PRIORITY_KEYWORDS if kw in text)
+
+    return matches >= 1, matches, high_priority_matches
+def is_economy_candidate(title: str, summary: str) -> Tuple[bool, int, int]:
+    """Предфильтрация по ключевым словам с лемматизацией"""
+    text = f"{title} {summary}".lower()
+    text_lemma = lemmatize_text(f"{title} {summary}")
+
+    non_economy_count = sum(1 for word in NON_ECONOMY_KEYWORDS if word in text)
+    if non_economy_count >= 2:
+        return False, 0, 0
+
+    all_keywords = ECONOMY_KEYWORDS_LEMMA | lemmatize_keywords(ADDITIONAL_ECONOMY_KEYWORDS)
+    matches = sum(1 for kw in all_keywords if kw in text_lemma)
+    high_priority_matches = sum(1 for kw in HIGH_PRIORITY_KEYWORDS_LEMMA if kw in text_lemma)
+
+    if matches == 0:
+        all_keywords_orig = ECONOMY_KEYWORDS | ADDITIONAL_ECONOMY_KEYWORDS
+        matches = sum(1 for kw in all_keywords_orig if kw in text)
+        high_priority_matches = sum(1 for kw in HIGH_PRIORITY_KEYWORDS if kw in text)
+
+    return matches >= 1, matches, high_priority_matches
+def is_economy_candidate(title: str, summary: str) -> Tuple[bool, int, int]:
+    """Предфильтрация по ключевым словам с лемматизацией"""
+    text = f"{title} {summary}".lower()
+    text_lemma = lemmatize_text(f"{title} {summary}")
+
+    non_economy_count = sum(1 for word in NON_ECONOMY_KEYWORDS if word in text)
+    if non_economy_count >= 2:
+        return False, 0, 0
+
+    all_keywords = ECONOMY_KEYWORDS_LEMMA | lemmatize_keywords(ADDITIONAL_ECONOMY_KEYWORDS)
+    matches = sum(1 for kw in all_keywords if kw in text_lemma)
+    high_priority_matches = sum(1 for kw in HIGH_PRIORITY_KEYWORDS_LEMMA if kw in text_lemma)
+
+    if matches == 0:
+        all_keywords_orig = ECONOMY_KEYWORDS | ADDITIONAL_ECONOMY_KEYWORDS
+        matches = sum(1 for kw in all_keywords_orig if kw in text)
+        high_priority_matches = sum(1 for kw in HIGH_PRIORITY_KEYWORDS if kw in text)
+
+    return matches >= 1, matches, high_priority_matches
+def is_economy_candidate(title: str, summary: str) -> Tuple[bool, int, int]:
+    """Предфильтрация по ключевым словам с лемматизацией"""
+    text = f"{title} {summary}".lower()
+    text_lemma = lemmatize_text(f"{title} {summary}")
+
+    non_economy_count = sum(1 for word in NON_ECONOMY_KEYWORDS if word in text)
+    if non_economy_count >= 2:
+        return False, 0, 0
+
+    all_keywords = ECONOMY_KEYWORDS_LEMMA | lemmatize_keywords(ADDITIONAL_ECONOMY_KEYWORDS)
+    matches = sum(1 for kw in all_keywords if kw in text_lemma)
+    high_priority_matches = sum(1 for kw in HIGH_PRIORITY_KEYWORDS_LEMMA if kw in text_lemma)
+
+    if matches == 0:
+        all_keywords_orig = ECONOMY_KEYWORDS | ADDITIONAL_ECONOMY_KEYWORDS
+        matches = sum(1 for kw in all_keywords_orig if kw in text)
+        high_priority_matches = sum(1 for kw in HIGH_PRIORITY_KEYWORDS if kw in text)
+
+    return matches >= 1, matches, high_priority_matches
+def is_economy_candidate(title: str, summary: str) -> Tuple[bool, int, int]:
+    """Предфильтрация по ключевым словам с лемматизацией"""
+    text = f"{title} {summary}".lower()
+    text_lemma = lemmatize_text(f"{title} {summary}")
+
+    non_economy_count = sum(1 for word in NON_ECONOMY_KEYWORDS if word in text)
+    if non_economy_count >= 2:
+        return False, 0, 0
+
+    all_keywords = ECONOMY_KEYWORDS_LEMMA | lemmatize_keywords(ADDITIONAL_ECONOMY_KEYWORDS)
+    matches = sum(1 for kw in all_keywords if kw in text_lemma)
+    high_priority_matches = sum(1 for kw in HIGH_PRIORITY_KEYWORDS_LEMMA if kw in text_lemma)
+
+    if matches == 0:
+        all_keywords_orig = ECONOMY_KEYWORDS | ADDITIONAL_ECONOMY_KEYWORDS
+        matches = sum(1 for kw in all_keywords_orig if kw in text)
+        high_priority_matches = sum(1 for kw in HIGH_PRIORITY_KEYWORDS if kw in text)
+
+    return matches >= 1, matches, high_priority_matches
+def is_economy_candidate(title: str, summary: str) -> Tuple[bool, int, int]:
+    """Предфильтрация по ключевым словам с лемматизацией"""
+    text = f"{title} {summary}".lower()
+    text_lemma = lemmatize_text(f"{title} {summary}")
+
+    non_economy_count = sum(1 for word in NON_ECONOMY_KEYWORDS if word in text)
+    if non_economy_count >= 2:
+        return False, 0, 0
+
+    all_keywords = ECONOMY_KEYWORDS_LEMMA | lemmatize_keywords(ADDITIONAL_ECONOMY_KEYWORDS)
+    matches = sum(1 for kw in all_keywords if kw in text_lemma)
+    high_priority_matches = sum(1 for kw in HIGH_PRIORITY_KEYWORDS_LEMMA if kw in text_lemma)
+
+    if matches == 0:
+        all_keywords_orig = ECONOMY_KEYWORDS | ADDITIONAL_ECONOMY_KEYWORDS
+        matches = sum(1 for kw in all_keywords_orig if kw in text)
+        high_priority_matches = sum(1 for kw in HIGH_PRIORITY_KEYWORDS if kw in text)
+
+    return matches >= 1, matches, high_priority_matches
+def is_economy_candidate(title: str, summary: str) -> Tuple[bool, int, int]:
+    """Предфильтрация по ключевым словам с лемматизацией"""
+    text = f"{title} {summary}".lower()
+    text_lemma = lemmatize_text(f"{title} {summary}")
+
+    non_economy_count = sum(1 for word in NON_ECONOMY_KEYWORDS if word in text)
+    if non_economy_count >= 2:
+        return False, 0, 0
+
+    all_keywords = ECONOMY_KEYWORDS_LEMMA | lemmatize_keywords(ADDITIONAL_ECONOMY_KEYWORDS)
+    matches = sum(1 for kw in all_keywords if kw in text_lemma)
+    high_priority_matches = sum(1 for kw in HIGH_PRIORITY_KEYWORDS_LEMMA if kw in text_lemma)
+
+    if matches == 0:
+        all_keywords_orig = ECONOMY_KEYWORDS | ADDITIONAL_ECONOMY_KEYWORDS
+        matches = sum(1 for kw in all_keywords_orig if kw in text)
+        high_priority_matches = sum(1 for kw in HIGH_PRIORITY_KEYWORDS if kw in text)
+
+    return matches >= 1, matches, high_priority_matches
+def is_economy_candidate(title: str, summary: str) -> Tuple[bool, int, int]:
+    """Предфильтрация по ключевым словам с лемматизацией"""
+    text = f"{title} {summary}".lower()
+    text_lemma = lemmatize_text(f"{title} {summary}")
+
+    non_economy_count = sum(1 for word in NON_ECONOMY_KEYWORDS if word in text)
+    if non_economy_count >= 2:
+        return False, 0, 0
+
+    all_keywords = ECONOMY_KEYWORDS_LEMMA | lemmatize_keywords(ADDITIONAL_ECONOMY_KEYWORDS)
+    matches = sum(1 for kw in all_keywords if kw in text_lemma)
+    high_priority_matches = sum(1 for kw in HIGH_PRIORITY_KEYWORDS_LEMMA if kw in text_lemma)
+
+    if matches == 0:
+        all_keywords_orig = ECONOMY_KEYWORDS | ADDITIONAL_ECONOMY_KEYWORDS
+        matches = sum(1 for kw in all_keywords_orig if kw in text)
+        high_priority_matches = sum(1 for kw in HIGH_PRIORITY_KEYWORDS if kw in text)
+
+    return matches >= 1, matches, high_priority_matches
+def is_economy_candidate(title: str, summary: str) -> Tuple[bool, int, int]:
+    """Предфильтрация по ключевым словам с лемматизацией"""
+    text = f"{title} {summary}".lower()
+    text_lemma = lemmatize_text(f"{title} {summary}")
+
+    non_economy_count = sum(1 for word in NON_ECONOMY_KEYWORDS if word in text)
+    if non_economy_count >= 2:
+        return False, 0, 0
+
+    all_keywords = ECONOMY_KEYWORDS_LEMMA | lemmatize_keywords(ADDITIONAL_ECONOMY_KEYWORDS)
+    matches = sum(1 for kw in all_keywords if kw in text_lemma)
+    high_priority_matches = sum(1 for kw in HIGH_PRIORITY_KEYWORDS_LEMMA if kw in text_lemma)
+
+    if matches == 0:
+        all_keywords_orig = ECONOMY_KEYWORDS | ADDITIONAL_ECONOMY_KEYWORDS
+        matches = sum(1 for kw in all_keywords_orig if kw in text)
+        high_priority_matches = sum(1 for kw in HIGH_PRIORITY_KEYWORDS if kw in text)
+
+    return matches >= 1, matches, high_priority_matches
+def is_economy_candidate(title: str, summary: str) -> Tuple[bool, int, int]:
+    """Предфильтрация по ключевым словам с лемматизацией"""
+    text = f"{title} {summary}".lower()
+    text_lemma = lemmatize_text(f"{title} {summary}")
+
+    non_economy_count = sum(1 for word in NON_ECONOMY_KEYWORDS if word in text)
+    if non_economy_count >= 2:
+        return False, 0, 0
+
+    all_keywords = ECONOMY_KEYWORDS_LEMMA | lemmatize_keywords(ADDITIONAL_ECONOMY_KEYWORDS)
+    matches = sum(1 for kw in all_keywords if kw in text_lemma)
+    high_priority_matches = sum(1 for kw in HIGH_PRIORITY_KEYWORDS_LEMMA if kw in text_lemma)
+
+    if matches == 0:
+        all_keywords_orig = ECONOMY_KEYWORDS | ADDITIONAL_ECONOMY_KEYWORDS
+        matches = sum(1 for kw in all_keywords_orig if kw in text)
+        high_priority_matches = sum(1 for kw in HIGH_PRIORITY_KEYWORDS if kw in text)
+
+    return matches >= 1, matches, high_priority_matches
+def is_economy_candidate(title: str, summary: str) -> Tuple[bool, int, int]:
+    """Предфильтрация по ключевым словам с лемматизацией"""
+    text = f"{title} {summary}".lower()
+    text_lemma = lemmatize_text(f"{title} {summary}")
+
+    non_economy_count = sum(1 for word in NON_ECONOMY_KEYWORDS if word in text)
+    if non_economy_count >= 2:
+        return False, 0, 0
+
+    all_keywords = ECONOMY_KEYWORDS_LEMMA | lemmatize_keywords(ADDITIONAL_ECONOMY_KEYWORDS)
+    matches = sum(1 for kw in all_keywords if kw in text_lemma)
+    high_priority_matches = sum(1 for kw in HIGH_PRIORITY_KEYWORDS_LEMMA if kw in text_lemma)
+
+    if matches == 0:
+        all_keywords_orig = ECONOMY_KEYWORDS | ADDITIONAL_ECONOMY_KEYWORDS
+        matches = sum(1 for kw in all_keywords_orig if kw in text)
+        high_priority_matches = sum(1 for kw in HIGH_PRIORITY_KEYWORDS if kw in text)
+
+    return matches >= 1, matches, high_priority_matches
+def is_economy_candidate(title: str, summary: str) -> Tuple[bool, int, int]:
+    """Предфильтрация по ключевым словам с лемматизацией"""
+    text = f"{title} {summary}".lower()
+    text_lemma = lemmatize_text(f"{title} {summary}")
+
+    non_economy_count = sum(1 for word in NON_ECONOMY_KEYWORDS if word in text)
+    if non_economy_count >= 2:
+        return False, 0, 0
+
+    all_keywords = ECONOMY_KEYWORDS_LEMMA | lemmatize_keywords(ADDITIONAL_ECONOMY_KEYWORDS)
+    matches = sum(1 for kw in all_keywords if kw in text_lemma)
+    high_priority_matches = sum(1 for kw in HIGH_PRIORITY_KEYWORDS_LEMMA if kw in text_lemma)
+
+    if matches == 0:
+        all_keywords_orig = ECONOMY_KEYWORDS | ADDITIONAL_ECONOMY_KEYWORDS
+        matches = sum(1 for kw in all_keywords_orig if kw in text)
+        high_priority_matches = sum(1 for kw in HIGH_PRIORITY_KEYWORDS if kw in text)
+
+    return matches >= 1, matches, high_priority_matches
+def is_economy_candidate(title: str, summary: str) -> Tuple[bool, int, int]:
+    """Предфильтрация по ключевым словам с лемматизацией"""
+    text = f"{title} {summary}".lower()
+    text_lemma = lemmatize_text(f"{title} {summary}")
+
+    non_economy_count = sum(1 for word in NON_ECONOMY_KEYWORDS if word in text)
+    if non_economy_count >= 2:
+        return False, 0, 0
+
+    all_keywords = ECONOMY_KEYWORDS_LEMMA | lemmatize_keywords(ADDITIONAL_ECONOMY_KEYWORDS)
+    matches = sum(1 for kw in all_keywords if kw in text_lemma)
+    high_priority_matches = sum(1 for kw in HIGH_PRIORITY_KEYWORDS_LEMMA if kw in text_lemma)
+
+    if matches == 0:
+        all_keywords_orig = ECONOMY_KEYWORDS | ADDITIONAL_ECONOMY_KEYWORDS
+        matches = sum(1 for kw in all_keywords_orig if kw in text)
+        high_priority_matches = sum(1 for kw in HIGH_PRIORITY_KEYWORDS if kw in text)
+
+    return matches >= 1, matches, high_priority_matches
+def is_economy_candidate(title: str, summary: str) -> Tuple[bool, int, int]:
+    """Предфильтрация по ключевым словам с лемматизацией"""
+    text = f"{title} {summary}".lower()
+    text_lemma = lemmatize_text(f"{title} {summary}")
+
+    non_economy_count = sum(1 for word in NON_ECONOMY_KEYWORDS if word in text)
+    if non_economy_count >= 2:
+        return False, 0, 0
+
+    all_keywords = ECONOMY_KEYWORDS_LEMMA | lemmatize_keywords(ADDITIONAL_ECONOMY_KEYWORDS)
+    matches = sum(1 for kw in all_keywords if kw in text_lemma)
+    high_priority_matches = sum(1 for kw in HIGH_PRIORITY_KEYWORDS_LEMMA if kw in text_lemma)
+
+    if matches == 0:
+        all_keywords_orig = ECONOMY_KEYWORDS | ADDITIONAL_ECONOMY_KEYWORDS
+        matches = sum(1 for kw in all_keywords_orig if kw in text)
+        high_priority_matches = sum(1 for kw in HIGH_PRIORITY_KEYWORDS if kw in text)
 
     return matches >= 1, matches, high_priority_matches
 
@@ -1090,6 +1433,8 @@ class DuplicateDetector:
                 if await is_global_duplicate(content_hash, config.category, hours=48):
                     logger.info(f"🌐 Глобальный дубликат (content): {title[:50]}")
                     metrics.log_duplicate("global")
+                    if prom_metrics:
+                        prom_metrics.inc_dup('global')
                     return True, "global_content_duplicate"
             except Exception as e:
                 logger.warning(f"⚠️ Ошибка глобальной проверки: {e}")
@@ -1109,6 +1454,8 @@ class DuplicateDetector:
         if await is_content_duplicate(content_dedup_hash, hours=config.duplicate_check_hours):
             logger.info(f"🔄 Content дубликат: {title[:50]}")
             metrics.log_duplicate("content")
+            if prom_metrics:
+                prom_metrics.inc_dup('content')
             return True, "content_duplicate"
 
         # ✅ 4. Fuzzy по заголовку (75%+) — СНИЖЕН ПОРОГ
@@ -1181,6 +1528,40 @@ class AdaptiveRateLimiter:
     
     def report_success(self):
         self.error_count = max(self.error_count - 1, 0)
+
+
+class TelegramRateLimiter:
+    """🛡️ Rate limiter для Telegram (защита от 429)"""
+    def __init__(self):
+        self.request_times = []
+        self.last_429_time = 0
+        self.cooldown = 60
+
+    async def wait(self):
+        now = asyncio.get_event_loop().time()
+        if self.last_429_time and now - self.last_429_time < self.cooldown:
+            wt = self.cooldown - (now - self.last_429_time)
+            logger.warning(f"⏳ RL: {wt:.0f} сек после 429")
+            await asyncio.sleep(wt)
+            now = asyncio.get_event_loop().time()
+        self.request_times = [t for t in self.request_times if now - t < 60]
+        if len(self.request_times) >= 18:
+            delay = 3.0 + (len(self.request_times) - 18) * 0.5
+            await asyncio.sleep(delay)
+        self.request_times.append(now)
+
+    def report_429(self):
+        self.last_429_time = asyncio.get_event_loop().time()
+        self.request_times = []
+        logger.warning("🚨 Telegram 429")
+
+    def report_success(self):
+        now = asyncio.get_event_loop().time()
+        if self.last_429_time and now - self.last_429_time > 3600:
+            self.last_429_time = 0
+
+
+telegram_rate_limiter = TelegramRateLimiter()
 
 # ================= LLM КЛИЕНТ =================
 class CachedLLMClient:
@@ -1269,15 +1650,17 @@ class CachedLLMClient:
             return None
     
     def _contains_fake_dates(self, text: str) -> bool:
+        # ✅ 2026 год — текущий, 2025 и старше — старые
         old_years = ['2023', '2024', '2025']
         text_lower = text.lower()
         for year in old_years:
             if re.search(rf'\b{year}\b', text):
                 logger.warning(f"🚨 Обнаружен старый год: {year}")
-                metrics.metrics['fake_dates_blocked'] += 1
+                metrics.log_fake_date()
                 return True
-        if re.search(r'(с|в|до|после|году|года)\s*202', text_lower):
-            metrics.metrics['fake_dates_blocked'] += 1
+        # Блокируем "в 2026 году", "2026 году"
+        if re.search(r'(в|году|года|год)\s*2026\b', text_lower):
+            metrics.log_fake_date()
             return True
         return False
 
@@ -1288,6 +1671,10 @@ class CachedLLMClient:
             'pr', 'hr', 'apple', 'google', 'tesla', 'amazon',
             'wto', 'imf', 'brics', 'swift', 'covid', 'who',
             'brent', 'sp', 'nasdaq', 'nyse', 'lng', 'eu',
+            # ✅ Финансовые термины и биржи
+            'futures', 'wti', 'nymex', 'ice', 'forex', 'etf', 'cfd',
+            'bull', 'bear', 'long', 'short', 'swap', 'dividend',
+            'moex', 'rts', 'micex', 'cb', 'fed', 'ecb',
             # Авиакомпании и бренды
             'azur', 'air', 'azur air',
             's7', 'aeroflot', 'aeroflot', 'rossiya', ' Pobeda',
@@ -1315,7 +1702,7 @@ class CachedLLMClient:
         suspicious_words = [w for w in english_words if w not in allowed_english]
         if len(suspicious_words) > 3:
             logger.warning(f"🚨 Много английских слов: {suspicious_words[:5]}")
-            metrics.metrics['english_words_blocked'] += 1
+            metrics.log_english_blocked()
             return True
         return False
     
@@ -1333,7 +1720,7 @@ class CachedLLMClient:
         stop_words = {
             'футбол', 'хоккей', 'баскетбол', 'теннис', 'олимпиад', 'чемпионат', 
             'спорт', 'матч', 'турнир', 'гонка', 'лыжн', 'фигурист', 
-            'кино', 'фильм', 'сериал', 'актёр', 'режиссёр', 'музык', 'концерт', 
+            'кино', 'фильм', 'сериал', 'актёр', 'режис��ёр', 'музык', 'концерт', 
             'альбом', 'певец', 'шоу', 'звезд', 'скандал', 'светск', 
             'погод', 'синоптик', 'осадки', 'температур'
         }
@@ -1360,13 +1747,13 @@ class CachedLLMClient:
         cache_key = self._get_cache_key(title, body, "rewrite")
         if cache_key in self.cache:
             logger.info(f"💾 Cache hit: rewrite")
-            metrics.metrics['llm_cache_hits'] += 1
+            metrics.log_llm_cache_hit()
             return self.cache[cache_key]
-        
+
         await self._circuit_breaker_check()
         await self.rate_limiter.wait()
-        metrics.metrics['llm_calls'] += 1
-        
+        metrics.log_llm_call('rewrite')
+
         current_date = datetime.now().strftime('%d.%m.%Y')
         current_year = datetime.now().year
         
@@ -1377,10 +1764,10 @@ class CachedLLMClient:
 2. Далее 2-3 абзаца (по 2-3 предложения каждый) с ключевыми фактами
 3. Пиши на РУССКОМ языке, но МОЖНО использовать:
    - Названия городов (Dubai, Tehran, Moscow)
-   - Коды аэропортов (DXB, DWC)
-   - Отраслевые термины (airports, flights, oil, gas)
+   - Коды а��роп��ртов (DXB, DWC)
+   - О��раслевые термины (airports, flights, oil, gas)
    - **НАЗВАНИЯ КОМПАНИЙ И БРЕНДОВ в оригинале** (AZUR air, Boeing, Airbus, Lukoil)
-4. Убери вводные фразы типа "Заголовок:", "Первый абзац:"
+4. Убери вводные фраз������ типа "Заголовок:", "Первый абзац:"
 5. Не добавляй мета-комментарии ("подробности на сайте", "читайте также")
 6. Пиши конкретно и по делу, избегай воды
 7. Максимум 700 символов
@@ -1396,7 +1783,7 @@ class CachedLLMClient:
 13. ⚡ НЕ возвращай пустой ответ
 14. ⚡ НЕ пиши "не могу переписать" или "нет информации"
 15. ⚡ Просто перескажи факты своими словами
-16. ⚡ **СОХРАНЯЙ оригинальные названия компаний** (не переводи AZUR air → "АЗУР эйр")
+16. ⚡ **СОХРАНЯЙ оригинальные названия компаний** (не п��реводи AZUR air → "АЗУР эйр")
 
 Заголовок: {title}
 Текст: {body[:2000]}"""
@@ -1434,6 +1821,8 @@ class CachedLLMClient:
         except Exception as e:
             logger.warning(f"⚠️ LLM rewrite error: {str(e)[:100]}")
             metrics.log_error(f"rewrite: {e}")
+            if prom_metrics:
+                prom_metrics.inc_err()
             self.rate_limiter.report_error()
             self.circuit_breaker_fails += 1
             if self.circuit_breaker_fails >= self.circuit_breaker_threshold:
@@ -1490,36 +1879,37 @@ async def fetch_article_text(session: aiohttp.ClientSession, url: str) -> str:
         except (aiohttp.ClientError, asyncio.TimeoutError) as e:
             logger.debug(f"Error fetching {url[:60]}: {e}")
             return ""
-            soup = BeautifulSoup(html, "html.parser")
-            for tag in soup.select("script, style, noscript, iframe, aside, footer, header, nav"):
-                tag.decompose()
-            
-            selectors = [
-                "article.article", "div.article__body", "div.article-body",
-                "div.article__text", "div.article-text", "div.article-content",
-                "div.entry-content", "div.post-content"
-            ]
-            for selector in selectors:
-                block = soup.select_one(selector)
-                if block:
-                    paragraphs = []
-                    for p in block.find_all("p"):
-                        text = safe_to_string(p.get_text(strip=True))
-                        if len(text) > 40:
-                            paragraphs.append(text)
-                    if len(paragraphs) >= 2:
-                        return " ".join(paragraphs[:12])
-            
-            paragraphs = []
-            for p in soup.find_all("p"):
-                text = safe_to_string(p.get_text(strip=True))
-                if len(text) > 50:
-                    paragraphs.append(text)
-            if len(paragraphs) >= 3:
-                return " ".join(paragraphs[:15])
-            
-            full_text = soup.get_text()
-            return clean_html(full_text)
+        
+        soup = BeautifulSoup(html, "html.parser")
+        for tag in soup.select("script, style, noscript, iframe, aside, footer, header, nav"):
+            tag.decompose()
+
+        selectors = [
+            "article.article", "div.article__body", "div.article-body",
+            "div.article__text", "div.article-text", "div.article-content",
+            "div.entry-content", "div.post-content"
+        ]
+        for selector in selectors:
+            block = soup.select_one(selector)
+            if block:
+                paragraphs = []
+                for p in block.find_all("p"):
+                    text = safe_to_string(p.get_text(strip=True))
+                    if len(text) > 40:
+                        paragraphs.append(text)
+                if len(paragraphs) >= 2:
+                    return " ".join(paragraphs[:12])
+
+        paragraphs = []
+        for p in soup.find_all("p"):
+            text = safe_to_string(p.get_text(strip=True))
+            if len(text) > 50:
+                paragraphs.append(text)
+        if len(paragraphs) >= 3:
+            return " ".join(paragraphs[:15])
+
+        full_text = soup.get_text()
+        return clean_html(full_text)
     except Exception as e:
         logger.debug(f"Error fetching {url[:60]}: {str(e)[:80]}")
         return ""
@@ -1602,12 +1992,16 @@ async def process_feed(session: aiohttp.ClientSession, feed_url: str, llm: Cache
                 if is_dup:
                     logger.debug(f"   🔄 Дубликат ({dup_method}): {title[:50]}")
                     metrics.log_duplicate(dup_method)
+                    if prom_metrics:
+                        prom_metrics.inc_dup(dup_method.replace('link_', 'exact_').split('_')[0])
                     continue
-                
+
                 # 3. Fuzzy
                 if await is_fuzzy_duplicate(title, hours=24):
                     logger.info(f"🔄 Fuzzy дубликат: {title[:50]}")
                     metrics.log_duplicate("fuzzy")
+                    if prom_metrics:
+                        prom_metrics.inc_dup('fuzzy')
                     continue
                 
                 is_suitable, keyword_matches, high_priority_matches = is_economy_candidate(title, summary)
@@ -1662,7 +2056,9 @@ async def process_feed(session: aiohttp.ClientSession, feed_url: str, llm: Cache
                     "high_priority_matches": high_priority_matches,
                     "summary": summary,
                 })
-                
+                if prom_metrics:
+                    prom_metrics.set_candidates(len(candidates))
+
     except (aiohttp.ClientError, asyncio.TimeoutError) as e:
         logger.error(f"❌ HTTP ошибка {feed_url[:50]}: {e}")
     except Exception as e:
@@ -1722,11 +2118,13 @@ async def send_to_channel(
     text: str,
     link: str,
     priority: int = 0,
-    triggers: List[str] = None
+    triggers: List[str] = None,
+    max_retries: int = 3
 ) -> bool:
     """
     🔥 ОТПРАВКА СРАЗУ В КАНАЛ (минуя предложку)
     Для критических новостей с priority >= 95
+    ✅ С retry логикой и rate limiting
     """
     text = safe_to_string(text)
     text = validate_html_tags(text)
@@ -1752,30 +2150,50 @@ async def send_to_channel(
         "disable_web_page_preview": False
     }
 
-    try:
-        url = f"https://api.telegram.org/bot{config.tg_token}/sendMessage"
-        ssl_context = create_secure_ssl_context()
-        connector = aiohttp.TCPConnector(ssl=ssl_context)
-        timeout = aiohttp.ClientTimeout(total=60, connect=15, sock_read=30)
+    url = f"https://api.telegram.org/bot{config.tg_token}/sendMessage"
 
-        async with aiohttp.ClientSession(connector=connector, timeout=timeout) as tg_session:
-            async with tg_session.post(url, json=payload) as response:
-                result = await response.json()
-                if result.get("ok"):
-                    metrics.metrics['posts_sent'] += 1
-                    trigger_info = f" ({', '.join(triggers)})" if triggers else ""
-                    logger.info(f"🚨 АВТОПОСТ ОПУБЛИКОВАН (priority={priority}{trigger_info})")
-                    return True
-                else:
-                    logger.error(f"❌ Ошибка Telegram: {result.get('description')}")
-                    return False
-    except asyncio.TimeoutError:
-        logger.error("❌ Таймаут при отправке в Telegram (60 сек)")
-        return False
-    except Exception as e:
-        logger.error(f"❌ Ошибка отправки: {e}")
-        metrics.log_error(f"send_to_channel: {e}")
-        return False
+    for attempt in range(1, max_retries + 1):
+        try:
+            # 🛡️ Ждём разрешения от rate limiter
+            await telegram_rate_limiter.wait()
+
+            ssl_context = create_secure_ssl_context()
+            connector = aiohttp.TCPConnector(ssl=ssl_context)
+            timeout = aiohttp.ClientTimeout(total=60, connect=15, sock_read=30)
+
+            async with aiohttp.ClientSession(connector=connector, timeout=timeout) as tg_session:
+                async with tg_session.post(url, json=payload) as response:
+                    result = await response.json()
+                    if result.get("ok"):
+                        telegram_rate_limiter.report_success()
+                        if prom_metrics:
+                            metrics.log_post_sent('economy', 'autopost')
+                        trigger_info = f" ({', '.join(triggers)})" if triggers else ""
+                        logger.info(f"🚨 АВТОПОСТ ОПУБЛИКОВАН (priority={priority}{trigger_info})")
+                        return True
+                    else:
+                        error_code = result.get('error_code')
+                        if error_code == 429:
+                            telegram_rate_limiter.report_429()
+                            retry_after = result.get('parameters', {}).get('retry_after', 60)
+                            logger.warning(f"⚠️ 429 ошибка, ожидание {retry_after} сек...")
+                            await asyncio.sleep(min(retry_after, 120))
+                            continue
+                        else:
+                            logger.error(f"❌ Ошибка Telegram: {result.get('description')}")
+                            return False
+        except asyncio.TimeoutError:
+            logger.error(f"❌ Таймаут при отправке (попытка {attempt}/{max_retries})")
+            if attempt < max_retries:
+                await asyncio.sleep(5 * attempt)
+        except Exception as e:
+            logger.error(f"❌ Ошибка отправки (попытка {attempt}/{max_retries}): {e}")
+            metrics.log_error(f"send_to_channel: {e}")
+            if attempt < max_retries:
+                await asyncio.sleep(5 * attempt)
+
+    logger.error(f"❌ Не удалось отправить после {max_retries} попыток")
+    return False
 
 
 async def send_to_suggestion(session: aiohttp.ClientSession, text: str, link: str,
@@ -1854,7 +2272,9 @@ async def send_to_suggestion(session: aiohttp.ClientSession, text: str, link: st
             async with tg_session.post(url, json=payload) as response:
                 result = await response.json()
                 if result.get("ok"):
-                    metrics.metrics['posts_sent'] += 1
+                    
+                    if prom_metrics:
+                        metrics.log_post_sent('economy', 'suggestion')
                     logger.info(f"✅ Пост отправлен в предложку (ID: {post_id})")
 
                     # ✅ ОТМЕТКА В ГЛОБАЛЬНОЙ БД по оригинальному заголовку
@@ -1901,94 +2321,135 @@ async def send_to_suggestion_with_retry(session: aiohttp.ClientSession, text: st
 
 # ================= ОСНОВНОЙ ЦИКЛ =================
 async def collect_and_process_news(llm, duplicate_detector, session):
-    candidates = await collect_candidates(llm, duplicate_detector)
+    import time
+    start_time = time.time()
+    
+    try:
+        candidates = await collect_candidates(llm, duplicate_detector)
 
-    if not candidates:
-        logger.warning("📭 Нет подходящих кандидатов")
+        if not candidates:
+            logger.warning("📭 Нет подходящих кандидатов")
+            return 0
+
+        logger.info(f"🚀 Начинаем обработку {len(candidates)} кандидатов")
+
+        # Берем топ-3, но обрабатываем только пока не опубликуем одного
+        for best in candidates[:3]:
+            if not isinstance(best, dict): continue
+
+            logger.info(f"🔄 Обрабатываем: {best.get('title', 'N/A')[:60]}")
+
+            # 🔥 РАССЧИТЫВАЕМ ПРИОРИТЕТ НОВОСТИ
+            priority, triggers = calculate_priority(best["title"], best["summary"])
+            logger.info(f"🔥 Приоритет: {priority} (триггеры: {triggers if triggers else 'нет'})")
+
+            # 1. Скачиваем текст
+            full_text = await fetch_article_text(session, best["link"])
+            
+            # Выбираем лучший доступный текст: полный > summary > заголовок + summary
+            if full_text and len(full_text) > 150:
+                body = full_text
+            elif best["summary"] and len(best["summary"]) > 40:
+                body = best["summary"]
+            else:
+                # Комбинируем заголовок и summary для коротких случаев
+                body = f"{best['title']}. {best['summary']}" if best.get('summary') else best['title']
+            
+            logger.info(f"📝 Длина текста: {len(body)} символов")
+            
+            if len(body) < 40:
+                logger.warning(f"⚠️ Текст слишком короткий ({len(body)} символов)")
+                continue
+
+            # 2. Рерайт
+            rewritten = await llm.rewrite(best["title"], body)
+            if not rewritten:
+                logger.warning("⚠️ Рерайт вернул пусто (возможно, сработал фильтр дат)")
+                continue
+
+            # 3. Постпроцессинг
+            final_text = postprocess_text(rewritten)
+            if not final_text or len(final_text) < 50:
+                logger.warning("⚠️ Постпроцессинг неудачен")
+                continue
+
+            if not is_russian_text(final_text):
+                logger.warning("⚠️ Не русский текст")
+                continue
+
+            # 🔥 3-УРОВНЕВАЯ ЛОГИКА ПУБЛИКАЦИИ
+            if priority >= 95:
+                # 🔥 CRITICAL: Автопостинг сразу в канал (минуя предложку)
+                logger.info(f"🚨 CRITICAL NEWS (priority={priority}): Публикация сразу в канал!")
+                if await send_to_channel(session, final_text, best["link"], priority, triggers):
+                    # Сохраняем в локальную БД
+                    final_hash = get_content_hash(final_text[:200], best["link"])
+                    await save_post(best["link"], final_hash, best["source"], best["title_normalized"], "autopost_critical")
+
+                    # ✅ Сохраняем в ГЛОБАЛЬНУЮ БД (дедупликация между ботами)
+                    if GLOBAL_DEDUP_ENABLED:
+                        try:
+                            content_hash = get_universal_hash(best["title"], best["link"], best["pub_date"], config.category)
+                            await mark_global_posted(
+                                content_hash,
+                                config.tg_channel,
+                                config.category,
+                                best["title"][:100],
+                                config.category
+                            )
+                            logger.info(f"🌐 Отметка в глобальной БД: {best['title'][:50]}")
+                        except Exception as e:
+                            logger.warning(f"⚠️ Ошибка глобальной отметки: {e}")
+
+                    content_dedup_hash = get_content_dedup_hash(best["title"], best["summary"])
+                    await save_content_dedup_hash(content_dedup_hash)
+                    state.last_post_time = asyncio.get_event_loop().time()
+                    logger.info(f"🚨 АВТОПОСТ ОПУБЛИКОВАН: {best['title'][:60]}")
+                    return 1
+                else:
+                    logger.warning("⚠️ Автопостинг не удался, пробуем следующего")
+                    continue
+
+            elif priority >= 85:
+                # ⚡ HOT: Минуя LLM classify, но в предложку
+                logger.info(f"⚡ HOT NEWS (priority={priority}): Отправка в предложку (без classify)")
+                if await send_to_suggestion_with_retry(session, final_text, best["link"], best["pub_date"], best["title"]):
+                    final_hash = get_content_hash(final_text[:200], best["link"])
+                    await save_post(best["link"], final_hash, best["source"], best["title_normalized"], "hot_news")
+                    content_dedup_hash = get_content_dedup_hash(best["title"], best["summary"])
+                    await save_content_dedup_hash(content_dedup_hash)
+                    state.last_post_time = asyncio.get_event_loop().time()
+                    logger.info(f"📨 Опубликовано в предложку: {best['title'][:60]}")
+                    return 1
+                else:
+                    logger.warning("⚠️ Отправка в предложку не удалась, пробуем следующего")
+                    continue
+
+            else:
+                # 📝 NORMAL: Полная проверка (LLM classify уже пройден в process_feed)
+                logger.info(f"📝 NORMAL NEWS (priority={priority}): Отправка в предложку")
+                if await send_to_suggestion_with_retry(session, final_text, best["link"], best["pub_date"], best["title"]):
+                    final_hash = get_content_hash(final_text[:200], best["link"])
+                    await save_post(best["link"], final_hash, best["source"], best["title_normalized"], "posted")
+                    content_dedup_hash = get_content_dedup_hash(best["title"], best["summary"])
+                    await save_content_dedup_hash(content_dedup_hash)
+                    state.last_post_time = asyncio.get_event_loop().time()
+                    logger.info(f"📨 Опубликовано: {best['title'][:60]}")
+                    return 1
+                else:
+                    logger.warning("⚠️ Отправка не удалась, пробуем следующего")
+                    continue
+
+        logger.warning("⚠️ Ни один из топ-3 кандидатов не был опубликован")
         return 0
-
-    logger.info(f"🚀 Начинаем обработку {len(candidates)} кандидатов")
-
-    # Берем топ-3, но обрабатываем только пока не опубликуем одного
-    for best in candidates[:3]:
-        if not isinstance(best, dict): continue
-
-        logger.info(f"🔄 Обрабатываем: {best.get('title', 'N/A')[:60]}")
-
-        # 🔥 РАССЧИТЫВАЕМ ПРИОРИТЕТ НОВОСТИ
-        priority, triggers = calculate_priority(best["title"], best["summary"])
-        logger.info(f"🔥 Приоритет: {priority} (триггеры: {triggers if triggers else 'нет'})")
-
-        # 1. Скачиваем текст
-        full_text = await fetch_article_text(session, best["link"])
-        body = full_text if full_text and len(full_text) > 150 else best["summary"]
-
-        if len(body) < 60:
-            logger.warning("⚠️ Текст слишком короткий")
-            continue
-
-        # 2. Рерайт
-        rewritten = await llm.rewrite(best["title"], body)
-        if not rewritten:
-            logger.warning("⚠️ Рерайт вернул пусто (возможно, сработал фильтр дат)")
-            continue
-
-        # 3. Постпроцессинг
-        final_text = postprocess_text(rewritten)
-        if not final_text or len(final_text) < 50:
-            continue
-
-        if not is_russian_text(final_text):
-            continue
-
-        # 🔥 3-УРОВНЕВАЯ ЛОГИКА ПУБЛИКАЦИИ
-        if priority >= 95:
-            # 🔥 CRITICAL: Автопостинг сразу в канал (минуя предложку)
-            logger.info(f"🚨 CRITICAL NEWS (priority={priority}): Публикация сразу в канал!")
-            if await send_to_channel(session, final_text, best["link"], priority, triggers):
-                final_hash = get_content_hash(final_text[:200], best["link"])
-                await save_post(best["link"], final_hash, best["source"], best["title_normalized"], "autopost_critical")
-                content_dedup_hash = get_content_dedup_hash(best["title"], best["summary"])
-                await save_content_dedup_hash(content_dedup_hash)
-                state.last_post_time = asyncio.get_event_loop().time()
-                logger.info(f"🚨 АВТОПОСТ ОПУБЛИКОВАН: {best['title'][:60]}")
-                return 1
-            else:
-                logger.warning("⚠️ Автопостинг не удался, пробуем следующего")
-                continue
-
-        elif priority >= 85:
-            # ⚡ HOT: Минуя LLM classify, но в предложку
-            logger.info(f"⚡ HOT NEWS (priority={priority}): Отправка в предложку (без classify)")
-            if await send_to_suggestion_with_retry(session, final_text, best["link"], best["pub_date"], best["title"]):
-                final_hash = get_content_hash(final_text[:200], best["link"])
-                await save_post(best["link"], final_hash, best["source"], best["title_normalized"], "hot_news")
-                content_dedup_hash = get_content_dedup_hash(best["title"], best["summary"])
-                await save_content_dedup_hash(content_dedup_hash)
-                state.last_post_time = asyncio.get_event_loop().time()
-                logger.info(f"📨 Опубликовано в предложку: {best['title'][:60]}")
-                return 1
-            else:
-                logger.warning("⚠️ Отправка в предложку не удалась, пробуем следующего")
-                continue
-
-        else:
-            # 📝 NORMAL: Полная проверка (LLM classify уже пройден в process_feed)
-            logger.info(f"📝 NORMAL NEWS (priority={priority}): Отправка в предложку")
-            if await send_to_suggestion_with_retry(session, final_text, best["link"], best["pub_date"], best["title"]):
-                final_hash = get_content_hash(final_text[:200], best["link"])
-                await save_post(best["link"], final_hash, best["source"], best["title_normalized"], "posted")
-                content_dedup_hash = get_content_dedup_hash(best["title"], best["summary"])
-                await save_content_dedup_hash(content_dedup_hash)
-                state.last_post_time = asyncio.get_event_loop().time()
-                logger.info(f"📨 Опубликовано: {best['title'][:60]}")
-                return 1
-            else:
-                logger.warning("⚠️ Отправка не удалась, пробуем следующего")
-                continue
-
-    logger.warning("⚠️ Ни один из топ-3 кандидатов не был опубликован")
-    return 0
+    except Exception as e:
+        logger.error(f"❌ Ошибка в collect_and_process_news: {e}", exc_info=True)
+        return 0
+    finally:
+        elapsed = time.time() - start_time
+        if prom_metrics:
+            prom_metrics.observe_proc_time(elapsed)
+        logger.info(f"⏱️ Время обработки цикла: {elapsed:.2f} сек")
 
 # ================= GRACEFUL SHUTDOWN =================
 async def graceful_shutdown(llm: CachedLLMClient):
@@ -2011,7 +2472,7 @@ async def graceful_shutdown(llm: CachedLLMClient):
         try:
             await cleanup_global_db(days=30)
         except Exception as e:
-            logger.warning(f"⚠️ Ошибка очистки глобальной БД: {e}")
+            logger.warning(f"⚠️ Ошибка очис��ки глобальной БД: {e}")
     
     metrics.print_summary()
     logger.info("✅ Бот остановлен корректно")
@@ -2169,7 +2630,7 @@ async def run_tests():
         ctx = create_secure_ssl_context()
         assert isinstance(ctx, ssl.SSLContext)
         assert ctx.check_hostname == True
-        print("   ✅ PASS (SSL верификация включена)")
+        print("   ��� PASS (SSL верификация включена)")
         tests_passed += 1
     except Exception as e:
         print(f"   ❌ FAIL: {e}")
