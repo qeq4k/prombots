@@ -1,1 +1,9 @@
 
+*.db
+*.pkl
+*.log
+rss_cache/
+__pycache__/
+*.backup
+*.broken
+*.tmp
