@@ -1658,10 +1658,14 @@ class CachedLLMClient:
                 logger.warning(f"🚨 Обнаружен старый год: {year}")
                 metrics.log_fake_date()
                 return True
-        # Блокируем "в 2026 году", "2026 году"
-        if re.search(r'(в|году|года|год)\s*2026\b', text_lower):
-            metrics.log_fake_date()
-            return True
+        # ✅ 2026 год — текущий, НЕ блокируем упоминания текущего года
+        # Блокируем только будущие годы (2027+)
+        future_years = ['2027', '2028', '2029', '2030']
+        for year in future_years:
+            if re.search(rf'\b{year}\b', text):
+                logger.warning(f"🚨 Обнаружен будущий год: {year}")
+                metrics.log_fake_date()
+                return True
         return False
 
     def _contains_too_much_english(self, text: str) -> bool:
@@ -2640,7 +2644,16 @@ async def run_tests():
     print("\n📝 Тест: fake dates detection")
     try:
         client = CachedLLMClient()
+        # Старые годы должны блокироваться
         assert client._contains_fake_dates("в 2023 году") == True
+        assert client._contains_fake_dates("в 2024 году") == True
+        assert client._contains_fake_dates("в 2025 году") == True
+        # Текущий год (2026) должен проходить
+        assert client._contains_fake_dates("в 2026 году") == False
+        assert client._contains_fake_dates("2026 год") == False
+        # Будущие годы должны блокироваться
+        assert client._contains_fake_dates("в 2027 году") == True
+        assert client._contains_fake_dates("к 2030 году") == True
         print("   ✅ PASS")
         tests_passed += 1
     except Exception as e:

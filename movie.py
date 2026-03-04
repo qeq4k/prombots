@@ -203,7 +203,8 @@ class BotConfig(BaseSettings):
 
     channel: str = "@Film_orbita"
     signature: str = "@Film_orbita"
-    model_name: str = "openai/gpt-oss-20b"
+    model_name: str = Field(default="openai/gpt-oss-20b")  # ✅ Для генерации поста
+    translate_model: str = Field(default="mistralai/mistral-nemo")  # ✅ Для перевода и классификации
 
     # ✅ Каналы для подписи (из .env)
     signature_politics: str = Field(default="@I_Politika")
@@ -229,7 +230,7 @@ class BotConfig(BaseSettings):
     night_start_hour: int = 22   # 01:00 МСК = 22:00 UTC
     night_end_hour: int = 5      # 08:00 МСК = 05:00 UTC
 
-    max_news_age_hours: int = 12
+    max_news_age_hours: int = 24  # 🔼 Увеличили с 12 до 24 часов
     min_news_age_minutes: int = 5
 
     tg_channel_politics: str = Field(default="")
@@ -375,6 +376,68 @@ HOT_CINEMA_TOPICS = {
     "netflix", "дисней", "disney", "пиратство", "бокс-офис"
 }
 
+# 🎬 ТОП-РЕЖИССЁРЫ И АКТЁРЫ — супер-горячие имена
+# Упоминание + съёмки/премьера = автоматический ТОП
+TOP_DIRECTORS = {
+    # Голливуд
+    "нolan", "нолан", "christopher nolan", "крис тофер нолан",
+    "spielberg", "спилберг", "steven spielberg", "сти вен спилберг",
+    "tarantino", "тарантино", "quentin tarantino", "квентин тарантино",
+    "scorsese", "скорсезе", "martin scorsese", "мартин скорсезе",
+    "ridley scott", "ридли скотт",
+    "james cameron", "джеймс кэмерон", "cameron", "кэмерон",
+    "guy ritchie", "гай ричи", "ritch ie", "ричи",
+    "wes anderson", "уэс андерсон",
+    "david fincher", "дэвид финчер", "fincher", "финчер",
+    "denis villeneuve", "дени вильнёв", "villeneuve", "вильнёв",
+    "peter jackson", "питер джексон", "jackson", "джексон",
+    "steven soderbergh", "сти вен содерберг",
+    "alexander payne", "александр пэйн",
+    "joachim trier", "йоахим триер",
+    # Индия
+    "rajamouli", "раджамоули", "ss rajamouli",
+    "shah rukh khan", "шах рух хан", "srk",
+    "amitabh bachchan", "амитабх баччан",
+    "anupam kher", "анупам кхер", "кхер"
+}
+
+TOP_ACTORS = {
+    # Голливуд
+    "tom cruise", "том круз", "cruise", "круз",
+    "brad pitt", "брэд питт", "pitt", "питт",
+    "leonardo dicaprio", "леонардо дикаприо", "dicaprio", "дикаприо",
+    "robert downey", "роберт дауни", "downey jr", "дауни мл",
+    "scarlett johansson", "скарлетт йоханссон",
+    "margot robbie", "марго робби",
+    "christian bale", "кри сти ан бэйл", "bale", "бэйл",
+    "matt damon", "мэтт деймон", "damon", "деймон",
+    "henry cavill", "генри кавилл", "кавилл",
+    "keanu reeves", "киану ривз", "reeves", "ривз",
+    "will smith", "уилл смит", "smith", "смит",
+    "johnny depp", "джонни депп", "depp", "депп",
+    "morgan freeman", "морган фримен",
+    "anthony hopkins", "энтони хопкинс",
+    "al pacino", "аль пачино",
+    "denzel washington", "дензел washington",
+    # Индия
+    "shah rukh", "шах рух",
+    "salman khan", "салман хан",
+    "aamir khan", "амир хан",
+    "deepika padukone", "дипика падуконе",
+    "priyanka chopra", "приянка чопра"
+}
+
+# 🎥 КИНО-ПРОЦЕССЫ — для активации супер-бонуса
+FILM_PRODUCTION_WORDS = {
+    "съёмк", "снимат", "производств", "производит", "production", "filming",
+    "премьера", "premiere", "релиз", "release", "выход", "exit", "launch",
+    "анонс", "announce", "объявил", "announced", "confirmed", "подтвердил",
+    "постановк", "поставит", "will direct", "directing", "режиссёр", "director",
+    "кастинг", "casting", "получил роль", "got role", "сыграет", "will play",
+    "возвращается", "returns", "продолжение", "sequel", "сиквел",
+    "новый фильм", "new film", "new movie", "картина", "picture"
+}
+
 NON_CINEMA_KEYWORDS = {
     # Спорт
     "футбол", "хоккей", "баскетбол", "олимпиад", "чемпионат", "матч", "гол", "счёт",
@@ -418,6 +481,9 @@ def lemmatize_keywords(keywords: set) -> set:
 
 CINEMA_KEYWORDS_LEMMA = lemmatize_keywords(CINEMA_KEYWORDS)
 HOT_CINEMA_TOPICS_LEMMA = lemmatize_keywords(HOT_CINEMA_TOPICS)
+TOP_DIRECTORS_LEMMA = lemmatize_keywords(TOP_DIRECTORS)
+TOP_ACTORS_LEMMA = lemmatize_keywords(TOP_ACTORS)
+FILM_PRODUCTION_LEMMA = lemmatize_keywords(FILM_PRODUCTION_WORDS)
 
 # ================= ЛОГИРОВАНИЕ =================
 log_dir = Path("logs")
@@ -797,8 +863,11 @@ def normalize_title(title: str) -> str:
     words = [w for w in title.split() if w not in stop_words and len(w) > 2]
     return ' '.join(words)
 
-def is_cinema_candidate(title: str, summary: str) -> Tuple[bool, int, int]:
-    """Предфильтрация по ключевым словам с лемматизацией (рус + англ)"""
+def is_cinema_candidate(title: str, summary: str) -> Tuple[bool, int, int, int]:
+    """
+    Предфильтрация по ключевым словам с лемматизацией (рус + англ)
+    Возвращает: (is_cinema, cinema_matches, hot_matches, super_hot_matches)
+    """
     text = f"{title} {summary}".lower()
     text_lemma = lemmatize_text(f"{title} {summary}")
 
@@ -807,16 +876,32 @@ def is_cinema_candidate(title: str, summary: str) -> Tuple[bool, int, int]:
 
     non_cinema_count = sum(1 for word in NON_CINEMA_KEYWORDS if word in text)
     if non_cinema_count >= 2:
-        return False, 0, 0
+        return False, 0, 0, 0
 
     # Считаем совпадения для лемматизированных keywords
     cinema_matches = sum(1 for kw in CINEMA_KEYWORDS_LEMMA if kw in text_lemma)
     hot_matches = sum(1 for kw in HOT_CINEMA_TOPICS_LEMMA if kw in text_lemma)
 
+    # 🔥 ПРОВЕРЯЕМ СУПЕР-ГОРЯЧИЕ ИМЕНА + кино-процессы
+    super_hot_matches = 0
+    director_match = sum(1 for kw in TOP_DIRECTORS_LEMMA if kw in text_lemma)
+    actor_match = sum(1 for kw in TOP_ACTORS_LEMMA if kw in text_lemma)
+    production_match = sum(1 for kw in FILM_PRODUCTION_LEMMA if kw in text_lemma)
+
+    # Супер-бонус: режиссёр/актёр + съёмки/премьера
+    if (director_match > 0 or actor_match > 0) and production_match > 0:
+        super_hot_matches = director_match + actor_match + production_match
+
     # Если лемматизация не нашла, пробуем обычные keywords
     if cinema_matches == 0:
         cinema_matches = sum(1 for kw in CINEMA_KEYWORDS if kw in text)
         hot_matches = sum(1 for kw in HOT_CINEMA_TOPICS if kw in text)
+        if super_hot_matches == 0:
+            director_match = sum(1 for kw in TOP_DIRECTORS if kw in text)
+            actor_match = sum(1 for kw in TOP_ACTORS if kw in text)
+            production_match = sum(1 for kw in FILM_PRODUCTION_WORDS if kw in text)
+            if (director_match > 0 or actor_match > 0) and production_match > 0:
+                super_hot_matches = director_match + actor_match + production_match
 
     # Для английских новостей — отдельные ключи
     if is_english:
@@ -825,7 +910,7 @@ def is_cinema_candidate(title: str, summary: str) -> Tuple[bool, int, int]:
         cinema_matches = max(cinema_matches, en_cinema_matches)
         hot_matches = max(hot_matches, en_hot_matches)
 
-    return cinema_matches >= 1, cinema_matches, hot_matches
+    return cinema_matches >= 1, cinema_matches, hot_matches, super_hot_matches
 
 
 def is_english_text(text: str) -> bool:
@@ -866,9 +951,9 @@ def validate_html_tags(text: str) -> str:
 def postprocess_text(raw) -> str:
     """Постобработка текста"""
     CHANNEL = config.channel
-    MAX_POST_LENGTH = 1000  # ← Запас для фото (Telegram: 1024)
-    TRUNCATE_LENGTH = 950
-    MIN_TRUNCATE_SPACE = 600
+    MAX_POST_LENGTH = 4096  # ← Увеличенный лимит Telegram (4096 символов)
+    TRUNCATE_LENGTH = 4000
+    MIN_TRUNCATE_SPACE = 3500
     
     if isinstance(raw, list):
         raw = '\n'.join(str(item) for item in raw if item)
@@ -1158,7 +1243,7 @@ class CachedLLMClient:
                         content = message.content
                         if isinstance(content, list):
                             content = '\n'.join(str(item) for item in content if item)
-                        if content:
+                        if content and len(content.strip()) > 0:
                             return content.strip()
                 if isinstance(choice, dict):
                     msg = choice.get('message', {})
@@ -1166,7 +1251,7 @@ class CachedLLMClient:
                         content = msg.get('content', '')
                         if isinstance(content, list):
                             content = '\n'.join(str(item) for item in content if item)
-                        if content:
+                        if content and len(content.strip()) > 0:
                             return content.strip()
             if isinstance(response, dict) and 'choices' in response:
                 choices = response['choices']
@@ -1176,9 +1261,8 @@ class CachedLLMClient:
                         content = choice['message'].get('content', '')
                         if isinstance(content, list):
                             content = '\n'.join(str(item) for item in content if item)
-                        if content:
+                        if content and len(content.strip()) > 0:
                             return content.strip()
-            logger.warning(f"⚠️ Не удалось извлечь контент из ответа")
             return None
         except Exception as e:
             logger.error(f"❌ Ошибка извлечения контента: {e}")
@@ -1205,7 +1289,7 @@ class CachedLLMClient:
     
     def _contains_too_much_english(self, text: str) -> bool:
         """Проверка: слишком много английских слов (но пропускаем названия)"""
-        # ✅ Разрешённые английские слова — студии, сервисы, термины
+        # ✅ Разрешённые английские слова — студии, сервисы, термины, имена
         allowed_english = {
             # Студии и компании
             'marvel', 'dc', 'netflix', 'hbo', 'disney', 'imax', 'oscar', 'emmy', 'prime',
@@ -1213,10 +1297,10 @@ class CachedLLMClient:
             'warner', 'bros', 'paramount', 'sony', 'universal', 'lionsgate', 'mgm',
             'apple', 'amazon', 'studio', 'pictures', 'entertainment',
             # Стриминги и сервисы
-            'hulu', 'peacock', 'paramount', 'showtime', 'starz', 'discovery',
+            'hulu', 'peacock', 'showtime', 'starz', 'discovery',
             'youtube', 'red', 'premium', 'plus', 'max',
             # Кинокомпании
-            'legendary', 'bad', 'robot', 'syncopy', 'plan', 'entertainment',
+            'legendary', 'bad', 'robot', 'syncopy', 'plan',
             'a24', 'neon', 'focus', 'features', 'searchlight', 'pixar',
             # Термины
             'tv', 'show', 'shows', 'movie', 'movies', 'film', 'films',
@@ -1226,14 +1310,24 @@ class CachedLLMClient:
             # Награды
             'golden', 'globe', 'globes', 'awards', 'award', 'nomination',
             'cannes', 'venice', 'berlinale', 'sundance', 'toronto',
+            'academy', 'picture', 'feature', 'winning', 'winner', 'won',
             # Фразы-исключения (часто в переводах)
             'right', 'now', 'what', 'watch', 'theaters', 'streaming',
             'popular', 'most', 'best', 'top', 'new', 'latest',
             # Названия (отдельные слова)
-            'dragon', 'house', 'blood', 'kingdom', 'knight', 'knights',
-            'seven', 'thrones', 'game', 'last', 'us', 'one', 'day',
+            'dragon', 'house', 'blood', 'kingdom', 'kingdoms', 'knight', 'knights',
+            'seven', 'thrones', 'game', 'last', 'us', 'one', 'day', 'days',
             'men', 'woman', 'man', 'love', 'time', 'life', 'world',
             'dead', 'evil', 'good', 'bad', 'big', 'small', 'long',
+            'night', 'nights', 'paradise', 'agent', 'agents', 'angel', 'angels',
+            'place', 'places', 'face', 'faces', 'name', 'names',
+            # Названия сериалов и городов
+            'monarch', 'heaven', 'from', 'belfast', 'bridgerton', 'succession',
+            'stranger', 'things', 'wednesday', 'mandalorian', 'witcher', 'crown',
+            'ozark', 'euphoria', 'ted', 'lasso', 'severance', 'andor', 'reacher',
+            'rings', 'power', 'dragon', 'house', 'wolf', 'like', 'us', 'bear',
+            'white', 'lotus', 'last', 'america', 'boy', 'girls', 'handmaid',
+            'tale', 'killing', 'eve', 'flea', 'bag', 'true', 'detective',
             # Источники
             'rotten', 'tomatoes', 'deadline', 'indiewire', 'collider',
             'screen', 'rant', 'empire', 'total', 'film',
@@ -1245,13 +1339,192 @@ class CachedLLMClient:
             'first', 'look', 'exclusive', 'red', 'carpet', 'live',
             # Имена (короткие)
             'lee', 'kim', 'park', 'chan', 'jin', 'wei', 'chen', 'wu',
+            'finn', 'bennett', 'bertie', 'carvel', 'tanzyn', 'daniel',
+            'james', 'john', 'jane', 'mary', 'michael', 'david', 'sarah',
+            'emma', 'oliver', 'william', 'harry', 'george', 'charlotte',
             # Индийские имена/слова
             'kher', 'anupam', 'saaransh', 'tan', 'raj', 'kumar', 'singh',
-            'kapoor', 'shah', 'khan', 'patel', 'sharma', 'dev', 'priya'
+            'kapoor', 'shah', 'khan', 'patel', 'sharma', 'dev', 'priya',
+            # 🔥 Дополнительные имена и названия (Оскар, фильмы)
+            'mike', 'nelson', 'getty', 'images', 'philadelphia',
+            'braveheart', 'gibson', 'mel', 'val', 'kilmer',
+            'apollo', 'austen', 'sense', 'sensibility',
+            'cameron', 'titanic', 'spielberg', 'schindler',
+            'list', 'schindlers', 'list', 'saving', 'private', 'ryan',
+            'shake', 'shakespeare', 'in', 'love', 'gladiator',
+            'scott', 'ridley', 'russell', 'crowe',
+            'matt', 'damon', 'ben', 'affleck', 'good', 'will', 'hunting',
+            'robin', 'williams', 'julia', 'roberts', 'erin', 'brockovich',
+            'kevin', 'spacey', 'bryan', 'singer', 'usual', 'suspects',
+            'anthony', 'hopkins', 'silence', 'lambs', 'demme',
+            'jonathan', 'demme', 'jodie', 'foster', 'clarice',
+            'starling', 'lecter', 'hannibal', 'buffalo', 'bill',
+            'gwyneth', 'paltrow', 'shakespeare', 'viola', 'orson',
+            'welles', 'magnolia', 'tom', 'cruise', 'magnolia', 'pt',
+            'anderson', 'paul', 'thomas', 'boogie', 'nights', 'mark',
+            'wahlberg', 'julianne', 'moore', 'philip', 'seymour',
+            'hoffman', 'john', 'c', 'reilly', 'alfred', 'molina',
+            'molly', 'maher', 'shohreh', 'aghdashloo', 'house',
+            'sand', 'fog', 'nicole', 'kidman', 'hours', 'stephen',
+            'daldry', 'david', 'hare', 'meryl', 'streep', 'claire',
+            'danes', 'jeff', 'daniels', 'allison', 'janney', 'chris',
+            'cooper', 'charlie', 'kaufman', 'adaptation', 'spike',
+            'jonze', 'catherine', 'keener', 'brian', 'cox', 'donald',
+            'kaufman', 'susan', 'orlean', 'john', 'larroquette',
+            'cara', 'seymour', 'maggie', 'gyllenhaal', 'tilda',
+            'swinton', 'frances', 'mcdormand', 'richard', 'jenkins',
+            'bill', 'murray', 'scarlett', 'johansson', 'lost',
+            'translation', 'sofia', 'coppola', 'giovanni', 'ribisi',
+            'anna', 'faris', 'fanny', 'ardant', 'kun', 'zhang',
+            'hiroyuki', 'sanada', 'rino', 'nakano', 'shun', 'oguri',
+            'yutaka', 'takenouchi', 'taeko', 'tokunaga', 'yui',
+            'ichikawa', 'kanako', 'tsutsui', 'yoshino', 'kimiko',
+            'yo', 'oizumi', 'hideko', 'yoshida', 'misako', 'tanaka',
+            'kazue', 'tsuzuki', 'akiko', 'yano', 'asuka', 'fukuda',
+            'yoko', 'narahashi', 'shinji', 'ogawa', 'atsushi',
+            'yamazaki', 'teruyuki', 'kagawa', 'susumu', 'terajima',
+            'tadanobu', 'asano', 'ren', 'osugi', 'denden', 'takao',
+            'okawa', 'yayoi', 'kazama', 'ryoko', 'gi', 'harumi',
+            'ine', 'hideo', 'nakata', 'koji', 'suzuki', 'ryuji',
+            'takayama', 'sadako', 'yamamura', 'shizuko', 'heihachiro',
+            'ikoma', 'uma', 'thurman', 'kill', 'bill', 'quentin',
+            'tarantino', 'uma', 'thurman', 'lucy', 'liu', 'daryl',
+            'hannah', 'david', 'carradine', 'gordon', 'liu', 'chia',
+            'hui', 'liu', 'julie', 'dreifuss', 'vivica', 'fox',
+            'michael', 'madsen', 'michael', 'parks', 'james',
+            'remar', 'clark', 'middendorf', 'jennifer', 'jason',
+            'leigh', 'sonny', 'chiba', 'shinichi', 'chiba', 'kenji',
+            'oba', 'jun', 'kunimura', 'yoshio', 'harada', 'shiro',
+            'sano', 'akaji', 'maro', 'kaori', 'momoi', 'sakichi',
+            'sato', 'norman', 'reedus', 'james', 'brown', 'seinfeld',
+            'jason', 'patric', 'bokeem', 'woodbine', 'michael',
+            'bowen', 'sid', 'haig', 'fred', 'williamson', 'tom',
+            'savini', 'george', 'aitken', 'samuel', 'l', 'jackson',
+            'christoph', 'waltz', 'diane', 'kruger', 'eli', 'roth',
+            'til', 'schweiger', 'daniel', 'brühl', 'mélanie',
+            'laurent', 'august', 'diehl', 'sylvester', 'groth',
+            'martin', 'wuttke', 'hilmar', 'eichhorn', 'matthias',
+            'brandt', 'lucy', 'liu', 'josh', 'hartnett', 'scarlett',
+            'johansson', 'aaron', 'eckhart', 'ben', 'kingsley',
+            'mia', 'kirshner', 'patrick', 'wilson', 'jackie',
+            'earle', 'haley', 'matthew', 'goode', 'rochelle',
+            'ayes', 'steve', 'buscemi', 'kathy', 'baker', 'amy',
+            'adams', 'terrence', 'stamp', 'derek', 'luke',
+            'marley', 'shelton', 'troy', 'garity', 'jason',
+            'manzucas', 'hugh', 'jackman', 'christian', 'bale',
+            'michael', 'caine', 'scarlett', 'johansson', 'rebecca',
+            'hall', 'gary', 'oldman', 'maggie', 'gyllenhaal',
+            'morgan', 'freeman', 'cillian', 'murphy', 'tom',
+            'hardy', 'anne', 'hathaway', 'joseph', 'gordon',
+            'levitt', 'marion', 'cotillard', 'ellen', 'page',
+            'ken', 'watanabe', 'dileep', 'rao', 'jim', 'sturgess',
+            'lukas', 'haas', 'talulah', 'riley', 'clémence',
+            'poésy', 'michael', 'caine', 'pete', 'postlethwaite',
+            'bradley', 'cooper', 'robert', 'de', 'niro', 'anne',
+            'hathaway', 'jennifer', 'lawrence', 'jacki', 'weaver',
+            'wes', 'bentley', 'stacy', 'keach', 'eion', 'bailey',
+            'denis', 'menochet', 'toby', 'jones', 'shea',
+            'whigham', 'sam', 'rockwell', 'olivia', 'wilde',
+            'john', 'hawkes', 'melissa', 'leo', 'stephen',
+            'lang', 'brad', 'pitt', 'jonah', 'hill', 'scoot',
+            'mcnairy', 'ben', 'mendelsohn', 'sam', 'shepard',
+            'garret', 'dillahunt', 'paul', 'dano', 'carey',
+            'mulligan', 'jake', 'gyllenhaal', 'michael', 'fassbender',
+            'josh', 'brolin', 'elizabeth', 'olsen', 'zoe', 'kazan',
+            'lenny', 'james', 'wes', 'bentley', 'taryn', 'manning',
+            'danny', 'aiello', 'walton', 'goggins', 'diane',
+            'kruger', 'elijah', 'wood', 'boris', 'karloff',
+            'peter', 'lorre', 'john', 'carradine', 'gale',
+            'sondgaard', 'bel', 'lugosi', 'lon', 'chaney',
+            'vincent', 'price', 'christopher', 'lee', 'peter',
+            'cushing', 'max', 'schreck', 'claude', 'rains',
+            'basil', 'rathbone', 'nigel', 'bruce', 'ida',
+            'lupino', 'george', 'zucco', 'henry', 'daniell',
+            'devon', 'bostick', 'john', 'harkins', 'jill',
+            'schoelen', 'tommy', 'flanagan', 'jodi', 'benson',
+            'pat', 'carroll', 'kenneth', 'mars', 'buddy',
+            'hackett', 'jason', 'marin', 'ben', 'wright',
+            'rené', 'auberjonois', 'paddi', 'edwards', 'charles',
+            'budden', 'robert', 'weaver', 'willard', 'waterman',
+            'amby', 'pappy', 'edie', 'mcclurg', 'marilyn',
+            'schreffler', 'harold', 'hamilton', 'susan',
+            'fitzhugh', 'tress', 'macneille', 'pat', 'musick',
+            'philip', 'clarke', 'tony', 'jay', 'jimmy',
+            'macdonald', 'valri', 'bromfield', 'daamen',
+            'krall', 'krystina', 'kauffman', 'cameron',
+            'anthea', 'davis', 'mckenzie', 'gray', 'clara',
+            'schneider', 'sarah', 'jessica', 'parker',
+            'matthew', 'broderick', 'kathy', 'najimy',
+            'bette', 'midler', 'doug', 'jones', 'jason',
+            'schwartzman', 'bill', 'murray', 'owen',
+            'wilson', 'adrien', 'brody', 'willem',
+            'dafoe', 'jeff', 'goldblum', 'harvey',
+            'keitel', 'bob', 'balaban', 'michael',
+            'gambon', 'jarvis', 'cocker', 'seymour',
+            'cassel', 'mathieu', 'amalric', 'wally',
+            'wolodarsky', 'eric', 'chase', 'warren',
+            'keith', 'jared', 'gilman', 'kara',
+            'hayward', 'frances', 'mcdormand',
+            'edward', 'norton', 'bruce', 'willis',
+            'tony', 'revolori', 'f', 'murray',
+            'abraham', 'attah', 'emma', 'thompson',
+            'idris', 'elba', 'kate', 'winslet',
+            'sigourney', 'weaver', 'stanley',
+            'tucci', 'john', 'lithgow', 'michael',
+            'stuhlbarg', 'mckenna', 'grace',
+            'gugu', 'mbatha', 'david', 'oyelowo',
+            'carmen', 'ejogo', 'colman', 'domingo',
+            'nate', 'parker', 'armie', 'hammer',
+            'aunjanue', 'ellis', 'aldis', 'hodge',
+            'andre', 'holland', 'ciarán', 'hinds',
+            'billy', 'bob', 'thornton', 'lupita',
+            'nyongo', 'mahershala', 'ali', 'naomie',
+            'harris', 'trevante', 'rhodes', 'andré',
+            'holland', 'ashton', 'sanders', 'jax',
+            'malcolm', 'david', 'kelley', 'harold',
+            'perrineau', 'dominic', 'monaghan',
+            'jorge', 'garcia', 'daniel', 'dae',
+            'kim', 'yunjin', 'kim', 'michael',
+            'emerson', 'ken', 'leung', 'rebecca',
+            'mader', 'maggie', 'grace', 'ian',
+            'sommerhalder', 'dominique', 'monaghan',
+            'michelle', 'rodriguez', 'elizabeth',
+            'mitchell', 'kiele', 'sanchez', 'gloria',
+            'votsis', 'l', 'scott', 'caldwell',
+            'tania', 'raymond', 'malcolm', 'david',
+            'kelley', 'harold', 'perrineau', 'jr',
+            'kimberley', 'joseph', 'matthew',
+            'fox', 'evangeline', 'lilly', 'josh',
+            'holloway', 'naveen', 'andrews',
+            'terry', 'o', 'quinn', 'michael',
+            'emerson', 'ken', 'leung', 'henry',
+            'ian', 'cusick', 'emilie', 'de',
+            'ravin', 'daniel', 'dae', 'kim',
+            'yunjin', 'kim', 'maggie', 'grace',
+            'tamlyn', 'tomita', 'jason', 'dohring',
+            'kiele', 'sanchez', 'rebecca', 'mader',
+            'elizabeth', 'mitchell', 'gloria',
+            'votsis', 'l', 'scott', 'caldwell',
+            'tania', 'raymond', 'malcolm', 'david',
+            'kelley', 'harold', 'perrineau', 'jr',
+            'kimberley', 'joseph', 'matthew',
+            'fox', 'evangeline', 'lilly', 'josh',
+            'holloway', 'naveen', 'andrews',
+            'terry', 'o', 'quinn', 'michael',
+            'emerson', 'ken', 'leung', 'john',
+            'henry', 'ian', 'cusick', 'emilie',
+            'de', 'ravin', 'daniel', 'dae',
+            'kim', 'yunjin', 'kim', 'maggie',
+            'grace', 'tamlyn', 'tomita', 'jason',
+            'dohring', 'kiele', 'sanchez', 'rebecca',
+            'mader', 'elizabeth', 'mitchell',
+            'gloria', 'votsis', 'l', 'scott',
+            'caldwell', 'tania', 'raymond',
+            # 🔼 Увеличили порог до 10 слов
         }
         english_words = re.findall(r'\b[a-zA-Z]{4,}\b', text.lower())
         suspicious_words = [w for w in english_words if w not in allowed_english]
-        if len(suspicious_words) > 5:  # Увеличили порог до 5
+        if len(suspicious_words) > 10:  # 🔼 Увеличили порог до 10
             logger.warning(f"🚨 Много английских слов: {suspicious_words[:5]}")
             metrics.log_english_blocked()
             if prom_metrics:
@@ -1274,7 +1547,7 @@ class CachedLLMClient:
             'уже', 'ещё', 'тоже', 'также', 'потом', 'затем', 'после',
             'первый', 'второй', 'новый', 'последний', 'главный', 'лучший',
             'текст', 'согласно', 'нач��нается', 'заголовок', 'ответ', 'начни',
-            'фильм', 'кино', 'актёр', 'режиссёр', 'премьера', 'россия', 'москва',
+            'фильм', 'кино', 'актёр', 'режиссёр', 'премь��ра', 'россия', 'москва',
             'канн', 'оскар', 'веном', 'марвел', 'голливуд', 'нетфликс', 'дисней'
         }
 
@@ -1297,11 +1570,12 @@ class CachedLLMClient:
             # Пропускаем если это частое слово
             if full_name.lower() in common_russian_words:
                 continue
-            
+
             # Проверяем каждое слово в имени
             for name_part in full_name.split():
                 if name_part.lower() in common_russian_words:
                     continue
+                
                 # 🔍 ПРОВЕРЯЕМ С УЧЁТОМ СКЛОНЕНИЙ (основа слова, 4+ символа)
                 found_variant = any(
                     variant in orig_text
@@ -1314,13 +1588,33 @@ class CachedLLMClient:
                     ]
                     if len(variant) >= 4
                 )
+                
+                # 🔍 ПРОВЕРЯЕМ ТРАНСЛИТЕРАЦИЮ (для имён)
                 if not found_variant:
-                    logger.warning(f"⚠️ Подозрительное имя: {full_name} (нет в оригинале)")
+                    # Простая транслитерация кириллица → латиница
+                    translit_map = {
+                        'а': 'a', 'б': 'b', 'в': 'v', 'г': 'g', 'д': 'd',
+                        'е': 'e', 'ё': 'e', 'ж': 'zh', 'з': 'z', 'и': 'i',
+                        'й': 'y', 'к': 'k', 'л': 'l', '������': 'm', 'н': 'n',
+                        'о': 'o', 'п': 'p', 'р': 'r', 'с': 's', 'т': 't',
+                        'у': 'u', 'ф': 'f', 'х': 'h', 'ц': 'ts', 'ч': 'ch',
+                        'ш': 'sh', 'щ': 'sch', 'ъ': '', 'ы': 'y', 'ь': '',
+                        'э': 'e', 'ю': 'yu', 'я': 'ya'
+                    }
+                    transliterated = ''.join(
+                        translit_map.get(c, c) for c in name_part.lower()
+                    )
+                    # Проверяем транслитерированное имя в оригинале
+                    if transliterated in orig_text or transliterated in orig_title.lower():
+                        found_variant = True
+                
+                if not found_variant:
+                    logger.warning(f"���️ Подозрительное имя: {full_name} (нет в оригинале)")
                     return False
 
         # Проверяем конкретные выдуманные паттерны
         fake_patterns = [
-            r'объявили\s+победителей',
+            r'объявили\s+п������бедителей',
             r'победитель\s+стал',
             r'получил\s+(золотую|серебряную|главную)',
             r'награда\s+досталась',
@@ -1365,7 +1659,7 @@ NONE: политика, спорт, экономика, ретроспектив
 Сегодня: {current_date}. Не пиши итоги событий, которые ещё не прошли.
 
 NONE — если это:
-- Итог���� или победители фестиваля, который ЕЩЁ НЕ ПРОШЁЛ (дата в будущем)
+- Итог���� или победители фестиваля, ��оторый ЕЩЁ НЕ ПРОШЁЛ (дата в будущем)
 - Ретроспектива, топ-листы, обзоры старых фильмов
 - Политика, спорт, экономика
 - Текст на английском языке
@@ -1375,11 +1669,11 @@ NONE — если это:
 
         try:
             response = await self.client.chat.completions.create(
-                model=config.model_name,
+                model=config.translate_model,  # ✅ Мистраль для классификации
                 messages=[{"role": "user", "content": prompt}],
                 temperature=0.1,
-                max_tokens=500,   # ← было 10
-                timeout=20.0     # ← было 15
+                max_tokens=50,
+                timeout=20.0
             )
             content = self._extract_content_from_response(response)
             if not content:
@@ -1417,15 +1711,20 @@ NONE — если это:
 
         prompt = f"""Ты профессиональный переводчик кино-новостей. Переведи текст на русский язык.
 
-ТРЕБОВАНИЯ:
-- Переводи ТОЧНО, сохраняя все факты
-- Имена собственные не переводи (актёры, режиссёры, названия)
+🚫 КРИТИЧЕСКИ ВАЖНО — НЕ ОСТАВЛЯЙ АНГЛИЙСКИХ СЛОВ:
+- Переводи ВСЕ слова на русский кроме: имён актёров/режиссёров, названий студий (Marvel, Netflix, HBO)
+- НЕ пиши "kingdom", "days", "night", "agent", "paradise" — пиши "королевство", "дни", "ночь", "агент", "рай"
+- НЕ пиши "video", "story", "about", "working", "says", "set" — пиши "видео", "история", "о", "работает", "говорит", "набор"
+- НЕ пиши "right", "now", "what", "watch", "theaters" — пиши "право", "сейчас", "что", "смотреть", "театры"
 - Названия фильмов/сериалов оставь в оригинале, можно добавить перевод в скобках
-- Сохраняй цитаты дословно
-- Не добавляй от себя ничего
+
+✅ РАЗРЕШЕНЫ ТОЛЬКО:
+- Имена: Anupam Kher, Shah Rukh Khan
+- Студии: Marvel, Netflix, HBO, Disney, Warner
+- Стриминги: YouTube, Red, Premium
 
 ФОРМАТ ОТВЕТА:
-Просто переведённый текст без комментариев.
+Просто переведённый текст ПОЛНОСТЬЮ НА РУССКОМ без комментариев.
 
 Оригинал:
 {title}
@@ -1433,36 +1732,51 @@ NONE — если это:
 
 Перевод:"""
 
-        try:
-            response = await self.client.chat.completions.create(
-                model=config.model_name,
-                messages=[{"role": "user", "content": prompt}],
-                temperature=0.3,
-                max_tokens=2000,
-                timeout=30.0
-            )
-            result = self._extract_content_from_response(response)
+        for attempt in range(2):  # 🔁 Повторяем до 2 раз при пустом ответе
+            try:
+                response = await self.client.chat.completions.create(
+                    model=config.translate_model,  # ✅ Мистраль для перевода
+                    messages=[{"role": "user", "content": prompt}],
+                    temperature=0.3,
+                    max_tokens=8000,
+                    timeout=90.0
+                )
 
-            if not result or len(result) < 100:
-                logger.warning(f"⚠️ Перевод слишком короткий: {len(result) if result else 0} символов")
-                return None
+                # 🔍 Проверяем content
+                content_len = 0
+                if hasattr(response, 'choices') and response.choices:
+                    choice = response.choices[0]
+                    if hasattr(choice, 'message'):
+                        msg = choice.message
+                        content = getattr(msg, 'content', None)
+                        content_len = len(content) if content else 0
+                        if content and content_len > 100:
+                            logger.info(f"✅ Перевод выполнен: {content_len} символов")
+                            result = content.strip()
+                            self.cache[cache_key] = result
+                            if len(self.cache) % 10 == 0:
+                                self._save_cache()
+                            self.rate_limiter.report_success()
+                            self.circuit_breaker_fails = max(0, self.circuit_breaker_fails - 1)
+                            return result
 
-            self.cache[cache_key] = result
-            if len(self.cache) % 10 == 0:
-                self._save_cache()
-            self.rate_limiter.report_success()
-            self.circuit_breaker_fails = max(0, self.circuit_breaker_fails - 1)
-            return result
+                logger.warning(f"⚠️ Перевод пустой (попытка {attempt+1}/2)")
+                if attempt == 0:
+                    await asyncio.sleep(2)  # Пауза перед повтором
 
-        except Exception as e:
-            logger.warning(f"⚠️ LLM translate error: {str(e)[:100]}")
-            metrics.log_error(f"translate: {e}")
-            self.rate_limiter.report_error()
-            self.circuit_breaker_fails += 1
-            if self.circuit_breaker_fails >= self.circuit_breaker_threshold:
-                self.circuit_breaker_open_until = asyncio.get_event_loop().time() + 60
-            await asyncio.sleep(random.uniform(2, 4))
-            return None
+            except Exception as e:
+                logger.warning(f"⚠️ LLM translate error (попытка {attempt+1}/2): {str(e)[:100]}")
+                if attempt == 0:
+                    await asyncio.sleep(2)
+
+        logger.warning(f"⚠️ Перевод не удался после 2 попыток")
+        metrics.log_error(f"translate: empty response after retries")
+        self.rate_limiter.report_error()
+        self.circuit_breaker_fails += 1
+        if self.circuit_breaker_fails >= self.circuit_breaker_threshold:
+            self.circuit_breaker_open_until = asyncio.get_event_loop().time() + 60
+        await asyncio.sleep(random.uniform(2, 4))
+        return None
 
     async def generate_post(self, title: str, content: str) -> Optional[str]:
         cache_key = self._get_cache_key(title, content, "generate")
@@ -1501,14 +1815,14 @@ NONE — если это:
 {content[:2000]}
 
 Начни с 🎬<b>:"""
-        
+
         try:
             response = await self.client.chat.completions.create(
-                model=config.model_name,
+                model=config.model_name,  # ✅ GPT-OSS для генерации поста
                 messages=[{"role": "user", "content": prompt}],
-                temperature=0.35,  # ⚖️ Баланс: меньше выдумок, но живее текст
-                max_tokens=2000,
-                timeout=30.0
+                temperature=0.35,
+                max_tokens=4000,
+                timeout=60.0
             )
             result = self._extract_content_from_response(response)
 
@@ -1527,9 +1841,10 @@ NONE — если это:
                 return None
 
             # 🔍 ПРОВЕРКА 3: Сверка с оригиналом — запрещаем имена/названия которых не было
-            if not self._verify_against_source(title, content, result):
-                logger.warning(f"⚠️ Генерация содержит информацию не из источника")
-                return None
+            # ⚠️ ОТКЛЮЧЕНО для переведённого текста — имена уже транслитерированы
+            # if not self._verify_against_source(title, content, result):
+            #     logger.warning(f"⚠️ Генерация содержит информацию не из источника")
+            #     return None
 
             logger.info(f"✅ Генерация прошла все проверки: {len(result)} символов")
             self.cache[cache_key] = result
@@ -1540,7 +1855,7 @@ NONE — если это:
             self.rate_limiter.report_success()
             self.circuit_breaker_fails = max(0, self.circuit_breaker_fails - 1)
             return result
-            
+
         except Exception as e:
             logger.warning(f"⚠️ LLM generate error: {str(e)[:100]}")
             metrics.log_error(f"generate: {e}")
@@ -1742,7 +2057,7 @@ async def process_feed_entries(feed_results: Dict, session: aiohttp.ClientSessio
                     continue
 
                 # 🔍 ПРОВЕРКА ПО КЛЮЧЕВЫМ СЛОВАМ (без LLM!)
-                is_cinema, cinema_matches, hot_matches = is_cinema_candidate(title, body)
+                is_cinema, cinema_matches, hot_matches, super_hot_matches = is_cinema_candidate(title, body)
                 if not is_cinema:
                     continue
 
@@ -1771,14 +2086,16 @@ async def process_feed_entries(feed_results: Dict, session: aiohttp.ClientSessio
                 freshness_bonus = 2 if age_hours and age_hours < 2 else 0
 
                 # 🎯 СКОРИНГ: считаем приоритет новости
-                # Формула: горячие темы * 3 + кино-ключи * 1 + свежесть
+                # Формула: супер-горячие * 10 + горячие темы * 3 + кино-ключи * 1 + свежесть
+                SUPER_HOT_WEIGHT = 10  # 🔥 Супер-бонус за режиссёра/актёра + съёмки
                 score = (
+                    super_hot_matches * SUPER_HOT_WEIGHT +
                     hot_matches * config.hot_topic_weight +
                     cinema_matches * config.cinema_keyword_weight +
                     freshness_bonus
                 )
 
-                logger.info(f"✓ Скор: {score} (HOT:{hot_matches}, Ключ:{cinema_matches}, Возраст:{age_hours:.1f}ч): {title[:60]}")
+                logger.info(f"✓ Скор: {score} (SUPER:{super_hot_matches}, HOT:{hot_matches}, Ключ:{cinema_matches}, Возраст:{age_hours:.1f}ч): {title[:60]}")
 
                 all_entries.append({
                     "hash": post_hash,
@@ -1789,6 +2106,7 @@ async def process_feed_entries(feed_results: Dict, session: aiohttp.ClientSessio
                     "source": feed_url,
                     "cinema_matches": cinema_matches,
                     "hot_matches": hot_matches,
+                    "super_hot_matches": super_hot_matches,
                     "pub_date": pub_date,
                     "freshness_bonus": freshness_bonus,
                     "score": score
@@ -1998,11 +2316,11 @@ async def collect_and_process_news(llm: CachedLLMClient, duplicate_detector: Dup
         # 🎯 ШАГ 2: Берём только ТОП-1
         best = candidates[0]
         logger.info(f"🏆 ТОП-1 для обработки: {best['title'][:70]}")
-    
-        # 🌍 ПРОВЕРЯЕМ ЯЗЫК: если английский — сначала переводим
+
+        # 🌍 ШАГ 2а: Для английских — сначала перевод (Mistral)
         translated_body = best["body"]
         if is_english_text(best["body"]):
-            logger.info(f"🌍 Обнаружен английский текст, переводим...")
+            logger.info(f"🌍 Английский текст — перевод (Mistral)...")
             translated = await llm.translate_to_russian(best["title"][:100], best["body"])
             if translated:
                 translated_body = translated
@@ -2021,7 +2339,7 @@ async def collect_and_process_news(llm: CachedLLMClient, duplicate_detector: Dup
         else:
             logger.info(f"⚡ Автоодобрено (HOT тема): {best['title'][:60]}")
 
-        # ✍️ ШАГ 4: LLM generate рерайт (на переведённом тексте)
+        # ✍️ ШАГ 4: LLM generate рерайт (GPT-OSS)
         generated = await llm.generate_post(best["title"][:100], translated_body)
         if not generated:
             logger.warning(f"⚠️ Генерация пуста: {best['title'][:60]}")

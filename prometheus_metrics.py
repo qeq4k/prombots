@@ -135,7 +135,15 @@ class PrometheusMetrics:
             ['bot'],
             registry=self.registry
         )
-        
+
+        # 🎯 Метрика: Проскочившие дубликаты (опубликованные)
+        self.slipped_duplicates = Counter(
+            'bot_slipped_duplicates_total',
+            'Duplicates that slipped through and were posted to channel',
+            ['channel', 'bot'],
+            registry=self.registry
+        )
+
         # Запускаем HTTP сервер для метрик
         start_http_server(port, registry=self.registry)
         logger.info(f"📊 Prometheus метрики запущены на порту http://localhost:{port}/metrics (bot={bot_name})")
@@ -202,7 +210,20 @@ class PrometheusMetrics:
         """Инкремент счётчика заблокированных постов с английским"""
         if self.enabled:
             self.english_blocked.labels(bot=self.bot_name).inc()
-    
+
+    def inc_slipped_dup(self, channel: str):
+        """
+        Инкремент счётчика проскочивших дубликатов (опубликованных)
+
+        Args:
+            channel: Название канала (e.g., 'cinema', 'economy', 'politics')
+        """
+        if self.enabled:
+            self.slipped_duplicates.labels(
+                channel=channel,
+                bot=self.bot_name
+            ).inc()
+
     def set_candidates(self, count: int):
         """
         Установка текущего количества кандидатов в очереди
@@ -245,6 +266,7 @@ class PrometheusMetrics:
             'candidates': self.candidates.labels(bot=self.bot_name)._value.get(),
             'fake_dates': self._get_counter_value(self.fake_dates),
             'english_blocked': self._get_counter_value(self.english_blocked),
+            'slipped_duplicates': self._get_counter_value(self.slipped_duplicates),
         }
     
     def _get_counter_value(self, counter: Counter) -> int:

@@ -56,6 +56,16 @@ except ImportError:
     GLOBAL_DEDUP_ENABLED = False
     logging.warning("⚠️ global_dedup.py не найден — дедупликация работает в базовом режиме")
 
+# ✅ ИМПОРТ PROMETHEUS METRICS
+try:
+    from prometheus_metrics import PrometheusMetrics
+    prom_metrics = PrometheusMetrics(bot_name='urgent', port=8003)
+    METRICS_ENABLED = True
+except ImportError:
+    METRICS_ENABLED = False
+    prom_metrics = None
+    logging.warning("⚠️ prometheus_metrics не найден — метрики отключены")
+
 load_dotenv()
 
 # ================= КОНФИГУРАЦИЯ =================
@@ -301,14 +311,38 @@ REMOVE_PHRASES = [
     "28 февраля 2026 года США и Израиль начали военную операцию против Ирана",
 ]
 
+# ✅ REGEX-паттерны для удаления фейковой вставки про Иран
+# Ловит все варианты: разный порядок слов, с "года"/"г.", с точкой и без
+IRAN_HOAX_PATTERNS = [
+    r'\d+\s*(?:февр|февраля)\s*\d{0,4}\s*(?:года|г\.?)?\s*[,.]?\s*(?:США\s*(?:и|с)\s*Израиль|Израиль\s*(?:и|с)\s*США)\s*начал[ии]?\s*военн[уюую]?\.?\s*операци[юью]?\.?\s*(?:против|в\s*отношении)\s*Ирана\.?',
+    r'(?:США\s*(?:и|с)\s*Израиль|Израиль\s*(?:и|с)\s*США)\s*начал[ии]?\s*военн[уюую]?\.?\s*операци[юью]?\.?\s*(?:против|в\s*отношении)\s*Ирана',
+    r'военн[аяою]?\.?\s*операци[яию]?\.?\s*(?:против|в\s*отношении)\s*Ирана\s*начал[асьа]?\s*\d+\s*(?:февр|февраля)',
+]
+
 
 def clean_news_text(text: str) -> str:
     """Удаляет повторяющиеся штампы и подписи из текста новости"""
     for phrase in REMOVE_PHRASES:
         text = text.replace(phrase, "")
+    
+    # ✅ Удаляем все варианты фейковой вставки про Иран (regex)
+    for pattern in IRAN_HOAX_PATTERNS:
+        text = re.sub(pattern, '', text, flags=re.IGNORECASE)
+    
     # Удаляем лишние пробелы и пустые строки
     text = re.sub(r'\s+', ' ', text).strip()
     return text
+
+
+def contains_hoax_phrase(text: str) -> bool:
+    """
+    ✅ Проверяет, содержит ли текст фейковую вставку про Иран.
+    Используется для пост-проверки после LLM-рерайта.
+    """
+    for pattern in IRAN_HOAX_PATTERNS:
+        if re.search(pattern, text, flags=re.IGNORECASE):
+            return True
+    return False
 
 
 # ================= ПРИОРИТЕТЫ =================
@@ -510,9 +544,16 @@ class UrgentNewsBot:
         current_date = datetime.now().strftime('%d.%m.%Y')
         current_year = datetime.now().year
 
+        # ✅ ЖЕСТКИЙ ЗАПРЕТ НА ФЕЙКОВУЮ ВСТАВКУ
         prompt = (
-            f"Ты — редактор Telegram-канала. СРОЧНО перепиши новость в информативном стиле.\n"
-            "ПРАВИЛА:\n"
+            f"Ты — редактор Telegram-канала. СРОЧНО перепиши новость в информативном стиле.\n\n"
+            "⚠️ КРИТИЧЕСКИ ВАЖНО:\n"
+            "• НЕ добавляй фразы про 'США и Израиль начали военную операцию против Ирана'\n"
+            "• НЕ добавляй фразы про '28 февраля' или любую другую дату операции\n"
+            "• НЕ выдумывай военные операции, конфликты, удары — пиши ТОЛЬКО по исходному тексту\n"
+            "• Если в тексте нет военной операции — НЕ упоминай её\n"
+            "• Сохраняй только факты из исходного текста\n\n"
+            "ПРАВИЛА ФОРМАТА:\n"
             "1. Первый абзац — **жирный заголовок** (2-3 предложения)\n"
             "2. 1-2 коротких абзаца с деталями\n"
             "3. Только факты, без воды\n"
@@ -610,6 +651,8 @@ class UrgentNewsBot:
         is_dup, reason = await is_urgent_duplicate(title, summary, category)
         if is_dup:
             logger.info(f"🔄 Дубликат ({reason}): {title[:50]}")
+            if METRICS_ENABLED:
+                prom_metrics.inc_dup('urgent')
             return None
 
         # Проверяем cooldown канала
@@ -663,9 +706,21 @@ class UrgentNewsBot:
 
         if rewritten_text:
             logger.info(f"✅ LLM-рерайт выполнен ({len(rewritten_text)} символов)")
+            
+            # ✅ ПОСТ-ПРОВЕРКА: удаляем фейковую вставку если она просочилась
+            cleaned_rewrite = clean_news_text(rewritten_text)
+            
+            # Если после очистки текст стал слишком коротким — отменяем рерайт
+            if len(cleaned_rewrite) < 50:
+                logger.warning(f"⚠️ Рерайт содержит только фейк — отменено, публикуем оригинал")
+                rewritten_text = None
+            elif cleaned_rewrite != rewritten_text:
+                logger.info(f"✅ Удалена фейковая вставка из рерайта")
+                rewritten_text = cleaned_rewrite
         else:
             logger.warning(f"⚠️ Рерайт не удался — публикуем как есть")
 
+        # ✅ ФИНАЛЬНАЯ ПРОВЕРКА перед публикацией
         text = format_urgent_post(
             news['title'],
             news['summary'],
@@ -675,6 +730,11 @@ class UrgentNewsBot:
             news['triggers'],
             rewritten_text
         )
+        
+        # Если текст содержит фейковую вставку — не публикуем
+        if contains_hoax_phrase(text):
+            logger.error(f"🚫 ОТМЕНА: текст содержит фейковую вставку про Иран — не публикуем")
+            return
 
         success = await send_to_telegram(text, channel)
 
@@ -690,6 +750,10 @@ class UrgentNewsBot:
 
             # Обновляем cooldown
             self.last_post_time[channel] = datetime.now().timestamp()
+
+            # ✅ ОТПРАВЛЯЕМ МЕТРИКУ
+            if METRICS_ENABLED:
+                prom_metrics.inc_post(news['category'], 'autopost')
 
             logger.info(f"🚨 ОПУБЛИКОВАНО: {news['title'][:50]} (priority={news['priority']})")
     

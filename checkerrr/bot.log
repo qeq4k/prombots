@@ -3412,3 +3412,102 @@ Original description: Too Many Requests: retry after 5
 2026-03-03 08:38:07,785 - aiogram.dispatcher - ERROR - Failed to fetch updates - TelegramNetworkError: HTTP Client says - ClientOSError: [Errno 104] Connection reset by peer
 2026-03-03 08:38:07,785 - aiogram.dispatcher - WARNING - Sleep for 1.000000 seconds and try again... (tryings = 0, bot id = 8554826085)
 2026-03-03 08:38:18,831 - aiogram.dispatcher - INFO - Connection established (tryings = 1, bot id = 8554826085)
+2026-03-03 10:34:39,876 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2026-03-03 10:34:39,898 - aiogram.dispatcher - INFO - Polling stopped for bot @kinocode26_bot id=8554826085 - 'KinoCode26'
+2026-03-03 10:34:39,901 - aiogram.dispatcher - INFO - Polling stopped
+2026-03-03 10:34:40,159 - database - INFO - ✅ Соединение с БД закрыто
+2026-03-03 10:34:40,164 - __main__ - INFO - ✅ Бот остановлен корректно
+2026-03-03 10:35:03,235 - database - INFO - ✅ Подключение к БД установлено: movies.db
+2026-03-03 10:35:03,240 - database - INFO - ✅ Таблицы БД созданы/проверены
+2026-03-03 10:35:03,243 - database - INFO - ✅ Таблицы БД проверены/созданы
+2026-03-03 10:35:03,428 - __main__ - INFO - ✅ Используем in-memory кэш
+2026-03-03 10:35:03,432 - __main__ - INFO - ✅ Health checker инициализирован
+2026-03-03 10:35:03,433 - __main__ - INFO - ✅ Бот инициализирован успешно
+2026-03-03 10:35:03,466 - __main__ - INFO - 🚀 Запуск бота...
+2026-03-03 10:35:03,477 - __main__ - INFO - ✅ Health check: healthy
+2026-03-03 10:35:03,480 - aiogram.dispatcher - INFO - Start polling
+2026-03-03 10:35:03,655 - aiogram.dispatcher - INFO - Run polling for bot @kinocode26_bot id=8554826085 - 'KinoCode26'
+2026-03-03 12:36:35,385 - aiogram.dispatcher - ERROR - Failed to fetch updates - TelegramServerError: Telegram server says - Bad Gateway
+2026-03-03 12:36:35,387 - aiogram.dispatcher - WARNING - Sleep for 1.000000 seconds and try again... (tryings = 0, bot id = 8554826085)
+2026-03-03 12:36:36,443 - aiogram.dispatcher - ERROR - Failed to fetch updates - TelegramServerError: Telegram server says - Bad Gateway
+2026-03-03 12:36:36,444 - aiogram.dispatcher - WARNING - Sleep for 1.461628 seconds and try again... (tryings = 1, bot id = 8554826085)
+2026-03-03 12:37:43,770 - aiogram.dispatcher - INFO - Connection established (tryings = 2, bot id = 8554826085)
+2026-03-03 14:43:54,271 - aiogram.dispatcher - ERROR - Failed to fetch updates - TelegramRetryAfter: Telegram server says - Flood control exceeded on method 'GetUpdates'. Retry in 5 seconds.
+Original description: Too Many Requests: retry after 5
+(background on this error at: https://core.telegram.org/bots/faq#my-bot-is-hitting-limits-how-do-i-avoid-this)
+2026-03-03 14:43:54,272 - aiogram.dispatcher - WARNING - Sleep for 1.000000 seconds and try again... (tryings = 0, bot id = 8554826085)
+2026-03-03 14:43:55,324 - aiogram.dispatcher - ERROR - Failed to fetch updates - TelegramRetryAfter: Telegram server says - Flood control exceeded on method 'GetUpdates'. Retry in 5 seconds.
+Original description: Too Many Requests: retry after 5
+(background on this error at: https://core.telegram.org/bots/faq#my-bot-is-hitting-limits-how-do-i-avoid-this)
+2026-03-03 14:43:55,324 - aiogram.dispatcher - WARNING - Sleep for 1.221765 seconds and try again... (tryings = 1, bot id = 8554826085)
+2026-03-03 14:43:57,050 - aiogram.dispatcher - ERROR - Failed to fetch updates - TelegramServerError: Telegram server says - Bad Gateway
+2026-03-03 14:43:57,051 - aiogram.dispatcher - WARNING - Sleep for 1.706141 seconds and try again... (tryings = 2, bot id = 8554826085)
+2026-03-03 14:44:59,706 - aiogram.dispatcher - INFO - Connection established (tryings = 3, bot id = 8554826085)
+2026-03-04 04:42:09,990 - aiogram.event - INFO - Update id=375091842 is not handled. Duration 373 ms by bot id=8554826085
+2026-03-04 04:42:09,990 - aiogram.event - ERROR - Cause exception while process update id=375091842 by bot id=8554826085
+TelegramBadRequest: Telegram server says - Bad Request: message is not modified: specified new message content and reply markup are exactly the same as a current content and reply markup of the message
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/dist-packages/aiogram/dispatcher/dispatcher.py", line 320, in _process_update
+    response = await self.feed_update(bot, update, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/aiogram/dispatcher/dispatcher.py", line 164, in feed_update
+    response = await self.update.wrap_outer_middleware(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/aiogram/dispatcher/middlewares/error.py", line 27, in __call__
+    return await handler(event, data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/aiogram/dispatcher/middlewares/user_context.py", line 58, in __call__
+    return await handler(event, data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/aiogram/fsm/middleware.py", line 43, in __call__
+    return await handler(event, data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/aiogram/dispatcher/event/telegram.py", line 126, in trigger
+    return await wrapped_inner(event, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/aiogram/dispatcher/event/handler.py", line 71, in call
+    return await wrapped()
+           ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/aiogram/dispatcher/dispatcher.py", line 283, in _listen_update
+    return await self.propagate_event(update_type=update_type, event=event, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/aiogram/dispatcher/router.py", line 161, in propagate_event
+    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/aiogram/dispatcher/router.py", line 153, in _wrapped
+    return await self._propagate_event(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/aiogram/dispatcher/router.py", line 181, in _propagate_event
+    response = await observer.trigger(event, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/aiogram/dispatcher/event/telegram.py", line 126, in trigger
+    return await wrapped_inner(event, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/checkerrr/bot.py", line 65, in subscription_middleware
+    return await handler(event, data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/checkerrr/bot.py", line 130, in visits_middleware
+    return await handler(event, data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/aiogram/dispatcher/event/handler.py", line 71, in call
+    return await wrapped()
+           ^^^^^^^^^^^^^^^
+  File "/root/projectss/checkerrr/bot.py", line 1881, in user_stats_list
+    await callback.message.edit_text(text, parse_mode="Markdown", reply_markup=get_user_stats_keyboard(lang))
+  File "/usr/local/lib/python3.12/dist-packages/aiogram/methods/base.py", line 82, in emit
+    return await bot(self)
+           ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/aiogram/client/bot.py", line 487, in __call__
+    return await self.session(self, method, timeout=request_timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/aiogram/client/session/base.py", line 259, in __call__
+    return cast(TelegramType, await middleware(bot, method))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/aiogram/client/session/aiohttp.py", line 177, in make_request
+    response = self.check_response(
+               ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/aiogram/client/session/base.py", line 121, in check_response
+    raise TelegramBadRequest(method=method, message=description)
+aiogram.exceptions.TelegramBadRequest: Telegram server says - Bad Request: message is not modified: specified new message content and reply markup are exactly the same as a current content and reply markup of the message
+2026-03-04 04:42:12,541 - aiogram.event - INFO - Update id=375091843 is handled. Duration 81 ms by bot id=8554826085
+2026-03-04 04:42:14,306 - aiogram.event - INFO - Update id=375091844 is handled. Duration 134 ms by bot id=8554826085
