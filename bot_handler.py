@@ -7,8 +7,11 @@
 ✅ Логи рутины на DEBUG
 ✅ Исправлен write_draft_atomic
 ✅ Graceful shutdown
+✅ published_hashes сохраняется на диск (переживает рестарт)
+✅ Все таймзоны используют UTC
 """
 import os
+import re
 import sys
 import json
 import hashlib
@@ -18,12 +21,14 @@ import asyncio
 import ssl
 import aiofiles
 from pathlib import Path
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from typing import Optional, Dict, Tuple
 from dataclasses import dataclass, field
 import random
 import aiohttp
 from dotenv import load_dotenv
+
+logger = logging.getLogger(__name__)
 
 try:
     from global_dedup import (
@@ -36,6 +41,14 @@ try:
 except ImportError:
     GLOBAL_DEDUP_ENABLED = False
     logging.warning("⚠️ global_dedup.py не найден — дедупликация отключена")
+
+try:
+    from prometheus_metrics import PrometheusMetrics
+    prom_metrics = PrometheusMetrics(bot_name='handler', port=8003)
+    logger.info("✅ Prometheus метрики запущены для bot_handler на порту 8003")
+except Exception as e:
+    logger.warning(f"⚠️ Prometheus metrics error: {e}")
+    prom_metrics = None
 
 load_dotenv()
 
@@ -92,15 +105,16 @@ class BotConfig:
 
     def get_autopost_delay_minutes(self, hour: Optional[int] = None) -> float:
         if hour is None:
-            hour = datetime.now().hour
+            hour = datetime.now(timezone.utc).hour
         if self.autopost_night_start_hour <= hour < self.autopost_night_end_hour:
             return random.uniform(self.autopost_night_min_minutes, self.autopost_night_max_minutes)
         return random.uniform(self.autopost_day_min_minutes, self.autopost_day_max_minutes)
 
     def is_night_time(self, hour: Optional[int] = None) -> bool:
         if hour is None:
-            hour = datetime.now().hour
-        return self.autopost_night_start_hour <= hour < self.autopost_night_end_hour
+            hour = datetime.now(timezone.utc).hour
+        # Ночное время: 22:00 - 05:00 (переход через полночь)
+        return hour >= self.autopost_night_start_hour or hour < self.autopost_night_end_hour
 
     def get_channel_name(self, channel_id: str) -> str:
         return self.channel_names.get(channel_id, channel_id)
@@ -166,6 +180,21 @@ class EditSession:
 
 
 # ================= УТИЛИТЫ =================
+def strip_html_tags(text: str) -> str:
+    """Удалить HTML-теги из текста для нормализации"""
+    if not text:
+        return ""
+    clean = re.sub(r'<[^>]+>', '', text)
+    return clean.replace('&lt;', '<').replace('&gt;', '>').replace('&amp;', '&')
+
+def normalize_text_for_dedup(text: str) -> str:
+    """Нормализовать текст: удалить теги, привести к нижнему регистру, убрать лишние пробелы"""
+    if not text:
+        return ""
+    text = strip_html_tags(text)
+    text = re.sub(r'\s+', ' ', text).strip()
+    return text.lower()
+
 def format_text_for_channel(text: str) -> str:
     if not text or not text.strip():
         return text
@@ -256,15 +285,45 @@ class TelegramClient:
 
     async def request(self, method: str, endpoint: str, **kwargs) -> Optional[dict]:
         url = f"{config.base_url}/{endpoint}"
-        try:
-            async with self.session.request(method, url, **kwargs) as resp:
-                if resp.status == 200:
-                    return await resp.json()
-                logger.warning(f"⚠️ API {resp.status}: {(await resp.text())[:200]}")
-                return None
-        except Exception as e:
-            logger.error(f"❌ Request error: {e}")
-            return None
+        max_retries = 3
+        retry_count = 0
+
+        while retry_count < max_retries:
+            try:
+                async with self.session.request(method, url, **kwargs) as resp:
+                    if resp.status == 200:
+                        return await resp.json()
+
+                    # Обработка 429 Too Many Requests
+                    if resp.status == 429:
+                        retry_after = 30  # default
+                        try:
+                            retry_after = int(resp.headers.get('Retry-After', 30))
+                        except (ValueError, TypeError):
+                            pass
+                        retry_count += 1
+                        if retry_count < max_retries:
+                            logger.warning(f"⚠️ 429 Too Many Requests, ждём {retry_after}с (попытка {retry_count}/{max_retries})")
+                            await asyncio.sleep(retry_after)
+                            continue
+                        else:
+                            logger.error(f"❌ 429 после {max_retries} попыток")
+                            return None
+
+                    logger.warning(f"⚠️ API {resp.status}: {(await resp.text())[:200]}")
+                    return None
+            except asyncio.CancelledError:
+                raise
+            except Exception as e:
+                retry_count += 1
+                if retry_count < max_retries:
+                    logger.warning(f"⚠️ Ошибка запроса, повтор {retry_count}/{max_retries}: {e}")
+                    await asyncio.sleep(1 * retry_count)  # экспоненциальная задержка
+                else:
+                    logger.error(f"❌ Request error после {max_retries} попыток: {e}")
+                    return None
+
+        return None
 
     async def send_message(self, chat_id, text: str, parse_mode: str = "HTML",
                            reply_markup: Optional[dict] = None) -> Optional[int]:
@@ -306,12 +365,38 @@ class AlertManager:
         self.config = cfg
         self.cooldowns: Dict[str, datetime] = {}
         self.cooldown_minutes = 30
+        self.cooldowns_file = Path("alert_cooldowns.json")
+        self._load_cooldowns()
+
+    def _load_cooldowns(self):
+        """Загрузить cooldowns из файла"""
+        try:
+            if self.cooldowns_file.exists():
+                with open(self.cooldowns_file, 'r', encoding='utf-8') as f:
+                    data = json.load(f)
+                self.cooldowns = {k: datetime.fromisoformat(v) for k, v in data.items()}
+                # Очистить устаревшие cooldowns при загрузке
+                cutoff = datetime.now(timezone.utc) - timedelta(minutes=self.cooldown_minutes)
+                self.cooldowns = {k: v for k, v in self.cooldowns.items() if v > cutoff}
+                logger.debug(f"📦 Загружено {len(self.cooldowns)} alert cooldowns")
+        except Exception as e:
+            logger.warning(f"⚠️ Не удалось загрузить cooldowns: {e}")
+            self.cooldowns = {}
+
+    def _save_cooldowns(self):
+        """Сохранить cooldowns в файл"""
+        try:
+            data = {k: v.isoformat() for k, v in self.cooldowns.items()}
+            with open(self.cooldowns_file, 'w', encoding='utf-8') as f:
+                json.dump(data, f, ensure_ascii=False, indent=2)
+        except Exception as e:
+            logger.warning(f"⚠️ Не удалось сохранить cooldowns: {e}")
 
     def _can_send(self, key: str) -> bool:
         if not self.config.alerts_enabled or not self.config.admin_chat_id:
             return False
         last = self.cooldowns.get(key)
-        return not (last and (datetime.now() - last).total_seconds() < self.cooldown_minutes * 60)
+        return not (last and (datetime.now(timezone.utc) - last).total_seconds() < self.cooldown_minutes * 60)
 
     async def send_alert(self, emoji: str, title: str, message: str, key: Optional[str] = None):
         if key and not self._can_send(key):
@@ -319,10 +404,11 @@ class AlertManager:
         if not self.config.alerts_enabled or not self.config.admin_chat_id:
             return
         try:
-            text = f"{emoji} <b>{title}</b>\n{message}\n<i>{datetime.now().strftime('%H:%M:%S')}</i>"
+            text = f"{emoji} <b>{title}</b>\n{message}\n<i>{datetime.now(timezone.utc).strftime('%H:%M:%S')}</i>"
             await self.telegram.send_message(int(self.config.admin_chat_id), text)
             if key:
-                self.cooldowns[key] = datetime.now()
+                self.cooldowns[key] = datetime.now(timezone.utc)
+                self._save_cooldowns()
         except Exception as e:
             logger.error(f"❌ Алерт не отправлен: {e}")
 
@@ -353,6 +439,10 @@ class BotHandler:
         self.sessions_dir.mkdir(exist_ok=True)
         self.published_hashes: Dict[str, Tuple[str, datetime]] = {}
         self.published_hashes_ttl = timedelta(hours=2)
+        self.published_hashes_file = Path("published_hashes.json")
+        self.pending_index: Dict[int, list] = {}  # {chat_id: [post_ids]}
+        self.last_post_times: Dict[str, datetime] = {}  # {channel_id: last_post_time}
+        self._index_built = False  # Флаг: построен ли индекс pending
 
     # ── Сессии ──────────────────────────────────
     async def _save_session(self, chat_id: int):
@@ -405,23 +495,66 @@ class BotHandler:
                 logger.warning(f"⚠️ Сессия {f.name}: {e}")
         if loaded:
             logger.info(f"📦 Загружено сессий: {loaded}")
+        await self._rebuild_pending_index()
+        self._load_published_hashes()
+        logger.info(f"📦 Индекс pending: {sum(len(v) for v in self.pending_index.values())} черновиков в {len(self.pending_index)} чатах")
 
-    async def _find_draft_for_chat(self, chat_id: int) -> Optional[Draft]:
-        """Найти самый свежий черновик из pending_posts для данного чата"""
+    # ── Индекс pending ─────────────────────────
+    async def _rebuild_pending_index(self):
+        """Перестроить индекс pending_posts по chat_id"""
+        self.pending_index.clear()
         try:
-            drafts = []
             for f in config.pending_dir.glob("*.json"):
                 try:
                     draft = await read_draft(f)
-                    if draft and int(draft.suggestion_chat_id) == chat_id:
-                        drafts.append((f.stat().st_mtime, draft))
+                    if draft and draft.suggestion_chat_id:
+                        chat_id = int(draft.suggestion_chat_id)
+                        if chat_id not in self.pending_index:
+                            self.pending_index[chat_id] = []
+                        self.pending_index[chat_id].append((f.stat().st_mtime, draft.post_id, f))
                 except Exception:
                     continue
-            if not drafts:
+            # Сортируем по времени (свежие первыми)
+            for chat_id in self.pending_index:
+                self.pending_index[chat_id].sort(key=lambda x: x[0], reverse=True)
+            self._index_built = True
+        except Exception as e:
+            logger.error(f"❌ Перестройка индекса pending: {e}")
+            self._index_built = False
+
+    def _invalidate_pending_index(self, chat_id: Optional[int] = None, post_id: Optional[str] = None):
+        """Инвалидировать индекс (полностью или частично)"""
+        if chat_id is None:
+            self.pending_index.clear()
+            self._index_built = False
+        elif post_id:
+            if chat_id in self.pending_index:
+                self.pending_index[chat_id] = [
+                    item for item in self.pending_index[chat_id] if item[1] != post_id
+                ]
+        elif chat_id in self.pending_index:
+            del self.pending_index[chat_id]
+
+    async def _find_draft_for_chat(self, chat_id: int) -> Optional[Draft]:
+        """Найти самый свежий черновик из pending_posts для данного чата (с использованием индекса)"""
+        try:
+            # Если индекс ещё не построен — строим
+            if not self._index_built:
+                await self._rebuild_pending_index()
+
+            if chat_id not in self.pending_index or not self.pending_index[chat_id]:
                 return None
-            # Сортируем по времени создания (самые свежие первыми)
-            drafts.sort(key=lambda x: x[0], reverse=True)
-            return drafts[0][1]
+
+            for mtime, post_id, draft_path in self.pending_index[chat_id]:
+                if not draft_path.exists():
+                    continue
+                draft = await read_draft(draft_path)
+                if draft and int(draft.suggestion_chat_id) == chat_id:
+                    return draft
+
+            # Если ничего не найдено — удаляем из индекса
+            self.pending_index.pop(chat_id, None)
+            return None
         except Exception as e:
             logger.error(f"❌ Поиск черновика для чата {chat_id}: {e}")
             return None
@@ -438,17 +571,45 @@ class BotHandler:
         return ""
 
     def _get_content_hash(self, text: str, channel_id: str) -> str:
-        return hashlib.sha256(f"{text[:300]}|{channel_id}".encode("utf-8", errors="ignore")).hexdigest()
+        normalized = normalize_text_for_dedup(text)
+        return hashlib.sha256(f"{normalized[:300]}|{channel_id}".encode("utf-8", errors="ignore")).hexdigest()
 
     def _cleanup_published_cache(self):
-        cutoff = datetime.now() - self.published_hashes_ttl
+        cutoff = datetime.now(timezone.utc) - self.published_hashes_ttl
         self.published_hashes = {k: v for k, v in self.published_hashes.items() if v[1] > cutoff}
+
+    def _save_published_hashes(self):
+        """Сохранить published_hashes на диск"""
+        try:
+            self._cleanup_published_cache()
+            data = {k: {"channel_id": v[0], "timestamp": v[1].isoformat()} for k, v in self.published_hashes.items()}
+            with open(self.published_hashes_file, 'w', encoding='utf-8') as f:
+                json.dump(data, f, ensure_ascii=False, indent=2)
+        except Exception as e:
+            logger.warning(f"⚠️ Не удалось сохранить published_hashes: {e}")
+
+    def _load_published_hashes(self):
+        """Загрузить published_hashes с диска"""
+        try:
+            if self.published_hashes_file.exists():
+                with open(self.published_hashes_file, 'r', encoding='utf-8') as f:
+                    data = json.load(f)
+                cutoff = datetime.now(timezone.utc) - self.published_hashes_ttl
+                self.published_hashes = {
+                    k: (v["channel_id"], datetime.fromisoformat(v["timestamp"]))
+                    for k, v in data.items()
+                    if datetime.fromisoformat(v["timestamp"]) > cutoff
+                }
+                logger.info(f"📦 Загружено {len(self.published_hashes)} published хешей")
+        except Exception as e:
+            logger.warning(f"⚠️ Не удалось загрузить published_hashes: {e}")
+            self.published_hashes = {}
 
     async def _is_duplicate(self, text: str, channel_id: str) -> bool:
         h = self._get_content_hash(text, channel_id)
         if h in self.published_hashes:
             _, ts = self.published_hashes[h]
-            if datetime.now() - ts < self.published_hashes_ttl:
+            if datetime.now(timezone.utc) - ts < self.published_hashes_ttl:
                 logger.debug(f"⏭️ Дубликат в кэше: {h[:12]}")
                 return True
         if GLOBAL_DEDUP_ENABLED:
@@ -463,7 +624,7 @@ class BotHandler:
 
     async def _mark_published(self, text: str, channel_id: str):
         h = self._get_content_hash(text, channel_id)
-        self.published_hashes[h] = (channel_id, datetime.now())
+        self.published_hashes[h] = (channel_id, datetime.now(timezone.utc))
         if GLOBAL_DEDUP_ENABLED:
             try:
                 category = self._get_category(channel_id)
@@ -471,13 +632,37 @@ class BotHandler:
             except Exception as e:
                 logger.warning(f"⚠️ Ошибка отметки БД: {e}")
         if len(self.published_hashes) % 50 == 0:
-            self._cleanup_published_cache()
+            self._save_published_hashes()
 
     # ── Публикация ──────────────────────────────
+    def _can_post_now(self, channel_id: str) -> Tuple[bool, float]:
+        """Проверить, можно ли публиковать пост в канал (min_post_interval_minutes)"""
+        if channel_id not in self.last_post_times:
+            return True, 0.0
+        elapsed = (datetime.now(timezone.utc) - self.last_post_times[channel_id]).total_seconds() / 60
+        wait_needed = config.min_post_interval_minutes - elapsed
+        return wait_needed <= 0, max(0, wait_needed)
+
+    def _mark_post_time(self, channel_id: str):
+        """Отметить время последнего поста в канал (UTC)"""
+        self.last_post_times[channel_id] = datetime.now(timezone.utc)
+
     async def publish_post(self, text: str, channel_id: str, photo: str = "") -> Tuple[bool, str]:
         if not text or len(text) < 10:
             return False, "Текст слишком короткий"
+        # Проверка min_post_interval_minutes
+        can_post, wait_min = self._can_post_now(channel_id)
+        if not can_post:
+            logger.warning(f"⏳ Пропуск поста: нужно ждать ещё {wait_min:.1f} мин для {channel_id}")
+            return False, f"Интервал: ждать {wait_min:.0f} мин"
         if await self._is_duplicate(text, channel_id):
+            # 🎯 TRACK SLIPPED DUPLICATE: пост был одобрен вручную, но оказался дубликатом
+            logger.warning(f"🎯 ПРОСКочивший дубликат обнаружен в {channel_id}")
+            if prom_metrics:
+                try:
+                    prom_metrics.inc_slipped_dup(channel_id)
+                except Exception as e:
+                    logger.warning(f"⚠️ Ошибка метрики slipped_dup: {e}")
             return False, "Дубликат"
         try:
             formatted = format_text_for_channel(text)
@@ -487,6 +672,7 @@ class BotHandler:
                 msg_id = await self.telegram.send_message(channel_id, formatted)
                 success, result = bool(msg_id), ("Опубликовано" if msg_id else "Ошибка отправки")
             if success:
+                self._mark_post_time(channel_id)
                 await self._mark_published(text, channel_id)
             return success, result
         except Exception as e:
@@ -509,43 +695,65 @@ class BotHandler:
             draft = await read_draft(draft_path)
             if not draft:
                 await delete_draft(draft_path)
+                if draft:
+                    self._invalidate_pending_index(int(draft.suggestion_chat_id) if draft.suggestion_chat_id else None, post_id)
                 return
-            
+
             # ❌ Игнорируем черновики от filmtop.py (топ для TikTok)
             source = draft.to_dict().get("source", "")
-            post_id = draft.post_id if hasattr(draft, 'post_id') else ""
-            
+            draft_post_id = draft.post_id or post_id
+
             # Фильтры для filmtop черновиков
             if ("Filmtop TikTok" in source) or \
                ("filmtop" in source.lower()) or \
-               post_id.startswith(("top_", "hidden_", "horror_", "asian_", "trending_")):
-                logger.debug(f"⏭️ Пропущен черновик filmtop: {post_id} (source: {source})")
+               draft_post_id.startswith(("top_", "hidden_", "horror_", "asian_", "trending_")):
+                logger.debug(f"⏭️ Пропущен черновик filmtop: {draft_post_id} (source: {source})")
                 return
-            
+
             if draft.suggestion_chat_id not in config.autopost_allowed_suggestions:
                 return
 
-            logger.debug(f"🌙 Автопост {post_id} → {draft.channel_id}")
+            # ✅ ПРОВЕРКА: не слишком ли старый черновик (защита от публикации после рестарта)
+            draft_age_minutes = (datetime.now(timezone.utc) - datetime.fromtimestamp(draft_path.stat().st_mtime, tz=timezone.utc)).total_seconds() / 60
+            max_age = config.autopost_night_max_minutes * 2  # Максимум 2x от обычного delay
+            if draft_age_minutes > max_age:
+                logger.warning(f"🗑️ Пропущен старый черновик {draft_post_id} (возраст {draft_age_minutes:.0f} мин > {max_age} мин)")
+                await delete_draft(draft_path)
+                self._invalidate_pending_index(int(draft.suggestion_chat_id), draft_post_id)
+                return
+
+            # Проверка min_post_interval_minutes
+            can_post, wait_min = self._can_post_now(draft.channel_id)
+            if not can_post:
+                logger.debug(f"⏳ Автопост {draft_post_id} отложен: ждать {wait_min:.1f} мин для {draft.channel_id}")
+                # Перепланируем через нужное время
+                task = asyncio.create_task(self.autopost_after_delay(draft_path, draft_post_id, wait_min * 60))
+                self.autopost_tasks[draft_post_id] = task
+                return
+
+            logger.debug(f"🌙 Автопост {draft_post_id} → {draft.channel_id}")
             success, result = await self.publish_post(draft.text, draft.channel_id, draft.photo)
 
             if success:
                 await delete_draft(draft_path)
-                logger.info(f"✅ Автопост опубликован: {post_id}")
+                self._invalidate_pending_index(int(draft.suggestion_chat_id), draft_post_id)
+                logger.info(f"✅ Автопост опубликован: {draft_post_id}")
                 if self.alert_manager:
                     await self.alert_manager.alert_info(
                         f"Автопостинг — {config.get_channel_name(draft.channel_id)}",
                         f"Превью: {draft.text[:100]}..."
                     )
             elif result == "Дубликат":
-                logger.debug(f"🗑️ Дубликат удалён из pending: {post_id}")
+                logger.debug(f"🗑️ Дубликат удалён из pending: {draft_post_id}")
                 await delete_draft(draft_path)
+                self._invalidate_pending_index(int(draft.suggestion_chat_id), draft_post_id)
             else:
-                logger.warning(f"⚠️ Автопост не удался {post_id}: {result}")
+                logger.warning(f"⚠️ Автопост не удался {draft_post_id}: {result}")
                 if self.alert_manager:
                     await self.alert_manager.alert_warning(
                         f"Автопост не удался — {config.get_channel_name(draft.channel_id)}",
-                        f"Пост: {post_id}\nОшибка: {result}",
-                        key=f"autopost_fail_{post_id}"
+                        f"Пост: {draft_post_id}\nОшибка: {result}",
+                        key=f"autopost_fail_{draft_post_id}"
                     )
         except Exception as e:
             logger.exception(f"❌ Критическая ошибка автопоста {post_id}: {e}")
@@ -569,24 +777,24 @@ class BotHandler:
             draft = await read_draft(draft_path)
             if not draft or draft.suggestion_chat_id not in config.autopost_allowed_suggestions:
                 return
-            
+
             # ❌ Игнорируем черновики от filmtop.py (топ для TikTok)
             source = draft.to_dict().get("source", "")
-            post_id = draft.post_id if hasattr(draft, 'post_id') else ""
-            
+            draft_post_id = draft.post_id or post_id
+
             # Фильтры для filmtop черновиков
             if ("Filmtop TikTok" in source) or \
                ("filmtop" in source.lower()) or \
-               post_id.startswith(("top_", "hidden_", "horror_", "asian_", "trending_")):
-                logger.debug(f"⏭️ Пропущен черновик filmtop: {post_id} (source: {source})")
+               draft_post_id.startswith(("top_", "hidden_", "horror_", "asian_", "trending_")):
+                logger.debug(f"⏭️ Пропущен черновик filmtop: {draft_post_id} (source: {source})")
                 return
-            
+
             hour = datetime.now().hour
             delay_sec = max(10, config.get_autopost_delay_minutes(hour) * 60
                             - (datetime.now().timestamp() - draft_path.stat().st_mtime))
-            task = asyncio.create_task(self.autopost_after_delay(draft_path, post_id, delay_sec))
-            self.autopost_tasks[post_id] = task
-            logger.debug(f"⏰ Запланирован {post_id} через {delay_sec / 60:.1f} мин")
+            task = asyncio.create_task(self.autopost_after_delay(draft_path, draft_post_id, delay_sec))
+            self.autopost_tasks[draft_post_id] = task
+            logger.debug(f"⏰ Запланирован {draft_post_id} через {delay_sec / 60:.1f} мин")
         except Exception as e:
             logger.warning(f"⚠️ Ошибка планирования {post_id}: {e}")
 
@@ -610,6 +818,7 @@ class BotHandler:
             )
             if success:
                 await delete_draft(draft_path)
+                self._invalidate_pending_index(int(draft.suggestion_chat_id), post_id)
                 logger.info(f"✅ Опубликован {post_id} → {channel_id}")
         except Exception as e:
             logger.exception(f"❌ Публикация {post_id}: {e}")
@@ -651,7 +860,10 @@ class BotHandler:
     async def handle_reject_button(self, chat_id: int, post_id: str, draft_path: Path):
         self.cancel_autopost(post_id)
         if draft_path.exists():
+            draft = await read_draft(draft_path)
             await delete_draft(draft_path)
+            if draft:
+                self._invalidate_pending_index(int(draft.suggestion_chat_id) if draft.suggestion_chat_id else None, post_id)
             await self.telegram.send_message(chat_id, f"✅ Черновик <code>{post_id}</code> отклонён")
             logger.info(f"❌ {post_id} отклонён")
         else:
@@ -745,6 +957,7 @@ class BotHandler:
                     draft_path = config.pending_dir / f"{draft.post_id}.json"
                     if draft_path.exists():
                         await delete_draft(draft_path)
+                    self._invalidate_pending_index(chat_id, draft.post_id)
                     logger.info(f"✅ /publish {draft.post_id} → {draft.channel_id}")
             except Exception as e:
                 logger.exception(f"❌ /publish: {e}")
@@ -769,6 +982,7 @@ class BotHandler:
                     draft_path = config.pending_dir / f"{draft.post_id}.json"
                     if draft_path.exists():
                         await delete_draft(draft_path)
+                    self._invalidate_pending_index(chat_id, draft.post_id)
                     await self.telegram.send_message(chat_id, f"✅ Черновик <code>{draft.post_id}</code> отклонён")
                     logger.info(f"❌ /reject {draft.post_id}")
                 except Exception as e:
@@ -809,7 +1023,7 @@ class BotHandler:
                 await asyncio.sleep(config.autopost_check_interval)
                 if shutdown_event.is_set():
                     break
-                now = datetime.now().timestamp()
+                now = datetime.now(timezone.utc).timestamp()
                 delay_min = config.get_autopost_delay_minutes()
                 for draft_path in list(config.pending_dir.glob("*.json")):
                     if shutdown_event.is_set():
@@ -843,7 +1057,8 @@ class BotHandler:
                 if shutdown_event.is_set():
                     break
                 self._cleanup_published_cache()
-                threshold = datetime.now() - timedelta(hours=config.cleanup_age_hours)
+                self._save_published_hashes()
+                threshold = datetime.now(timezone.utc) - timedelta(hours=config.cleanup_age_hours)
                 deleted = 0
                 for fp in config.pending_dir.glob("*.json"):
                     try:
@@ -851,7 +1066,7 @@ class BotHandler:
                             continue
                         if any(s.post_id == fp.stem for s in self.edit_sessions.values()):
                             continue
-                        if datetime.fromtimestamp(fp.stat().st_mtime) < threshold:
+                        if datetime.fromtimestamp(fp.stat().st_mtime, tz=timezone.utc) < threshold:
                             fp.unlink(missing_ok=True)
                             deleted += 1
                     except Exception as e:
@@ -889,7 +1104,7 @@ class BotHandler:
                     if "callback_query" in update:
                         await self.handle_callback(update)
                     elif "message" in update:
-                        if update["message"]["chat"].get("type") in ("supergroup", "channel", "private"):
+                        if update["message"]["chat"].get("type") in ("supergroup", "group", "channel", "private"):
                             await self.handle_message(update)
             except asyncio.CancelledError:
                 break
@@ -940,6 +1155,9 @@ class BotHandler:
         logger.info(f"🛑 Завершение, отмена {len(self.autopost_tasks)} задач...")
         for task in self.autopost_tasks.values():
             task.cancel()
+        # Сохраняем published_hashes перед закрытием
+        self._save_published_hashes()
+        logger.info("💾 published_hashes сохранён")
 
 
 # ================= MAIN =================

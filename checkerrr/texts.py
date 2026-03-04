@@ -11,7 +11,7 @@ TEXTS: Dict[str, Dict[str, str]] = {
         "start_subscribed": (
             "🎬 Добро пожаловать в КиноБот!\n\n"
             "✅ Вы подписаны на все каналы\n\n"
-            "🔍 Чтобы найти фильм — введите его код (например: `1`, `001`, `052`)\n\n"
+            "🔍 Чтобы найти фильм — введите его код в меню 🔍 Найти фильм (например: `1`, `001`, `052`)\n\n"
             "💡 Совет: можете вводить код с нулями или без (001 = 1 = 0001)"
         ),
         "check_subscription": "✅ Проверить подписку",
@@ -643,6 +643,54 @@ TEXTS: Dict[str, Dict[str, str]] = {
             "Time: {timestamp}\n\n"
             "{components}"
         ),
+
+        # --- Новые фичи ---
+        "random_movie": "🎲 Random Movie",
+        "trends": "📈 Trends",
+        "achievements": "🏆 Achievements",
+        "notifications": "🔔 Notifications",
+
+        "trends_title": (
+            "📈 **Trends**\n\n"
+            "👥 Now watching: **{now_watching}** users\n\n"
+            "🔥 **Popular for {period}**:\n\n"
+        ),
+
+        "achievements_title": (
+            "🏆 **Achievements**\n\n"
+            "📊 Progress: **{unlocked}/{total}**\n\n"
+        ),
+
+        "achievements_locked": "🔒 Locked",
+        "achievements_unlocked": "✅ Unlocked",
+
+        "notifications_enabled": (
+            "🔔 **Notifications**\n\n"
+            "✅ Notifications **enabled**\n\n"
+            "You will receive notifications about:\n"
+            "• 🎬 New movies in catalog\n"
+            "• 🔔 Reminders about watched movies\n"
+            "• 🏆 Unlocked achievements\n\n"
+        ),
+
+        "notifications_disabled": (
+            "🔔 **Notifications**\n\n"
+            "❌ Notifications **disabled**\n\n"
+            "Enable to receive:\n"
+            "• 🎬 New movie notifications\n"
+            "• 🔔 Watched movie reminders\n"
+            "• 🏆 Achievement notifications\n\n"
+        ),
+
+        "notifications_toggled": "✅ Notifications {status}",
+
+        "similar_movies_title": "🔍 Similar Movies",
+        "no_similar_movies_found": "😕 No similar movies found",
+
+        "reactions_like": "👍 Like",
+        "reactions_dislike": "👎 Dislike",
+        "reactions_like_added": "👍 Like added!",
+        "reactions_dislike_added": "👎 Dislike added!",
     }
 }
 

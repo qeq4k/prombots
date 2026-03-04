@@ -79,7 +79,10 @@ try:
         is_global_duplicate,
         mark_global_posted,
         get_universal_hash,
-        cleanup_global_db
+        cleanup_global_db,
+        get_content_dedup_hash,
+        is_duplicate_advanced,
+        normalize_title_for_dedup
     )
     GLOBAL_DEDUP_ENABLED = True
 except ImportError:
@@ -1413,8 +1416,8 @@ def postprocess_text(raw) -> str:
 
 # ================= ПРОВЕРКА ДУБЛИКАТОВ =================
 class DuplicateDetector:
-    """Проверка дубликатов: локальная + глобальная"""
-
+    """✅ Обёртка над универсальной функцией из global_dedup"""
+    
     async def is_duplicate_advanced(
         self,
         title: str,
@@ -1423,83 +1426,19 @@ class DuplicateDetector:
         pub_date: Optional[datetime],
         db_path: str
     ) -> Tuple[bool, str]:
-        """✅ ПЯТИУРОВНЕВАЯ проверка дубликатов с улучшенной проверкой по содержанию"""
-
-        # ✅ 1. Глобальная проверка (межканальная) через content hash
-        if GLOBAL_DEDUP_ENABLED:
-            try:
-                # Используем content hash для более точной проверки
-                content_hash = get_content_dedup_hash(title, summary, config.category)
-                if await is_global_duplicate(content_hash, config.category, hours=48):
-                    logger.info(f"🌐 Глобальный дубликат (content): {title[:50]}")
-                    metrics.log_duplicate("global")
-                    if prom_metrics:
-                        prom_metrics.inc_dup('global')
-                    return True, "global_content_duplicate"
-            except Exception as e:
-                logger.warning(f"⚠️ Ошибка глобальной проверки: {e}")
-
-        # ✅ 2. Проверка по link (точная)
-        async with aiosqlite.connect(db_path) as db:
-            async with db.execute(
-                "SELECT 1 FROM posted WHERE link = ?",
-                (link,)
-            ) as cursor:
-                if await cursor.fetchone():
-                    logger.info(f"🔗 Дубликат по ссылке: {title[:50]}")
-                    return True, "link_duplicate"
-
-        # ✅ 3. Content dedup hash (локальный)
-        content_dedup_hash = get_content_dedup_hash(title, summary)
-        if await is_content_duplicate(content_dedup_hash, hours=config.duplicate_check_hours):
-            logger.info(f"🔄 Content дубликат: {title[:50]}")
-            metrics.log_duplicate("content")
-            if prom_metrics:
-                prom_metrics.inc_dup('content')
-            return True, "content_duplicate"
-
-        # ✅ 4. Fuzzy по заголовку (75%+) — СНИЖЕН ПОРОГ
-        title_norm = normalize_title(title)
-        cutoff = datetime.now(timezone.utc) - timedelta(hours=config.duplicate_check_hours)
-        async with aiosqlite.connect(db_path) as db:
-            async with db.execute(
-                """SELECT title_normalized FROM posted
-                   WHERE posted_at > ? AND title_normalized IS NOT NULL
-                   ORDER BY posted_at DESC LIMIT 500""",
-                (cutoff,)
-            ) as cursor:
-                recent_posts = await cursor.fetchall()
-                for post in recent_posts:
-                    stored = post[0] if isinstance(post, tuple) else post
-                    if not stored:
-                        continue
-                    ratio = fuzz.token_set_ratio(title_norm, stored)
-                    if ratio >= 75:  # 🔽 Снизили порог с 80% до 75%
-                        logger.info(f"🔄 Fuzzy дубликат ({ratio}%): {title[:50]}")
-                        return True, f"fuzzy_{ratio}"
-
-        # ✅ 5. Проверка через entity matching (для новостей написанных по-разному)
-        if GLOBAL_DEDUP_ENABLED:
-            try:
-                from global_dedup import are_duplicates_by_entities
-                cutoff_recent = datetime.now(timezone.utc) - timedelta(hours=12)
-                async with aiosqlite.connect(db_path) as db:
-                    async with db.execute(
-                        """SELECT title_normalized FROM posted
-                           WHERE posted_at > ? AND title_normalized IS NOT NULL
-                           ORDER BY posted_at DESC LIMIT 200""",
-                        (cutoff_recent,)
-                    ) as cursor:
-                        recent_posts = await cursor.fetchall()
-                        for post in recent_posts:
-                            stored = post[0] if isinstance(post, tuple) else post
-                            if stored and are_duplicates_by_entities(title, stored, min_common_entities=2):
-                                logger.info(f"🔄 Entity дубликат: {title[:50]}")
-                                return True, "entity_duplicate"
-            except Exception as e:
-                logger.warning(f"⚠️ Ошибка entity проверки: {e}")
-
-        return False, "unique"
+        """Вызывает универсальную функцию из global_dedup"""
+        if not GLOBAL_DEDUP_ENABLED:
+            return False, "unique"
+        
+        return await is_duplicate_advanced(
+            title=title,
+            summary=summary,
+            link=link,
+            local_db_path=db_path,
+            category=config.category,
+            duplicate_check_hours=config.duplicate_check_hours,
+            global_enabled=True
+        )
 
 # ================= АДАПТИВНЫЙ RATE LIMITER =================
 class AdaptiveRateLimiter:
@@ -1579,6 +1518,7 @@ class CachedLLMClient:
         self.cache = self._load_cache()
     
     def _load_cache(self) -> Dict:
+        """Загружает кэш из файла. Формат: {key: {'result': str, 'timestamp': float}}"""
         if self.cache_file.exists():
             try:
                 with open(self.cache_file, 'rb') as f:
@@ -1650,61 +1590,96 @@ class CachedLLMClient:
             return None
     
     def _contains_fake_dates(self, text: str) -> bool:
-        # ✅ 2026 год — текущий, 2025 и старше — старые
-        old_years = ['2023', '2024', '2025']
+        """
+        ✅ Проверка на выдуманные даты — ТОЛЬКО явные фейки событий.
+        Разрешает легитимные упоминания: "уровней 2024 года", "в 2025 году ожидается", "по итогам 2023"
+        Блокирует: "28 февраля 2024 года начал", "в 2023 году подписал" (конкретные события)
+        """
         text_lower = text.lower()
-        for year in old_years:
-            if re.search(rf'\b{year}\b', text):
-                logger.warning(f"🚨 Обнаружен старый год: {year}")
+        
+        # ✅ Блокируем ТОЛЬКО конкретные даты событий (день + месяц + год или год в контексте события)
+        fake_event_patterns = [
+            # Конкретная дата + год + событие: "28 февраля 2024 года начал", "15 марта 2025 произошел"
+            r'\d{1,2}\s+(?:янв|февр|мар|апр|ма|июн|июл|авг|сен|окт|ноя|дек)[а-я]*\s+(?:2023|2024|2025|2027|2028|2029|2030)\s*(?:года|г\.?)?\s*[,.]?\s*(?:начал|произош|удар|обстрел|убил|взорвал|подписал|объявил)',
+            # Год + событие в прошедшем времени: "в 2024 году начал", "2023 году произошел"
+            r'(?:в\s+)?(?:2023|2024|2025|2027|2028|2029|2030)\s*году\s+(?:начал|произош|удар|обстрел|убил|взорвал|подписал|объявил|случил)',
+            # Событие + дату: "начал операцию 28 февраля 2024", "произошел взрыв 15 марта 2025"
+            r'(?:начал|произош|удар|обстрел|убил|взорвал)[а-я]*\s+(?:в\s+)?(?:2023|2024|2025|2027|2028|2029|2030)\s*(?:году|год)?',
+        ]
+        
+        for pattern in fake_event_patterns:
+            if re.search(pattern, text_lower):
+                logger.warning(f"🚨 Обнаружена выдуманная дата события: {text[:100]}")
                 metrics.log_fake_date()
                 return True
-        # ✅ 2026 год — текущий, НЕ блокируем упоминания текущего года
-        # Блокируем только будущие годы (2027+)
-        future_years = ['2027', '2028', '2029', '2030']
-        for year in future_years:
-            if re.search(rf'\b{year}\b', text):
-                logger.warning(f"🚨 Обнаружен будущий год: {year}")
-                metrics.log_fake_date()
-                return True
+        
         return False
 
     def _contains_too_much_english(self, text: str) -> bool:
+        """
+        ✅ Проверка на слишком много английских слов.
+        Расширенный список экономических терминов.
+        """
         allowed_english = {
-            'usa', 'usd', 'eur', 'rub', 'gbp', 'jpy', 'cny',
-            'gdp', 'ceo', 'ipo', 'opec', 'nato', 'api', 'ai', 'it',
-            'pr', 'hr', 'apple', 'google', 'tesla', 'amazon',
-            'wto', 'imf', 'brics', 'swift', 'covid', 'who',
-            'brent', 'sp', 'nasdaq', 'nyse', 'lng', 'eu',
-            # ✅ Финансовые термины и биржи
-            'futures', 'wti', 'nymex', 'ice', 'forex', 'etf', 'cfd',
-            'bull', 'bear', 'long', 'short', 'swap', 'dividend',
-            'moex', 'rts', 'micex', 'cb', 'fed', 'ecb',
-            # Авиакомпании и бренды
-            'azur', 'air', 'azur air',
-            's7', 'aeroflot', 'aeroflot', 'rossiya', ' Pobeda',
-            'emirates', 'qatar', 'turkish', 'lufthansa',
-            'boeing', 'airbus',
-            # Компании
-            'warner', 'bros', 'disney', 'netflix', 'marvel',
-            'reuters', 'bloomberg', 'cnbc', 'ft',
-            'crypto', 'coin', 'binance',
-            # ✅ Географические названия (транслит + оригинал)
+            # Валюты и экономики
+            'usa', 'usd', 'eur', 'rub', 'gbp', 'jpy', 'cny', 'chf', 'aud', 'cad', 'inr', 'krw',
+            'gdp', 'gnp', 'cpi', 'ppi', 'pmi', 'nonfarm', 'fed', 'ecb', 'boj', 'pboc',
+            # Финансовые инструменты и рынки
+            'ipo', 'spac', 'etf', 'etfs', 'reit', 'reits', 'mutual', 'fund', 'hedge',
+            'bond', 'bonds', 'treasury', 'yield', 'curve', 'spread', 'basis', 'points',
+            'stock', 'stocks', 'share', 'shares', 'equity', 'equities', 'derivative',
+            'option', 'options', 'future', 'futures', 'forward', 'swap', 'swaps',
+            'bull', 'bear', 'long', 'short', 'leverage', 'margin', 'liquidity',
+            'volatility', 'beta', 'alpha', 'dividend', 'yield', 'return', 'roi', 'roe',
+            'eps', 'pe', 'pb', 'ps', 'ev', 'ebitda', 'capex', 'opex', 'freecashflow',
+            # Организации и регуляторы
+            'opec', 'nato', 'wto', 'imf', 'worldbank', 'brics', 'swift', 'bis', 'fsb',
+            'sec', 'finra', 'cftc', 'esma', 'cbr', 'centralbank',
+            # Биржи и индексы
+            'nasdaq', 'nyse', 'amex', 'lse', 'tse', 'sse', 'hkex', 'asx', 'bse', 'nse',
+            'moex', 'rts', 'micex', 'sp', 'spx', 'dow', 'dji', 'ndx', 'vix', 'russell',
+            'ftse', 'dax', 'cac', 'nikkei', 'hangseng', 'sensex', 'brent', 'wti',
+            # Компании и бренды (технологии)
+            'apple', 'google', 'tesla', 'amazon', 'microsoft', 'meta', 'facebook',
+            'twitter', 'x', 'netflix', 'nvidia', 'amd', 'intel', 'qualcomm', 'tsmc',
+            'samsung', 'huawei', 'alibaba', 'tencent', 'byd', 'xiaomi',
+            # Компании (финансы и энергетика)
+            'blackrock', 'vanguard', 'statestreet', 'fidelity', 'jporgan', 'goldman',
+            'morgan', 'stanley', 'citigroup', 'bankofamerica', 'wellsfargo',
+            'exxon', 'chevron', 'shell', 'bp', 'totalenergies', 'gazprom', 'rosneft',
+            'lukoil', 'novatek', 'transneft',
+            # Авиакомпании и транспорт
+            'azur', 'air', 'azur air', 's7', 'aeroflot', 'rossiya', 'pobeda',
+            'emirates', 'qatar', 'turkish', 'lufthansa', 'airfrance', 'klm',
+            'boeing', 'airbus', 'lockheed', 'northrop',
+            # СМИ и агентства
+            'reuters', 'bloomberg', 'cnbc', 'ft', 'wsj', 'marketwatch', 'seekingalpha',
+            'barrons', 'forbes', 'fortune', 'economist',
+            # Криптовалюты
+            'crypto', 'bitcoin', 'btc', 'ethereum', 'eth', 'binance', 'coinbase',
+            'defi', 'nft', 'dao', 'stablecoin', 'usdt', 'usdc', 'dai',
+            # Географические названия
             'dubai', 'dxb', 'dwc', 'abudhabi', 'doha', 'qatar',
             'tehran', 'iran', 'israel', 'telaviv', 'jerusalem',
             'moscow', 'moskva', 'kiev', 'minsk',
             'washington', 'newyork', 'london', 'berlin', 'paris',
-            'beijing', 'tokyo', 'delhi', 'mumbai',
-            'sharm', 'elsheikh', 'egypt', 'hurghada',
-            # ✅ Отраслевые термины
-            'airports', 'airport', 'flight', 'flights', 'cargo',
-            'oil', 'gas', 'steel', 'coal', 'uranium',
-            'tech', 'digital', 'startup', 'venture',
-            # ✅ Имена собственные
-            'trump', 'putin', 'biden', 'zelensky',
+            'beijing', 'tokyo', 'delhi', 'mumbai', 'shanghai', 'shenzhen',
+            'sharm', 'elsheikh', 'egypt', 'hurghada', 'singapore',
+            # Отраслевые термины
+            'airports', 'airport', 'flight', 'flights', 'cargo', 'logistics',
+            'oil', 'gas', 'petrol', 'diesel', 'lng', 'lpg', 'ng',
+            'steel', 'coal', 'uranium', 'copper', 'aluminum', 'nickel', 'zinc',
+            'tech', 'digital', 'startup', 'venture', 'capital', 'private', 'equity',
+            'ma', 'merger', 'acquisition', 'spinoff', 'spin-off', 'bankruptcy',
+            # Имена собственные (политики, бизнесмены)
+            'trump', 'putin', 'biden', 'zelensky', 'xi', 'jinping',
+            'macron', 'scholz', 'johnson', 'sunak', 'truss',
+            'musk', 'bezos', 'gates', 'buffett', 'ellison', 'page', 'brin',
+            'powell', 'lagarde', 'kuroda', 'nabiullina',
         }
         english_words = re.findall(r'\b[a-zA-Z]{3,}\b', text.lower())
         suspicious_words = [w for w in english_words if w not in allowed_english]
-        if len(suspicious_words) > 3:
+        if len(suspicious_words) > 5:  # ✅ Увеличили порог с 3 до 5
             logger.warning(f"🚨 Много английских слов: {suspicious_words[:5]}")
             metrics.log_english_blocked()
             return True

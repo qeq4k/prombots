@@ -41,7 +41,6 @@ from pydantic import Field
 from tenacity import retry, stop_after_attempt, wait_exponential, retry_if_exception_type
 from dotenv import load_dotenv
 from difflib import SequenceMatcher
-from global_dedup import init_global_db, is_global_duplicate, mark_global_posted, get_universal_hash
 
 try:
     import pymorphy3
@@ -60,11 +59,15 @@ try:
         is_global_duplicate,
         mark_global_posted,
         get_universal_hash,
-        cleanup_global_db
+        cleanup_global_db,
+        are_duplicates_by_entities
     )
     GLOBAL_DEDUP_ENABLED = True
+    logger.info("✅ Глобальная дедупликация включена")
 except ImportError:
     logging.warning("⚠️ global_dedup.py не найден — дедупликация между каналами отключена")
+except Exception as e:
+    logging.warning(f"⚠️ Ошибка импорта global_dedup: {e}")
 
 load_dotenv()
 
@@ -246,7 +249,7 @@ class BotConfig(BaseSettings):
     domain_min_delay: float = 1.2
 
     fuzzy_threshold: float = 0.85
-    duplicate_check_hours: int = 6  # Кино-новости быстро устаревают — проверяем только за 24 часа
+    duplicate_check_hours: int = 24  # Кино-новости живут дольше — проверяем за 24 часа
 
     hot_topic_weight: int = 3
     cinema_keyword_weight: int = 1
@@ -1060,7 +1063,7 @@ class DuplicateDetector:
                 logger.warning(f"⚠️ Ошибка глобальной проверки: {e}")
 
         # ✅ 2. Проверка по link (т��чная) — с ограничением по времени
-        link_check_hours = 6  # Проверяе�� дубликаты по ссылке только за 3 дня
+        link_check_hours = 24  # Проверяе�� дубликаты по ссылке только за 24 часа
         cutoff_link = datetime.now(timezone.utc) - timedelta(hours=link_check_hours)
         async with aiosqlite.connect(db_path) as db:
             async with db.execute(
@@ -1101,7 +1104,6 @@ class DuplicateDetector:
         # ✅ 5. Проверка через entity matching (для новостей написанных по-разному)
         if GLOBAL_DEDUP_ENABLED:
             try:
-                from global_dedup import are_duplicates_by_entities
                 cutoff_recent = datetime.now(timezone.utc) - timedelta(hours=12)
                 async with aiosqlite.connect(db_path) as db:
                     async with db.execute(
@@ -1273,18 +1275,18 @@ class CachedLLMClient:
         # ✅ 2026 год — текущий, 2025 и старше — старые
         old_years = ["2023", "2024", "2025"]
         text_lower = text.lower()
-        
+
         for year in old_years:
             if re.search(rf"\b{year}\b", text):
                 logger.warning(f"🚨 Обнаружен старый год: {year}")
                 metrics.log_fake_date()
                 return True
-        
-        # Блокируем "в 2026 году", "2026 году"
-        if re.search(r"(в|году|года|год)\s*2026\b", text_lower):
-            metrics.log_fake_date()
-            return True
-        
+
+        # ✅ УБРАНА БЛОКИРОВКА 2026 года — это текущий год!
+        # Новости с актуальной датой (2026) должны проходить
+        # Блокируем только явные фейки типа "в 2026 году" в будущем контексте
+        # Но это уже обрабатывается через LLM проверку
+
         return False
     
     def _contains_too_much_english(self, text: str) -> bool:
@@ -1958,17 +1960,23 @@ async def fetch_feed_optimized(session: aiohttp.ClientSession, url: str):
     clean_url = url.strip()
     if not clean_url:
         return url, feedparser.FeedParserDict(entries=[])
-    
+
+    # 🚫 ПРОВЕРКА ЧЁРНОГО СПИСКА ПЕРЕД ЗАГРУЗКОЙ
+    if is_domain_blacklisted(clean_url):
+        logger.info(f"🚫 Пропущен чёрный домен: {clean_url}")
+        metrics.log_blacklist_blocked()
+        return url, feedparser.FeedParserDict(entries=[])
+
     domain = urlparse(clean_url).netloc
-    
+
     last_req = state.domain_last_request.get(domain, 0)
     elapsed = asyncio.get_event_loop().time() - last_req
-    
+
     if elapsed < config.domain_min_delay:
         await asyncio.sleep(config.domain_min_delay - elapsed)
-    
+
     state.domain_last_request[domain] = asyncio.get_event_loop().time()
-    
+
     try:
         headers = {
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
@@ -1982,7 +1990,7 @@ async def fetch_feed_optimized(session: aiohttp.ClientSession, url: str):
             if response.status == 200:
                 content = await response.read()
                 feed = feedparser.parse(content)
-                
+
                 if hasattr(feed, "entries") and feed.entries:
                     logger.info(f"✅ {domain}: {len(feed.entries)} записей")
                     return url, feed
@@ -1992,7 +2000,7 @@ async def fetch_feed_optimized(session: aiohttp.ClientSession, url: str):
             else:
                 logger.warning(f"⚠️ {domain}: HTTP {response.status}")
                 return url, feedparser.FeedParserDict(entries=[])
-    
+
     except asyncio.TimeoutError:
         logger.warning(f"⏱️ {domain}: таймаут")
         return url, feedparser.FeedParserDict(entries=[])
@@ -2040,12 +2048,7 @@ async def process_feed_entries(feed_results: Dict, session: aiohttp.ClientSessio
         if not hasattr(feed, "entries") or not feed.entries:
             continue
 
-        # 🚫 ПРОВЕРКА ЧЁРНОГО СПИСКА
-        if is_domain_blacklisted(feed_url):
-            logger.info(f"🚫 Чёрный список: {feed_url}")
-            metrics.log_blacklist_blocked()
-            continue
-
+        # ✅ Чёрный список уже проверен перед загрузкой
         metrics.metrics['feeds_processed'] += 1
 
         for entry in feed.entries[:config.max_entries_per_feed]:

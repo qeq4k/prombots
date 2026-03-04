@@ -207,6 +207,55 @@ class Database:
         self.cursor.execute('CREATE INDEX IF NOT EXISTS idx_user_visits_user ON user_visits(user_id)')
         self.cursor.execute('CREATE INDEX IF NOT EXISTS idx_user_visits_time ON user_visits(visited_at)')
 
+        # Таблица достижений пользователей
+        self.cursor.execute('''
+            CREATE TABLE IF NOT EXISTS user_achievements (
+                user_id INTEGER NOT NULL,
+                achievement_type TEXT NOT NULL,
+                unlocked_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                PRIMARY KEY (user_id, achievement_type),
+                FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
+            )
+        ''')
+
+        # Таблица реакций на фильмы
+        self.cursor.execute('''
+            CREATE TABLE IF NOT EXISTS movie_reactions (
+                user_id INTEGER NOT NULL,
+                movie_id INTEGER NOT NULL,
+                movie_code TEXT NOT NULL,
+                reaction_type TEXT NOT NULL,
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                PRIMARY KEY (user_id, movie_id),
+                FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE,
+                FOREIGN KEY (movie_id) REFERENCES movies(id) ON DELETE CASCADE
+            )
+        ''')
+
+        # Таблица уведомлений
+        self.cursor.execute('''
+            CREATE TABLE IF NOT EXISTS notifications_log (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                user_id INTEGER NOT NULL,
+                movie_id INTEGER,
+                notification_type TEXT NOT NULL,
+                sent_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                is_read BOOLEAN DEFAULT 0,
+                FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE,
+                FOREIGN KEY (movie_id) REFERENCES movies(id) ON DELETE CASCADE
+            )
+        ''')
+
+        # Таблица настроек пользователей (уведомления и т.д.)
+        self.cursor.execute('''
+            CREATE TABLE IF NOT EXISTS user_settings (
+                user_id INTEGER PRIMARY KEY,
+                notifications_enabled BOOLEAN DEFAULT 1,
+                reminders_enabled BOOLEAN DEFAULT 1,
+                FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
+            )
+        ''')
+
         self.conn.commit()
         logger.info("✅ Таблицы БД созданы/проверены")
 
@@ -1348,3 +1397,318 @@ class Database:
                 logger.info("✅ Соединение с БД закрыто")
         except Exception as e:
             logger.error(f"Ошибка закрытия БД: {e}")
+
+    # ==================== ACHIEVEMENTS ====================
+
+    def unlock_achievement(self, user_id: int, achievement_type: str) -> bool:
+        """Разблокировать достижение пользователю"""
+        try:
+            self.cursor.execute('''
+                INSERT OR IGNORE INTO user_achievements (user_id, achievement_type)
+                VALUES (?, ?)
+            ''', (user_id, achievement_type))
+            self.conn.commit()
+            return True
+        except Exception as e:
+            logger.error(f"Ошибка разблокировки достижения: {e}")
+            return False
+
+    def is_achievement_unlocked(self, user_id: int, achievement_type: str) -> bool:
+        """Проверить, разблокировано ли достижение"""
+        try:
+            self.cursor.execute('''
+                SELECT 1 FROM user_achievements
+                WHERE user_id = ? AND achievement_type = ?
+            ''', (user_id, achievement_type))
+            return self.cursor.fetchone() is not None
+        except Exception as e:
+            logger.error(f"Ошибка проверки достижения: {e}")
+            return False
+
+    def get_user_achievements(self, user_id: int) -> List[Dict]:
+        """Получить все разблокированные достижения пользователя"""
+        try:
+            self.cursor.execute('''
+                SELECT achievement_type, unlocked_at
+                FROM user_achievements
+                WHERE user_id = ?
+                ORDER BY unlocked_at
+            ''', (user_id,))
+            rows = self.cursor.fetchall()
+            return [dict(row) for row in rows]
+        except Exception as e:
+            logger.error(f"Ошибка получения достижений: {e}")
+            return []
+
+    # ==================== REACTIONS ====================
+
+    def add_reaction(self, user_id: int, movie_id: int, movie_code: str, reaction_type: str) -> bool:
+        """Добавить реакцию на фильм"""
+        try:
+            self.cursor.execute('''
+                INSERT OR REPLACE INTO movie_reactions (user_id, movie_id, movie_code, reaction_type)
+                VALUES (?, ?, ?, ?)
+            ''', (user_id, movie_id, movie_code, reaction_type))
+            self.conn.commit()
+            return True
+        except Exception as e:
+            logger.error(f"Ошибка добавлени�� реакции: {e}")
+            return False
+
+    def remove_reaction(self, user_id: int, movie_id: int) -> bool:
+        """Удалить реакцию пользователя"""
+        try:
+            self.cursor.execute('''
+                DELETE FROM movie_reactions
+                WHERE user_id = ? AND movie_id = ?
+            ''', (user_id, movie_id))
+            self.conn.commit()
+            return True
+        except Exception as e:
+            logger.error(f"Ошибка удаления реакции: {e}")
+            return False
+
+    def update_reaction(self, user_id: int, movie_id: int, reaction_type: str) -> bool:
+        """Обновить реакцию пользователя"""
+        try:
+            self.cursor.execute('''
+                UPDATE movie_reactions
+                SET reaction_type = ?
+                WHERE user_id = ? AND movie_id = ?
+            ''', (reaction_type, user_id, movie_id))
+            self.conn.commit()
+            return True
+        except Exception as e:
+            logger.error(f"Ошибка обновления реакции: {e}")
+            return False
+
+    def get_user_reaction(self, user_id: int, movie_id: int) -> Dict | None:
+        """Получить реакцию пользователя на фильм"""
+        try:
+            self.cursor.execute('''
+                SELECT reaction_type, created_at
+                FROM movie_reactions
+                WHERE user_id = ? AND movie_id = ?
+            ''', (user_id, movie_id))
+            row = self.cursor.fetchone()
+            return dict(row) if row else None
+        except Exception as e:
+            logger.error(f"Ошибка получения реакции: {e}")
+            return None
+
+    def get_movie_reactions(self, movie_id: int) -> List[Dict]:
+        """Получить все реакции на фильм"""
+        try:
+            self.cursor.execute('''
+                SELECT user_id, reaction_type, created_at
+                FROM movie_reactions
+                WHERE movie_id = ?
+            ''', (movie_id,))
+            rows = self.cursor.fetchall()
+            return [dict(row) for row in rows]
+        except Exception as e:
+            logger.error(f"Ошибка получения реакций фильма: {e}")
+            return []
+
+    # ==================== NOTIFICATIONS ====================
+
+    def log_notification(self, user_id: int, movie_id: int, notification_type: str) -> bool:
+        """Записать отправленное уведомление"""
+        try:
+            self.cursor.execute('''
+                INSERT INTO notifications_log (user_id, movie_id, notification_type)
+                VALUES (?, ?, ?)
+            ''', (user_id, movie_id, notification_type))
+            self.conn.commit()
+            return True
+        except Exception as e:
+            logger.error(f"Ошибка логирования уведомления: {e}")
+            return False
+
+    def get_all_users_with_notifications(self) -> List[Dict]:
+        """Получить всех пользователей с включенными уведомлениями"""
+        try:
+            self.cursor.execute('''
+                SELECT u.user_id, u.language
+                FROM users u
+                LEFT JOIN user_settings us ON u.user_id = us.user_id
+                WHERE us.notifications_enabled IS NULL OR us.notifications_enabled = 1
+            ''')
+            rows = self.cursor.fetchall()
+            return [dict(row) for row in rows]
+        except Exception as e:
+            logger.error(f"Ошибка получения пользователей с уведомлениями: {e}")
+            return []
+
+    def set_user_notifications(self, user_id: int, enabled: bool) -> bool:
+        """Включить/выключить уведомления пользователю"""
+        try:
+            self.cursor.execute('''
+                INSERT OR REPLACE INTO user_settings (user_id, notifications_enabled)
+                VALUES (?, ?)
+            ''', (user_id, 1 if enabled else 0))
+            self.conn.commit()
+            return True
+        except Exception as e:
+            logger.error(f"Ошибка настройки уведомлений: {e}")
+            return False
+
+    def get_user_notifications_enabled(self, user_id: int) -> bool:
+        """Проверить, включены ли уведомления у пользователя"""
+        try:
+            self.cursor.execute('''
+                SELECT notifications_enabled
+                FROM user_settings
+                WHERE user_id = ?
+            ''', (user_id,))
+            row = self.cursor.fetchone()
+            return row['notifications_enabled'] if row else True
+        except Exception as e:
+            logger.error(f"Ошибка проверки настроек уведомлений: {e}")
+            return True
+
+    # ==================== TRENDS & STATS ====================
+
+    def get_active_users_count(self, minutes: int = 5) -> int:
+        """Получить количество активных пользователей за последние N минут"""
+        try:
+            self.cursor.execute('''
+                SELECT COUNT(DISTINCT user_id)
+                FROM user_visits
+                WHERE visited_at >= datetime('now', ?)
+            ''', (f'-{minutes} minutes',))
+            return self.cursor.fetchone()[0]
+        except Exception as e:
+            logger.error(f"Ошибка получения активных пользователей: {e}")
+            return 0
+
+    def get_new_users_count(self, date: datetime) -> int:
+        """Получить количество новых пользователей за дату"""
+        try:
+            self.cursor.execute('''
+                SELECT COUNT(*)
+                FROM users
+                WHERE DATE(created_at) = DATE(?)
+            ''', (date.strftime('%Y-%m-%d'),))
+            return self.cursor.fetchone()[0]
+        except Exception as e:
+            logger.error(f"Ошибка получения новых пользователей: {e}")
+            return 0
+
+    def get_searches_count(self, date: datetime) -> int:
+        """Получить количество поисковых запросов за дату"""
+        try:
+            self.cursor.execute('''
+                SELECT COUNT(*)
+                FROM search_history
+                WHERE DATE(created_at) = DATE(?)
+            ''', (date.strftime('%Y-%m-%d'),))
+            return self.cursor.fetchone()[0]
+        except Exception as e:
+            logger.error(f"Ошибка получения поисков: {e}")
+            return 0
+
+    def get_views_count(self, date: datetime) -> int:
+        """Получить количество просмотров за дату"""
+        try:
+            self.cursor.execute('''
+                SELECT COUNT(*)
+                FROM view_analytics
+                WHERE DATE(viewed_at) = DATE(?)
+            ''', (date.strftime('%Y-%m-%d'),))
+            return self.cursor.fetchone()[0]
+        except Exception as e:
+            logger.error(f"Ошибка получения просмотров: {e}")
+            return 0
+
+    def get_user_info(self, user_id: int) -> Dict | None:
+        """Получить полную информацию о пользователе"""
+        try:
+            self.cursor.execute('''
+                SELECT *
+                FROM users
+                WHERE user_id = ?
+            ''', (user_id,))
+            row = self.cursor.fetchone()
+            return dict(row) if row else None
+        except Exception as e:
+            logger.error(f"Ошибка получения информации о пользователе: {e}")
+            return None
+
+    def get_user_created_at(self, user_id: int) -> datetime | None:
+        """Получить дату регистрации пользователя"""
+        try:
+            self.cursor.execute('''
+                SELECT created_at
+                FROM users
+                WHERE user_id = ?
+            ''', (user_id,))
+            row = self.cursor.fetchone()
+            if row and row['created_at']:
+                if isinstance(row['created_at'], str):
+                    return datetime.fromisoformat(row['created_at'])
+                return row['created_at']
+            return None
+        except Exception as e:
+            logger.error(f"Ошибка получения даты регистрации: {e}")
+            return None
+
+    def get_movie_genres(self, movie_id: int) -> List[str]:
+        """Получить жанры фильма"""
+        try:
+            self.cursor.execute('''
+                SELECT g.name
+                FROM genres g
+                JOIN movie_genres mg ON g.id = mg.genre_id
+                WHERE mg.movie_id = ?
+            ''', (movie_id,))
+            return [row['name'] for row in self.cursor.fetchall()]
+        except Exception as e:
+            logger.error(f"Ошибка получения жанров: {e}")
+            return []
+
+    def get_movie_actors(self, movie_id: int) -> List[str]:
+        """Получить актёров фильма"""
+        try:
+            self.cursor.execute('''
+                SELECT a.name
+                FROM actors a
+                JOIN movie_actors ma ON a.id = ma.actor_id
+                WHERE ma.movie_id = ?
+            ''', (movie_id,))
+            return [row['name'] for row in self.cursor.fetchall()]
+        except Exception as e:
+            logger.error(f"Ошибка получения актёров: {e}")
+            return []
+
+    def get_movie_directors(self, movie_id: int) -> List[str]:
+        """Получить режиссёров фильма"""
+        try:
+            self.cursor.execute('''
+                SELECT d.name
+                FROM directors d
+                JOIN movie_directors md ON d.id = md.director_id
+                WHERE md.movie_id = ?
+            ''', (movie_id,))
+            return [row['name'] for row in self.cursor.fetchall()]
+        except Exception as e:
+            logger.error(f"Ошибка получения режиссёров: {e}")
+            return []
+
+    def get_max_movie_code(self) -> int:
+        """Получить максимальный короткий числовой код фильма в БД (до 999)"""
+        try:
+            self.cursor.execute('''
+                SELECT MAX(CAST(code AS INTEGER)) FROM movies 
+                WHERE code GLOB '[0-9]*' AND CAST(code AS INTEGER) < 1000
+            ''')
+            row = self.cursor.fetchone()
+            return row[0] if row and row[0] else 0
+        except Exception as e:
+            logger.error(f"Ошибка получения максимального кода: {e}")
+            return 0
+
+    def admin_ids(self) -> list:
+        """Вернуть список ID админов (для сервисов)"""
+        from config import Config
+        return Config.ADMIN_IDS

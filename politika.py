@@ -68,7 +68,9 @@ try:
         is_global_duplicate,
         mark_global_posted,
         get_universal_hash,
-        cleanup_global_db
+        cleanup_global_db,
+        is_duplicate_advanced,
+        normalize_title_for_dedup
     )
     GLOBAL_DEDUP_ENABLED = True
 except ImportError:
@@ -1036,6 +1038,8 @@ def postprocess_text(raw) -> str:
 
 # ================= ПРОВЕРКА ДУБЛИКАТОВ =================
 class DuplicateDetector:
+    """✅ Обёртка над универсальной функцией из global_dedup"""
+    
     async def is_duplicate_advanced(
         self,
         title: str,
@@ -1044,79 +1048,19 @@ class DuplicateDetector:
         pub_date: Optional[datetime],
         db_path: str
     ) -> Tuple[bool, str]:
-        """✅ ПЯТИУРОВНЕВАЯ проверка дубликатов с улучшенной проверкой по содержанию"""
-
-        # ✅ 1. Глобальная проверка (межканальная) через content hash
-        if GLOBAL_DEDUP_ENABLED:
-            try:
-                # Используем content hash для более точной проверки
-                content_hash = get_content_dedup_hash(title, summary, config.category)
-                if await is_global_duplicate(content_hash, config.category, hours=48):
-                    logger.info(f"🌐 Глобальный дубликат (content): {title[:50]}")
-                    metrics.log_duplicate("global")
-                    return True, "global_content_duplicate"
-            except Exception as e:
-                logger.warning(f"⚠️ Ошибка глобальной проверки: {e}")
-
-        # ✅ 2. Проверка по link (точная)
-        async with aiosqlite.connect(db_path) as db:
-            async with db.execute(
-                "SELECT 1 FROM posted WHERE link = ?",
-                (link,)
-            ) as cursor:
-                if await cursor.fetchone():
-                    logger.info(f"🔗 Дубликат по ссылке: {title[:50]}")
-                    return True, "link_duplicate"
-
-        # ✅ 3. Content dedup hash (локальный)
-        content_dedup_hash = get_content_dedup_hash(title, summary)
-        if await is_content_duplicate(content_dedup_hash, hours=config.duplicate_check_hours):
-            logger.info(f"🔄 Content дубликат: {title[:50]}")
-            metrics.log_duplicate("content")
-            return True, "content_duplicate"
-
-        # ✅ 4. Fuzzy по заголовку (70%+) — СНИЖЕН ПОРОГ ДЛЯ HOT-ПОСТОВ
-        title_norm = normalize_title(title)
-        cutoff = datetime.now(timezone.utc) - timedelta(hours=config.duplicate_check_hours)
-        async with aiosqlite.connect(db_path) as db:
-            async with db.execute(
-                """SELECT title_normalized FROM posted
-                WHERE posted_at > ? AND title_normalized IS NOT NULL
-                ORDER BY posted_at DESC LIMIT 500""",
-                (cutoff,)
-            ) as cursor:
-                recent_posts = await cursor.fetchall()
-                for post in recent_posts:
-                    stored = post[0] if isinstance(post, tuple) else post
-                    if not stored:
-                        continue
-                    ratio = fuzz.token_set_ratio(title_norm, stored)
-                    if ratio >= 70:  # 🔽 Снизили порог с 85% до 70% для лучшей ловли дубликатов
-                        logger.info(f"🔄 Fuzzy дубликат ({ratio}%): {title[:50]}")
-                        return True, f"fuzzy_{ratio}"
-
-        # ✅ 5. Проверка через entity matching (для новостей написанных по-разному)
-        if GLOBAL_DEDUP_ENABLED:
-            try:
-                from global_dedup import are_duplicates_by_entities
-                cutoff_recent = datetime.now(timezone.utc) - timedelta(hours=24)  # 🔼 Увеличили с 12 до 24 часов
-                async with aiosqlite.connect(db_path) as db:
-                    async with db.execute(
-                        """SELECT title_normalized FROM posted
-                        WHERE posted_at > ? AND title_normalized IS NOT NULL
-                        ORDER BY posted_at DESC LIMIT 300""",  # 🔼 Увеличили выборку
-                        (cutoff_recent,)
-                    ) as cursor:
-                        recent_posts = await cursor.fetchall()
-                        for post in recent_posts:
-                            stored = post[0] if isinstance(post, tuple) else post
-                            if stored and are_duplicates_by_entities(title, stored, min_common_entities=2):  # 🔽 Снизили с 3 до 2
-                                logger.info(f"🔄 Entity дубликат: {title[:50]}")
-                                return True, "entity_duplicate"
-            except Exception as e:
-                logger.warning(f"⚠️ Ошибка entity проверки: {e}")
-
-        return False, "unique"
+        """Вызывает универсальную функцию из global_dedup"""
+        if not GLOBAL_DEDUP_ENABLED:
+            return False, "unique"
+        
+        return await is_duplicate_advanced(
+            title=title,
+            summary=summary,
+            link=link,
+            local_db_path=db_path,
+            category=config.category,
+            duplicate_check_hours=config.duplicate_check_hours,
+            global_enabled=True
+        )
 
 # ================= АДАПТ��ВНЫЙ RATE LIMITER =================
 class AdaptiveRateLimiter:
@@ -1177,6 +1121,7 @@ telegram_rate_limiter = TelegramRateLimiter()
 
 # ================= LLM КЛИЕНТ =================
 class CachedLLMClient:
+    """LLM клиент с TTL-кэшированием (7 дней)"""
     def __init__(self):
         self.client = AsyncOpenAI(
             api_key=config.router_api_key,
@@ -1187,9 +1132,12 @@ class CachedLLMClient:
         self.circuit_breaker_threshold = 5
         self.circuit_breaker_open_until = 0
         self.cache_file = Path("llm_cache_pol.pkl")
+        self.cache_ttl_days = 7
         self.cache = self._load_cache()
+        self._cleanup_old_cache()
 
     def _load_cache(self) -> Dict:
+        """Загружает кэш из файла. Формат: {key: {'result': str, 'timestamp': float}}"""
         if self.cache_file.exists():
             try:
                 with open(self.cache_file, 'rb') as f:
@@ -1201,6 +1149,7 @@ class CachedLLMClient:
         return {}
 
     def _save_cache(self):
+        """Сохраняет кэш в файл"""
         try:
             if len(self.cache) > 2000:
                 self.cache = dict(list(self.cache.items())[-1000:])
@@ -1208,6 +1157,31 @@ class CachedLLMClient:
                 pickle.dump(self.cache, f)
         except Exception as e:
             logger.warning(f"⚠️ Ошибка сохранения кэша: {e}")
+
+    def _cleanup_old_cache(self):
+        """Удаляет записи старше TTL (7 дней)"""
+        if not self.cache:
+            return
+        
+        cutoff_time = time.time() - (self.cache_ttl_days * 86400)
+        old_keys = []
+        
+        for key, value in self.cache.items():
+            # Поддерживаем старый формат (просто строка) и новый (dict с timestamp)
+            if isinstance(value, dict):
+                timestamp = value.get('timestamp', 0)
+                if timestamp < cutoff_time:
+                    old_keys.append(key)
+            else:
+                # Старый формат — считаем что запись старая и удаляем
+                old_keys.append(key)
+        
+        for key in old_keys:
+            del self.cache[key]
+        
+        if old_keys:
+            logger.info(f"🧹 Очищено {len(old_keys)} устаревших записей кэша (> {self.cache_ttl_days} дней)")
+            self._save_cache()
 
     def _get_cache_key(self, title: str, summary: str, operation: str) -> str:
         text = f"{operation}:{title[:100]}:{summary[:200]}"
@@ -1267,18 +1241,29 @@ class CachedLLMClient:
             return None
 
     def _contains_fake_dates(self, text: str) -> bool:
-        # ✅ 2026 год — текущий, 2025 и старше — старые
-        old_years = ['2023', '2024', '2025']
-        for year in old_years:
-            if re.search(rf'\b{year}\b', text):
-                logger.warning(f"🚨 Обнаружен старый год: {year}")
+        """
+        ✅ Проверка на выдуманные даты — ТОЛЬКО явные фейки событий.
+        Разрешает легитимные упоминания: "уровней 2024 года", "в 2025 году ожидается"
+        Блокирует: "28 февраля 2024 года произошло", "в 2023 году начал" (конкретные события)
+        """
+        text_lower = text.lower()
+        
+        # ✅ Блокируем ТОЛЬКО конкретные даты событий (день + месяц + год или год в контексте события)
+        fake_event_patterns = [
+            # Конкретная дата + год + событие: "28 февраля 2024 года начал", "15 марта 2025 произошел"
+            r'\d{1,2}\s+(?:янв|февр|мар|апр|ма|июн|июл|авг|сен|окт|ноя|дек)[а-я]*\s+(?:2023|2024|2025)\s*(?:года|г\.?)?\s*[,.]?\s*(?:начал|произош|удар|обстрел|убил|взорвал|подписал|объявил)',
+            # Год + событие в прошедшем времени: "в 2024 году начал", "2023 году произошел"
+            r'(?:в\s+)?(?:2023|2024|2025)\s*году\s+(?:начал|произош|удар|обстрел|убил|взорвал|подписал|объявил|случил)',
+            # Событие + дату: "начал операцию 28 февраля 2024", "произошел взрыв 15 марта 2025"
+            r'(?:начал|произош|удар|обстрел|убил|взорвал)[а-я]*\s+(?:в\s+)?(?:2023|2024|2025)\s*(?:году|год)?',
+        ]
+        
+        for pattern in fake_event_patterns:
+            if re.search(pattern, text_lower):
+                logger.warning(f"🚨 Обнаружена выдуманная дата события: {text[:100]}")
                 metrics.log_fake_date()
                 return True
-        # Блокируем "в 2026 году", "2026 году" — LLM выдумывает
-        if re.search(r'(в|году|года|год)\s*2026\b', text.lower()):
-            logger.warning("🚨 Обнаружена выдуманная дата с 2026")
-            metrics.log_fake_date()
-            return True
+        
         return False
 
     def _contains_too_much_english(self, text: str) -> bool:
@@ -1320,9 +1305,16 @@ class CachedLLMClient:
     async def classify(self, title: str, summary: str) -> Optional[str]:
         cache_key = self._get_cache_key(title, summary, "classify")
         if cache_key in self.cache:
-            logger.info("💾 Cache hit: classify")
-            metrics.log_llm_cache_hit()
-            return self.cache[cache_key]
+            cached_value = self.cache[cache_key]
+            # Поддерживаем старый формат (строка) и новый (dict)
+            if isinstance(cached_value, dict):
+                result = cached_value.get('result')
+            else:
+                result = cached_value
+            if result:
+                logger.info("💾 Cache hit: classify")
+                metrics.log_llm_cache_hit()
+                return result
 
         await self._circuit_breaker_check()
         await self.rate_limiter.wait()
@@ -1348,7 +1340,8 @@ class CachedLLMClient:
                 return None
 
             result = "POLITICS" if "POLITICS" in content.upper() else None
-            self.cache[cache_key] = result
+            # Сохраняем в новом формате с timestamp
+            self.cache[cache_key] = {'result': result, 'timestamp': time.time()}
             if len(self.cache) % 10 == 0:
                 self._save_cache()
             self.rate_limiter.report_success()
@@ -1378,9 +1371,16 @@ class CachedLLMClient:
     async def rewrite(self, title: str, body: str) -> Optional[str]:
         cache_key = self._get_cache_key(title, body, "rewrite")
         if cache_key in self.cache:
-            logger.info("💾 Cache hit: rewrite")
-            metrics.log_llm_cache_hit()
-            return self.cache[cache_key]
+            cached_value = self.cache[cache_key]
+            # Поддерживаем старый формат (строка) и новый (dict)
+            if isinstance(cached_value, dict):
+                result = cached_value.get('result')
+            else:
+                result = cached_value
+            if result:
+                logger.info("💾 Cache hit: rewrite")
+                metrics.log_llm_cache_hit()
+                return result
 
         await self._circuit_breaker_check()
         await self.rate_limiter.wait()
@@ -1436,7 +1436,8 @@ class CachedLLMClient:
                 logger.warning("⚠️ Рерайт содержит слишком много английских слов")
                 return None
 
-            self.cache[cache_key] = result
+            # Сохраняем в новом формате с timestamp
+            self.cache[cache_key] = {'result': result, 'timestamp': time.time()}
             if len(self.cache) % 10 == 0:
                 self._save_cache()
             self.rate_limiter.report_success()

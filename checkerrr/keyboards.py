@@ -35,15 +35,24 @@ def get_main_keyboard(lang: str = "ru", is_admin: bool = False) -> ReplyKeyboard
         admin_text = "👑 Админ-панель" if lang == "ru" else "👑 Admin Panel"
         keyboard.append([KeyboardButton(text=admin_text)])
 
+    # Кнопка профиля
+    keyboard.append([KeyboardButton(text="👤 Мой профиль")])
+
     # Кнопка поиска
     keyboard.append([KeyboardButton(text="🔍 Найти фильм")])
-    
+
     # Кнопки поиска по категориям
     keyboard.append([
         KeyboardButton(text="🎭 Поиск по жанру"),
         KeyboardButton(text="🎬 Поиск по актёру")
     ])
     keyboard.append([KeyboardButton(text="🎥 Поиск по режиссёру")])
+
+    # Новые фичи
+    keyboard.append([
+        KeyboardButton(text="🎲 Случайный фильм"),
+        KeyboardButton(text="📈 Тренды")
+    ])
     
     # Основные кнопки
     keyboard.append([
@@ -51,11 +60,11 @@ def get_main_keyboard(lang: str = "ru", is_admin: bool = False) -> ReplyKeyboard
         KeyboardButton(text="🌐 Язык")
     ])
     keyboard.append([
-        KeyboardButton(text="⭐ Избранное"),
         KeyboardButton(text="🔥 Топ фильмов")
     ])
-    keyboard.append([KeyboardButton(text="📜 История")])
-    keyboard.append([KeyboardButton(text="🛠 Поддержка")])
+    keyboard.append([
+        KeyboardButton(text="🛠 Поддержка")
+    ])
 
     return ReplyKeyboardMarkup(
         keyboard=keyboard,

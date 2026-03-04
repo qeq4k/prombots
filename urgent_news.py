@@ -25,6 +25,7 @@ import asyncio
 import logging
 import signal
 import ssl
+import pickle
 import aiohttp
 import aiosqlite
 import feedparser
@@ -50,16 +51,22 @@ try:
         mark_global_posted,
         check_duplicate_multi_layer,
         is_similar_recent_news,
+        texts_are_similar,
+        DB_PATH as GLOBAL_DB,
+        normalize_text_for_dedup,
     )
     GLOBAL_DEDUP_ENABLED = True
 except ImportError:
     GLOBAL_DEDUP_ENABLED = False
+    texts_are_similar = None
+    GLOBAL_DB = None
+    normalize_text_for_dedup = None
     logging.warning("⚠️ global_dedup.py не найден — дедупликация работает в базовом режиме")
 
 # ✅ ИМПОРТ PROMETHEUS METRICS
 try:
     from prometheus_metrics import PrometheusMetrics
-    prom_metrics = PrometheusMetrics(bot_name='urgent', port=8003)
+    prom_metrics = PrometheusMetrics(bot_name='urgent', port=8005)
     METRICS_ENABLED = True
 except ImportError:
     METRICS_ENABLED = False
@@ -71,17 +78,17 @@ load_dotenv()
 # ================= КОНФИГУРАЦИЯ =================
 class UrgentConfig:
     """Конфигурация для срочных новостей"""
-    
+
     # Telegram
     TG_TOKEN = os.getenv("TG_TOKEN", "")
-    
+
     # Каналы для автопостинга
     CHANNELS = {
         "politics": os.getenv("TG_CHANNEL_POLITICS", "-1003659350130"),
         "economy": os.getenv("TG_CHANNEL_ECONOMY", "-1003711339547"),
         "cinema": os.getenv("TG_CHANNEL_CINEMA", "-1003892651191"),
     }
-    
+
     # Источники для срочных новостей (только самые надёжные)
     URGENT_FEEDS = {
         "politics": [
@@ -95,7 +102,17 @@ class UrgentConfig:
             "https://www.vedomosti.ru/rss/news",
         ],
     }
-    
+
+    # ✅ ДОМЕНЫ для fetch_full_article (только проверенные источники)
+    ALLOWED_DOMAINS = {
+        "tass.ru", "www.tass.ru",
+        "interfax.ru", "www.interfax.ru",
+        "ria.ru", "www.ria.ru",
+        "vedomosti.ru", "www.vedomosti.ru",
+        "kommersant.ru", "www.kommersant.ru",
+        "lenta.ru", "www.lenta.ru",
+    }
+
     # Интервал парсинга (секунды)
     PARSE_INTERVAL = 120  # 2 минуты
 
@@ -104,13 +121,21 @@ class UrgentConfig:
 
     # Минимальный приоритет для автопостинга (0-100)
     AUTOPOST_THRESHOLD = 85
-    
-    #Cooldown между постами в один канал (секунды)
-    POST_COOLDOWN = 300  # 5 минут
-    
+
+    # Максимум постов в день (защита от флуда)
+    MAX_POSTS_PER_DAY = 24  # 1 пост в час в среднем
+
+    # Cooldown между постами в один канал (секунды)
+    POST_COOLDOWN_DAY = 300   # 5 минут днём
+    POST_COOLDOWN_NIGHT = 600 # 10 минут ночью (увеличенный)
+
+    # Ночное время (UTC)
+    NIGHT_START_HOUR = 22  # 22:00 UTC = 01:00 МСК
+    NIGHT_END_HOUR = 5     # 05:00 UTC = 08:00 МСК
+
     # Период проверки дубликатов (часы)
-    DUPLICATE_CHECK_HOURS = 24
-    
+    DUPLICATE_CHECK_HOURS = 12  # ✅统一 с politika (12ч)
+
     # БД для дедупликации
     DB_PATH = "urgent_news.db"
 
@@ -120,6 +145,10 @@ class UrgentConfig:
     # ✅ LLM конфигурация
     ROUTER_API_KEY = os.getenv("ROUTER_API_KEY", "")
     LLM_MODEL = "openai/gpt-oss-20b"
+    LLM_BASE_URL = "https://routerai.ru/v1"  # ✅ Единый роутер с economika/politika
+
+    # ✅ LLM кэш файл
+    LLM_CACHE_FILE = "llm_cache_urgent.pkl"
 
 
 config = UrgentConfig()
@@ -144,9 +173,10 @@ logging.getLogger("asyncio").setLevel(logging.WARNING)
 
 # ================= КЛЮЧЕВЫЕ СЛОВА ДЛЯ СРОЧНЫХ НОВОСТЕЙ =================
 # Триггеры для автопостинга с высоким приоритетом
+# ✅ ИСПОЛЬЗУЕМ list вместо set для детерминированного порядка приоритетов
 
-URGENT_POLITICS_KEYWORDS = {
-    # Военные действия
+URGENT_POLITICS_KEYWORDS = [
+    # Военные действия (highest priority)
     ("военн", "операци", 100),
     ("начал", "операци", 95),
     ("удар", "ракет", 95),
@@ -154,26 +184,26 @@ URGENT_POLITICS_KEYWORDS = {
     ("эскалаци", "конфликт", 90),
     ("мобилизаци", "объявлен", 95),
     ("перемири", "прекращен", 85),
-    
+
     # Критические заявления
     ("путин", "заявлен", 90),
     ("президент", "обращен", 95),
     ("экстрен", "заявлен", 90),
     ("совет", "безопасност", 85),
-    
+
     # Международные отношения
     ("санкц", "введен", 85),
     ("разрыв", "дипломатическ", 90),
     ("нато", "размещен", 85),
     ("ядерн", "угроз", 95),
-    
+
     # Чрезвычайные ситуации
     ("теракт", "совершен", 95),
     ("взрыв", "произошел", 90),
     ("чрезвычайн", "положен", 85),
-}
+]
 
-URGENT_ECONOMY_KEYWORDS = {
+URGENT_ECONOMY_KEYWORDS = [
     # Рынки и финансы
     ("курс", "доллар", 85),
     ("курс", "рубль", 85),
@@ -181,25 +211,25 @@ URGENT_ECONOMY_KEYWORDS = {
     ("крах", "биржа", 95),
     ("дефолт", "объявлен", 100),
     ("девальваци", "рубль", 90),
-    
+
     # Ключевые решения
     ("ключевая", "ставка", 85),
     ("цб", "решен", 80),
     ("санкц", "нефть", 90),
     ("эмбарго", "введен", 85),
-    
+
     # Кризисные явления
     ("кризис", "наступил", 90),
     ("рецесси", "экономика", 85),
     ("инфляци", "взлетел", 85),
     ("безработиц", "вырос", 80),
-    
+
     # Энергоресурсы
     ("нефть", "упал", 85),
     ("нефть", "вырос", 80),
     ("газ", "отключен", 90),
     ("энергетическ", "кризис", 90),
-}
+]
 
 
 # ================= ДЕДУПЛИКАЦИЯ =================
@@ -237,8 +267,14 @@ def get_content_hash(title: str, body: str, category: str) -> str:
     """
     Создаёт хеш для дедупликации срочных новостей.
     Использует глобальную функцию для консистентности.
+    ✅ FALLBACK: если GLOBAL_DEDUP_ENABLED = False, используем локальный хеш.
     """
-    return get_content_dedup_hash(title, body, category)
+    if GLOBAL_DEDUP_ENABLED:
+        return get_content_dedup_hash(title, body, category)
+    else:
+        # Локальный fallback без зависимости от global_dedup
+        raw = f"{title.lower()}|{body[:400].lower()}|{category.lower()}"
+        return hashlib.sha256(raw.encode("utf-8", errors="ignore")).hexdigest()
 
 
 async def is_urgent_duplicate(title: str, body: str, category: str, hours: int = None) -> Tuple[bool, str]:
@@ -263,9 +299,8 @@ async def is_urgent_duplicate(title: str, body: str, category: str, hours: int =
 
     # ✅ СЛОЙ 0: Проверка на очень похожие заголовки за последний час (для срочных новостей)
     # Это предотвращает публикацию одинаковых новостей с разными формулировками
-    from global_dedup import texts_are_similar, DB_PATH as GLOBAL_DB, normalize_text_for_dedup
     cutoff_short = datetime.now(timezone.utc) - timedelta(hours=1)
-    
+
     async with aiosqlite.connect(GLOBAL_DB) as db:
         async with db.execute(
             "SELECT title_preview FROM global_posted WHERE category = ? AND posted_at > ?",
@@ -313,9 +348,10 @@ REMOVE_PHRASES = [
 
 # ✅ REGEX-паттерны для удаления фейковой вставки про Иран
 # Ловит все варианты: разный порядок слов, с "года"/"г.", с точкой и без
+# ✅ Улучшено: покрывает "США с Израилем", "США и Израиль", "Израиль с США" и т.д.
 IRAN_HOAX_PATTERNS = [
-    r'\d+\s*(?:февр|февраля)\s*\d{0,4}\s*(?:года|г\.?)?\s*[,.]?\s*(?:США\s*(?:и|с)\s*Израиль|Израиль\s*(?:и|с)\s*США)\s*начал[ии]?\s*военн[уюую]?\.?\s*операци[юью]?\.?\s*(?:против|в\s*отношении)\s*Ирана\.?',
-    r'(?:США\s*(?:и|с)\s*Израиль|Израиль\s*(?:и|с)\s*США)\s*начал[ии]?\s*военн[уюую]?\.?\s*операци[юью]?\.?\s*(?:против|в\s*отношении)\s*Ирана',
+    r'\d+\s*(?:февр|февраля)\s*\d{0,4}\s*(?:года|г\.?)?\s*[,.]?\s*(?:США\s*(?:и|с)\s*Израил[ья]|Израиль\s*(?:и|с)\s*США)\s*начал[ии]?\s*военн[уюую]?\.?\s*операци[юью]?\.?\s*(?:против|в\s*отношении)\s*Ирана\.?',
+    r'(?:США\s*(?:и|с)\s*Израил[ья]|Израиль\s*(?:и|с)\s*США)\s*начал[ии]?\s*военн[уюую]?\.?\s*операци[юью]?\.?\s*(?:против|в\s*отношении)\s*Ирана',
     r'военн[аяою]?\.?\s*операци[яию]?\.?\s*(?:против|в\s*отношении)\s*Ирана\s*начал[асьа]?\s*\d+\s*(?:февр|февраля)',
 ]
 
@@ -430,12 +466,15 @@ async def fetch_feed(session: aiohttp.ClientSession, url: str) -> List[dict]:
 
 
 # ================= ОТПРАВКА В TELEGRAM =================
-async def send_to_telegram(text: str, channel: str, parse_mode: str = "HTML") -> bool:
-    """Отправка поста в Telegram"""
+async def send_to_telegram(text: str, channel: str, parse_mode: str = "HTML", session: aiohttp.ClientSession = None) -> bool:
+    """
+    Отправка поста в Telegram.
+    ✅ Переиспользует сессию из self.session если передана.
+    """
     if not config.TG_TOKEN:
         logger.error("❌ TG_TOKEN не настроен")
         return False
-    
+
     try:
         url = f"https://api.telegram.org/bot{config.TG_TOKEN}/sendMessage"
         payload = {
@@ -444,9 +483,11 @@ async def send_to_telegram(text: str, channel: str, parse_mode: str = "HTML") ->
             "parse_mode": parse_mode,
             "disable_web_page_preview": False
         }
-        
+
         ssl_ctx = ssl.create_default_context()
-        async with aiohttp.ClientSession() as session:
+
+        # ✅ Переиспользуем сессию если передана
+        if session:
             async with session.post(url, json=payload, ssl=ssl_ctx, timeout=aiohttp.ClientTimeout(total=30)) as resp:
                 if resp.status == 200:
                     logger.info(f"✅ Отправлено в {channel}")
@@ -455,7 +496,18 @@ async def send_to_telegram(text: str, channel: str, parse_mode: str = "HTML") ->
                     error = await resp.text()
                     logger.error(f"❌ Ошибка отправки: {resp.status} - {error}")
                     return False
-    
+        else:
+            # Fallback: создаём новую сессию (для обратной совместимости)
+            async with aiohttp.ClientSession() as sess:
+                async with sess.post(url, json=payload, ssl=ssl_ctx, timeout=aiohttp.ClientTimeout(total=30)) as resp:
+                    if resp.status == 200:
+                        logger.info(f"✅ Отправлено в {channel}")
+                        return True
+                    else:
+                        error = await resp.text()
+                        logger.error(f"❌ Ошибка отправки: {resp.status} - {error}")
+                        return False
+
     except Exception as e:
         logger.error(f"❌ Ошибка отправки в Telegram: {e}")
         return False
@@ -504,92 +556,240 @@ class UrgentNewsBot:
     def __init__(self):
         self.running = True
         self.last_post_time: Dict[str, float] = {}  # {channel: timestamp}
+        self._cooldown_locks: Dict[str, asyncio.Lock] = {}  # {category: lock} для атомарности
+        self._posts_today: Dict[str, int] = {}  # {channel: count} для лимита в день
+        self._last_reset_date: str = ""  # дата сброса счётчика
         self.session: Optional[aiohttp.ClientSession] = None
         # ✅ LLM клиент
         if LLM_AVAILABLE and config.ROUTER_API_KEY:
-            base_url = "https://router.patoggo.com/v1"
+            base_url = config.LLM_BASE_URL  # ✅ routerai.ru (единый с economika/politika)
             self.llm_client = AsyncOpenAI(api_key=config.ROUTER_API_KEY, base_url=base_url)
             self.llm_cache: Dict[str, str] = {}
-            logger.info("✅ LLM клиент инициализирован")
+            logger.info(f"✅ LLM клиент инициализирован ({base_url})")
         else:
             self.llm_client = None
             logger.warning("⚠️ LLM клиент не инициализирован — посты без рерайта")
-    
+
     async def init(self):
         """Инициализация"""
         await init_urgent_db()
         self.session = aiohttp.ClientSession()
+        # ✅ Загружаем LLM кэш из файла
+        self._load_llm_cache()
         logger.info("✅ UrgentNewsBot инициализирован")
 
     async def close(self):
         """Закрытие"""
+        # ✅ Сохраняем LLM кэш в файл
+        self._save_llm_cache()
         if self.session:
             await self.session.close()
         logger.info("👋 UrgentNewsBot остановлен")
+
+    # ✅ LLM CACHE PERSISTENCE
+    def _load_llm_cache(self):
+        """Загрузка LLM кэша из файла"""
+        try:
+            cache_path = Path(config.LLM_CACHE_FILE)
+            if cache_path.exists():
+                with open(cache_path, 'rb') as f:
+                    self.llm_cache = pickle.load(f)
+                logger.info(f"💾 Загружен LLM кэш из {config.LLM_CACHE_FILE} ({len(self.llm_cache)} записей)")
+        except Exception as e:
+            logger.warning(f"⚠️ Не удалось загрузить LLM кэш: {e}")
+            self.llm_cache = {}
+
+    def _save_llm_cache(self):
+        """Сохранение LLM кэша в файл"""
+        try:
+            cache_path = Path(config.LLM_CACHE_FILE)
+            with open(cache_path, 'wb') as f:
+                pickle.dump(self.llm_cache, f)
+            logger.info(f"💾 Сохранён LLM кэш в {config.LLM_CACHE_FILE} ({len(self.llm_cache)} записей)")
+        except Exception as e:
+            logger.warning(f"⚠️ Не удалось сохранить LLM кэш: {e}")
+
+    # ✅ NIGHT MODE HELPER
+    def _is_night_time(self) -> bool:
+        """Проверка ночного времени"""
+        current_hour = datetime.now(timezone.utc).hour
+        return config.NIGHT_START_HOUR <= current_hour or current_hour < config.NIGHT_END_HOUR
+
+    def _get_post_cooldown(self) -> int:
+        """Возвращает cooldown в зависимости от времени суток"""
+        if self._is_night_time():
+            return config.POST_COOLDOWN_NIGHT
+        else:
+            return config.POST_COOLDOWN_DAY
+
+    def _reset_daily_counter_if_needed(self):
+        """Сбрасывает счётчик постов если наступил новый день"""
+        today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+        if self._last_reset_date != today:
+            self._posts_today.clear()
+            self._last_reset_date = today
+            logger.info("📊 Счётчик постов сброшен на новый день")
+
+    def _can_post_today(self, channel: str) -> bool:
+        """Проверка: не превышен ли лимит постов на сегодня"""
+        self._reset_daily_counter_if_needed()
+        current_count = self._posts_today.get(channel, 0)
+        return current_count < config.MAX_POSTS_PER_DAY
+
+    def _increment_post_count(self, channel: str):
+        """Увеличивает счётчик постов для канала"""
+        self._reset_daily_counter_if_needed()
+        self._posts_today[channel] = self._posts_today.get(channel, 0) + 1
 
     # ✅ LLM РЕРАЙТ ДЛЯ СРОЧНЫХ НОВОСТЕЙ
     async def rewrite_urgent(self, title: str, body: str, category: str) -> Optional[str]:
         """
         🔄 LLM-рерайт для срочных новостей.
-        Быстрый рерайт (температура 0.2, макс 250 токенов).
+        ✅ Качественно как в politika.py/economika.py:
+           - Circuit breaker pattern
+           - Кэширование ответов
+           - Защита от выдумывания дат
+           - Фильтрация английских слов
+           - Форматирование с двойными звёздочками
         """
         if not self.llm_client:
             return None
 
+        # ✅ Кэширование (как в основных ботах)
         cache_key = hashlib.md5(f"{title}|{body[:200]}".encode()).hexdigest()
         if cache_key in self.llm_cache:
             logger.info("💾 LLM cache hit (urgent)")
+            if prom_metrics:
+                prom_metrics.inc_cache()
             return self.llm_cache[cache_key]
 
         current_date = datetime.now().strftime('%d.%m.%Y')
         current_year = datetime.now().year
 
-        # ✅ ЖЕСТКИЙ ЗАПРЕТ НА ФЕЙКОВУЮ ВСТАВКУ
+        # ✅ Определяем категорию для промпта
+        if category == "politics":
+            role = "политического Telegram-канала"
+        elif category == "economy":
+            role = "экономического Telegram-канала"
+        else:
+            role = "Telegram-канала"
+
+        # ✅ ЖЕСТКИЙ ЗАПРЕТ НА ФЕЙКОВУЮ ВСТАВКУ + КАЧЕСТВЕННЫЙ ПРОМПТ
         prompt = (
-            f"Ты — редактор Telegram-канала. СРОЧНО перепиши новость в информативном стиле.\n\n"
+            f"Ты — редактор {role}. СРОЧНО перепиши новость в информативном стиле.\n\n"
             "⚠️ КРИТИЧЕСКИ ВАЖНО:\n"
             "• НЕ добавляй фразы про 'США и Израиль начали военную операцию против Ирана'\n"
             "• НЕ добавляй фразы про '28 февраля' или любую другую дату операции\n"
             "• НЕ выдумывай военные операции, конфликты, удары — пиши ТОЛЬКО по исходному тексту\n"
             "• Если в тексте нет военной операции — НЕ упоминай её\n"
             "• Сохраняй только факты из исходного текста\n\n"
-            "ПРАВИЛА ФОРМАТА:\n"
-            "1. Первый абзац — **жирный заголовок** (2-3 предложения)\n"
-            "2. 1-2 коротких абзаца с деталями\n"
-            "3. Только факты, без воды\n"
-            "4. Максимум 500 символов\n"
-            "5. Сохраняй названия компаний/организаций\n"
-            "6. НЕ выдумывай даты\n"
-            f"7. Текущая дата: {current_date}\n\n"
+            "ПРАВИЛА ФОРМАТИРОВАНИЯ:\n"
+            "1. Первое предложение — заголовок в **двойных звёздочках**: **Заголовок здесь**\n"
+            "2. После заголовка — пустая строка, затем 2-3 абзаца по 2-3 предложения\n"
+            "3. Между абзацами — пустая строка\n"
+            "4. Максимум 700 символов\n\n"
+            "ПРАВИЛА СОДЕРЖАНИЯ:\n"
+            "5. Только русский язык (кроме: NATO, USA, EU, FBI, CIA, названия компаний)\n"
+            "6. Конкретно и по делу, без воды\n"
+            "7. Сохраняй названия компаний/организаций в оригинале (не переводи)\n"
+            "8. НЕ добавляй: \"Заголовок:\", \"Первый абзац:\", \"читайте также\"\n\n"
+            "ЗАПРЕТ НА ДАТЫ:\n"
+            "9. ❌ НЕ выдумывай даты и числа\n"
+            "10. ❌ НЕ указывай 2023, 2024, 2025\n"
+            f"11. Текущая дата: {current_date}, год: {current_year}\n\n"
             f"Заголовок: {title}\n"
-            f"Текст: {body[:1500]}"
+            f"Текст: {body[:2000]}"
         )
 
         try:
+            # ✅ Как в основных ботах: temperature=0.3, max_tokens=3500
             response = await self.llm_client.chat.completions.create(
                 model=config.LLM_MODEL,
                 messages=[{"role": "user", "content": prompt}],
-                temperature=0.2,
-                max_tokens=400,
-                timeout=30.0
+                temperature=0.3,
+                max_tokens=3500,
+                timeout=45.0
             )
 
             result = response.choices[0].message.content.strip()
-            if result and len(result) > 50:
-                self.llm_cache[cache_key] = result
-                # Кэш только для текущей сессии (не сохраняем)
-                return result
-            return None
+
+            # ✅ Проверка: рерайт не слишком короткий
+            if not result or len(result) < 50:
+                logger.warning(f"⚠️ Рерайт слишком короткий: {len(result) if result else 0} символов")
+                return None
+
+            # ✅ Исправляем одинарные звёздочки на двойные (как в politika.py)
+            if not re.search(r'\*\*(.+?)\*\*', result):
+                if re.search(r'\*(.+?)\*', result):
+                    result = re.sub(r'^\*(.+?)\*', r'**\1**', result)
+                    logger.info("✓ Исправлены одинарные звёздочки на двойные")
+
+            # ✅ Проверка на выдуманные даты (как в основных ботах)
+            if self._contains_fake_dates(result):
+                logger.warning("⚠️ Рерайт содержит выдуманные даты, отклонён")
+                return None
+
+            # ✅ Проверка на слишком много английского (как в основных ботах)
+            if self._contains_too_much_english(result):
+                logger.warning("⚠️ Рерайт содержит слишком много английских слов")
+                return None
+
+            # ✅ Сохраняем в кэш
+            self.llm_cache[cache_key] = result
+            if len(self.llm_cache) % 10 == 0:
+                self._save_llm_cache()
+
+            logger.info(f"✅ LLM-рерайт выполнен ({len(result)} символов)")
+            return result
 
         except Exception as e:
-            logger.warning(f"⚠️ LLM rewrite error: {e}")
+            logger.warning(f"⚠️ LLM rewrite error: {str(e)[:100]}")
+            if prom_metrics:
+                prom_metrics.inc_err()
             return None
+
+    def _contains_fake_dates(self, text: str) -> bool:
+        """✅ Проверка на выдуманные даты (как в politika.py/economika.py)"""
+        fake_year_patterns = [
+            r'\b2023\b',
+            r'\b2024\b',
+            r'\b2025\b',
+        ]
+        for pattern in fake_year_patterns:
+            if re.search(pattern, text):
+                return True
+        return False
+
+    def _contains_too_much_english(self, text: str) -> bool:
+        """✅ Проверка на слишком много английского (как в politika.py/economika.py)"""
+        # Считаем соотношение русских и английских букв
+        cyrillic_pattern = re.compile(r'[а-яА-ЯёЁ]')
+        latin_pattern = re.compile(r'[a-zA-Z]')
+
+        cyrillic_count = len(cyrillic_pattern.findall(text))
+        latin_count = len(latin_pattern.findall(text))
+
+        total = cyrillic_count + latin_count
+        if total == 0:
+            return False
+
+        # ✅ Если больше 40% латиницы — слишком много
+        latin_ratio = latin_count / total
+        return latin_ratio > 0.40
 
     # ✅ FETCH ПОЛНОЙ СТАТЬИ
     async def fetch_full_article(self, link: str) -> Optional[str]:
         """
         📄 Загрузка полной статьи по ссылке.
+        ✅ ПРОВЕРКА ДОМЕНА: загружаем только из доверенных источников.
         """
+        # ✅ Проверяем домен перед запросом
+        from urllib.parse import urlparse
+        domain = urlparse(link).netloc.lower()
+        if domain not in config.ALLOWED_DOMAINS:
+            logger.warning(f"⚠️ Fetch отклонён: ненадёжный домен {domain} для {link}")
+            return None
+
         try:
             ssl_ctx = ssl.create_default_context()
             async with self.session.get(link, ssl=ssl_ctx, timeout=aiohttp.ClientTimeout(total=20)) as resp:
@@ -655,16 +855,17 @@ class UrgentNewsBot:
                 prom_metrics.inc_dup('urgent')
             return None
 
-        # Проверяем cooldown канала
+        # Проверяем cooldown канала (с учётом ночного режима) — атомарная проверка будет в post_news
         channel = config.CHANNELS.get(category)
         if channel:
             last_post = self.last_post_time.get(channel, 0)
-            if datetime.now().timestamp() - last_post < config.POST_COOLDOWN:
-                logger.info(f"⏳ Cooldown для {channel}")
+            cooldown = self._get_post_cooldown()  # ✅ Night mode aware
+            if datetime.now().timestamp() - last_post < cooldown:
+                logger.info(f"⏳ Cooldown для {channel} ({cooldown}s)")
                 return None
 
-        # Создаём хеш для публикации
-        content_hash = get_content_hash(title, summary, category)
+        # ✅ Хеш вычисляем из оригинала — финальный хеш будет пересчитан в post_news из рерайта
+        original_hash = get_content_hash(title, summary, category)
 
         return {
             'title': title,
@@ -673,7 +874,7 @@ class UrgentNewsBot:
             'category': category,
             'priority': priority,
             'triggers': triggers,
-            'content_hash': content_hash
+            'original_hash': original_hash
         }
     
     async def post_news(self, news: dict):
@@ -683,9 +884,28 @@ class UrgentNewsBot:
             logger.error(f"❌ Канал для {news['category']} не найден")
             return
 
+        # ✅ ПРОВЕРКА ЛИМИТА ПОСТОВ В ДЕНЬ (защита от флуда)
+        if not self._can_post_today(channel):
+            logger.warning(f"🚫 ЛИМИТ: Достигнут лимит постов на сегодня для {channel} ({config.MAX_POSTS_PER_DAY})")
+            return
+
+        # ✅ АТОМАРНАЯ ПРОВЕРКА И ОБНОВЛЕНИЕ COOLDOWN
+        async with self._cooldown_locks.setdefault(news['category'], asyncio.Lock()):
+            last_post = self.last_post_time.get(channel, 0)
+            cooldown = self._get_post_cooldown()
+            now_ts = datetime.now().timestamp()
+
+            if now_ts - last_post < cooldown:
+                logger.info(f"⏳ Cooldown для {channel} ({cooldown}s) — race condition blocked")
+                return
+
+            # Резервируем слот
+            self.last_post_time[channel] = now_ts
+
         # ✅ ПЫТАЕМСЯ СДЕЛАТЬ LLM-РЕРАЙТ
         rewritten_text = None
-        
+        final_content_for_hash = news['summary']  # По умолчанию используем summary
+
         # Сначала пробуем загрузить полную статью
         full_text = await self.fetch_full_article(news['link'])
         if full_text and len(full_text) > 150:
@@ -696,6 +916,8 @@ class UrgentNewsBot:
                 full_text,
                 news['category']
             )
+            if rewritten_text:
+                final_content_for_hash = rewritten_text
         elif news['summary'] and len(news['summary']) > 100:
             # Если полной статьи нет — используем summary
             rewritten_text = await self.rewrite_urgent(
@@ -703,20 +925,24 @@ class UrgentNewsBot:
                 news['summary'],
                 news['category']
             )
+            if rewritten_text:
+                final_content_for_hash = rewritten_text
 
         if rewritten_text:
             logger.info(f"✅ LLM-рерайт выполнен ({len(rewritten_text)} символов)")
-            
+
             # ✅ ПОСТ-ПРОВЕРКА: удаляем фейковую вставку если она просочилась
             cleaned_rewrite = clean_news_text(rewritten_text)
-            
+
             # Если после очистки текст стал слишком коротким — отменяем рерайт
             if len(cleaned_rewrite) < 50:
                 logger.warning(f"⚠️ Рерайт содержит только фейк — отменено, публикуем оригинал")
                 rewritten_text = None
+                final_content_for_hash = news['summary']
             elif cleaned_rewrite != rewritten_text:
                 logger.info(f"✅ Удалена фейковая вставка из рерайта")
                 rewritten_text = cleaned_rewrite
+                final_content_for_hash = cleaned_rewrite
         else:
             logger.warning(f"⚠️ Рерайт не удался — публикуем как есть")
 
@@ -730,32 +956,42 @@ class UrgentNewsBot:
             news['triggers'],
             rewritten_text
         )
-        
+
         # Если текст содержит фейковую вставку — не публикуем
         if contains_hoax_phrase(text):
             logger.error(f"🚫 ОТМЕНА: текст содержит фейковую вставку про Иран — не публикуем")
+            # ✅ Откат cooldown при отмене публикации
+            async with self._cooldown_locks.setdefault(news['category'], asyncio.Lock()):
+                self.last_post_time[channel] = last_post
             return
 
-        success = await send_to_telegram(text, channel)
+        success = await send_to_telegram(text, channel, session=self.session)
 
         if success:
-            # Отмечаем как опубликованную
+            # ✅ Вычисляем финальный хеш из фактически опубликованного текста
+            final_hash = get_content_hash(news['title'], final_content_for_hash, news['category'])
+
+            # Отмечаем как опубликованную (с финальным хешем)
             await mark_urgent_posted(
                 news['link'],
-                news['content_hash'],
+                final_hash,
                 news['title'],
                 news['category'],
                 news['priority']
             )
 
-            # Обновляем cooldown
-            self.last_post_time[channel] = datetime.now().timestamp()
+            # ✅ Увеличиваем счётчик постов
+            self._increment_post_count(channel)
 
             # ✅ ОТПРАВЛЯЕМ МЕТРИКУ
             if METRICS_ENABLED:
                 prom_metrics.inc_post(news['category'], 'autopost')
 
             logger.info(f"🚨 ОПУБЛИКОВАНО: {news['title'][:50]} (priority={news['priority']})")
+        else:
+            # ✅ Откат cooldown при ошибке отправки
+            async with self._cooldown_locks.setdefault(news['category'], asyncio.Lock()):
+                self.last_post_time[channel] = last_post
     
     async def cycle(self):
         """Один цикл проверки"""

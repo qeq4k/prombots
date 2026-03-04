@@ -140,15 +140,19 @@ def extract_search_intent(text: str) -> Dict[str, Any]:
 
     Returns:
         {
-            'type': 'code' | 'unknown',
+            'type': 'code' | 'title' | 'unknown',
             'query': str,
             'confidence': float
         }
     """
     text = text.strip()
 
-    # Проверка на код (только цифры)
+    # Проверка на код (только цифры) - ЛЮБЫЕ цифры
     if text.isdigit():
+        return {'type': 'code', 'query': text, 'confidence': 1.0}
+    
+    # Проверка на код с ведущими нулями (001, 0001, etc.)
+    if re.match(r'^0+\d+$', text):
         return {'type': 'code', 'query': text, 'confidence': 1.0}
 
     # Проверка на код с буквами (например, MATRIX1)
@@ -156,8 +160,8 @@ def extract_search_intent(text: str) -> Dict[str, Any]:
     if code_match and any(c.isdigit() for c in text):
         return {'type': 'code', 'query': text.upper(), 'confidence': 0.8}
 
-    # Всё остальное — неизвестное
-    return {'type': 'unknown', 'query': text, 'confidence': 0.0}
+    # Всё остальное — название/актёр/жанр
+    return {'type': 'title', 'query': text, 'confidence': 0.5}
 
 
 def format_movie_card(movie: Dict, lang: str = "ru") -> str:

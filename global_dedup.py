@@ -508,3 +508,138 @@ async def get_duplicate_stats(category: str = None, days: int = 7) -> dict:
             ) as cursor:
                 rows = await cursor.fetchall()
                 return {row[0]: row[1] for row in rows}
+
+
+# ================= УНИВЕРСАЛЬНАЯ ПРОВЕРКА ДУБЛИКАТОВ =================
+async def is_duplicate_advanced(
+    title: str,
+    summary: str,
+    link: str,
+    local_db_path: str,
+    category: str = "",
+    duplicate_check_hours: int = 72,
+    global_enabled: bool = True
+) -> Tuple[bool, str]:
+    """
+    ✅ УНИВЕРСАЛЬНАЯ ПЯТИУРОВНЕВАЯ проверка дубликатов для всех парсеров.
+    
+    Args:
+        title: Заголовок новости
+        summary: Текст новости
+        link: Ссылка на новость
+        local_db_path: Путь к локальной БД парсера
+        category: Категория (politics/economy/cinema)
+        duplicate_check_hours: Период проверки дубликатов (часы)
+        global_enabled: Включена ли глобальная дедупликация
+    
+    Returns:
+        (is_duplicate, reason)
+    
+    Слои проверки:
+    1. Глобальная проверка через content hash (межканальная)
+    2. Проверка по link (точная)
+    3. Content dedup hash (локальный)
+    4. Fuzzy по заголовку (70%+)
+    5. Entity matching (ключевые сущности)
+    """
+    import aiosqlite
+    from rapidfuzz import fuzz
+    
+    logger = logging.getLogger(__name__)
+    
+    # ✅ 1. Глобальная проверка (межканальная) через content hash
+    if global_enabled:
+        try:
+            content_hash = get_content_dedup_hash(title, summary, category)
+            if await is_global_duplicate(content_hash, category, hours=48):
+                logger.info(f"🌐 Глобальный дубликат (content): {title[:50]}")
+                return True, "global_content_duplicate"
+        except Exception as e:
+            logger.warning(f"⚠️ Ошибка глобальной проверки: {e}")
+
+    # ✅ 2. Проверка по link (точная)
+    async with aiosqlite.connect(local_db_path) as db:
+        async with db.execute(
+            "SELECT 1 FROM posted WHERE link = ?",
+            (link,)
+        ) as cursor:
+            if await cursor.fetchone():
+                logger.info(f"🔗 Дубликат по ссылке: {title[:50]}")
+                return True, "link_duplicate"
+
+    # ✅ 3. Content dedup hash (локальный)
+    content_dedup_hash = get_content_dedup_hash(title, summary, category)
+    cutoff = datetime.now(timezone.utc) - timedelta(hours=duplicate_check_hours)
+    async with aiosqlite.connect(local_db_path) as db:
+        # Проверяем в локальной таблице content_dedup если существует
+        try:
+            async with db.execute(
+                "SELECT 1 FROM content_dedup WHERE content_hash = ? AND posted_at > ?",
+                (content_dedup_hash, cutoff)
+            ) as cursor:
+                if await cursor.fetchone():
+                    logger.info(f"🔄 Content дубликат: {title[:50]}")
+                    return True, "content_duplicate"
+        except aiosqlite.OperationalError:
+            # Таблица content_dedup не существует — пропускаем
+            pass
+
+    # ✅ 4. Fuzzy по заголовку (70%+)
+    title_norm = normalize_title_for_dedup(title)
+    async with aiosqlite.connect(local_db_path) as db:
+        async with db.execute(
+            """SELECT title_normalized FROM posted
+            WHERE posted_at > ? AND title_normalized IS NOT NULL
+            ORDER BY posted_at DESC LIMIT 500""",
+            (cutoff,)
+        ) as cursor:
+            recent_posts = await cursor.fetchall()
+            for post in recent_posts:
+                stored = post[0] if isinstance(post, tuple) else post
+                if not stored:
+                    continue
+                ratio = fuzz.token_set_ratio(title_norm, stored)
+                if ratio >= 70:
+                    logger.info(f"🔄 Fuzzy дубликат ({ratio}%): {title[:50]}")
+                    return True, f"fuzzy_{ratio}"
+
+    # ✅ 5. Проверка через entity matching (для новостей написанных по-разному)
+    if global_enabled:
+        try:
+            cutoff_recent = datetime.now(timezone.utc) - timedelta(hours=24)
+            async with aiosqlite.connect(local_db_path) as db:
+                async with db.execute(
+                    """SELECT title_normalized FROM posted
+                    WHERE posted_at > ? AND title_normalized IS NOT NULL
+                    ORDER BY posted_at DESC LIMIT 300""",
+                    (cutoff_recent,)
+                ) as cursor:
+                    recent_posts = await cursor.fetchall()
+                    for post in recent_posts:
+                        stored = post[0] if isinstance(post, tuple) else post
+                        if stored and are_duplicates_by_entities(title, stored, min_common_entities=2):
+                            logger.info(f"🔄 Entity дубликат: {title[:50]}")
+                            return True, "entity_duplicate"
+        except Exception as e:
+            logger.warning(f"⚠️ Ошибка entity проверки: {e}")
+
+    return False, "unique"
+
+
+def normalize_title_for_dedup(title: str) -> str:
+    """
+    ✅ Нормализация заголовка для fuzzy-сравнения.
+    Упрощённая версия normalize_text_for_dedup для скорости.
+    """
+    import re
+    
+    title = title.lower().strip()
+    
+    # Убираем пунктуацию
+    title = re.sub(r'[^\w\s\-]', ' ', title)
+    
+    # Убираем стоп-слова
+    stop_words = {'и', 'в', 'на', 'с', 'по', 'о', 'об', 'из', 'к', 'для', 'что', 'это', 'а', 'но', 'же', 'бы', 'ли'}
+    words = [w for w in title.split() if w not in stop_words and len(w) > 2]
+    
+    return ' '.join(words)
