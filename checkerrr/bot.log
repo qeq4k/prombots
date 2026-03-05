@@ -7152,3 +7152,280 @@ NameError: name 'get_favorites_keyboard' is not defined. Did you mean: 'get_main
 2026-03-04 17:08:28,684 - aiogram.dispatcher - WARNING - Sleep for 1.000000 seconds and try again... (tryings = 0, bot id = 8554826085)
 2026-03-04 17:08:40,078 - aiogram.dispatcher - INFO - Connection established (tryings = 1, bot id = 8554826085)
 2026-03-04 17:55:33,326 - aiogram.event - INFO - Update id=375092579 is handled. Duration 198 ms by bot id=8554826085
+2026-03-04 18:45:29,547 - aiogram.dispatcher - ERROR - Failed to fetch updates - TelegramNetworkError: HTTP Client says - Request timeout error
+2026-03-04 18:53:13,213 - aiogram.dispatcher - WARNING - Sleep for 1.000000 seconds and try again... (tryings = 0, bot id = 8554826085)
+2026-03-04 18:58:20,666 - database - INFO - ✅ Подключение к БД установлено: movies.db
+2026-03-04 18:58:20,672 - database - INFO - ✅ Таблицы БД созданы/проверены
+2026-03-04 18:58:20,676 - database - INFO - ✅ Таблицы БД проверены/созданы
+2026-03-04 18:58:20,858 - __main__ - INFO - ✅ Бот инициализирован успешно
+2026-03-04 18:58:20,861 - __main__ - INFO - 🚀 Запуск бота...
+2026-03-04 18:58:20,863 - __main__ - INFO - ✅ Сервисы инициализированы
+2026-03-04 18:58:20,863 - __main__ - INFO - ✅ Middleware зарегистрированы
+2026-03-04 18:58:20,863 - __main__ - INFO - ✅ Роутеры зарегистрированы
+2026-03-04 18:58:20,863 - __main__ - INFO - ✅ Кэш инициализирован
+2026-03-04 18:58:20,866 - aiogram.dispatcher - INFO - Start polling
+2026-03-04 18:58:21,057 - aiogram.dispatcher - INFO - Run polling for bot @kinocode26_bot id=8554826085 - 'KinoCode26'
+2026-03-04 19:30:00,283 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2026-03-04 19:30:00,285 - aiogram.dispatcher - INFO - Polling stopped for bot @kinocode26_bot id=8554826085 - 'KinoCode26'
+2026-03-04 19:30:00,289 - aiogram.dispatcher - INFO - Polling stopped
+2026-03-04 19:30:00,545 - database - INFO - ✅ Соединение с БД закрыто
+2026-03-04 19:30:00,545 - __main__ - INFO - ✅ Бот остановлен корректно
+2026-03-04 19:30:24,249 - database - INFO - ✅ Подключение к БД установлено: movies.db
+2026-03-04 19:30:24,257 - database - INFO - ✅ Таблицы БД созданы/проверены
+2026-03-04 19:30:24,259 - database - INFO - ✅ Таблицы БД проверены/созданы
+2026-03-04 19:30:24,485 - __main__ - INFO - ✅ Используем in-memory кэш
+2026-03-04 19:30:24,490 - __main__ - INFO - ✅ Health checker инициализирован
+2026-03-04 19:30:24,490 - __main__ - INFO - ✅ Бот инициализирован успешно
+2026-03-04 19:30:24,544 - __main__ - INFO - 🚀 Запуск бота...
+2026-03-04 19:30:24,553 - __main__ - INFO - ✅ Health check: healthy
+2026-03-04 19:30:24,556 - aiogram.dispatcher - INFO - Start polling
+2026-03-04 19:30:24,747 - aiogram.dispatcher - INFO - Run polling for bot @kinocode26_bot id=8554826085 - 'KinoCode26'
+2026-03-04 19:30:24,808 - database - INFO - ✅ Подключение к БД установлено: movies.db
+2026-03-04 19:30:24,812 - database - INFO - ✅ Таблицы БД созданы/проверены
+2026-03-04 19:30:24,814 - database - INFO - ✅ Таблицы БД проверены/созданы
+2026-03-04 19:30:24,972 - __main__ - INFO - ✅ Бот инициализирован успешно
+2026-03-04 19:30:24,974 - __main__ - INFO - 🚀 Запуск бота...
+2026-03-04 19:30:24,975 - __main__ - INFO - ✅ Сервисы инициализированы
+2026-03-04 19:30:24,975 - __main__ - INFO - ✅ Middleware зарегистрированы
+2026-03-04 19:30:24,975 - __main__ - INFO - ✅ Роутеры зарегистрированы
+2026-03-04 19:30:24,975 - __main__ - INFO - ✅ Кэш инициализирован
+2026-03-04 19:30:24,978 - aiogram.dispatcher - INFO - Start polling
+2026-03-04 19:30:25,165 - aiogram.dispatcher - INFO - Run polling for bot @kinocode26_bot id=8554826085 - 'KinoCode26'
+2026-03-04 19:30:25,269 - aiogram.dispatcher - ERROR - Failed to fetch updates - TelegramConflictError: Telegram server says - Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2026-03-04 19:30:25,272 - aiogram.dispatcher - WARNING - Sleep for 1.000000 seconds and try again... (tryings = 0, bot id = 8554826085)
+2026-03-04 19:30:29,355 - aiogram.dispatcher - ERROR - Failed to fetch updates - TelegramConflictError: Telegram server says - Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2026-03-04 19:30:29,355 - aiogram.dispatcher - WARNING - Sleep for 1.000000 seconds and try again... (tryings = 0, bot id = 8554826085)
+2026-03-04 19:30:30,407 - aiogram.dispatcher - ERROR - Failed to fetch updates - TelegramConflictError: Telegram server says - Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2026-03-04 19:30:30,407 - aiogram.dispatcher - WARNING - Sleep for 1.346153 seconds and try again... (tryings = 1, bot id = 8554826085)
+2026-03-04 19:30:34,812 - aiogram.dispatcher - ERROR - Failed to fetch updates - TelegramConflictError: Telegram server says - Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2026-03-04 19:30:34,818 - aiogram.dispatcher - WARNING - Sleep for 1.481828 seconds and try again... (tryings = 1, bot id = 8554826085)
+2026-03-04 19:30:36,351 - aiogram.dispatcher - ERROR - Failed to fetch updates - TelegramConflictError: Telegram server says - Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2026-03-04 19:30:36,352 - aiogram.dispatcher - WARNING - Sleep for 1.901993 seconds and try again... (tryings = 2, bot id = 8554826085)
+2026-03-04 19:30:41,311 - aiogram.dispatcher - ERROR - Failed to fetch updates - TelegramConflictError: Telegram server says - Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2026-03-04 19:30:41,313 - aiogram.dispatcher - WARNING - Sleep for 2.030861 seconds and try again... (tryings = 2, bot id = 8554826085)
+2026-03-04 19:30:43,397 - aiogram.dispatcher - ERROR - Failed to fetch updates - TelegramConflictError: Telegram server says - Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2026-03-04 19:30:43,398 - aiogram.dispatcher - WARNING - Sleep for 2.546469 seconds and try again... (tryings = 3, bot id = 8554826085)
+2026-03-04 19:30:48,997 - aiogram.dispatcher - ERROR - Failed to fetch updates - TelegramConflictError: Telegram server says - Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2026-03-04 19:30:48,998 - aiogram.dispatcher - WARNING - Sleep for 2.774411 seconds and try again... (tryings = 3, bot id = 8554826085)
+2026-03-04 19:30:51,820 - aiogram.dispatcher - ERROR - Failed to fetch updates - TelegramConflictError: Telegram server says - Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2026-03-04 19:30:51,820 - aiogram.dispatcher - WARNING - Sleep for 3.399057 seconds and try again... (tryings = 4, bot id = 8554826085)
+2026-03-04 19:30:55,270 - aiogram.dispatcher - ERROR - Failed to fetch updates - TelegramConflictError: Telegram server says - Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2026-03-04 19:30:55,270 - aiogram.dispatcher - WARNING - Sleep for 3.547950 seconds and try again... (tryings = 4, bot id = 8554826085)
+2026-03-04 19:30:58,867 - aiogram.dispatcher - ERROR - Failed to fetch updates - TelegramConflictError: Telegram server says - Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2026-03-04 19:30:58,867 - aiogram.dispatcher - WARNING - Sleep for 4.365989 seconds and try again... (tryings = 5, bot id = 8554826085)
+2026-03-04 19:31:03,286 - aiogram.dispatcher - ERROR - Failed to fetch updates - TelegramConflictError: Telegram server says - Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2026-03-04 19:31:03,286 - aiogram.dispatcher - WARNING - Sleep for 4.683293 seconds and try again... (tryings = 5, bot id = 8554826085)
+2026-03-04 19:31:08,024 - aiogram.dispatcher - ERROR - Failed to fetch updates - TelegramConflictError: Telegram server says - Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2026-03-04 19:31:08,024 - aiogram.dispatcher - WARNING - Sleep for 5.266521 seconds and try again... (tryings = 6, bot id = 8554826085)
+2026-03-04 19:31:13,350 - aiogram.dispatcher - ERROR - Failed to fetch updates - TelegramConflictError: Telegram server says - Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2026-03-04 19:31:13,351 - aiogram.dispatcher - WARNING - Sleep for 5.080220 seconds and try again... (tryings = 6, bot id = 8554826085)
+2026-03-04 19:31:18,485 - aiogram.dispatcher - ERROR - Failed to fetch updates - TelegramConflictError: Telegram server says - Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2026-03-04 19:31:18,485 - aiogram.dispatcher - WARNING - Sleep for 5.016918 seconds and try again... (tryings = 7, bot id = 8554826085)
+2026-03-04 19:31:23,558 - aiogram.dispatcher - ERROR - Failed to fetch updates - TelegramConflictError: Telegram server says - Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2026-03-04 19:31:23,559 - aiogram.dispatcher - WARNING - Sleep for 4.936060 seconds and try again... (tryings = 7, bot id = 8554826085)
+2026-03-04 19:31:28,546 - aiogram.dispatcher - ERROR - Failed to fetch updates - TelegramConflictError: Telegram server says - Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2026-03-04 19:31:28,548 - aiogram.dispatcher - WARNING - Sleep for 5.091045 seconds and try again... (tryings = 8, bot id = 8554826085)
+2026-03-04 19:31:33,698 - aiogram.dispatcher - ERROR - Failed to fetch updates - TelegramConflictError: Telegram server says - Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2026-03-04 19:31:33,698 - aiogram.dispatcher - WARNING - Sleep for 5.124360 seconds and try again... (tryings = 8, bot id = 8554826085)
+2026-03-04 19:31:38,876 - aiogram.dispatcher - ERROR - Failed to fetch updates - TelegramConflictError: Telegram server says - Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2026-03-04 19:31:38,877 - aiogram.dispatcher - WARNING - Sleep for 5.016851 seconds and try again... (tryings = 9, bot id = 8554826085)
+2026-03-04 19:31:41,331 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2026-03-04 19:31:41,332 - aiogram.dispatcher - INFO - Polling stopped for bot @kinocode26_bot id=8554826085 - 'KinoCode26'
+2026-03-04 19:31:41,332 - aiogram.dispatcher - INFO - Polling stopped
+2026-03-04 19:31:41,586 - database - INFO - ✅ Соединение с БД закрыто
+2026-03-04 19:31:41,586 - __main__ - INFO - ✅ Бот остановлен корректно
+2026-03-04 19:31:48,878 - aiogram.dispatcher - INFO - Connection established (tryings = 9, bot id = 8554826085)
+2026-03-04 19:32:21,316 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2026-03-04 19:32:21,319 - aiogram.dispatcher - INFO - Polling stopped for bot @kinocode26_bot id=8554826085 - 'KinoCode26'
+2026-03-04 19:32:21,320 - aiogram.dispatcher - INFO - Polling stopped
+2026-03-04 19:32:21,573 - database - INFO - ✅ Соединение с БД закрыто
+2026-03-04 19:32:21,573 - __main__ - INFO - ✅ Бот остановлен корректно
+2026-03-04 19:34:43,979 - database - INFO - ✅ Подключение к БД установлено: movies.db
+2026-03-04 19:34:43,985 - database - INFO - ✅ Таблицы БД созданы/проверены
+2026-03-04 19:34:43,986 - database - INFO - ✅ Таблицы БД проверены/созданы
+2026-03-04 19:34:44,251 - __main__ - INFO - ✅ Бот инициализирован успешно
+2026-03-04 19:34:44,254 - __main__ - INFO - 🚀 Запуск бота...
+2026-03-04 19:34:44,254 - __main__ - INFO - ✅ Сервисы инициализированы
+2026-03-04 19:34:44,254 - __main__ - INFO - ✅ Middleware зарегистрированы
+2026-03-04 19:34:44,254 - __main__ - INFO - ✅ Роутеры зарегистрированы
+2026-03-04 19:34:44,254 - __main__ - INFO - ✅ Кэш инициализирован
+2026-03-04 19:34:44,263 - aiogram.dispatcher - INFO - Start polling
+2026-03-04 19:34:44,458 - aiogram.dispatcher - INFO - Run polling for bot @kinocode26_bot id=8554826085 - 'KinoCode26'
+2026-03-04 19:34:44,535 - database - INFO - ✅ Подключение к БД установлено: movies.db
+2026-03-04 19:34:44,543 - database - INFO - ✅ Таблицы БД созданы/проверены
+2026-03-04 19:34:44,543 - database - INFO - ✅ Таблицы БД проверены/созданы
+2026-03-04 19:34:44,774 - __main__ - INFO - ✅ Используем in-memory кэш
+2026-03-04 19:34:44,775 - __main__ - INFO - ✅ Health checker инициализирован
+2026-03-04 19:34:44,775 - __main__ - INFO - ✅ Бот инициализирован успешно
+2026-03-04 19:34:44,811 - __main__ - INFO - 🚀 Запуск бота...
+2026-03-04 19:34:44,817 - __main__ - INFO - ✅ Health check: healthy
+2026-03-04 19:34:44,818 - aiogram.dispatcher - INFO - Start polling
+2026-03-04 19:34:45,007 - aiogram.dispatcher - INFO - Run polling for bot @kinocode26_bot id=8554826085 - 'KinoCode26'
+2026-03-04 19:34:45,099 - aiogram.dispatcher - ERROR - Failed to fetch updates - TelegramConflictError: Telegram server says - Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2026-03-04 19:34:45,102 - aiogram.dispatcher - WARNING - Sleep for 1.000000 seconds and try again... (tryings = 0, bot id = 8554826085)
+2026-03-04 19:34:49,186 - aiogram.dispatcher - ERROR - Failed to fetch updates - TelegramConflictError: Telegram server says - Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2026-03-04 19:34:49,187 - aiogram.dispatcher - WARNING - Sleep for 1.000000 seconds and try again... (tryings = 0, bot id = 8554826085)
+2026-03-04 19:34:50,233 - aiogram.dispatcher - ERROR - Failed to fetch updates - TelegramConflictError: Telegram server says - Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2026-03-04 19:34:50,233 - aiogram.dispatcher - WARNING - Sleep for 1.199975 seconds and try again... (tryings = 1, bot id = 8554826085)
+2026-03-04 19:34:54,498 - aiogram.dispatcher - ERROR - Failed to fetch updates - TelegramConflictError: Telegram server says - Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2026-03-04 19:34:54,498 - aiogram.dispatcher - WARNING - Sleep for 1.288841 seconds and try again... (tryings = 1, bot id = 8554826085)
+2026-03-04 19:34:55,841 - aiogram.dispatcher - ERROR - Failed to fetch updates - TelegramConflictError: Telegram server says - Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2026-03-04 19:34:55,843 - aiogram.dispatcher - WARNING - Sleep for 1.736450 seconds and try again... (tryings = 2, bot id = 8554826085)
+2026-03-04 19:35:00,647 - aiogram.dispatcher - ERROR - Failed to fetch updates - TelegramConflictError: Telegram server says - Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2026-03-04 19:35:00,649 - aiogram.dispatcher - WARNING - Sleep for 1.577533 seconds and try again... (tryings = 2, bot id = 8554826085)
+2026-03-04 19:35:02,272 - aiogram.dispatcher - ERROR - Failed to fetch updates - TelegramConflictError: Telegram server says - Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2026-03-04 19:35:02,273 - aiogram.dispatcher - WARNING - Sleep for 2.212144 seconds and try again... (tryings = 3, bot id = 8554826085)
+2026-03-04 19:35:07,547 - aiogram.dispatcher - ERROR - Failed to fetch updates - TelegramConflictError: Telegram server says - Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2026-03-04 19:35:07,547 - aiogram.dispatcher - WARNING - Sleep for 2.172263 seconds and try again... (tryings = 3, bot id = 8554826085)
+2026-03-04 19:35:09,771 - aiogram.dispatcher - ERROR - Failed to fetch updates - TelegramConflictError: Telegram server says - Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2026-03-04 19:35:09,772 - aiogram.dispatcher - WARNING - Sleep for 2.901662 seconds and try again... (tryings = 4, bot id = 8554826085)
+2026-03-04 19:35:15,741 - aiogram.dispatcher - ERROR - Failed to fetch updates - TelegramConflictError: Telegram server says - Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2026-03-04 19:35:15,742 - aiogram.dispatcher - WARNING - Sleep for 2.869123 seconds and try again... (tryings = 4, bot id = 8554826085)
+2026-03-04 19:35:18,656 - aiogram.dispatcher - ERROR - Failed to fetch updates - TelegramConflictError: Telegram server says - Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2026-03-04 19:35:18,656 - aiogram.dispatcher - WARNING - Sleep for 3.594248 seconds and try again... (tryings = 5, bot id = 8554826085)
+2026-03-04 19:35:22,306 - aiogram.dispatcher - ERROR - Failed to fetch updates - TelegramConflictError: Telegram server says - Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2026-03-04 19:35:22,306 - aiogram.dispatcher - WARNING - Sleep for 3.762979 seconds and try again... (tryings = 5, bot id = 8554826085)
+2026-03-04 19:35:26,127 - aiogram.dispatcher - ERROR - Failed to fetch updates - TelegramConflictError: Telegram server says - Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2026-03-04 19:35:26,128 - aiogram.dispatcher - WARNING - Sleep for 4.628695 seconds and try again... (tryings = 6, bot id = 8554826085)
+2026-03-04 19:35:30,826 - aiogram.dispatcher - ERROR - Failed to fetch updates - TelegramConflictError: Telegram server says - Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2026-03-04 19:35:30,826 - aiogram.dispatcher - WARNING - Sleep for 4.824400 seconds and try again... (tryings = 6, bot id = 8554826085)
+2026-03-04 19:35:35,421 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2026-03-04 19:35:35,423 - aiogram.dispatcher - INFO - Polling stopped for bot @kinocode26_bot id=8554826085 - 'KinoCode26'
+2026-03-04 19:35:35,423 - aiogram.dispatcher - INFO - Polling stopped
+2026-03-04 19:35:35,680 - database - INFO - ✅ Соединение с БД закрыто
+2026-03-04 19:35:35,680 - __main__ - INFO - ✅ Бот остановлен корректно
+2026-03-04 19:35:39,788 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2026-03-04 19:35:39,794 - aiogram.dispatcher - INFO - Polling stopped for bot @kinocode26_bot id=8554826085 - 'KinoCode26'
+2026-03-04 19:35:39,798 - aiogram.dispatcher - INFO - Polling stopped
+2026-03-04 19:35:40,053 - database - INFO - ✅ Соединение с БД закрыто
+2026-03-04 19:35:40,054 - __main__ - INFO - ✅ Бот остановлен корректно
+2026-03-04 19:35:52,311 - database - INFO - ✅ Подключение к БД установлено: movies.db
+2026-03-04 19:35:52,313 - database - INFO - ✅ Таблицы БД созданы/проверены
+2026-03-04 19:35:52,313 - database - INFO - ✅ Таблицы БД проверены/созданы
+2026-03-04 19:35:52,396 - __main__ - INFO - ✅ Используем in-memory кэш
+2026-03-04 19:35:52,396 - __main__ - INFO - ✅ Health checker инициализирован
+2026-03-04 19:35:52,397 - __main__ - INFO - ✅ Бот инициализирован успешно
+2026-03-04 19:35:52,410 - __main__ - INFO - 🚀 Запуск бота...
+2026-03-04 19:35:52,413 - __main__ - INFO - ✅ Health check: healthy
+2026-03-04 19:35:52,414 - aiogram.dispatcher - INFO - Start polling
+2026-03-04 19:35:52,573 - aiogram.dispatcher - INFO - Run polling for bot @kinocode26_bot id=8554826085 - 'KinoCode26'
+2026-03-04 19:36:44,579 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2026-03-04 19:36:44,580 - aiogram.dispatcher - INFO - Polling stopped for bot @kinocode26_bot id=8554826085 - 'KinoCode26'
+2026-03-04 19:36:44,581 - aiogram.dispatcher - INFO - Polling stopped
+2026-03-04 19:36:44,833 - database - INFO - ✅ Соединение с БД закрыто
+2026-03-04 19:36:44,833 - __main__ - INFO - ✅ Бот остановлен корректно
+2026-03-04 19:36:51,340 - database - INFO - ✅ Подключение к БД установлено: movies.db
+2026-03-04 19:36:51,343 - database - INFO - ✅ Таблицы БД созданы/проверены
+2026-03-04 19:36:51,343 - database - INFO - ✅ Таблицы БД проверены/созданы
+2026-03-04 19:36:51,430 - __main__ - INFO - ✅ Бот инициализирован успешно
+2026-03-04 19:36:51,430 - __main__ - INFO - 🚀 Запуск бота...
+2026-03-04 19:36:51,431 - __main__ - INFO - ✅ Сервисы инициализированы
+2026-03-04 19:36:51,431 - __main__ - INFO - ✅ Middleware зарегистрированы
+2026-03-04 19:36:51,431 - __main__ - INFO - ✅ Роутеры зарегистрированы
+2026-03-04 19:36:51,431 - __main__ - INFO - ✅ Кэш инициализирован
+2026-03-04 19:36:51,432 - aiogram.dispatcher - INFO - Start polling
+2026-03-04 19:36:51,577 - aiogram.dispatcher - INFO - Run polling for bot @kinocode26_bot id=8554826085 - 'KinoCode26'
+2026-03-04 19:50:34,915 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2026-03-04 19:50:34,916 - aiogram.dispatcher - INFO - Polling stopped for bot @kinocode26_bot id=8554826085 - 'KinoCode26'
+2026-03-04 19:50:34,917 - aiogram.dispatcher - INFO - Polling stopped
+2026-03-04 19:50:35,177 - database - INFO - ✅ Соединение с БД закрыто
+2026-03-04 19:50:35,178 - __main__ - INFO - ✅ Бот остановлен корректно
+2026-03-04 19:50:56,985 - database - INFO - ✅ Подключение к БД установлено: movies.db
+2026-03-04 19:50:56,991 - database - INFO - ✅ Таблицы БД созданы/проверены
+2026-03-04 19:50:56,993 - database - INFO - ✅ Таблицы БД проверены/созданы
+2026-03-04 19:50:57,243 - __main__ - INFO - ✅ Бот инициализирован успешно
+2026-03-04 19:50:57,244 - __main__ - INFO - 🚀 Запуск бота...
+2026-03-04 19:50:57,248 - __main__ - INFO - ✅ Сервисы инициализированы
+2026-03-04 19:50:57,248 - __main__ - INFO - ✅ Middleware зарегистрированы
+2026-03-04 19:50:57,248 - __main__ - INFO - ✅ Роутеры зарегистрированы
+2026-03-04 19:50:57,249 - __main__ - INFO - ✅ Кэш инициализирован
+2026-03-04 19:50:57,250 - aiogram.dispatcher - INFO - Start polling
+2026-03-04 19:50:57,457 - aiogram.dispatcher - INFO - Run polling for bot @kinocode26_bot id=8554826085 - 'KinoCode26'
+2026-03-04 20:46:27,802 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2026-03-04 20:46:27,806 - aiogram.dispatcher - INFO - Polling stopped for bot @kinocode26_bot id=8554826085 - 'KinoCode26'
+2026-03-04 20:46:27,811 - aiogram.dispatcher - INFO - Polling stopped
+2026-03-04 20:46:28,068 - database - INFO - ✅ Соединение с БД закрыто
+2026-03-04 20:46:28,072 - __main__ - INFO - ✅ Бот остановлен корректно
+2026-03-04 20:46:42,886 - database - INFO - ✅ Подключение к БД установлено: movies.db
+2026-03-04 20:46:42,893 - database - INFO - ✅ Таблицы БД созданы/проверены
+2026-03-04 20:46:42,899 - database - INFO - ✅ Таблицы БД проверены/созданы
+2026-03-04 20:46:43,198 - __main__ - INFO - ✅ Бот инициализирован успешно
+2026-03-04 20:46:43,200 - __main__ - INFO - 🚀 Запуск бота...
+2026-03-04 20:46:43,202 - __main__ - INFO - ✅ Сервисы инициализированы
+2026-03-04 20:46:43,204 - __main__ - INFO - ✅ Middleware зарегистрированы
+2026-03-04 20:46:43,205 - __main__ - INFO - ✅ Роутеры зарегистрированы
+2026-03-04 20:46:43,205 - __main__ - INFO - ✅ Кэш инициализирован
+2026-03-04 20:46:43,211 - aiogram.dispatcher - INFO - Start polling
+2026-03-04 20:46:43,410 - aiogram.dispatcher - INFO - Run polling for bot @kinocode26_bot id=8554826085 - 'KinoCode26'
+2026-03-04 20:53:16,508 - aiogram.event - INFO - Update id=375092580 is handled. Duration 188 ms by bot id=8554826085
+2026-03-04 20:54:00,438 - database - INFO - ✅ Подключение к БД установлено: movies.db
+2026-03-04 20:54:00,441 - database - INFO - ✅ Таблицы БД созданы/проверены
+2026-03-04 20:54:00,441 - database - INFO - ✅ Таблицы БД проверены/созданы
+2026-03-04 20:54:00,517 - bot_new - INFO - ✅ Бот инициализирован успешно
+2026-03-04 20:54:00,774 - aiogram.event - INFO - Update id=375092581 is handled. Duration 338 ms by bot id=8554826085
+2026-03-04 20:54:22,532 - aiogram.event - INFO - Update id=375092582 is handled. Duration 240 ms by bot id=8554826085
+2026-03-04 20:54:24,076 - aiogram.event - INFO - Update id=375092583 is handled. Duration 70 ms by bot id=8554826085
+2026-03-04 20:54:35,107 - aiogram.event - INFO - Update id=375092584 is handled. Duration 225 ms by bot id=8554826085
+2026-03-04 20:54:47,860 - aiogram.event - INFO - Update id=375092585 is handled. Duration 66 ms by bot id=8554826085
+2026-03-04 20:54:59,722 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2026-03-04 20:54:59,723 - aiogram.dispatcher - INFO - Polling stopped for bot @kinocode26_bot id=8554826085 - 'KinoCode26'
+2026-03-04 20:54:59,723 - aiogram.dispatcher - INFO - Polling stopped
+2026-03-04 20:54:59,975 - database - INFO - ✅ Соединение с БД закрыто
+2026-03-04 20:54:59,976 - __main__ - INFO - ✅ Бот остановлен корректно
+2026-03-04 20:55:06,198 - database - INFO - ✅ Подключение к БД установлено: movies.db
+2026-03-04 20:55:06,201 - database - INFO - ✅ Таблицы БД созданы/проверены
+2026-03-04 20:55:06,202 - database - INFO - ✅ Таблицы БД проверены/созданы
+2026-03-04 20:55:06,275 - __main__ - INFO - ✅ Бот инициализирован успешно
+2026-03-04 20:55:06,275 - __main__ - INFO - 🚀 Запуск бота...
+2026-03-04 20:55:06,276 - __main__ - INFO - ✅ Сервисы инициализированы
+2026-03-04 20:55:06,276 - __main__ - INFO - ✅ Middleware зарегистрированы
+2026-03-04 20:55:06,276 - __main__ - INFO - ✅ Роутеры зарегистрированы
+2026-03-04 20:55:06,276 - __main__ - INFO - ✅ Кэш инициализирован
+2026-03-04 20:55:06,277 - aiogram.dispatcher - INFO - Start polling
+2026-03-04 20:55:06,450 - aiogram.dispatcher - INFO - Run polling for bot @kinocode26_bot id=8554826085 - 'KinoCode26'
+2026-03-04 20:55:06,521 - database - INFO - ✅ Подключение к БД установлено: movies.db
+2026-03-04 20:55:06,523 - database - INFO - ✅ Таблицы БД созданы/проверены
+2026-03-04 20:55:06,523 - database - INFO - ✅ Таблицы БД проверены/созданы
+2026-03-04 20:55:06,598 - bot_new - INFO - ✅ Бот инициализирован успешно
+2026-03-04 20:55:06,939 - aiogram.event - INFO - Update id=375092586 is handled. Duration 424 ms by bot id=8554826085
+2026-03-04 21:14:11,349 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2026-03-04 21:14:11,352 - aiogram.dispatcher - INFO - Polling stopped for bot @kinocode26_bot id=8554826085 - 'KinoCode26'
+2026-03-04 21:14:11,353 - aiogram.dispatcher - INFO - Polling stopped
+2026-03-04 21:14:11,611 - database - INFO - ✅ Соединение с БД закрыто
+2026-03-04 21:14:11,611 - __main__ - INFO - ✅ Бот остановлен корректно
+2026-03-04 21:14:25,364 - database - INFO - ✅ Подключение к БД установлено: movies.db
+2026-03-04 21:14:25,371 - database - INFO - ✅ Таблицы БД созданы/проверены
+2026-03-04 21:14:25,372 - database - INFO - ✅ Таблицы БД проверены/созданы
+2026-03-04 21:14:25,644 - __main__ - INFO - ✅ Бот инициализирован успешно
+2026-03-04 21:14:25,648 - __main__ - INFO - 🚀 Запуск бота...
+2026-03-04 21:14:25,650 - __main__ - INFO - ✅ Сервисы инициализированы
+2026-03-04 21:14:25,651 - __main__ - INFO - ✅ Middleware зарегистрированы
+2026-03-04 21:14:25,651 - __main__ - INFO - ✅ Роутеры зарегистрированы
+2026-03-04 21:14:25,652 - __main__ - INFO - ✅ Кэш инициализирован
+2026-03-04 21:14:25,653 - aiogram.dispatcher - INFO - Start polling
+2026-03-04 21:14:25,845 - aiogram.dispatcher - INFO - Run polling for bot @kinocode26_bot id=8554826085 - 'KinoCode26'
+2026-03-04 21:14:33,195 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2026-03-04 21:14:33,196 - aiogram.dispatcher - INFO - Polling stopped for bot @kinocode26_bot id=8554826085 - 'KinoCode26'
+2026-03-04 21:14:33,196 - aiogram.dispatcher - INFO - Polling stopped
+2026-03-04 21:14:33,447 - database - INFO - ✅ Соединение с БД закрыто
+2026-03-04 21:14:33,448 - __main__ - INFO - ✅ Бот остановлен корректно
+2026-03-04 21:22:37,861 - database - INFO - ✅ Подключение к БД установлено: movies.db
+2026-03-04 21:22:37,864 - database - INFO - ✅ Таблицы БД созданы/проверены
+2026-03-04 21:22:37,864 - database - INFO - ✅ Таблицы БД проверены/созданы
+2026-03-04 21:22:37,943 - __main__ - INFO - ✅ Бот инициализирован успешно
+2026-03-04 21:22:37,946 - __main__ - INFO - 🚀 Запуск бота...
+2026-03-04 21:22:37,946 - __main__ - INFO - ✅ Сервисы инициализированы
+2026-03-04 21:22:37,950 - __main__ - INFO - ✅ Middleware зарегистрированы
+2026-03-04 21:22:37,950 - __main__ - INFO - ✅ Роутеры зарегистрированы
+2026-03-04 21:22:37,951 - __main__ - INFO - ✅ Кэш инициализирован
+2026-03-04 21:22:37,952 - aiogram.dispatcher - INFO - Start polling
+2026-03-04 21:22:38,176 - aiogram.dispatcher - INFO - Run polling for bot @kinocode26_bot id=8554826085 - 'KinoCode26'
+2026-03-04 21:24:33,964 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2026-03-04 21:24:33,965 - aiogram.dispatcher - INFO - Polling stopped for bot @kinocode26_bot id=8554826085 - 'KinoCode26'
+2026-03-04 21:24:33,966 - aiogram.dispatcher - INFO - Polling stopped
+2026-03-04 21:24:34,218 - database - INFO - ✅ Соединение с БД закрыто
+2026-03-04 21:24:34,219 - __main__ - INFO - ✅ Бот остановлен корректно
+2026-03-05 09:43:42,376 - database - INFO - ✅ Подключение к БД установлено: movies.db
+2026-03-05 09:43:42,381 - database - INFO - ✅ Таблицы БД созданы/проверены
+2026-03-05 09:43:42,382 - database - INFO - ✅ Таблицы БД проверены/созданы
+2026-03-05 09:43:42,586 - bot_new - INFO - ✅ Бот инициализирован успешно

@@ -25,16 +25,18 @@ logger = logging.getLogger(__name__)
 
 class SubscriptionMiddleware(BaseMiddleware):
     """Middleware для проверки подписки пользователя"""
-    
+
     def __init__(
-        self, 
-        db: Database, 
+        self,
+        db: Database,
         config: Config,
-        admin_ids: list[int]
+        admin_ids: list[int],
+        bot
     ):
         self.db = db
         self.config = config
         self.admin_ids = admin_ids
+        self.bot = bot
         self._last_check_time: Dict[int, datetime] = {}
         self._check_cooldown = timedelta(seconds=5)
     
@@ -46,27 +48,31 @@ class SubscriptionMiddleware(BaseMiddleware):
     ) -> Any:
         # Получаем user_id из разных типов событий
         user_id = self._get_user_id(event)
-        
+
         if user_id is None:
             return await handler(event, data)
-        
+
         # Админы пропускают проверку
         if user_id in self.admin_ids:
+            logger.debug(f"User {user_id} is admin, skipping subscription check")
             return await handler(event, data)
-        
+
         # Проверяем подписку
         result = await self._check_subscription(user_id)
-        
+        logger.debug(f"Subscription check for user {user_id}: is_subscribed={result.is_subscribed}, failed_channels={result.failed_channels}")
+
         # Если не подписан и это не команда /start или /help
         if not result.is_subscribed:
             if self._is_allowed_event(event):
+                logger.debug(f"Event allowed for user {user_id} without subscription")
                 return await handler(event, data)
-            
+
             # Блокируем и показываем сообщение о необходимости подписки
+            logger.warning(f"User {user_id} is not subscribed, blocking access")
             lang = self.db.get_user_language(user_id)
             await self._show_subscription_required(event, result, lang)
             return
-        
+
         return await handler(event, data)
     
     def _get_user_id(self, event: Message | CallbackQuery) -> int | None:
@@ -100,12 +106,13 @@ class SubscriptionMiddleware(BaseMiddleware):
         """Проверка подписки с кэшированием"""
         cached = await SubscriptionCache.get(user_id)
         if cached and not force_check:
+            logger.debug(f"Cache hit for user {user_id}: {cached}")
             return SubscriptionResult(
                 is_subscribed=cached.get('is_subscribed', True),
                 failed_channels=cached.get('failed_channels', []),
                 checked_at=cached.get('checked_at', datetime.now())
             )
-        
+
         # Проверка cooldown
         if not force_check:
             last_time = self._last_check_time.get(user_id)
@@ -116,42 +123,49 @@ class SubscriptionMiddleware(BaseMiddleware):
                         failed_channels=cached.get('failed_channels', []),
                         checked_at=cached.get('checked_at', datetime.now())
                     )
-        
+
         # Получаем каналы
         channels_db = self.db.get_channels()
+        logger.debug(f"Channels from DB for user {user_id}: {channels_db}")
         channels = [
             {"name": ch["name"], "link": ch["link"], "id": ch["chat_id"]}
             for ch in (channels_db or self.config.CHANNELS)
         ]
-        
+        logger.debug(f"Channels list for user {user_id}: {channels}")
+
         if not channels:
+            logger.warning(f"No channels configured for user {user_id}, allowing access")
             result = SubscriptionResult(is_subscribed=True, failed_channels=[])
             await self._save_result(user_id, result)
             return result
-        
+
         is_subscribed = True
         failed_channels = []
-        
+
         for channel in channels:
             raw_id = str(channel['id']).strip()
             if not raw_id:
+                logger.warning(f"Channel {channel['name']} has empty chat_id")
                 continue
-            
+
             try:
                 chat_id = self._parse_chat_id(raw_id)
-                chat_member = await self.config.bot.get_chat_member(chat_id, user_id)
+                logger.debug(f"Checking user {user_id} in channel {channel['name']} ({chat_id})")
+                chat_member = await self.bot.get_chat_member(chat_id, user_id)
                 status = chat_member.status
-                
+                logger.debug(f"User {user_id} status in {channel['name']}: {status}")
+
                 if status not in ["member", "administrator", "creator"]:
                     is_subscribed = False
                     failed_channels.append(channel['name'])
-                    
+
             except Exception as e:
                 logger.error(f"Ошибка проверки '{channel['name']}' для {user_id}: {e}")
                 is_subscribed = False
                 failed_channels.append(channel['name'])
-        
+
         result = SubscriptionResult(is_subscribed=is_subscribed, failed_channels=failed_channels)
+        logger.info(f"Subscription check result for user {user_id}: {result.is_subscribed}, failed: {result.failed_channels}")
         await self._save_result(user_id, result)
         return result
     
@@ -177,16 +191,23 @@ class SubscriptionMiddleware(BaseMiddleware):
         self.db.update_user_subscription(user_id, result.is_subscribed)
     
     async def _show_subscription_required(
-        self, 
-        event: Message | CallbackQuery, 
+        self,
+        event: Message | CallbackQuery,
         result: SubscriptionResult,
         lang: str
     ) -> None:
         """Показ сообщения о необходимости подписки"""
-        failed = "\n".join([f"• {ch}" for ch in result.failed_channels])
-        message_text = get_text("subscription_check_failed", lang, failed_channels=failed)
-        keyboard = get_channels_keyboard(result.failed_channels, lang)
+        # Получаем полную информацию о каналах, на которые не подписан пользователь
+        all_channels = self.db.get_channels() or self.config.CHANNELS
+        failed_channels_data = [
+            ch for ch in all_channels 
+            if ch['name'] in result.failed_channels
+        ]
         
+        failed = "\n".join([f"• {ch['name']}" for ch in failed_channels_data])
+        message_text = get_text("subscription_check_failed", lang, failed_channels=failed)
+        keyboard = get_channels_keyboard(failed_channels_data, lang)
+
         if isinstance(event, Message):
             await event.answer(
                 message_text,

@@ -9,7 +9,7 @@ from aiogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton, F
 from aiogram.fsm.context import FSMContext
 from aiogram.fsm.state import State, StatesGroup
 
-from config import Config as AppConfig
+from config import Config as AppConfig, MEDIA_DIR
 from database import Database
 from keyboards import get_main_keyboard, get_movie_inline_keyboard
 from texts import get_text
@@ -24,6 +24,171 @@ router = Router()
 
 class SearchStates(StatesGroup):
     waiting_for_search = State()
+
+
+# Глобальный обработчик сообщений с кодами фильмов (работает всегда, даже без нажатия кнопки)
+@router.message(F.text.regexp(r'^\d{1,5}$'))
+async def global_code_handler(message: Message, state: FSMContext, db: Database):
+    """
+    Обработчик кодов фильмов вне зависимости от состояния.
+    Отвечает на сообщения с цифровыми кодами (1-5 цифр).
+    """
+    from services import AchievementService
+    from constants import AchievementType
+    
+    user_id = message.from_user.id
+    lang = db.get_user_language(user_id)
+    is_admin = user_id in AppConfig.ADMIN_IDS
+    original_text = message.text.strip()
+
+    # === ПОИСК ПО КОДУ ===
+    cleaned_input = re.sub(r'[^\w]', '', original_text.upper())
+    movie = None
+
+    # Прямой поиск по коду
+    movie = db.get_movie_by_code(cleaned_input)
+
+    # Если не найдено и код числовой - пробуем без ведущих нулей
+    if not movie and cleaned_input.isdigit():
+        normalized = str(int(cleaned_input))
+        movie = db.get_movie_by_code(normalized)
+
+    # Если не найдено и код числовой - пробуем с ведущими нулями
+    if not movie and cleaned_input.isdigit():
+        num = int(cleaned_input)
+        for fmt in ["{:03d}", "{:04d}", "{:02d}", "{:05d}"]:
+            padded = fmt.format(num)
+            movie = db.get_movie_by_code(padded)
+            if movie:
+                break
+
+    if movie:
+        await MovieCache.set_by_code(movie['code'], movie, 3600)
+
+        if AppConfig.ENABLE_SEARCH_HISTORY:
+            db.log_user_search(user_id, original_text, 'code', 1, movie['id'])
+
+        db.increment_views(movie['code'])
+        db.log_view(movie.get('id'), user_id)
+
+        # Проверяем достижения
+        achievement_service = AchievementService(db)
+        await achievement_service.check_and_unlock(user_id, AchievementType.FIRST_SEARCH)
+        await achievement_service.check_and_unlock(user_id, AchievementType.SEARCH_10)
+        await achievement_service.check_and_unlock(user_id, AchievementType.SEARCH_50)
+        await achievement_service.check_and_unlock(user_id, AchievementType.SEARCH_100)
+
+        movie = db.get_movie_by_code(movie['code'])
+        genres = db.get_movie_genres(movie.get('id', 0))
+        year_line = format_year_line(movie.get('year'))
+        duration_line = format_duration_line(movie.get('duration'))
+        rating_line = format_rating_line(movie.get('rating'))
+
+        # Форматируем рейтинг визуально
+        rating_int = int(movie.get('rating', 0))
+        rating_stars = "⭐️" * rating_int
+        rating_text = f"{movie.get('rating', 0)}/10 {rating_stars}"
+
+        # Постер и трейлер с эмодзи
+        poster_emoji = "🖼️" if movie.get('poster_url') else "❌"
+        trailer_emoji = "🎥" if movie.get('trailer_url') else "❌"
+
+        if genres:
+            response = (
+                f"✅ **Фильм найден!**\n\n"
+                f"🎬 {movie['title']}{year_line}\n"
+                f"{duration_line}"
+                f"⭐️ Рейтинг: {rating_text}\n"
+                f"🎭 Жанры: {', '.join(genres)}\n"
+                f"{poster_emoji} Постер: {'Есть' if movie.get('poster_url') else 'Нет'}\n"
+                f"{trailer_emoji} Трейлер: {'Есть' if movie.get('trailer_url') else 'Нет'}\n"
+                f"⭐️ Код: `{movie['code']}`\n"
+                f"📺 Качество: {movie['quality']}\n"
+                f"👁️ Просмотров: {movie['views']}\n\n"
+                f"⬇️ Ссылка для просмотра:\n{movie['link']}"
+            )
+        else:
+            response = (
+                f"✅ **Фильм найден!**\n\n"
+                f"🎬 {movie['title']}{year_line}\n"
+                f"{duration_line}"
+                f"⭐️ Рейтинг: {rating_text}\n"
+                f"{poster_emoji} Постер: {'Есть' if movie.get('poster_url') else 'Нет'}\n"
+                f"{trailer_emoji} Трейлер: {'Есть' if movie.get('trailer_url') else 'Нет'}\n"
+                f"⭐️ Код: `{movie['code']}`\n"
+                f"📺 Качество: {movie['quality']}\n"
+                f"👁️ Просмотров: {movie['views']}\n\n"
+                f"⬇️ Ссылка для просмотра:\n{movie['link']}"
+            )
+
+        # Отправляем с постером если есть
+        if movie.get('poster_url'):
+            poster_path = movie['poster_url']
+            # Если путь относительный (начинается с media/), добавляем MEDIA_DIR
+            if poster_path.startswith('media/'):
+                poster_path = os.path.join(MEDIA_DIR, poster_path.replace('media/', ''))
+            elif not poster_path.startswith('/'):
+                poster_path = os.path.abspath(poster_path)
+
+            if os.path.exists(poster_path):
+                try:
+                    await message.answer_photo(
+                        photo=FSInputFile(poster_path),
+                        caption=response,
+                        reply_markup=get_movie_inline_keyboard(movie['code'], lang),
+                        parse_mode="Markdown"
+                    )
+                except Exception as e:
+                    logger.warning(f"Ошибка отправки постера: {e}")
+                    await message.answer(
+                        response,
+                        reply_markup=get_movie_inline_keyboard(movie['code'], lang),
+                        parse_mode="Markdown",
+                        disable_web_page_preview=True
+                    )
+            else:
+                logger.warning(f"Постер не найден: {poster_path}")
+                await message.answer(
+                    response,
+                    reply_markup=get_movie_inline_keyboard(movie['code'], lang),
+                    parse_mode="Markdown",
+                    disable_web_page_preview=True
+                )
+        else:
+            await message.answer(
+                response,
+                reply_markup=get_movie_inline_keyboard(movie['code'], lang),
+                parse_mode="Markdown",
+                disable_web_page_preview=True
+            )
+
+        # Отправляем трейлер если есть (отдельным сообщением)
+        if movie.get('trailer_url'):
+            trailer_path = movie['trailer_url']
+            # Если путь относительный (начинается с media/), добавляем MEDIA_DIR
+            if trailer_path.startswith('media/'):
+                trailer_path = os.path.join(MEDIA_DIR, trailer_path.replace('media/', ''))
+            elif not trailer_path.startswith('/'):
+                trailer_path = os.path.abspath(trailer_path)
+
+            if os.path.exists(trailer_path):
+                try:
+                    await message.answer_video(
+                        video=FSInputFile(trailer_path),
+                        caption=f"🎥 **Трейлер к фильму \"{movie['title']}\"**",
+                        parse_mode="Markdown"
+                    )
+                except Exception as e:
+                    logger.warning(f"Ошибка отправки трейлера: {e}")
+    else:
+        # Код не найден - получаем максимальный код из БД
+        max_code = db.get_max_movie_code()
+        await message.answer(
+            f"❌ Фильм с кодом `{original_text}` не найден\n\n"
+            f"Проверьте код и попробуйте снова.\n\n"
+            f"💡 Доступные коды: от 1 до {max_code}",
+            parse_mode="Markdown"
+        )
 
 
 # Обработчик на текстовую кнопку "🔍 Найти фильм"

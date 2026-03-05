@@ -9,6 +9,10 @@ try:
 except ImportError:
     print("⚠️ Библиотека python-dotenv не установлена. Используются значения по умолчанию.")
 
+# Базовая директория проекта
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+MEDIA_DIR = os.path.join(BASE_DIR, "media")
+
 
 class Config:
     # ✅ ВАЛИДАЦИЯ BOT_TOKEN

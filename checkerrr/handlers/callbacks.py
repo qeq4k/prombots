@@ -40,7 +40,8 @@ router = Router()
 async def check_sub(user_id: int, db: Database, bot) -> dict:
     """Проверка подписки"""
     from bot_new import check_subscription_cached
-    return await check_sub(user_id, force_check=True, db=db, config=AppConfig, bot=bot)
+    from config import Config
+    return await check_subscription_cached(user_id, force_check=True, db=db, config=Config, bot=bot)
 
 
 # ==================== ИЗБРАННОЕ ====================
@@ -589,18 +590,20 @@ async def directors_page_callback(callback: CallbackQuery, db: Database):
 @router.callback_query(F.data == "check_subscription")
 async def check_subscription_callback(callback: CallbackQuery, db: Database):
     """Проверка подписки"""
+    from config import Config
+    
     user_id = callback.from_user.id
     lang = db.get_user_language(user_id)
-    is_admin = user_id in AppConfig.ADMIN_IDS
-    
+    is_admin = user_id in Config.ADMIN_IDS
+
     wait_msg = await callback.message.answer(get_text("subscription_check_timer", lang, seconds=3))
     import asyncio
     await asyncio.sleep(2)
-    
+
     result = await check_sub(user_id, db=db, bot=callback.message.bot)
-    
+
     await wait_msg.delete()
-    
+
     if result.get('is_subscribed', False):
         try:
             await callback.message.delete()
@@ -612,13 +615,19 @@ async def check_subscription_callback(callback: CallbackQuery, db: Database):
             parse_mode="Markdown"
         )
     else:
-        failed = "\n".join([f"• {ch}" for ch in result.get('failed_channels', [])])
+        # Получаем полную информацию о каналах
+        all_channels = db.get_channels() or Config.CHANNELS
+        failed_channels_data = [
+            ch for ch in all_channels
+            if ch['name'] in result.get('failed_channels', [])
+        ]
+        failed = "\n".join([f"• {ch['name']}" for ch in failed_channels_data])
         await callback.message.answer(
             get_text("subscription_check_failed", lang, failed_channels=failed),
-            reply_markup=get_channels_keyboard(result.get('failed_channels', []), lang),
+            reply_markup=get_channels_keyboard(failed_channels_data, lang),
             disable_web_page_preview=True
         )
-    
+
     await callback.answer()
 
 

@@ -24,11 +24,11 @@ async def cmd_start(message: Message, state: FSMContext, db: Database, config: C
     user_id = message.from_user.id
     lang = db.get_user_language(user_id)
     is_admin = user_id in config.ADMIN_IDS
-    
+
     # Импортируем функцию из bot_new
     from bot_new import check_subscription_cached
     result = await check_subscription_cached(user_id, force_check=True, db=db, config=config, bot=message.bot)
-    
+
     # result это dict с ключами 'is_subscribed' и 'failed_channels'
     if result.get('is_subscribed', False):
         await message.answer(
@@ -37,10 +37,16 @@ async def cmd_start(message: Message, state: FSMContext, db: Database, config: C
             parse_mode="Markdown"
         )
     else:
-        failed = "\n".join([f"• {ch}" for ch in result.get('failed_channels', [])])
+        # Получаем полную информацию о каналах
+        all_channels = db.get_channels() or config.CHANNELS
+        failed_channels_data = [
+            ch for ch in all_channels
+            if ch['name'] in result.get('failed_channels', [])
+        ]
+        failed = "\n".join([f"• {ch['name']}" for ch in failed_channels_data])
         await message.answer(
             get_text("subscription_check_failed", lang, failed_channels=failed),
-            reply_markup=get_channels_keyboard(result.get('failed_channels', []), lang),
+            reply_markup=get_channels_keyboard(failed_channels_data, lang),
             disable_web_page_preview=True
         )
 

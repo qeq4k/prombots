@@ -68,9 +68,10 @@ logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
     handlers=[
-        logging.FileHandler('bot.log', encoding='utf-8', mode='a'),
-        logging.StreamHandler()
-    ]
+        logging.FileHandler('bot.log', encoding='utf-8', mode='a', delay=True),
+        logging.StreamHandler(sys.stdout)
+    ],
+    force=True
 )
 logger = logging.getLogger(__name__)
 
@@ -209,16 +210,26 @@ def get_failed_channels_keyboard(failed_channels_names: list, lang: str):
 
 async def register_middlewares():
     """Регистрация middleware"""
+    # Middleware для проверки подписки
+    subscription_middleware = SubscriptionMiddleware(
+        db=db,
+        config=config,
+        admin_ids=config.ADMIN_IDS,
+        bot=bot
+    )
+
     # Middleware для логирования посещений
     visits_middleware = VisitsLoggingMiddleware(
         db=db,
         admin_ids=config.ADMIN_IDS
     )
-    
-    # Регистрируем middleware
+
+    # Регистрируем middleware (subscription должен быть первым)
+    dp.message.middleware(subscription_middleware)
+    dp.callback_query.middleware(subscription_middleware)
     dp.message.middleware(visits_middleware)
     dp.callback_query.middleware(visits_middleware)
-    
+
     logger.info("✅ Middleware зарегистрированы")
 
 
