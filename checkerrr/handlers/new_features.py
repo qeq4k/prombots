@@ -438,24 +438,35 @@ async def my_history(callback: CallbackQuery, db: Database):
     """Моя история поиска"""
     user_id = callback.from_user.id
     lang = db.get_user_language(user_id)
-    
+
     history = db.get_user_search_history(user_id, limit=10)
     if not history:
         await callback.message.answer(get_text("search_history_empty", lang))
         await callback.answer()
         return
-    
+
     text = get_text("search_history", lang)
     for item in history:
         icon = "✅" if item['results_count'] > 0 else "❌"
-        text += f"{icon} {item['query']} ({item['query_type']})\n"
-    
+        query = item['query']
+        query_type = item['query_type']
+        
+        # Если искали по коду - пробуем получить название фильма
+        if query_type == 'code' and item.get('found_movie_id'):
+            movie = db.get_movie_by_id(item['found_movie_id'])
+            if movie:
+                text += f"{icon} {movie['title']} (код: {query})\n"
+            else:
+                text += f"{icon} {query} ({query_type})\n"
+        else:
+            text += f"{icon} {query} ({query_type})\n"
+
     keyboard = InlineKeyboardMarkup(
         inline_keyboard=[
             [InlineKeyboardButton(text="🔙 В профиль", callback_data="my_profile_btn")]
         ]
     )
-    
+
     await callback.message.answer(text, reply_markup=keyboard)
     await callback.answer()
 

@@ -53,7 +53,10 @@ def get_main_keyboard(lang: str = "ru", is_admin: bool = False) -> ReplyKeyboard
         KeyboardButton(text="🎲 Случайный фильм"),
         KeyboardButton(text="📈 Тренды")
     ])
-    
+
+    # Кнопка истории
+    keyboard.append([KeyboardButton(text="📜 История")])
+
     # Основные кнопки
     keyboard.append([
         KeyboardButton(text="ℹ️ Помощь"),
@@ -86,7 +89,7 @@ def get_user_menu_keyboard(lang: str = "ru") -> ReplyKeyboardMarkup:
         KeyboardButton(text="⭐ Избранное"),
         KeyboardButton(text="🔥 Топ фильмов")
     ])
-    keyboard.append([KeyboardButton(text="📜 История")])
+    keyboard.append([KeyboardButton(text="📊 Моя статистика")])
     keyboard.append([KeyboardButton(text="🛠 Поддержка")])
 
     return ReplyKeyboardMarkup(
@@ -94,6 +97,16 @@ def get_user_menu_keyboard(lang: str = "ru") -> ReplyKeyboardMarkup:
         resize_keyboard=True,
         one_time_keyboard=False
     )
+
+
+def get_history_menu_keyboard(lang: str = "ru") -> InlineKeyboardMarkup:
+    """Клавиатура меню истории (поиск и просмотры)"""
+    buttons = [
+        [InlineKeyboardButton(text="📜 История поиска", callback_data="search_history")],
+        [InlineKeyboardButton(text="🎬 История просмотров", callback_data="view_history")],
+        [InlineKeyboardButton(text="🔙 В меню", callback_data="back_to_main")]
+    ]
+    return InlineKeyboardMarkup(inline_keyboard=buttons)
 
 
 def get_admin_keyboard(lang: str = "ru") -> InlineKeyboardMarkup:

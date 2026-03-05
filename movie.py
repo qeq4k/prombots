@@ -50,24 +50,30 @@ except ImportError:
     LEMMATIZATION_AVAILABLE = False
     MORPHY = None
 
-# ============ ГЛОБАЛЬНАЯ ДЕДУПЛИКАЦИЯ ============
-GLOBAL_DEDUP_ENABLED = False
+# 🌐 LANGUAGE DETECTION & TRANSLATION
 try:
-    from global_dedup import (
-        get_content_dedup_hash,
-        init_global_db,
-        is_global_duplicate,
-        mark_global_posted,
-        get_universal_hash,
-        cleanup_global_db,
-        are_duplicates_by_entities
-    )
-    GLOBAL_DEDUP_ENABLED = True
-    logger.info("✅ Глобальная дедупликация включена")
+    from langdetect import detect, LangDetectException
+    LANGDETECT_AVAILABLE = True
 except ImportError:
-    logging.warning("⚠️ global_dedup.py не найден — дедупликация между каналами отключена")
-except Exception as e:
-    logging.warning(f"⚠️ Ошибка импорта global_dedup: {e}")
+    LANGDETECT_AVAILABLE = False
+
+try:
+    from deep_translator import GoogleTranslator
+    TRANSLATOR_AVAILABLE = True
+    translator_en_ru = GoogleTranslator(source='en', target='ru')
+except ImportError:
+    TRANSLATOR_AVAILABLE = False
+
+# ============ ГЛОБАЛЬНАЯ ДЕДУПЛИКАЦИЯ ============
+# Будет инициализирована после создания logger
+GLOBAL_DEDUP_ENABLED = False
+get_content_dedup_hash = None
+init_global_db = None
+is_global_duplicate = None
+mark_global_posted = None
+get_universal_hash = None
+cleanup_global_db = None
+are_duplicates_by_entities = None
 
 load_dotenv()
 
@@ -381,54 +387,67 @@ HOT_CINEMA_TOPICS = {
 
 # 🎬 ТОП-РЕЖИССЁРЫ И АКТЁРЫ — супер-горячие имена
 # Упоминание + съёмки/премьера = автоматический ТОП
+# ✅ ДОБАВЛЕНЫ ВЕСА: A-list (100), B-list (80), C-list (60)
+
 TOP_DIRECTORS = {
-    # Голливуд
-    "нolan", "нолан", "christopher nolan", "крис тофер нолан",
-    "spielberg", "спилберг", "steven spielberg", "сти вен спилберг",
-    "tarantino", "тарантино", "quentin tarantino", "квентин тарантино",
-    "scorsese", "скорсезе", "martin scorsese", "мартин скорсезе",
-    "ridley scott", "ридли скотт",
-    "james cameron", "джеймс кэмерон", "cameron", "кэмерон",
-    "guy ritchie", "гай ричи", "ritch ie", "ричи",
-    "wes anderson", "уэс андерсон",
-    "david fincher", "дэвид финчер", "fincher", "финчер",
-    "denis villeneuve", "дени вильнёв", "villeneuve", "вильнёв",
-    "peter jackson", "питер джексон", "jackson", "джексон",
-    "steven soderbergh", "сти вен содерберг",
-    "alexander payne", "александр пэйн",
-    "joachim trier", "йоахим триер",
-    # Индия
-    "rajamouli", "раджамоули", "ss rajamouli",
-    "shah rukh khan", "шах рух хан", "srk",
-    "amitabh bachchan", "амитабх баччан",
-    "anupam kher", "анупам кхер", "кхер"
+    # ===== A-list режиссёры (вес 100) =====
+    "нolan": 100, "нолан": 100, "christopher nolan": 100,
+    "spielberg": 100, "спилберг": 100, "steven spielberg": 100,
+    "tarantino": 100, "тарантино": 100, "quentin tarantino": 100,
+    "scorsese": 100, "скорсезе": 100, "martin scorsese": 100,
+    "ridley scott": 100, "ридли скотт": 100,
+    "james cameron": 100, "джеймс кэмерон": 100, "cameron": 100,
+    "denis villeneuve": 100, "дени вильнёв": 100, "villeneuve": 100,
+    
+    # ===== B-list режиссёры (вес 80) =====
+    "guy ritchie": 80, "гай ричи": 80, "ritchie": 80,
+    "wes anderson": 80, "уэс андерсон": 80,
+    "david fincher": 80, "дэвид финчер": 80, "fincher": 80,
+    "peter jackson": 80, "питер джексон": 80, "jackson": 80,
+    "steven soderbergh": 80, "сти вен содерберг": 80,
+    "alexander payne": 80, "александр пэйн": 80,
+    "joachim trier": 80, "йоахим триер": 80,
+    
+    # ===== Индия (вес 60) =====
+    "rajamouli": 60, "раджамоули": 60, "ss rajamouli": 60,
+    "shah rukh khan": 60, "шах рух хан": 60, "srk": 60,
+    "amitabh bachchan": 60, "амитабх баччан": 60,
+    "anupam kher": 60, "анупам кхер": 60, "кхер": 60
 }
 
 TOP_ACTORS = {
-    # Голливуд
-    "tom cruise", "том круз", "cruise", "круз",
-    "brad pitt", "брэд питт", "pitt", "питт",
-    "leonardo dicaprio", "леонардо дикаприо", "dicaprio", "дикаприо",
-    "robert downey", "роберт дауни", "downey jr", "дауни мл",
-    "scarlett johansson", "скарлетт йоханссон",
-    "margot robbie", "марго робби",
-    "christian bale", "кри сти ан бэйл", "bale", "бэйл",
-    "matt damon", "мэтт деймон", "damon", "деймон",
-    "henry cavill", "генри кавилл", "кавилл",
-    "keanu reeves", "киану ривз", "reeves", "ривз",
-    "will smith", "уилл смит", "smith", "смит",
-    "johnny depp", "джонни депп", "depp", "депп",
-    "morgan freeman", "морган фримен",
-    "anthony hopkins", "энтони хопкинс",
-    "al pacino", "аль пачино",
-    "denzel washington", "дензел washington",
-    # Индия
-    "shah rukh", "шах рух",
-    "salman khan", "салман хан",
-    "aamir khan", "амир хан",
-    "deepika padukone", "дипика падуконе",
-    "priyanka chopra", "приянка чопра"
+    # ===== A-list актёры (вес 100) =====
+    "tom cruise": 100, "том круз": 100, "cruise": 100,
+    "brad pitt": 100, "брэд питт": 100, "pitt": 100,
+    "leonardo dicaprio": 100, "леонардо дикаприо": 100, "dicaprio": 100,
+    "robert downey": 100, "роберт дауни": 100, "downey jr": 100,
+    "margot robbie": 100, "марго робби": 100,
+    "christian bale": 100, "кристиан бэйл": 100, "bale": 100,
+    "keanu reeves": 100, "киану ривз": 100, "reeves": 100,
+    "will smith": 100, "уилл смит": 100, "smith": 100,
+    "johnny depp": 100, "джонни депп": 100, "depp": 100,
+    
+    # ===== B-list актёры (вес 80) =====
+    "scarlett johansson": 80, "скарлетт йоханссон": 80,
+    "matt damon": 80, "мэтт деймон": 80, "damon": 80,
+    "henry cavill": 80, "генри кавилл": 80, "кавилл": 80,
+    "morgan freeman": 80, "морган фримен": 80,
+    "anthony hopkins": 80, "энтони хопкинс": 80,
+    "al pacino": 80, "аль пачино": 80,
+    "denzel washington": 80, "дензел вашингтон": 80,
+    
+    # ===== Индия (вес 60) =====
+    "shah rukh": 60, "шах рух": 60,
+    "salman khan": 60, "салман хан": 60,
+    "aamir khan": 60, "амир хан": 60,
+    "deepika padukone": 60, "дипика падуконе": 60,
+    "priyanka chopra": 60, "приянка чопра": 60
 }
+
+# ✅ ВЕСА для TOP_DIRECTORS и TOP_ACTORS
+# A-list: 100 (Нолан, Спилберг, Ди Каприо, Круз)
+# B-list: 80 (Гай Ричи, Уэс Андерсон, Мэтт Деймон)
+# C-list: 60 (Индийские актёры и режиссёры)
 
 # 🎥 КИНО-ПРОЦЕССЫ — для активации супер-бонуса
 FILM_PRODUCTION_WORDS = {
@@ -497,14 +516,34 @@ logging.basicConfig(
     format="%(asctime)s | %(levelname)-7s | %(message)s",
     datefmt="%Y-%m-%d %H:%M:%S",
     handlers=[
-        logging.FileHandler(log_dir / "cinema_bot.log", encoding="utf-8"),
-        logging.StreamHandler()
-    ]
+        logging.FileHandler(log_dir / "cinema_bot.log", encoding="utf-8", delay=True),
+        logging.StreamHandler(sys.stdout)
+    ],
+    force=True
 )
 logger = logging.getLogger(__name__)
 
 logging.getLogger("aiohttp").setLevel(logging.WARNING)
 logging.getLogger("asyncio").setLevel(logging.WARNING)
+
+# ✅ Инициализация глобальной дедупликации ПОСЛЕ logger
+try:
+    from global_dedup import (
+        get_content_dedup_hash,
+        init_global_db,
+        is_global_duplicate,
+        mark_global_posted,
+        get_universal_hash,
+        cleanup_global_db,
+        are_duplicates_by_entities
+    )
+    GLOBAL_DEDUP_ENABLED = True
+    logger.info("✅ Глобальная дедупликация включена")
+except ImportError:
+    GLOBAL_DEDUP_ENABLED = False
+    logger.warning("⚠️ global_dedup.py не найден — дедупликация между каналами отключена")
+except Exception as e:
+    logger.warning(f"⚠️ Ошибка импорта global_dedup: {e}")
 
 # ================= МЕТРИКИ =================
 class BotMetrics:
@@ -870,12 +909,26 @@ def is_cinema_candidate(title: str, summary: str) -> Tuple[bool, int, int, int]:
     """
     Предфильтрация по ключевым словам с лемматизацией (рус + англ)
     Возвращает: (is_cinema, cinema_matches, hot_matches, super_hot_matches)
+    ✅ ДОБАВЛЕНЫ ВЕСА для TOP_ACTORS/TOP_DIRECTORS
+    ✅ ДОБАВЛЕНА langdetect проверка для английских новостей
     """
     text = f"{title} {summary}".lower()
     text_lemma = lemmatize_text(f"{title} {summary}")
 
-    # Проверяем язык текста
+    # Проверяем язык текста — используем pymorphy3 как fallback
     is_english = not is_russian_text(text, min_ratio=0.5)
+    
+    # ✅ ДОПОЛНИТЕЛЬНАЯ ПРОВЕРКА ЧЕРЕЗ LANGDETECT если доступна
+    if LANGDETECT_AVAILABLE and is_english:
+        try:
+            from langdetect import detect, LangDetectException
+            detected_lang = detect(text[:500])
+            # Если langdetect определил как non-ru — точно английский
+            if detected_lang != 'ru':
+                is_english = True
+                logger.debug(f"🌐 Langdetect определил язык: {detected_lang}")
+        except Exception:
+            pass  # Fallback на кириллицу-проверку
 
     non_cinema_count = sum(1 for word in NON_CINEMA_KEYWORDS if word in text)
     if non_cinema_count >= 2:
@@ -885,33 +938,60 @@ def is_cinema_candidate(title: str, summary: str) -> Tuple[bool, int, int, int]:
     cinema_matches = sum(1 for kw in CINEMA_KEYWORDS_LEMMA if kw in text_lemma)
     hot_matches = sum(1 for kw in HOT_CINEMA_TOPICS_LEMMA if kw in text_lemma)
 
-    # 🔥 ПРОВЕРЯЕМ СУПЕР-ГОРЯЧИЕ ИМЕНА + кино-процессы
+    # 🔥 ПРОВЕРЯЕМ СУПЕР-ГОРЯЧИЕ ИМЕНА + кино-процессы С УЧЁТОМ ВЕСОВ
     super_hot_matches = 0
-    director_match = sum(1 for kw in TOP_DIRECTORS_LEMMA if kw in text_lemma)
-    actor_match = sum(1 for kw in TOP_ACTORS_LEMMA if kw in text_lemma)
+    director_weight = 0
+    actor_weight = 0
+    
+    # Считаем веса для режиссёров
+    for name, weight in TOP_DIRECTORS.items():
+        if name.lower() in text_lemma or name.lower() in text:
+            director_weight = max(director_weight, weight)
+    
+    # Считаем веса для актёров
+    for name, weight in TOP_ACTORS.items():
+        if name.lower() in text_lemma or name.lower() in text:
+            actor_weight = max(actor_weight, weight)
+    
     production_match = sum(1 for kw in FILM_PRODUCTION_LEMMA if kw in text_lemma)
-
+    
     # Супер-бонус: режиссёр/актёр + съёмки/премьера
-    if (director_match > 0 or actor_match > 0) and production_match > 0:
-        super_hot_matches = director_match + actor_match + production_match
+    # Теперь учитываем вес: A-list (100) = авто-горячая новость
+    max_star_weight = max(director_weight, actor_weight)
+    if max_star_weight > 0 and production_match > 0:
+        # Вес супер-горячих = вес звезды + бонус за процесс
+        super_hot_matches = max_star_weight + (production_match * 10)
+        logger.info(f"🌟 Супер-горячая новость: звезда={max_star_weight}, процессы={production_match}")
 
     # Если лемматизация не нашла, пробуем обычные keywords
     if cinema_matches == 0:
         cinema_matches = sum(1 for kw in CINEMA_KEYWORDS if kw in text)
         hot_matches = sum(1 for kw in HOT_CINEMA_TOPICS if kw in text)
         if super_hot_matches == 0:
-            director_match = sum(1 for kw in TOP_DIRECTORS if kw in text)
-            actor_match = sum(1 for kw in TOP_ACTORS if kw in text)
+            director_weight = 0
+            actor_weight = 0
+            for name, weight in TOP_DIRECTORS.items():
+                if name.lower() in text:
+                    director_weight = max(director_weight, weight)
+            for name, weight in TOP_ACTORS.items():
+                if name.lower() in text:
+                    actor_weight = max(actor_weight, weight)
             production_match = sum(1 for kw in FILM_PRODUCTION_WORDS if kw in text)
-            if (director_match > 0 or actor_match > 0) and production_match > 0:
-                super_hot_matches = director_match + actor_match + production_match
+            if (director_weight > 0 or actor_weight > 0) and production_match > 0:
+                super_hot_matches = max(director_weight, actor_weight) + (production_match * 10)
 
-    # Для английских новостей — отдельные ключи
+    # Для английских новостей — отдельные ключи + перевод
     if is_english:
         en_cinema_matches = sum(1 for kw in EN_CINEMA_KEYWORDS if kw in text)
         en_hot_matches = sum(1 for kw in EN_HOT_TOPICS if kw in text)
         cinema_matches = max(cinema_matches, en_cinema_matches)
         hot_matches = max(hot_matches, en_hot_matches)
+        
+        # ✅ ПРОВЕРКА: если английская новость — проверяем наличие перевода
+        # Если нет ключевых слов и нет перевода — отклоняем
+        if cinema_matches == 0 and not TRANSLATOR_AVAILABLE:
+            logger.info(f"🇬🇧 Английская новость без перевода: {title[:50]}")
+            return False, 0, 0, 0
 
     return cinema_matches >= 1, cinema_matches, hot_matches, super_hot_matches
 
@@ -1720,6 +1800,11 @@ NONE — если это:
 - НЕ пиши "right", "now", "what", "watch", "theaters" — пиши "право", "сейчас", "что", "смотреть", "театры"
 - Названия фильмов/сериалов оставь в оригинале, можно добавить перевод в скобках
 
+🚫 ЗАПРЕЩЕНО ДОБАВЛЯТЬ ДАТЫ:
+- НЕ добавляй никаких годов (2023, 2024, 2025, 2026)
+- НЕ добавляй дат выхода, премьер, релизов
+- Переводи только факты из оригинала — если даты нет в оригинале, не добавляй её
+
 ✅ РАЗРЕШЕНЫ ТОЛЬКО:
 - Имена: Anupam Kher, Shah Rukh Khan
 - Студии: Marvel, Netflix, HBO, Disney, Warner
@@ -1801,6 +1886,11 @@ NONE — если это:
 - НЕ используй английские слова кроме: названий студий (Marvel, Netflix, HBO), имён актёров и режиссёров
 - Все остальные слова переводи на русский
 - Не пиши "video", "story", "about", "working" — пиши "видео", "история", "о", "работает"
+
+🚫 ЗАПРЕЩЕНО ДОБАВЛЯТЬ ДАТЫ:
+- НЕ добавляй никаких годов (2023, 2024, 2025, 2026)
+- НЕ добавляй дат выхода, премьер, релизов
+- Пиши только факты из оригинала — если даты нет в оригинале, не добавляй её
 
 ✅ ИСПОЛЬЗУЙ:
 - Имена собственные в оригинале: Anupam Kher, Saaransh
@@ -2062,12 +2152,16 @@ async def process_feed_entries(feed_results: Dict, session: aiohttp.ClientSessio
                 # 🔍 ПРОВЕРКА ПО КЛЮЧЕВЫМ СЛОВАМ (без LLM!)
                 is_cinema, cinema_matches, hot_matches, super_hot_matches = is_cinema_candidate(title, body)
                 if not is_cinema:
+                    if prom_metrics:
+                        prom_metrics.inc_rejected('not_cinema')
                     continue
 
                 pub_date = parse_rss_date(entry)
                 is_fresh, age_hours = is_news_fresh(pub_date, current_time)
 
                 if not is_fresh:
+                    if prom_metrics:
+                        prom_metrics.inc_rejected('not_fresh')
                     continue
 
                 # 🔍 ПРОВЕРКА ДУБЛИКАТОВ (3 уровня)

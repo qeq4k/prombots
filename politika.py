@@ -10,6 +10,7 @@
 ✅ Graceful shutdown
 ✅ Адаптивный rate limiting
 ✅ SSL верификация включена
+✅ SINGLE INSTANCE LOCK - защита от запуска нескольких копий
 """
 import os
 import hashlib
@@ -23,6 +24,7 @@ import signal
 import ssl
 import pickle
 import time
+import fcntl
 import aiofiles
 from pathlib import Path
 from datetime import datetime, timezone, timedelta
@@ -38,6 +40,46 @@ from pydantic import Field
 from tenacity import retry, stop_after_attempt, wait_exponential, retry_if_exception_type
 from dotenv import load_dotenv
 from rapidfuzz import fuzz
+
+# ✅ SINGLE INSTANCE LOCK - предотвращает запуск нескольких копий бота
+# Не используется при запуске через PM2 (PM2 сам управляет процессами)
+LOCK_FILE = Path("politika.lock")
+
+def acquire_single_instance_lock() -> Optional[int]:
+    """
+    ✅ ПРОВЕРКА: только один экземпляр бота может работать одновременно.
+    Возвращает fd блокировки или None если уже запущен.
+    ⚠️ НЕ используется при запуске через PM2!
+    """
+    # Если запущены через PM2 — не используем lock
+    if os.environ.get("PM2_HOME") or os.environ.get("PM2_HOME_DIR"):
+        logger.info("ℹ️ Запуск через PM2 — lock не используется")
+        return None
+    
+    try:
+        LOCK_FILE.parent.mkdir(exist_ok=True)
+        fd = os.open(str(LOCK_FILE), os.O_CREAT | os.O_RDWR)
+        # Пытаемся получить эксклюзивную блокировку БЕЗ ожидания
+        fcntl.flock(fd, fcntl.LOCK_EX | fcntl.LOCK_NB)
+        # Записываем PID для отладки
+        os.write(fd, f"{os.getpid()}\n".encode())
+        logger.info(f"🔒 Single-instance lock acquired (PID={os.getpid()})")
+        return fd
+    except (IOError, OSError) as e:
+        logging.error(f"❌ Бот уже запущен или блокировка не удалась: {e}")
+        return None
+
+def release_single_instance_lock(fd: int):
+    """Освободить блокировку экземпляра"""
+    if fd is None:
+        return  # PM2 режим
+    try:
+        fcntl.flock(fd, fcntl.LOCK_UN)
+        os.close(fd)
+        LOCK_FILE.unlink(missing_ok=True)
+        logging.info("🔓 Single-instance lock released")
+    except Exception as e:
+        logging.warning(f"⚠️ Ошибка освобождения блокировки: {e}")
 
 try:
     import pymorphy3
@@ -66,17 +108,31 @@ try:
         get_content_dedup_hash,
         init_global_db,
         is_global_duplicate,
+        is_global_duplicate_cross_category,
         mark_global_posted,
         get_universal_hash,
         cleanup_global_db,
         is_duplicate_advanced,
-        normalize_title_for_dedup
+        normalize_title_for_dedup,
+        check_duplicate_multi_layer
     )
     GLOBAL_DEDUP_ENABLED = True
+    logging.info("✅ global_dedup.py загружен")
 except ImportError:
-    GLOBAL_DEDUP_ENABLED = False
+    logging.error("❌ КРИТИЧЕСКОЕ: global_dedup.py не найден!")
+    logging.error("❌ Без глобальной дедупликации работа бота невозможна")
+    logging.error("❌ Аварийная остановка — добавьте global_dedup.py")
+    import sys
+    sys.exit(1)
 
 load_dotenv()
+
+# ============ ИМПОРТ ИЗ SHARED PACKAGE ============
+from shared import (
+    write_draft_atomic,
+    is_russian_text,
+    normalize_text_for_dedup,
+)
 
 async def cleanup_old_logs(max_age_days=7, max_file_size_mb=50):
     """🧹 Очистка старых логов через tail (не блокирует RAM)"""
@@ -446,9 +502,10 @@ logging.basicConfig(
     format="%(asctime)s | %(levelname)-7s | %(message)s",
     datefmt="%Y-%m-%d %H:%M:%S",
     handlers=[
-        logging.FileHandler(log_dir / "polit_bot.log", encoding="utf-8"),
-        logging.StreamHandler()
-    ]
+        logging.FileHandler(log_dir / "polit_bot.log", encoding="utf-8", delay=True),
+        logging.StreamHandler(sys.stdout)
+    ],
+    force=True
 )
 logger = logging.getLogger(__name__)
 logging.getLogger("aiohttp").setLevel(logging.WARNING)
@@ -619,7 +676,9 @@ async def init_db():
 
 
 async def cleanup_old_data():
-    """🧹 Очистка старых данных"""
+    """🧹 Очистка старых данных
+    ✅ ДОБАВЛЕНО: сжатие бэкапов БД через gzip для экономии места
+    """
     try:
         # 1. Очистка БД (посты старше 30 дней)
         async with aiosqlite.connect(config.db_path) as db:
@@ -629,13 +688,13 @@ async def cleanup_old_data():
             await db.commit()
             if deleted > 0:
                 logger.info(f"🧹 Удалено {deleted} старых записей из БД")
-        
+
         # 2. Очистка кэша LLM (если >1000 записей)
         if hasattr(llm, 'cache') and len(llm.cache) > 1000:
             llm.cache = dict(list(llm.cache.items())[-500:])
             llm._save_cache()
             logger.info("🧹 Кэш LLM очищен")
-        
+
         # 3. Очистка pending (черновики старше 7 дней)
         import os
         pending_dir = Path("pending_posts")
@@ -649,19 +708,42 @@ async def cleanup_old_data():
                         logger.info(f"🧹 Удалён старый черновик: {f.name}")
                 except:
                     pass
-        
-        # 4. Бэкап БД
+
+        # 4. Бэкап БД ✅ СЖАТИЕ ЧЕРЕZ GZIP
         import shutil
+        import gzip
         backup_dir = Path("db_backups")
         backup_dir.mkdir(exist_ok=True)
         db_path = Path(config.db_path)
         if db_path.exists():
-            backup_file = backup_dir / f"{db_path.stem}_{datetime.now().strftime('%Y%m%d_%H%M')}.db"
-            shutil.copy2(db_path, backup_file)
-            logger.info(f"💾 Бэкап БД: {backup_file.name}")
+            timestamp = datetime.now().strftime('%Y%m%d_%H%M')
+            backup_file = backup_dir / f"{db_path.stem}_{timestamp}.db"
+            backup_gz_file = backup_dir / f"{db_path.stem}_{timestamp}.db.gz"
             
-            # Удаляем бэкапы старше 7 дней
-            for old_backup in backup_dir.glob("*.db"):
+            # Копируем БД
+            shutil.copy2(db_path, backup_file)
+            
+            # ✅ Сжимаем через gzip
+            try:
+                with open(backup_file, 'rb') as f_in:
+                    with gzip.open(backup_gz_file, 'wb', compresslevel=6) as f_out:
+                        shutil.copyfileobj(f_in, f_out)
+                
+                # Удаляем несжатую версию
+                backup_file.unlink(missing_ok=True)
+                
+                # Логируем размер
+                original_size = db_path.stat().st_size
+                compressed_size = backup_gz_file.stat().st_size
+                compression_ratio = (1 - compressed_size / original_size) * 100 if original_size > 0 else 0
+                logger.info(f"💾 Бэкап БД сжат: {backup_gz_file.name} ({compressed_size / 1024 / 1024:.2f} MB, экономия {compression_ratio:.1f}%)")
+            except Exception as e:
+                logger.warning(f"⚠️ Не удалось сжать бэкап: {e}")
+                # Оставляем несжатую версию если сжатие не удалось
+                logger.info(f"💾 Бэкап БД: {backup_file.name}")
+
+            # Удаляем бэкапы старше 7 дней (и .db и .gz)
+            for old_backup in list(backup_dir.glob("*.db")) + list(backup_dir.glob("*.gz")):
                 try:
                     mtime = old_backup.stat().st_mtime
                     age_days = (datetime.now().timestamp() - mtime) / 86400
@@ -670,7 +752,7 @@ async def cleanup_old_data():
                         logger.info(f"🧹 Удалён старый бэкап: {old_backup.name}")
                 except:
                     pass
-        
+
     except Exception as e:
         logger.error(f"❌ Ошибка очистки: {e}")
 
@@ -827,30 +909,79 @@ def has_video_reference(title: str, summary: str) -> bool:
 def calculate_priority(title: str, summary: str) -> Tuple[int, List[str]]:
     """
     Рассчитывает приоритет новости (0-100) и возвращает сработавшие триггеры.
-    
+    ✅ ДОБАВЛЕНО: поддержка комбинаций из 3 слов с повышенным приоритетом
+
     Returns:
         (priority, matched_triggers)
     """
     text = f"{title} {summary}".lower()
-    
+
     max_priority = 0
     matched = []
-    
+    matched_triples = []
+
+    # ✅ 1. ПРОВЕРКА ДВУХСЛОВНЫХ КОМБИНАЦИЙ (как раньше)
     for kw1, kw2, priority in URGENT_TRIGGERS:
         if kw1 in text and kw2 in text:
             if priority > max_priority:
                 max_priority = priority
             matched.append(f"{kw1}+{kw2}")
+
+    # ✅ 2. ПРОВЕРКА ТРЁХСЛОВНЫХ КОМБИНАЦИЙ (дополнительный бонус +10)
+    # Особо важные комбинации из 3 слов
+    urgent_triples = [
+        # Военные действия
+        ("начал", "военн", "операци"),
+        ("нанес", "ракет", "удар"),
+        ("объявлен", "воен", "положен"),
+        ("прекращен", "огонь", "перемири"),
+        ("подписан", "указ", "мобилизаци"),
+        
+        # Критические заявления
+        ("путин", "подписал", "указ"),
+        ("путин", "провел", "совещан"),
+        ("президент", "обратился", "народ"),
+        ("экстрен", "заявлен", "правительств"),
+        
+        # Международные отношения
+        ("введен", "пакет", "санкц"),
+        ("разорван", "дипломатическ", "отношен"),
+        ("принят", "закон", "санкц"),
+        
+        # Чрезвычайные ситуации
+        ("произошел", "теракт", "город"),
+        ("объявлен", "чрезвычайн", "положен"),
+        ("эвакуаци", "населен", "пункт"),
+        
+        # Экономика (если понадобится)
+        ("обвал", "фондов", "рынок"),
+        ("объявлен", "дефолт", "стран"),
+        ("ключев", "ставка", "повышен"),
+    ]
     
+    for kw1, kw2, kw3 in urgent_triples:
+        if kw1 in text and kw2 in text and kw3 in text:
+            matched_triples.append(f"{kw1}+{kw2}+{kw3}")
+            # Трёхсловные комбинации дают +10 к приоритету
+            max_priority = min(100, max_priority + 10)
+
     # Бонус за свежесть (новости за последний час)
     if "только что" in text or "минут" in text or "сегодня" in text:
         max_priority = min(100, max_priority + 5)
-    
+
     # Бонус за множественные совпадения
-    if len(matched) >= 2:
+    total_matches = len(matched) + len(matched_triples)
+    if total_matches >= 2:
         max_priority = min(100, max_priority + 5)
+    if total_matches >= 4:
+        max_priority = min(100, max_priority + 10)
     
-    return max_priority, matched
+    # ✅ Бонус за трёхсловные комбинации
+    if matched_triples:
+        logger.info(f"🔥 Найдены трёхсловные комбинации: {matched_triples}")
+        max_priority = min(100, max_priority + 5)
+
+    return max_priority, matched + matched_triples
 
 
 def is_russian_text(text: str, min_ratio: float = 0.7) -> bool:
@@ -1394,11 +1525,11 @@ class CachedLLMClient:
             "СТРОГИЕ ПРАВИЛА ФОРМАТИРОВАН����Я:\n"
             "1. Первое предложение — заголовок в **двойных звёздочках**: **Заголовок здесь**\n"
             "2. После заголовка — пустая строка, затем 2-3 абзаца по 2-3 предложения\n"
-            "3. Между абзацами — пустая строка\n"
+            "3. Между абзацами — пу����тая строка\n"
             "ПРАВИЛА СОДЕРЖАНИЯ:\n"
             "4. Только русский язык (кроме: NATO, USA, EU, FBI, CIA, названия компаний)\n"
             "5. Конкретно и по делу, без воды\n"
-            "6. Максимум 700 символов\n"            "5. **СОХРАНЯЙ оригинальные названия компаний** (AZUR air, Boeing, Wagner Group)\n"
+            "6. Максимум 700 ��имволов\n"            "5. **СОХРАНЯЙ оригинальные ��азва����ия компаний** (AZUR air, Boeing, Wagner Group)\n"
             "7. НЕ добавляй: \"Заголовок:\", \"Первый абзац:\", \"читайте также\"\n"
             "ЗАПРЕТ НА ДАТЫ:\n"
             "8. ❌ НЕ выдумывай даты и числа\n"
@@ -1625,6 +1756,7 @@ async def process_feed(
             if age_hours > config.max_news_age_hours:
                 continue
 
+            # ✅ СЛОЙ 1: Проверка локальной дедупликации
             is_dup, dup_method = await duplicate_detector.is_duplicate_advanced(
                 title, summary, link, pub_date, config.db_path
             )
@@ -1632,18 +1764,38 @@ async def process_feed(
                 metrics.log_duplicate(dup_method)
                 continue
 
+            # ✅ СЛОЙ 1.5: ПРОВЕРКА НА ОЧЕНЬ СВЕЖИЕ ПУБЛИКАЦИИ (urgent_news.py)
+            # Предотвращает дублирование с urgent_news.py который постит сразу в канал
+            if GLOBAL_DEDUP_ENABLED:
+                try:
+                    from global_dedup import is_similar_recent_news
+                    # Проверяем за последние 5 минут — если urgent_news только что запостил
+                    if await is_similar_recent_news(title, config.category, hours=0.08, threshold=0.70):
+                        logger.info(f"🔄 ОТКЛОНЁН: urgent_news только что опубликовал (5 мин): {title[:60]}")
+                        metrics.log_duplicate("global_urgent_conflict")
+                        continue
+                except Exception as e:
+                    logger.warning(f"⚠️ Ошибка проверки urgent-конфликта: {e}")
+
             is_suitable, keyword_matches, high_priority_matches = is_politics_candidate(title, summary)
             if not is_suitable:
+                logger.debug(f"⏭️ Не политика: {title[:50]}")
+                if prom_metrics:
+                    prom_metrics.inc_rejected('not_politics')
                 continue
 
             # ✅ ФИЛЬТР ДАЙДЖЕСТОВ/СВОДОК
             if is_digest_headline(title):
                 logger.info(f"⏭️ Дайджест/сводка: {title[:60]}")
+                if prom_metrics:
+                    prom_metrics.inc_rejected('digest')
                 continue
 
             # ✅ ФИЛЬТР НОВОСТЕЙ ПРО ВИДЕО
             if has_video_reference(title, summary):
                 logger.info(f"⏭️ Видео-новость (без видео): {title[:60]}")
+                if prom_metrics:
+                    prom_metrics.inc_rejected('no_video')
                 continue
 
             logger.info(f"✓ Ключевые слова ({keyword_matches}, HOT:{high_priority_matches}): {title[:60]}")
@@ -1668,6 +1820,8 @@ async def process_feed(
                 if classification != "POLITICS":
                     logger.info(f"⏭️ LLM отклонил: {title[:60]}")
                     metrics.metrics['posts_rejected'] += 1
+                    if prom_metrics:
+                        prom_metrics.inc_rejected('low_priority')
                     continue
                 logger.info(f"✅ LLM одобрил: {title[:60]}")
 
@@ -1764,6 +1918,7 @@ async def send_to_channel(
     """
     🔥 ОТПРАВКА СРАЗУ В КАНАЛ (минуя предложку)
     Для критических новостей с priority >= 95
+    ✅ Переиспользует сессию из основного цикла
     """
     text = safe_to_string(text)
     text = validate_html_tags(text)
@@ -1791,21 +1946,17 @@ async def send_to_channel(
 
     try:
         url = f"https://api.telegram.org/bot{config.tg_token}/sendMessage"
-        ssl_context = create_secure_ssl_context()
-        connector = aiohttp.TCPConnector(ssl=ssl_context)
-        timeout = aiohttp.ClientTimeout(total=60, connect=15, sock_read=30)
-
-        async with aiohttp.ClientSession(connector=connector, timeout=timeout) as tg_session:
-            async with tg_session.post(url, json=payload) as response:
-                result = await response.json()
-                if result.get("ok"):
-                    metrics.log_post_sent(config.category, 'autopost')
-                    trigger_info = f" ({', '.join(triggers)})" if triggers else ""
-                    logger.info(f"🚨 АВТОПОСТ ОПУБЛИКОВАН (priority={priority}{trigger_info})")
-                    return True
-                else:
-                    logger.error(f"❌ Ошибка Telegram: {result.get('description')}")
-                    return False
+        # ✅ Переиспользуем сессию из основного цикла
+        async with session.post(url, json=payload) as response:
+            result = await response.json()
+            if result.get("ok"):
+                metrics.log_post_sent(config.category, 'autopost')
+                trigger_info = f" ({', '.join(triggers)})" if triggers else ""
+                logger.info(f"🚨 АВТОПОСТ ОПУБЛИКОВАН (priority={priority}{trigger_info})")
+                return True
+            else:
+                logger.error(f"❌ Ошибка Telegram: {result.get('description')}")
+                return False
     except asyncio.TimeoutError:
         logger.error("❌ Таймаут при отправке в Telegram (60 сек)")
         return False
@@ -1885,36 +2036,32 @@ async def send_to_suggestion(
 
     try:
         url = f"https://api.telegram.org/bot{config.tg_token}/sendMessage"
-        ssl_context = create_secure_ssl_context()
-        connector = aiohttp.TCPConnector(ssl=ssl_context)
-        timeout = aiohttp.ClientTimeout(total=60, connect=15, sock_read=30)
+        # ✅ Переиспользуем сессию из основного цикла
+        async with session.post(url, json=payload) as response:
+            result = await response.json()
+            if result.get("ok"):
+                metrics.log_post_sent('politics', 'manual')
+                
+                logger.info(f"��� Пост отправлен в предложку (ID: {post_id})")
 
-        async with aiohttp.ClientSession(connector=connector, timeout=timeout) as tg_session:
-            async with tg_session.post(url, json=payload) as response:
-                result = await response.json()
-                if result.get("ok"):
-                    metrics.log_post_sent('politics', 'manual')
-                    
-                    logger.info(f"��� Пост отправлен в предложку (ID: {post_id})")
-
-                    # ✅ Глобальная дедупликация по оригинальному заголовку
-                    if GLOBAL_DEDUP_ENABLED:
-                        try:
-                            title_for_hash = original_title if original_title else text[:100]
-                            content_hash = get_universal_hash(title_for_hash, link, pub_date, config.category)
-                            await mark_global_posted(
-                                content_hash,
-                                config.tg_channel,
-                                config.category,
-                                title_for_hash[:100],
-                                config.category
-                            )
-                        except Exception as e:
-                            logger.warning(f"⚠️ Ошибка отметки в глобальной БД: {e}")
-                    return True
-                else:
-                    logger.error(f"❌ Ошибка Telegram: {result.get('description')}")
-                    return False
+                # ✅ Глобальная дедупликация по оригинальному заголовку
+                if GLOBAL_DEDUP_ENABLED:
+                    try:
+                        title_for_hash = original_title if original_title else text[:100]
+                        content_hash = get_universal_hash(title_for_hash, link, pub_date, config.category)
+                        await mark_global_posted(
+                            content_hash,
+                            config.tg_channel,
+                            config.category,
+                            title_for_hash[:100],
+                            config.category
+                        )
+                    except Exception as e:
+                        logger.warning(f"⚠️ Ошибка отметки в глобальной БД: {e}")
+                return True
+            else:
+                logger.error(f"❌ Ошибка Telegram: {result.get('description')}")
+                return False
     except asyncio.TimeoutError:
         logger.error("❌ Таймаут при отправке в Telegram (60 сек)")
         return False
@@ -1956,46 +2103,57 @@ async def collect_and_process_news(
             logger.warning("📭 Нет подходящих кандидатов")
             return 0
 
+        logger.info("=" * 60)
+        logger.info(f"📊 ТОП-{min(3, len(candidates))} кандидатов для публикации:")
+        for i, c in enumerate(candidates[:3], 1):
+            age_h = (datetime.now(timezone.utc) - c["pub_date"]).total_seconds() / 3600
+            logger.info(f"   {i}. [{c.get('rating', 0):>3}] {c['title'][:60]} (возраст: {age_h:.1f}ч, HOT:{c.get('high_priority_matches', 0)}, ключ:{c.get('keyword_matches', 0)})")
+        logger.info("=" * 60)
+
         # Пробуем топ-3 на случай если рерайт упадёт
-        for best in candidates[:3]:
+        for idx, best in enumerate(candidates[:3], 1):
             if not isinstance(best, dict):
                 logger.error(f"❌ Кандидат не словарь, а {type(best)}")
                 continue
 
-            logger.info(f"🎯 Выбран кандидат: {best['title'][:70]}")
+            logger.info(f"▶️ [{idx}/3] Обработка: {best['title'][:70]}")
 
             # 🔥 РАССЧИТЫВАЕМ ПРИОРИТЕТ НОВОСТИ
             priority, triggers = calculate_priority(best["title"], best["summary"])
-            logger.info(f"🔥 Приоритет: {priority} (триггеры: {triggers if triggers else 'нет'})")
+            logger.info(f"   🔥 Приоритет: {priority} (триггеры: {triggers if triggers else 'нет'})")
 
             # ✅ Fetch только для победителя
             full_text = await fetch_article_text(session, best["link"])
             body = full_text if full_text and len(full_text) > 150 else best["summary"]
 
             if len(body) < 40:
-                logger.warning(f"⚠️ Текст слишком короткий ({len(body)} символов), пробуем следующего")
+                logger.warning(f"   ⚠️ ОТКЛОНЁН: Текст слишком короткий ({len(body)} символов)")
                 continue
 
             # ✅ Рерайт только для победителя
+            logger.info(f"   🤖 LLM рерайт...")
             rewritten = await llm.rewrite(best["title"], body)
             if not rewritten:
-                logger.warning(f"⚠️ Рерайт вернул пусто, пробуем следующего")
+                logger.warning(f"   ⚠️ ОТКЛОНЁН: LLM рерайт вернул пусто")
                 continue
 
             final_text = postprocess_text(rewritten)
             if not final_text or len(final_text) < 50:
-                logger.warning(f"⚠️ Постпроцессинг неудачен, пробуем следующего")
+                logger.warning(f"   ⚠️ ОТКЛОНЁН: Постпроцессинг неудачен ({len(final_text) if final_text else 0} символов)")
                 continue
 
             if not is_russian_text(final_text):
-                logger.warning(f"❌ Не русский текст, пробуем следующего")
+                logger.warning(f"   ❌ ОТКЛОНЁН: Не русский текст")
                 continue
+
+            logger.info(f"   ✅ Рерайт успешен: {len(final_text)} символов")
 
             # 🔥 3-УРОВНЕВАЯ ЛОГИКА ПУБЛИКАЦИИ
             if priority >= 95:
                 # 🔥 CRITICAL: Автопостинг сразу в канал (минуя предложку)
                 logger.info(f"🚨 CRITICAL NEWS (priority={priority}): Публикация сразу в канал!")
-                if await send_to_channel(session, final_text, best["link"], priority, triggers):
+                send_result = await send_to_channel(session, final_text, best["link"], priority, triggers)
+                if send_result:
                     # Сохраняем в локальную БД
                     final_hash = get_content_hash(final_text[:200], best["link"])
                     await save_post(
@@ -2019,11 +2177,11 @@ async def collect_and_process_news(
                             logger.info(f"🌐 Отметка в глобальной БД: {best['title'][:50]}")
                         except Exception as e:
                             logger.warning(f"⚠️ Ошибка глобальной отметки: {e}")
-                    
+
                     content_dedup_hash = get_content_dedup_hash(best["title"], best["summary"])
                     await save_content_dedup_hash(content_dedup_hash)
                     state.last_post_time = asyncio.get_event_loop().time()
-                    logger.info(f"🚨 АВТОПОСТ ОПУБЛИКОВАН: {best['title'][:60]}")
+                    logger.info(f"✅✅✅ АВТОПОСТ ОПУБЛИКОВАН В КАНАЛ: {best['title'][:60]}")
                     return 1
                 else:
                     logger.warning("⚠️ Автопостинг не удался, пробуем следующего")
@@ -2032,7 +2190,8 @@ async def collect_and_process_news(
             elif priority >= 85:
                 # ⚡ HOT: Минуя LLM classify, но в предложку
                 logger.info(f"⚡ HOT NEWS (priority={priority}): Отправка в предложку (без classify)")
-                if await send_to_suggestion_with_retry(session, final_text, best["link"], best["pub_date"], best["title"]):
+                send_result = await send_to_suggestion_with_retry(session, final_text, best["link"], best["pub_date"], best["title"])
+                if send_result:
                     final_hash = get_content_hash(final_text[:200], best["link"])
                     await save_post(
                         best["link"],
@@ -2044,7 +2203,7 @@ async def collect_and_process_news(
                     content_dedup_hash = get_content_dedup_hash(best["title"], best["summary"])
                     await save_content_dedup_hash(content_dedup_hash)
                     state.last_post_time = asyncio.get_event_loop().time()
-                    logger.info(f"📨 Опубликовано в предложку: {best['title'][:60]}")
+                    logger.info(f"✅✅✅ ОПУБЛИКОВАНО В ПРЕДЛОЖКУ (HOT): {best['title'][:60]}")
                     return 1
                 else:
                     logger.warning("⚠️ Отправка в предложку не удалась, пробуем следующего")
@@ -2053,7 +2212,8 @@ async def collect_and_process_news(
             else:
                 # 📝 NORMAL: Полная проверка (LLM classify уже пройден в process_feed)
                 logger.info(f"📝 NORMAL NEWS (priority={priority}): Отправка в предложку")
-                if await send_to_suggestion_with_retry(session, final_text, best["link"], best["pub_date"], best["title"]):
+                send_result = await send_to_suggestion_with_retry(session, final_text, best["link"], best["pub_date"], best["title"])
+                if send_result:
                     final_hash = get_content_hash(final_text[:200], best["link"])
                     await save_post(
                         best["link"],
@@ -2065,13 +2225,18 @@ async def collect_and_process_news(
                     content_dedup_hash = get_content_dedup_hash(best["title"], best["summary"])
                     await save_content_dedup_hash(content_dedup_hash)
                     state.last_post_time = asyncio.get_event_loop().time()
-                    logger.info(f"📨 Опубликовано: {best['title'][:60]}")
+                    logger.info(f"✅✅✅ ОПУБЛИКОВАНО В ПРЕДЛОЖКУ: {best['title'][:60]}")
                     return 1
                 else:
                     logger.warning("⚠️ Отправка не удалась, пробуем следующего")
                     continue
 
-        logger.warning("⚠️ Все топ-3 кандидата не прошли обработку")
+        logger.warning("=" * 60)
+        logger.warning("❌ ВСЕ ТОП-3 КАНДИДАТА ОТКЛОНЕНЫ")
+        logger.warning(f"   Всего найдено кандидатов: {len(candidates)}")
+        for i, c in enumerate(candidates[:3], 1):
+            logger.warning(f"   {i}. {c['title'][:60]}")
+        logger.warning("=" * 60)
         return 0
     finally:
         elapsed = time.time() - start_time
@@ -2101,6 +2266,10 @@ async def graceful_shutdown(llm: CachedLLMClient):
 
 # ================= MAIN =================
 async def main():
+    # ✅ SINGLE INSTANCE CHECK через PM2
+    # PM2 сам управляет процессами, lock не нужен
+    logger.info("ℹ️ Запуск politika.py")
+    
     await init_db()
 
     if GLOBAL_DEDUP_ENABLED:
@@ -2122,7 +2291,7 @@ async def main():
     logger.info(f"   🌐 Перевод: {'ВКЛ' if TRANSLATOR_AVAILABLE else 'ВЫКЛ'}")
     logger.info(f"   🔄 Fuzzy порог: {config.fuzzy_threshold}%")
     logger.info(f"   💾 Кэш: {len(llm.cache)} записей")
-    logger.info(f"   🌍 Глобальная дедупликация: {'✅' if GLOBAL_DEDUP_ENABLED else '❌'}")
+    logger.info(f"   ���� Глобальная дедупликация: {'✅' if GLOBAL_DEDUP_ENABLED else '❌'}")
     logger.info(f"   ☀️ ДЕНЬ: {config.cycle_delay_day_min//60}-{config.cycle_delay_day_max//60} мин")
     logger.info(f"   🌙 НОЧЬ: {config.cycle_delay_night_min//60}-{config.cycle_delay_night_max//60} мин")
     logger.info("=" * 60)
@@ -2133,43 +2302,54 @@ async def main():
 
     async with aiohttp.ClientSession(connector=connector, timeout=timeout) as session:
         cycle = 0
-        while state.running:
-            cycle += 1
-            time_label = "🌙 НОЧЬ" if config.is_night_time() else "☀️ ДЕНЬ"
+        try:
+            while state.running:
+                cycle += 1
+                time_label = "🌙 НОЧЬ" if config.is_night_time() else "☀️ ДЕНЬ"
 
-            logger.info("=" * 60)
-            logger.info(f"🔄 Цикл #{cycle} | {time_label} | {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
-            logger.info("=" * 60)
+                logger.info("=" * 60)
+                logger.info(f"🔄 Цикл #{cycle} | {time_label} | {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+                logger.info("=" * 60)
 
-            try:
-                state.current_task = asyncio.create_task(
-                    collect_and_process_news(llm, duplicate_detector, session)
-                )
-                posts_published = await state.current_task
+                try:
+                    state.current_task = asyncio.create_task(
+                        collect_and_process_news(llm, duplicate_detector, session)
+                    )
+                    posts_published = await state.current_task
 
-                if posts_published > 0:
-                    logger.info(f"✅ Опубликовано: {posts_published}")
+                    if posts_published > 0:
+                        logger.info(f"✅ Опубликовано: {posts_published}")
+                        # ✅ Нашли новость — следующая через 10-15 минут
+                        delay = random.randint(600, 900)
+                        logger.info(f"⏱️ Задержка 10-15 мин (была публикация)")
+                    else:
+                        # ✅ Не нашли новостей — следующая через 5-10 минут
+                        delay = random.randint(300, 600)
+                        logger.info(f"⏱️ Задержка 5-10 мин (нет новостей, ищем дальше)")
 
-                if cycle % 10 == 0:
-                    await cleanup_old_posts()
-                    await cleanup_old_data()
-                    await cleanup_old_logs()
-                
-                if cycle % 5 == 0:
-                    llm._save_cache()
+                    if cycle % 10 == 0:
+                        await cleanup_old_posts()
+                        await cleanup_old_data()
+                        await cleanup_old_logs()
 
-                delay = config.get_cycle_delay()
-                logger.info(f"😴 {time_label} | Следующий цикл через {delay // 60} мин {delay % 60} сек")
-                await asyncio.sleep(delay)
+                    if cycle % 5 == 0:
+                        llm._save_cache()
 
-            except Exception as e:
-                logger.error(f"❌ Ошибка в цикле: {e}", exc_info=True)
-                metrics.log_error(f"main_loop: {e}")
-                error_delay = 900 if config.is_night_time() else 600
-                logger.info(f"⏳ Ожидание {error_delay // 60} минут после ошибки")
-                await asyncio.sleep(error_delay)
+                    logger.info(f"😴 {time_label} | Следующий цикл через {delay // 60} мин {delay % 60} сек")
+                    await asyncio.sleep(delay)
 
-    await graceful_shutdown(llm)
+                except asyncio.CancelledError:
+                    logger.info("🛑 Цикл прерван сигналом отмены")
+                    break
+                except Exception as e:
+                    logger.error(f"❌ Ошибка в цикле: {e}", exc_info=True)
+                    metrics.log_error(f"main_loop: {e}")
+                    error_delay = 900 if config.is_night_time() else 600
+                    logger.info(f"⏳ Ожидание {error_delay // 60} минут после ошибки")
+                    await asyncio.sleep(error_delay)
+        finally:
+            # Graceful shutdown при выходе из цикла
+            await graceful_shutdown(llm)
 
 def signal_handler(signum, frame):
     logger.info(f"🛑 Получен сигнал остановки: {signum}")

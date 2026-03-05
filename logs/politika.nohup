@@ -1,0 +1,5 @@
+2026-03-04 21:20:46 | WARNING | ⚠️ Prometheus metrics error: [Errno 98] Address already in use
+2026-03-04 21:20:46 | ERROR   | ❌ Бот уже запущен или блокировка не удалась: [Errno 11] Resource temporarily unavailable
+2026-03-04 21:20:46 | ERROR   | ❌ politika.py уже запущен — выход
+2026-03-04 21:20:46 | INFO    | 🛑 Graceful shutdown Prometheus метрик...
+2026-03-04 21:20:46 | INFO    | ✅ Prometheus метрики остановлены

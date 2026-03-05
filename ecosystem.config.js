@@ -1,4 +1,4 @@
-interpreter: "python3", module.exports = {
+module.exports = {
   apps: [
     {
       name: "cinema",
@@ -85,8 +85,8 @@ interpreter: "python3", module.exports = {
       time: true
     },
     {
-      name: "checker",
-      script: "bot.py",
+      name: "bot_new",
+      script: "bot_new.py",
       interpreter: "python3",
       cwd: "/root/projectss/checkerrr",
       autorestart: true,
@@ -99,8 +99,8 @@ interpreter: "python3", module.exports = {
         PYTHONUNBUFFERED: "1",
         PYTHONIOENCODING: "utf-8"
       },
-      error_file: "/root/projectss/logs/checker-error.log",
-      out_file: "/root/projectss/logs/checker-out.log",
+      error_file: "/root/projectss/logs/bot_new-error.log",
+      out_file: "/root/projectss/logs/bot_new-out.log",
       log_date_format: "YYYY-MM-DD HH:mm:ss Z",
       merge_logs: true,
       time: true

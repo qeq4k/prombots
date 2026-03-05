@@ -286,9 +286,17 @@ async def main():
     # Регистрация роутеров
     await register_routers()
     
-    # Инициализация кэша
-    cache = init_cache()
-    logger.info("✅ Кэш инициализирован")
+    # Инициализация кэша (Redis с fallback на in-memory)
+    cache = init_cache(
+        host=config.REDIS_HOST,
+        port=config.REDIS_PORT,
+        password=config.REDIS_PASSWORD
+    )
+    await cache.connect()
+    if cache.is_connected:
+        logger.info("✅ Redis кэш инициализирован")
+    else:
+        logger.warning("⚠️ Redis недоступен, используется in-memory кэш")
     
     # Health check
     if config.ENABLE_HEALTH_CHECK:

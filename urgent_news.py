@@ -18,6 +18,7 @@
 - Важные политические заявления
 """
 import os
+import sys
 import re
 import hashlib
 import json
@@ -25,6 +26,7 @@ import asyncio
 import logging
 import signal
 import ssl
+import sys
 import pickle
 import aiohttp
 import aiosqlite
@@ -35,7 +37,8 @@ from typing import Optional, Dict, List, Tuple
 from dotenv import load_dotenv
 from bs4 import BeautifulSoup
 
-# ✅ ИМПОРТ ГЛОБАЛЬНОЙ ДЕДУПЛИКАЦИИ
+# ✅ ИМПОРТ ГЛОБАЛЬНОЙ ДЕДУПЛИКАЦИИ — ОБЯЗАЗАТЕЛЬНА
+# ✅ ПРОВЕРКА НА СТАРТЕ: аварийная остановка если global_dedup отсутствует
 try:
     from openai import AsyncOpenAI
     LLM_AVAILABLE = True
@@ -48,6 +51,7 @@ try:
         get_content_dedup_hash,
         init_global_db,
         is_global_duplicate,
+        is_global_duplicate_cross_category,
         mark_global_posted,
         check_duplicate_multi_layer,
         is_similar_recent_news,
@@ -56,12 +60,13 @@ try:
         normalize_text_for_dedup,
     )
     GLOBAL_DEDUP_ENABLED = True
+    logging.info("✅ global_dedup.py загружен")
 except ImportError:
-    GLOBAL_DEDUP_ENABLED = False
-    texts_are_similar = None
-    GLOBAL_DB = None
-    normalize_text_for_dedup = None
-    logging.warning("⚠️ global_dedup.py не найден — дедупликация работает в базовом режиме")
+    logging.error("❌ КРИТИЧЕСКОЕ: global_dedup.py не найден!")
+    logging.error("❌ Без глобальной дедупликации работа бота невозможна")
+    logging.error("❌ Аварийная остановка — добавьте global_dedup.py")
+    import sys
+    sys.exit(1)
 
 # ✅ ИМПОРТ PROMETHEUS METRICS
 try:
@@ -74,6 +79,12 @@ except ImportError:
     logging.warning("⚠️ prometheus_metrics не найден — метрики отключены")
 
 load_dotenv()
+
+# ============ ИМПОРТ ИЗ SHARED PACKAGE ============
+from shared import (
+    normalize_text_for_dedup,
+    is_russian_text,
+)
 
 # ================= КОНФИГУРАЦИЯ =================
 class UrgentConfig:
@@ -114,20 +125,20 @@ class UrgentConfig:
     }
 
     # Интервал парсинга (секунды)
-    PARSE_INTERVAL = 120  # 2 минуты
+    PARSE_INTERVAL = 180  # 3 минуты
 
     # Максимальный возраст новостей для срочных (часы)
-    MAX_NEWS_AGE_HOURS = 3  # Только новости за последние 3 часа
+    MAX_NEWS_AGE_HOURS = 3  # Новости за последние 3 часа
 
     # Минимальный приоритет для автопостинга (0-100)
-    AUTOPOST_THRESHOLD = 85
+    AUTOPOST_THRESHOLD = 90  # Только срочные (90+)
 
     # Максимум постов в день (защита от флуда)
-    MAX_POSTS_PER_DAY = 24  # 1 пост в час в среднем
+    MAX_POSTS_PER_DAY = 12  # 1 пост в 2 часа в среднем
 
     # Cooldown между постами в один канал (секунды)
-    POST_COOLDOWN_DAY = 300   # 5 минут днём
-    POST_COOLDOWN_NIGHT = 600 # 10 минут ночью (увеличенный)
+    POST_COOLDOWN_DAY = 600   # 10 минут днём
+    POST_COOLDOWN_NIGHT = 1200 # 20 минут ночью
 
     # Ночное время (UTC)
     NIGHT_START_HOUR = 22  # 22:00 UTC = 01:00 МСК
@@ -162,9 +173,10 @@ logging.basicConfig(
     format="%(asctime)s | %(levelname)-7s | %(message)s",
     datefmt="%Y-%m-%d %H:%M:%S",
     handlers=[
-        logging.FileHandler(config.LOG_FILE, encoding="utf-8"),
-        logging.StreamHandler()
-    ]
+        logging.FileHandler(config.LOG_FILE, encoding="utf-8", delay=True),
+        logging.StreamHandler(sys.stdout)
+    ],
+    force=True
 )
 logger = logging.getLogger(__name__)
 logging.getLogger("aiohttp").setLevel(logging.WARNING)
@@ -174,61 +186,179 @@ logging.getLogger("asyncio").setLevel(logging.WARNING)
 # ================= КЛЮЧЕВЫЕ СЛОВА ДЛЯ СРОЧНЫХ НОВОСТЕЙ =================
 # Триггеры для автопостинга с высоким приоритетом
 # ✅ ИСПОЛЬЗУЕМ list вместо set для детерминированного порядка приоритетов
+# ✅ РАСШИРЕНО: теперь не только про Иран, а все горячие новости
 
 URGENT_POLITICS_KEYWORDS = [
-    # Военные действия (highest priority)
+    # ===== ВОЕННЫЕ ДЕЙСТВИЯ (highest priority 95-100) =====
     ("военн", "операци", 100),
     ("начал", "операци", 95),
     ("удар", "ракет", 95),
+    ("удар", "дрон", 90),
     ("обстрел", "город", 90),
+    ("обстрел", "жил", 95),
     ("эскалаци", "конфликт", 90),
     ("мобилизаци", "объявлен", 95),
     ("перемири", "прекращен", 85),
-
-    # Критические заявления
+    ("перемири", "достигнут", 85),
+    ("воен", "положен", 80),
+    ("фронт", "измен", 80),
+    ("освобожд", "насел", 85),
+    ("взят", "под", 85),
+    ("котел", "окружен", 90),
+    ("прорыв", "фронт", 90),
+    ("наступлен", "начал", 90),
+    ("контрнаступлен", "начал", 90),
+    
+    # ===== КРИТИЧЕСКИЕ ЗАЯВЛЕНИЯ (85-95) =====
     ("путин", "заявлен", 90),
+    ("путин", "подпис", 85),
+    ("путин", "встрет", 80),
     ("президент", "обращен", 95),
+    ("президент", "заявлен", 85),
     ("экстрен", "заявлен", 90),
     ("совет", "безопасност", 85),
-
-    # Международные отношения
-    ("санкц", "введен", 85),
-    ("разрыв", "дипломатическ", 90),
+    ("послан", "Послание", 90),
+    ("прям", "лин", 85),
+    ("больш", "пресс", 80),
+    
+    # ===== МЕЖДУНАРОДНЫЕ ОТНОШЕНИЯ (85-95) =====
+    ("санкц", "введен", 90),
+    ("санкц", "отмен", 85),
+    ("санкц", "расширен", 85),
+    ("разрыв", "дипломатическ", 95),
     ("нато", "размещен", 85),
+    ("нато", "расширен", 85),
     ("ядерн", "угроз", 95),
-
-    # Чрезвычайные ситуации
+    ("ядерн", "оружи", 90),
+    ("ратифиц", "договор", 80),
+    ("денонс", "договор", 85),
+    ("встреча", "министр", 75),
+    ("саммит", "состо", 80),
+    ("переговор", "состо", 75),
+    ("соглашен", "подписан", 80),
+    ("меморандум", "подписан", 75),
+    
+    # ===== ЧРЕЗВЫЧАЙНЫЕ СИТУАЦИИ (90-95) =====
     ("теракт", "совершен", 95),
+    ("теракт", "предотвращен", 90),
     ("взрыв", "произошел", 90),
+    ("взрыв", "газ", 85),
     ("чрезвычайн", "положен", 85),
+    ("эвакуаци", "объявлен", 90),
+    ("пожар", "произошел", 80),
+    ("авиакатастроф", "произошел", 95),
+    ("крушен", "поезд", 90),
+    ("наводнен", "произошел", 85),
+    ("землетрясен", "произошел", 85),
+    
+    # ===== КАДРОВЫЕ РЕШЕНИЯ (80-90) =====
+    ("отставк", "министр", 85),
+    ("отставк", "губернатор", 85),
+    ("назнач", "министр", 80),
+    ("назнач", "губернатор", 80),
+    ("арест", "чиновник", 85),
+    ("задержан", "коррупц", 85),
+    ("приговор", "вынесен", 80),
+    ("помилован", "вынесен", 75),
+    
+    # ===== ВЫБОРЫ И ГОЛОСОВАНИЯ (85-90) =====
+    ("выборы", "результат", 85),
+    ("выборы", "состо", 80),
+    ("голосован", "итог", 80),
+    ("референдум", "проведен", 85),
+    ("избран", "президент", 90),
+    ("избран", "губернатор", 80),
 ]
 
 URGENT_ECONOMY_KEYWORDS = [
-    # Рынки и финансы
+    # ===== РЫНКИ И ФИНАНСЫ (85-100) =====
     ("курс", "доллар", 85),
     ("курс", "рубль", 85),
+    ("курс", "евро", 85),
+    ("курс", "юань", 80),
     ("обвал", "рынок", 95),
+    ("обвал", "биржа", 95),
     ("крах", "биржа", 95),
     ("дефолт", "объявлен", 100),
+    ("дефолт", "наступил", 95),
     ("девальваци", "рубль", 90),
-
-    # Ключевые решения
-    ("ключевая", "ставка", 85),
-    ("цб", "решен", 80),
+    ("укреплен", "рубль", 75),
+    ("ослаблен", "рубль", 80),
+    ("инфляци", "ускор", 85),
+    ("инфляци", "замед", 75),
+    
+    # ===== КЛЮЧЕВЫЕ РЕШЕНИЯ ЦБ И ПРАВИТЕЛЬСТВА (85-95) =====
+    ("ключевая", "ставка", 90),
+    ("ставка", "повышен", 85),
+    ("ставка", "понижен", 80),
+    ("цб", "решен", 85),
+    ("цб", "заявлен", 80),
+    ("правительств", "постановлен", 80),
+    ("кабмин", "решен", 75),
+    ("минфин", "заявлен", 75),
+    ("нацпроект", "финанс", 75),
+    ("бюджет", "дефицит", 80),
+    ("бюджет", "профицит", 75),
+    
+    # ===== САНКЦИИ И ТОРГОВЛЯ (85-95) =====
     ("санкц", "нефть", 90),
-    ("эмбарго", "введен", 85),
-
-    # Кризисные явления
+    ("санкц", "газ", 85),
+    ("санкц", "введен", 90),
+    ("санкц", "отмен", 85),
+    ("эмбарго", "введен", 90),
+    ("пошлин", "введен", 80),
+    ("экспорт", "запрет", 85),
+    ("импорт", "запрет", 80),
+    ("контрсанкц", "введен", 85),
+    ("ограничен", "введен", 80),
+    
+    # ===== КРИЗИСНЫЕ ЯВЛЕНИЯ (85-95) =====
     ("кризис", "наступил", 90),
-    ("рецесси", "экономика", 85),
-    ("инфляци", "взлетел", 85),
+    ("кризис", "углуб", 85),
+    ("рецесси", "экономика", 90),
+    ("инфляци", "взлетел", 90),
+    ("инфляци", "вырос", 85),
     ("безработиц", "вырос", 80),
-
-    # Энергоресурсы
-    ("нефть", "упал", 85),
-    ("нефть", "вырос", 80),
-    ("газ", "отключен", 90),
-    ("энергетическ", "кризис", 90),
+    ("банкротств", "объявлен", 85),
+    ("дефолт", "компани", 85),
+    ("ликвид", "кризис", 90),
+    
+    # ===== ЭНЕРГОРЕСУРСЫ (85-95) =====
+    ("нефть", "упал", 90),
+    ("нефть", "вырос", 85),
+    ("нефть", " Brent", 80),
+    ("нефть", " Urals", 80),
+    ("газ", "отключен", 95),
+    ("газ", "постав", 85),
+    ("газ", "транзит", 85),
+    ("энергетическ", "кризис", 95),
+    ("нефтепровод", "поврежден", 90),
+    ("газопровод", "поврежден", 90),
+    ("электр", "отключен", 85),
+    ("блэкаут", "произошел", 90),
+    
+    # ===== КОМПАНИИ И БАНКИ (85-90) =====
+    ("банк", "лицензи", 90),
+    ("банк", "лопнул", 90),
+    ("банк", "отозван", 90),
+    ("компани", "банкрот", 85),
+    ("завод", "останов", 85),
+    ("завод", "закры", 80),
+    ("компани", "ушел", 80),
+    ("компани", "вернул", 75),
+    ("производств", "останов", 85),
+    ("производств", "запущен", 75),
+    
+    # ===== ЦЕНЫ И ТАРИФЫ (80-90) =====
+    ("цена", "газ", 85),
+    ("цена", "нефть", 85),
+    ("цена", "рост", 80),
+    ("цена", "пад", 80),
+    ("тариф", "рост", 80),
+    ("тариф", "измен", 75),
+    ("акциз", "повышен", 80),
+    ("налог", "повышен", 80),
+    ("пошлин", "повышен", 75),
 ]
 
 
@@ -311,15 +441,22 @@ async def is_urgent_duplicate(title: str, body: str, category: str, hours: int =
                 if prev_title and texts_are_similar(title, prev_title, threshold=0.70):
                     logger.info(f"🔄 Срочная новость - похожий заголовок (70%): '{title[:50]}' ~ '{prev_title[:50]}'")
                     return True, "urgent_similar_title"
-                
+
                 # ✅ Дополнительная проверка: одинаковое событие + одинаковое место
                 norm_title = normalize_text_for_dedup(title)
                 norm_prev = normalize_text_for_dedup(prev_title)
-                
+
                 # Если после нормализации обе новости про одно событие и место
                 if norm_title == norm_prev and len(norm_title) > 10:
                     logger.info(f"🔄 Срочная новость - одинаковые сущности: '{title[:50]}' == '{prev_title[:50]}'")
                     return True, "urgent_same_event"
+
+    # ✅ СЛОЙ 0.5: ПРОВЕРКА НА МЕЖКАНАЛЬНЫЙ ДУБЛИКАТ
+    # Предотвращает публикацию одной и той же срочной новости в разных каналах
+    content_hash = get_content_dedup_hash(title, body, category)
+    if await is_global_duplicate_cross_category(content_hash, hours=12):
+        logger.info(f"🌐 Срочная новость - межканальный дубликат: '{title[:50]}' уже в другом канале")
+        return True, "urgent_cross_category"
 
     # ✅ Используем многоуровневую проверку
     return await check_duplicate_multi_layer(title, body, category, hours)
@@ -676,7 +813,7 @@ class UrgentNewsBot:
 
         # ✅ ЖЕСТКИЙ ЗАПРЕТ НА ФЕЙКОВУЮ ВСТАВКУ + КАЧЕСТВЕННЫЙ ПРОМПТ
         prompt = (
-            f"Ты — редактор {role}. СРОЧНО перепиши новость в информативном стиле.\n\n"
+            f"Ты — реда��тор {role}. СРОЧНО перепиши новость в информативном стиле.\n\n"
             "⚠️ КРИТИЧЕСКИ ВАЖНО:\n"
             "• НЕ добавляй фразы про 'США и Израиль начали военную операцию против Ирана'\n"
             "• НЕ добавляй фразы про '28 февраля' или любую другую дату операции\n"
@@ -749,15 +886,28 @@ class UrgentNewsBot:
             return None
 
     def _contains_fake_dates(self, text: str) -> bool:
-        """✅ Проверка на выдуманные даты (как в politika.py/economika.py)"""
-        fake_year_patterns = [
-            r'\b2023\b',
-            r'\b2024\b',
-            r'\b2025\b',
+        """
+        ✅ Проверка на выдуманные даты — ТОЛЬКО явные фейки событий.
+        Разрешает легитимные упоминания: "Revenue for 2025", "уровней 2024 года", "прогноз на 2025"
+        Блокирует: "28 февраля 2024 года произошло", "в 2023 году начал" (конкретные события в прошлом)
+        """
+        text_lower = text.lower()
+
+        # ✅ Блокируем ТОЛЬКО конкретные даты событий (день + месяц + год или год в контексте события)
+        fake_event_patterns = [
+            # Конкретная дата + год + событие: "28 февраля 2024 года начал", "15 марта 2025 произошел"
+            r'\d{1,2}\s+(?:янв|февр|мар|апр|ма|июн|июл|авг|сен|окт|ноя|дек)[а-я]*\s+(?:2023|2024|2025)\s*(?:года|г\.?)?\s*[,.]?\s*(?:начал|произош|удар|обстрел|убил|взорвал|подписал|объявил)',
+            # Год + событие в прошедшем времени: "в 2024 году начал", "2023 году произошел"
+            r'(?:в\s+)?(?:2023|2024|2025)\s*году\s+(?:начал|произош|удар|обстрел|убил|взорвал|подписал|объявил|случил)',
+            # Событие + дату: "начал операцию 28 февраля 2024", "произошел взрыв 15 марта 2025"
+            r'(?:начал|произош|удар|обстрел|убил|взорвал)[а-я]*\s+(?:в\s+)?(?:2023|2024|2025)\s*(?:году|год)?',
         ]
-        for pattern in fake_year_patterns:
-            if re.search(pattern, text):
+
+        for pattern in fake_event_patterns:
+            if re.search(pattern, text_lower):
+                logger.warning(f"🚨 Обнаружена выдуманная дата события: {text[:100]}")
                 return True
+
         return False
 
     def _contains_too_much_english(self, text: str) -> bool:
@@ -842,15 +992,17 @@ class UrgentNewsBot:
 
         # Рассчитываем приоритет
         priority, triggers = calculate_priority(title, summary, category)
+        logger.info(f"   🔥 Приоритет: {priority} (порог: {config.AUTOPOST_THRESHOLD}, триггеры: {triggers if triggers else 'нет'})")
 
         # Проверяем порог
         if priority < config.AUTOPOST_THRESHOLD:
+            logger.info(f"   ⏭️ ОТКЛОНЁН: приоритет {priority} < порога {config.AUTOPOST_THRESHOLD}")
             return None
 
         # ✅ МНОГОУРОВНЕВАЯ ПРОВЕРКА НА ДУБЛИКАТЫ
         is_dup, reason = await is_urgent_duplicate(title, summary, category)
         if is_dup:
-            logger.info(f"🔄 Дубликат ({reason}): {title[:50]}")
+            logger.info(f"   🔄 ОТКЛОНЁН: дубликат ({reason})")
             if METRICS_ENABLED:
                 prom_metrics.inc_dup('urgent')
             return None
@@ -861,12 +1013,13 @@ class UrgentNewsBot:
             last_post = self.last_post_time.get(channel, 0)
             cooldown = self._get_post_cooldown()  # ✅ Night mode aware
             if datetime.now().timestamp() - last_post < cooldown:
-                logger.info(f"⏳ Cooldown для {channel} ({cooldown}s)")
+                logger.info(f"   ⏳ ОТКЛОНЁН: cooldown для {channel} (осталось {cooldown - (datetime.now().timestamp() - last_post):.0f}s)")
                 return None
 
         # ✅ Хеш вычисляем из оригинала — финальный хеш будет пересчитан в post_news из рерайта
         original_hash = get_content_hash(title, summary, category)
 
+        logger.info(f"   ✅ НОВОСТЬ ОДОБРЕНА: {title[:50]}")
         return {
             'title': title,
             'summary': summary,
@@ -995,43 +1148,76 @@ class UrgentNewsBot:
     
     async def cycle(self):
         """Один цикл проверки"""
+        logger.info("=" * 60)
         logger.info("🔄 Проверка срочных новостей...")
-        
+        logger.info("=" * 60)
+
         for category in ["politics", "economy"]:
+            logger.info(f"📂 Категория: {category.upper()}")
             entries = await self.check_feeds(category)
-            logger.info(f"📰 {category}: найдено {len(entries)} новостей")
-            
-            for entry in entries:
+            logger.info(f"📰 {category}: найдено {len(entries)} новостей за последние {config.MAX_NEWS_AGE_HOURS}ч")
+
+            for idx, entry in enumerate(entries[:10], 1):  # Ограничим 10 для логов
                 try:
+                    logger.info(f"   [{idx}] Обработка: {entry['title'][:60]}")
                     news = await self.process_entry(entry, category)
                     if news:
+                        logger.info(f"   ✅ Новость готова к публикации: {news['title'][:50]}")
                         await self.post_news(news)
+                    else:
+                        logger.info(f"   ⏭️ Новость отклонена: {entry['title'][:50]}")
                 except Exception as e:
-                    logger.error(f"❌ Ошибка обработки: {e}")
-        
+                    logger.error(f"   ❌ Ошибка обработки: {e}")
+
+        logger.info("=" * 60)
         logger.info("✅ Цикл завершён")
+        logger.info("=" * 60)
     
     async def run(self):
         """Основной цикл работы"""
         logger.info("🚀 Запуск UrgentNewsBot...")
-        
+
         # Обработчики сигналов
         loop = asyncio.get_event_loop()
         for sig in (signal.SIGTERM, signal.SIGINT):
             loop.add_signal_handler(sig, lambda: asyncio.create_task(self.shutdown()))
-        
-        while self.running:
-            try:
-                await self.cycle()
-                await asyncio.sleep(config.PARSE_INTERVAL)
-            except Exception as e:
-                logger.error(f"❌ Ошибка цикла: {e}")
-                await asyncio.sleep(10)
-    
+
+        try:
+            while self.running:
+                try:
+                    await self.cycle()
+                    await asyncio.sleep(config.PARSE_INTERVAL)
+                except asyncio.CancelledError:
+                    logger.info("🛑 Цикл прерван сигналом отмены")
+                    break
+                except Exception as e:
+                    logger.error(f"❌ Ошибка цикла: {e}")
+                    await asyncio.sleep(10)
+        finally:
+            await self.close()
+
     async def shutdown(self):
-        """Корректное завершение"""
+        """Корректное завершение работы с graceful shutdown"""
+        if not self.running:
+            return
+        
         logger.info("🛑 Получен сигнал завершения...")
         self.running = False
+        
+        # Graceful shutdown: закрываем сессию
+        if self.session:
+            logger.info("🔄 Закрытие HTTP сессии...")
+            await self.session.close()
+        
+        # Сохраняем LLM кэш
+        self._save_llm_cache()
+        
+        # Отключаем метрики
+        if prom_metrics:
+            logger.info("📊 Отключение Prometheus метрик...")
+            prom_metrics.shutdown()
+        
+        logger.info("✅ UrgentNewsBot корректно остановлен")
 
 
 # ================= ЗАПУСК =================

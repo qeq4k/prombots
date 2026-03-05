@@ -373,6 +373,33 @@ async def is_global_duplicate(content_hash: str, category: str = "", hours: int 
             return await cursor.fetchone() is not None
 
 
+async def is_global_duplicate_cross_category(content_hash: str, hours: int = 48) -> bool:
+    """
+    ✅ ПРОВЕРКА НА МЕЖКАНАЛЬНЫЙ ДУБЛИКАТ.
+    Проверяет, была ли новость с таким же content_hash опубликована в ЛЮБОЙ категории.
+    
+    Это предотвращает публикацию одинаковых новостей в разных каналах (politics + economy).
+    
+    Args:
+        content_hash: Хеш контента
+        hours: Период проверки (часы)
+    
+    Returns:
+        True если дубликат найден в любой категории
+    """
+    cutoff = datetime.now(timezone.utc) - timedelta(hours=hours)
+    async with aiosqlite.connect(DB_PATH) as db:
+        # Проверяем хеш БЕЗ привязки к категории
+        async with db.execute(
+            "SELECT 1 FROM global_posted WHERE content_hash = ? AND posted_at > ?",
+            (content_hash, cutoff)
+        ) as cursor:
+            result = await cursor.fetchone()
+            if result:
+                return True
+    return False
+
+
 async def is_similar_recent_news(title: str, category: str = "", hours: int = 12, threshold: float = 0.75) -> bool:
     """
     ✅ ПРОВЕРКА НА ПОХОЖИЕ НОВОСТИ через fuzzy matching.
@@ -427,30 +454,36 @@ async def check_duplicate_multi_layer(title: str, body: str, category: str = "",
 
     Слои проверки:
     1. Content hash (строгая нормализация)
-    2. Semantic hash (ключевые сущности)
-    3. Fuzzy matching (похожесть текста) - БАЗОВЫЙ
-    4. Extended fuzzy matching (для HOT-постов) - НОВЫЙ СЛОЙ
-    5. Entity matching (общие сущности)
+    2. Cross-category check (межканальный дубликат)
+    3. Semantic hash (ключевые сущности)
+    4. Fuzzy matching (похожесть текста) - БАЗОВЫЙ
+    5. Extended fuzzy matching (для HOT-постов) - НОВЫЙ СЛОЙ
+    6. Entity matching (общие сущности)
     """
     # Слой 1: Content hash
     content_hash = get_content_dedup_hash(title, body, category)
     if await is_global_duplicate(content_hash, category, hours):
         return True, "content_hash"
+    
+    # ✅ Слой 2: Cross-category check — предотвращает дубли между каналами
+    if await is_global_duplicate_cross_category(content_hash, hours):
+        logger.info(f"🌐 Межканальный дубликат: '{title[:50]}' уже опубликована в другом канале")
+        return True, "cross_category_duplicate"
 
-    # Слой 2: Semantic hash
+    # Слой 3: Semantic hash
     semantic_hash = get_semantic_hash(title, category)
     if await is_global_duplicate(semantic_hash, category, hours):
         return True, "semantic_hash"
 
-    # Слой 3: Fuzzy matching по недавним новостям (базовый)
+    # Слой 4: Fuzzy matching по недавним новостям (базовый)
     if await is_similar_recent_news(title, category, hours=min(hours, 12), threshold=0.75):
         return True, "fuzzy_match"
 
-    # Слой 4: Extended fuzzy matching (для HOT-постов) - НОВЫЙ СЛОЙ
+    # Слой 5: Extended fuzzy matching (для HOT-постов) - НОВЫЙ СЛОЙ
     if await is_similar_recent_news_extended(title, category, hours=48, threshold=0.70):
         return True, "extended_fuzzy_match"
 
-    # Слой 5: Entity matching (только для очень похожих новостей)
+    # Слой 6: Entity matching (только для очень похожих новостей)
     # ✅ УВЕЛИЧЕН ПОРОГ: теперь требуется 4+ общих сущностей (было 2)
     async with aiosqlite.connect(DB_PATH) as db:
         cutoff = datetime.now(timezone.utc) - timedelta(hours=hours)
@@ -551,9 +584,14 @@ async def is_duplicate_advanced(
     if global_enabled:
         try:
             content_hash = get_content_dedup_hash(title, summary, category)
+            # Сначала проверяем в текущей категории
             if await is_global_duplicate(content_hash, category, hours=48):
                 logger.info(f"🌐 Глобальный дубликат (content): {title[:50]}")
                 return True, "global_content_duplicate"
+            # ✅ Затем проверяем в ДРУГИХ категориях (межканальный дубликат)
+            if await is_global_duplicate_cross_category(content_hash, hours=24):
+                logger.info(f"🌐 Межканальный дубликат: {title[:50]} уже в другом канале")
+                return True, "global_cross_category_duplicate"
         except Exception as e:
             logger.warning(f"⚠️ Ошибка глобальной проверки: {e}")
 

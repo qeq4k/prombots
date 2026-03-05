@@ -159,19 +159,66 @@ async def search_history(callback: CallbackQuery, db: Database):
     """История поиска"""
     user_id = callback.from_user.id
     lang = db.get_user_language(user_id)
-    
+
     history = db.get_user_search_history(user_id, limit=10)
     if not history:
         await callback.message.answer(get_text("search_history_empty", lang))
         await callback.answer()
         return
-    
+
     text = get_text("search_history", lang)
     for item in history:
         icon = "✅" if item['results_count'] > 0 else "❌"
-        text += f"{icon} {item['query']} ({item['query_type']})\n"
-    
+        query = item['query']
+        query_type = item['query_type']
+        
+        # Если искали по коду - пробуем получить название фильма
+        if query_type == 'code' and item.get('found_movie_id'):
+            movie = db.get_movie_by_id(item['found_movie_id'])
+            if movie:
+                text += f"{icon} {movie['title']} (код: {query})\n"
+            else:
+                text += f"{icon} {query} ({query_type})\n"
+        else:
+            text += f"{icon} {query} ({query_type})\n"
+
     await callback.message.answer(text)
+    await callback.answer()
+
+
+@router.callback_query(F.data == "view_history")
+async def view_history(callback: CallbackQuery, db: Database):
+    """История просмотров фильмов (с кодами)"""
+    user_id = callback.from_user.id
+    lang = db.get_user_language(user_id)
+
+    history = db.get_user_view_history(user_id, limit=10)
+    if not history:
+        await callback.message.answer(get_text("view_history_empty", lang))
+        await callback.answer()
+        return
+
+    text = get_text("view_history", lang)
+    keyboard_buttons = []
+    
+    for item in history:
+        year_line = f" ({item['year']})" if item['year'] else ""
+        text += f"🎬 {item['title']}{year_line} — `{item['code']}`\n"
+        keyboard_buttons.append([InlineKeyboardButton(
+            text=f"🎬 {item['title']}",
+            callback_data=f"movie_{item['code']}"
+        )])
+    
+    keyboard_buttons.append([InlineKeyboardButton(
+        text="🔙 В меню",
+        callback_data="back_to_main"
+    )])
+
+    await callback.message.answer(
+        text,
+        parse_mode="Markdown",
+        reply_markup=InlineKeyboardMarkup(inline_keyboard=keyboard_buttons)
+    )
     await callback.answer()
 
 
@@ -204,8 +251,10 @@ async def my_stats(callback: CallbackQuery, db: Database):
 async def movie_from_search(callback: CallbackQuery, db: Database):
     """Фильм из результатов поиска"""
     code = callback.data.replace("movie_", "")
-    movie = db.get_movie_by_code(code)
     
+    # Используем кэшированный метод получения фильма
+    movie = await db.get_movie_by_code_cached(code)
+
     if not movie:
         await callback.answer("❌ Фильм не найден", show_alert=True)
         return

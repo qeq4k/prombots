@@ -704,7 +704,18 @@ async def history_button(message: types.Message):
     text = get_text("search_history", lang)
     for item in history:
         icon = "✅" if item['results_count'] > 0 else "❌"
-        text += f"{icon} {item['query']} ({item['query_type']})\n"
+        query = item['query']
+        query_type = item['query_type']
+        
+        # Если искали по коду - пробуем получить название фильма
+        if query_type == 'code' and item.get('found_movie_id'):
+            movie = db.get_movie_by_id(item['found_movie_id'])
+            if movie:
+                text += f"{icon} {movie['title']} (код: {query})\n"
+            else:
+                text += f"{icon} {query} ({query_type})\n"
+        else:
+            text += f"{icon} {query} ({query_type})\n"
 
     await message.answer(text)
 
@@ -2605,7 +2616,18 @@ async def search_history(callback: types.CallbackQuery):
     text = get_text("search_history", lang)
     for item in history:
         icon = "✅" if item['results_count'] > 0 else "❌"
-        text += f"{icon} {item['query']} ({item['query_type']})\n"
+        query = item['query']
+        query_type = item['query_type']
+        
+        # Если искали по коду - пробуем получить название фильма
+        if query_type == 'code' and item.get('found_movie_id'):
+            movie = db.get_movie_by_id(item['found_movie_id'])
+            if movie:
+                text += f"{icon} {movie['title']} (код: {query})\n"
+            else:
+                text += f"{icon} {query} ({query_type})\n"
+        else:
+            text += f"{icon} {query} ({query_type})\n"
     await callback.message.answer(text)
     await callback.answer()
 

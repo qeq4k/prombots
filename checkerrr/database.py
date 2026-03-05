@@ -421,7 +421,7 @@ class Database:
         return False
 
     def get_movie_by_code(self, code: str):
-        """Получает фильм по коду"""
+        """Получает фильм по коду (синхронная версия)"""
         try:
             self.cursor.execute("SELECT * FROM movies WHERE code = ?", (code,))
             row = self.cursor.fetchone()
@@ -429,6 +429,24 @@ class Database:
         except Exception as e:
             logger.error(f"Ошибка получения фильма по коду {code}: {e}")
             return None
+
+    async def get_movie_by_code_cached(self, code: str) -> Optional[Dict]:
+        """Получает фильм по коду с кэшированием в Redis"""
+        from cache import MovieCache
+        
+        # Проверяем кэш
+        cached = await MovieCache.get_by_code(code)
+        if cached:
+            return cached
+        
+        # Получаем из БД
+        movie = self.get_movie_by_code(code)
+        
+        # Сохраняем в кэш
+        if movie:
+            await MovieCache.set_by_code(code, movie, expire=3600)
+        
+        return movie
 
     def get_movie_by_id(self, movie_id: int):
         """Получает фильм по ID"""
@@ -937,15 +955,32 @@ class Database:
         """Получает историю поисков пользователя"""
         try:
             self.cursor.execute('''
-                SELECT * FROM search_history 
-                WHERE user_id = ? 
-                ORDER BY created_at DESC 
+                SELECT * FROM search_history
+                WHERE user_id = ?
+                ORDER BY created_at DESC
                 LIMIT ?
             ''', (user_id, limit))
             rows = self.cursor.fetchall()
             return [dict(row) for row in rows]
         except Exception as e:
             logger.error(f"Ошибка получения истории поиска: {e}")
+            return []
+
+    def get_user_view_history(self, user_id: int, limit: int = 10) -> List[Dict]:
+        """Получает историю просмотров фильмов пользователем (с кодами фильмов)"""
+        try:
+            self.cursor.execute('''
+                SELECT m.code, m.title, m.year, m.link, v.viewed_at
+                FROM view_analytics v
+                JOIN movies m ON v.movie_id = m.id
+                WHERE v.user_id = ?
+                ORDER BY v.viewed_at DESC
+                LIMIT ?
+            ''', (user_id, limit))
+            rows = self.cursor.fetchall()
+            return [dict(row) for row in rows]
+        except Exception as e:
+            logger.error(f"Ошибка получения истории просмотров: {e}")
             return []
 
     def get_user_stats(self, user_id: int) -> Dict:

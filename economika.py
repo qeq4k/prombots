@@ -77,12 +77,14 @@ try:
     from global_dedup import (
         init_global_db,
         is_global_duplicate,
+        is_global_duplicate_cross_category,
         mark_global_posted,
         get_universal_hash,
         cleanup_global_db,
         get_content_dedup_hash,
         is_duplicate_advanced,
-        normalize_title_for_dedup
+        normalize_title_for_dedup,
+        check_duplicate_multi_layer
     )
     GLOBAL_DEDUP_ENABLED = True
 except ImportError:
@@ -1985,16 +1987,22 @@ async def process_feed(session: aiohttp.ClientSession, feed_url: str, llm: Cache
                 
                 is_suitable, keyword_matches, high_priority_matches = is_economy_candidate(title, summary)
                 if not is_suitable:
+                    if prom_metrics:
+                        prom_metrics.inc_rejected('not_economy')
                     continue
 
                 # ✅ ФИЛЬТР ДАЙДЖЕСТОВ/СВОДОК
                 if is_digest_headline(title):
                     logger.info(f"⏭️ Дайджест/сводка: {title[:60]}")
+                    if prom_metrics:
+                        prom_metrics.inc_rejected('digest')
                     continue
 
                 # ✅ ФИЛЬТР НОВОСТЕЙ ПРО ВИДЕО
                 if has_video_reference(title, summary):
                     logger.info(f"⏭️ Видео-новость (без видео): {title[:60]}")
+                    if prom_metrics:
+                        prom_metrics.inc_rejected('no_video')
                     continue
 
                 logger.info(f"✓ Ключевые слова ({keyword_matches}, HOT:{high_priority_matches}): {title[:60]}")
@@ -2018,6 +2026,8 @@ async def process_feed(session: aiohttp.ClientSession, feed_url: str, llm: Cache
                     if classification != "ECONOMY":
                         logger.info(f"⏭️ LLM отклонил: {title[:60]}")
                         metrics.metrics['posts_rejected'] += 1
+                        if prom_metrics:
+                            prom_metrics.inc_rejected('low_priority')
                         continue
                     logger.info(f"✅ LLM одобрил: {title[:60]}")
                 
@@ -2300,15 +2310,21 @@ async def send_to_suggestion_with_retry(session: aiohttp.ClientSession, text: st
 
 # ================= ОСНОВНОЙ ЦИКЛ =================
 async def collect_and_process_news(llm, duplicate_detector, session):
+    """
+    ✅ Возвращает кортеж (найдена_новость, опубликована_новость):
+    - (True, True) — новость найдена и успешно отправлена
+    - (True, False) — новость найдена, но не опубликована (ждёт модерации / ошибка отправки)
+    - (False, False) — новость не найдена (нет подходящих кандидатов)
+    """
     import time
     start_time = time.time()
-    
+
     try:
         candidates = await collect_candidates(llm, duplicate_detector)
 
         if not candidates:
             logger.warning("📭 Нет подходящих кандидатов")
-            return 0
+            return (False, False)  # ❌ Новость не найдена
 
         logger.info(f"🚀 Начинаем обработку {len(candidates)} кандидатов")
 
@@ -2324,7 +2340,7 @@ async def collect_and_process_news(llm, duplicate_detector, session):
 
             # 1. Скачиваем текст
             full_text = await fetch_article_text(session, best["link"])
-            
+
             # Выбираем лучший доступный текст: полный > summary > заголовок + summary
             if full_text and len(full_text) > 150:
                 body = full_text
@@ -2333,9 +2349,9 @@ async def collect_and_process_news(llm, duplicate_detector, session):
             else:
                 # Комбинируем заголовок и summary для коротких случаев
                 body = f"{best['title']}. {best['summary']}" if best.get('summary') else best['title']
-            
+
             logger.info(f"📝 Длина текста: {len(body)} символов")
-            
+
             if len(body) < 40:
                 logger.warning(f"⚠️ Текст слишком короткий ({len(body)} символов)")
                 continue
@@ -2356,11 +2372,13 @@ async def collect_and_process_news(llm, duplicate_detector, session):
                 logger.warning("⚠️ Не русский текст")
                 continue
 
+            # ✅ НОВОСТЬ НАЙДЕНА И ГОТОВА К ОТПРАВКЕ
             # 🔥 3-УРОВНЕВАЯ ЛОГИКА ПУБЛИКАЦИИ
             if priority >= 95:
                 # 🔥 CRITICAL: Автопостинг сразу в канал (минуя предложку)
                 logger.info(f"🚨 CRITICAL NEWS (priority={priority}): Публикация сразу в канал!")
-                if await send_to_channel(session, final_text, best["link"], priority, triggers):
+                send_result = await send_to_channel(session, final_text, best["link"], priority, triggers)
+                if send_result:
                     # Сохраняем в локальную БД
                     final_hash = get_content_hash(final_text[:200], best["link"])
                     await save_post(best["link"], final_hash, best["source"], best["title_normalized"], "autopost_critical")
@@ -2384,46 +2402,52 @@ async def collect_and_process_news(llm, duplicate_detector, session):
                     await save_content_dedup_hash(content_dedup_hash)
                     state.last_post_time = asyncio.get_event_loop().time()
                     logger.info(f"🚨 АВТОПОСТ ОПУБЛИКОВАН: {best['title'][:60]}")
-                    return 1
+                    return (True, True)  # ✅ Найдена и опубликована
                 else:
                     logger.warning("⚠️ Автопостинг не удался, пробуем следующего")
-                    continue
+                    # ✅ НОВОСТЬ ВСЁ ЕЩЁ СЧИТАЕТСЯ НАЙДЕННОЙ (просто отправка не удалась)
+                    return (True, False)
 
             elif priority >= 85:
                 # ⚡ HOT: Минуя LLM classify, но в предложку
                 logger.info(f"⚡ HOT NEWS (priority={priority}): Отправка в предложку (без classify)")
-                if await send_to_suggestion_with_retry(session, final_text, best["link"], best["pub_date"], best["title"]):
+                send_result = await send_to_suggestion_with_retry(session, final_text, best["link"], best["pub_date"], best["title"])
+                if send_result:
                     final_hash = get_content_hash(final_text[:200], best["link"])
                     await save_post(best["link"], final_hash, best["source"], best["title_normalized"], "hot_news")
                     content_dedup_hash = get_content_dedup_hash(best["title"], best["summary"])
                     await save_content_dedup_hash(content_dedup_hash)
                     state.last_post_time = asyncio.get_event_loop().time()
                     logger.info(f"📨 Опубликовано в предложку: {best['title'][:60]}")
-                    return 1
+                    return (True, True)  # ✅ Найдена и опубликована
                 else:
                     logger.warning("⚠️ Отправка в предложку не удалась, пробуем следующего")
-                    continue
+                    # ✅ НОВОСТЬ ВСЁ ЕЩЁ СЧИТАЕТСЯ НАЙДЕННОЙ (просто отправка не удалась)
+                    return (True, False)
 
             else:
                 # 📝 NORMAL: Полная проверка (LLM classify уже пройден в process_feed)
                 logger.info(f"📝 NORMAL NEWS (priority={priority}): Отправка в предложку")
-                if await send_to_suggestion_with_retry(session, final_text, best["link"], best["pub_date"], best["title"]):
+                send_result = await send_to_suggestion_with_retry(session, final_text, best["link"], best["pub_date"], best["title"])
+                if send_result:
                     final_hash = get_content_hash(final_text[:200], best["link"])
                     await save_post(best["link"], final_hash, best["source"], best["title_normalized"], "posted")
                     content_dedup_hash = get_content_dedup_hash(best["title"], best["summary"])
                     await save_content_dedup_hash(content_dedup_hash)
                     state.last_post_time = asyncio.get_event_loop().time()
                     logger.info(f"📨 Опубликовано: {best['title'][:60]}")
-                    return 1
+                    return (True, True)  # ✅ Найдена и опубликована
                 else:
                     logger.warning("⚠️ Отправка не удалась, пробуем следующего")
-                    continue
+                    # ✅ НОВОСТЬ ВСЁ ЕЩЁ СЧИТАЕТСЯ НАЙДЕННОЙ (просто отправка не удалась)
+                    return (True, False)
 
-        logger.warning("⚠️ Ни один из топ-3 кандидатов не был опубликован")
-        return 0
+        # ❌ Ни одна из топ-3 новостей не подошла (все отклонены на этапе рерайта/проверки)
+        logger.warning("⚠️ Ни один из топ-3 кандидатов не прошёл проверку")
+        return (False, False)  # ❌ Новость не найдена
     except Exception as e:
         logger.error(f"❌ Ошибка в collect_and_process_news: {e}", exc_info=True)
-        return 0
+        return (False, False)
     finally:
         elapsed = time.time() - start_time
         if prom_metrics:
@@ -2489,48 +2513,63 @@ async def main():
     ssl_context = create_secure_ssl_context()
     connector = aiohttp.TCPConnector(limit=10, force_close=True, ssl=ssl_context, ttl_dns_cache=300)
     timeout = aiohttp.ClientTimeout(total=60, connect=15)
-    
+
     async with aiohttp.ClientSession(connector=connector, timeout=timeout) as session:
         cycle = 0
-        
-        while state.running:
-            cycle += 1
-            time_label = "🌙 НОЧЬ" if config.is_night_time() else "☀️ ДЕНЬ"
-            
-            logger.info("=" * 60)
-            logger.info(f"🔄 Цикл #{cycle} | {time_label} | {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
-            logger.info("=" * 60)
-            
-            try:
-                state.current_task = asyncio.ensure_future(
-                    collect_and_process_news(llm, duplicate_detector, session)
-                )
-                posts_published = (await state.current_task) or 0
+        try:
+            while state.running:
+                cycle += 1
+                time_label = "🌙 НОЧЬ" if config.is_night_time() else "☀️ ДЕНЬ"
 
-                
-                if posts_published > 0:
-                    logger.info(f"✅ Опубликовано: {posts_published}")
+                logger.info("=" * 60)
+                logger.info(f"🔄 Цикл #{cycle} | {time_label} | {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+                logger.info("=" * 60)
 
-                if cycle % 10 == 0:
-                    await cleanup_old_posts()
-                    await cleanup_old_data()
-                    cleanup_old_logs()  # Очистка логов (синхронная)
-                
-                if cycle % 5 == 0:
-                    llm._save_cache()
-                
-                delay = config.get_cycle_delay()
-                logger.info(f"😴 {time_label} | Следующий цикл через {delay // 60} мин {delay % 60} сек")
-                await asyncio.sleep(delay)
-                
-            except Exception as e:
-                logger.error(f"❌ Ошибка в цикле: {e}", exc_info=True)
-                metrics.log_error(f"main_loop: {e}")
-                error_delay = 900 if config.is_night_time() else 600
-                logger.info(f"⏳ Ожидание {error_delay // 60} минут после ошибки")
-                await asyncio.sleep(error_delay)
-        
-        await graceful_shutdown(llm)
+                try:
+                    state.current_task = asyncio.create_task(
+                        collect_and_process_news(llm, duplicate_detector, session)
+                    )
+                    news_found, news_published = await state.current_task
+
+                    # ✅ ЛОГИКА ЗАДЕРЖЕК: зависит от того, НАЙДЕНА ли новость, а не опубликована
+                    if news_found:
+                        # ✅ Новость найдена и обработана (отправлена в модерку или сразу в канал)
+                        # Следующий цикл через 15-25 минут — даём время на модерацию + защита от спама
+                        if news_published:
+                            logger.info(f"✅ Новость опубликована")
+                        else:
+                            logger.info(f"⏳ Новость найдена, но ожидает публикации (модерация/ошибка)")
+                        delay = random.randint(900, 1500)  # 15-25 мин
+                        logger.info(f"⏱️ Задержка 15-25 мин (новость найдена)")
+                    else:
+                        # ✅ Новость НЕ найдена — нет подходящих кандидатов
+                        # Следующий цикл через 10-15 минут — активный поиск
+                        delay = random.randint(600, 900)  # 10-15 мин
+                        logger.info(f"⏱️ Задержка 10-15 мин (новость не найдена, ищем дальше)")
+
+                    if cycle % 10 == 0:
+                        await cleanup_old_posts()
+                        await cleanup_old_data()
+                        cleanup_old_logs()  # Очистка логов (синхронная)
+
+                    if cycle % 5 == 0:
+                        llm._save_cache()
+
+                    logger.info(f"😴 {time_label} | Следующий цикл через {delay // 60} мин {delay % 60} сек")
+                    await asyncio.sleep(delay)
+
+                except asyncio.CancelledError:
+                    logger.info("🛑 Цикл прерван сигналом отмены")
+                    break
+                except Exception as e:
+                    logger.error(f"❌ Ошибка в цикле: {e}", exc_info=True)
+                    metrics.log_error(f"main_loop: {e}")
+                    error_delay = 900 if config.is_night_time() else 600
+                    logger.info(f"⏳ Ожидание {error_delay // 60} минут после ошибки")
+                    await asyncio.sleep(error_delay)
+        finally:
+            # Graceful shutdown при выходе из цикла
+            await graceful_shutdown(llm)
 
 def signal_handler(signum, frame):
     logger.info(f"🛑 Получен сигнал остановки: {signum}")

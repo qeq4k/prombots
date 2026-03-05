@@ -1,0 +1,266 @@
+2026-03-04 21:20:40 | INFO    | 🔒 Lock acquired (PID=47321)
+2026-03-04 21:20:40 | INFO    | ============================================================
+2026-03-04 21:20:40 | INFO    | 🚀 ЗАПУСК BOT HANDLER
+2026-03-04 21:20:40 | INFO    | 📁 pending_posts: /root/projectss/pending_posts
+2026-03-04 21:20:40 | INFO    | ⏰ Автопостинг: ✅ ВКЛ
+2026-03-04 21:20:40 | INFO    | 🔗 Глобальная дедупликация: ✅ ВКЛ
+2026-03-04 21:20:40 | INFO    | ============================================================
+2026-03-04 21:20:40 | INFO    | ✅ Глобальная БД инициализирована
+2026-03-04 21:20:40 | INFO    | 🤖 Бот: @steroid_eco_bot
+2026-03-04 21:20:40 | INFO    | 📦 Загружено 38 published хешей
+2026-03-04 21:20:40 | INFO    | 📦 Индекс pending: True
+2026-03-04 21:20:40 | INFO    | ✅ Бот запущен, ожидаю сообщения...
+2026-03-04 21:20:40 | INFO    | 🌙 Автопостинг запущен | День: 7-10 мин
+2026-03-04 21:20:40 | INFO    | 🧹 Очистка запущена (каждые 6 ч)
+2026-03-04 21:21:40 | ERROR   | ❌ Ошибка автопоста dd575813f12d0bd7: name 're' is not defined
+Traceback (most recent call last):
+  File "/root/projectss/bot_handler.py", line 576, in autopost_draft
+    success, result = await self.publish_post(draft.text, draft.channel_id, draft.photo)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 514, in publish_post
+    if await self._is_duplicate(text, channel_id):
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 467, in _is_duplicate
+    h = self._get_content_hash(text, channel_id)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 435, in _get_content_hash
+    normalized = normalize_text_for_dedup(text)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 210, in normalize_text_for_dedup
+    text = strip_html_tags(text)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 204, in strip_html_tags
+    clean = re.sub(r'<[^>]+>', '', text)
+            ^^
+NameError: name 're' is not defined. Did you forget to import 're'
+2026-03-04 21:21:40 | ERROR   | ❌ Ошибка автопоста 86e04699a4f722c3: name 're' is not defined
+Traceback (most recent call last):
+  File "/root/projectss/bot_handler.py", line 576, in autopost_draft
+    success, result = await self.publish_post(draft.text, draft.channel_id, draft.photo)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 514, in publish_post
+    if await self._is_duplicate(text, channel_id):
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 467, in _is_duplicate
+    h = self._get_content_hash(text, channel_id)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 435, in _get_content_hash
+    normalized = normalize_text_for_dedup(text)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 210, in normalize_text_for_dedup
+    text = strip_html_tags(text)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 204, in strip_html_tags
+    clean = re.sub(r'<[^>]+>', '', text)
+            ^^
+NameError: name 're' is not defined. Did you forget to import 're'
+2026-03-04 21:21:40 | ERROR   | ❌ Ошибка автопоста 0da9092afdc6b3fd: name 're' is not defined
+Traceback (most recent call last):
+  File "/root/projectss/bot_handler.py", line 576, in autopost_draft
+    success, result = await self.publish_post(draft.text, draft.channel_id, draft.photo)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 514, in publish_post
+    if await self._is_duplicate(text, channel_id):
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 467, in _is_duplicate
+    h = self._get_content_hash(text, channel_id)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 435, in _get_content_hash
+    normalized = normalize_text_for_dedup(text)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 210, in normalize_text_for_dedup
+    text = strip_html_tags(text)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 204, in strip_html_tags
+    clean = re.sub(r'<[^>]+>', '', text)
+            ^^
+NameError: name 're' is not defined. Did you forget to import 're'
+2026-03-04 21:22:40 | ERROR   | ❌ Ошибка автопоста dd575813f12d0bd7: name 're' is not defined
+Traceback (most recent call last):
+  File "/root/projectss/bot_handler.py", line 576, in autopost_draft
+    success, result = await self.publish_post(draft.text, draft.channel_id, draft.photo)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 514, in publish_post
+    if await self._is_duplicate(text, channel_id):
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 467, in _is_duplicate
+    h = self._get_content_hash(text, channel_id)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 435, in _get_content_hash
+    normalized = normalize_text_for_dedup(text)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 210, in normalize_text_for_dedup
+    text = strip_html_tags(text)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 204, in strip_html_tags
+    clean = re.sub(r'<[^>]+>', '', text)
+            ^^
+NameError: name 're' is not defined. Did you forget to import 're'
+2026-03-04 21:22:40 | ERROR   | ❌ Ошибка автопоста 86e04699a4f722c3: name 're' is not defined
+Traceback (most recent call last):
+  File "/root/projectss/bot_handler.py", line 576, in autopost_draft
+    success, result = await self.publish_post(draft.text, draft.channel_id, draft.photo)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 514, in publish_post
+    if await self._is_duplicate(text, channel_id):
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 467, in _is_duplicate
+    h = self._get_content_hash(text, channel_id)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 435, in _get_content_hash
+    normalized = normalize_text_for_dedup(text)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 210, in normalize_text_for_dedup
+    text = strip_html_tags(text)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 204, in strip_html_tags
+    clean = re.sub(r'<[^>]+>', '', text)
+            ^^
+NameError: name 're' is not defined. Did you forget to import 're'
+2026-03-04 21:22:40 | ERROR   | ❌ Ошибка автопоста 0da9092afdc6b3fd: name 're' is not defined
+Traceback (most recent call last):
+  File "/root/projectss/bot_handler.py", line 576, in autopost_draft
+    success, result = await self.publish_post(draft.text, draft.channel_id, draft.photo)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 514, in publish_post
+    if await self._is_duplicate(text, channel_id):
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 467, in _is_duplicate
+    h = self._get_content_hash(text, channel_id)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 435, in _get_content_hash
+    normalized = normalize_text_for_dedup(text)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 210, in normalize_text_for_dedup
+    text = strip_html_tags(text)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 204, in strip_html_tags
+    clean = re.sub(r'<[^>]+>', '', text)
+            ^^
+NameError: name 're' is not defined. Did you forget to import 're'
+2026-03-04 21:23:40 | ERROR   | ❌ Ошибка автопоста dd575813f12d0bd7: name 're' is not defined
+Traceback (most recent call last):
+  File "/root/projectss/bot_handler.py", line 576, in autopost_draft
+    success, result = await self.publish_post(draft.text, draft.channel_id, draft.photo)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 514, in publish_post
+    if await self._is_duplicate(text, channel_id):
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 467, in _is_duplicate
+    h = self._get_content_hash(text, channel_id)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 435, in _get_content_hash
+    normalized = normalize_text_for_dedup(text)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 210, in normalize_text_for_dedup
+    text = strip_html_tags(text)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 204, in strip_html_tags
+    clean = re.sub(r'<[^>]+>', '', text)
+            ^^
+NameError: name 're' is not defined. Did you forget to import 're'
+2026-03-04 21:23:40 | ERROR   | ❌ Ошибка автопоста 86e04699a4f722c3: name 're' is not defined
+Traceback (most recent call last):
+  File "/root/projectss/bot_handler.py", line 576, in autopost_draft
+    success, result = await self.publish_post(draft.text, draft.channel_id, draft.photo)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 514, in publish_post
+    if await self._is_duplicate(text, channel_id):
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 467, in _is_duplicate
+    h = self._get_content_hash(text, channel_id)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 435, in _get_content_hash
+    normalized = normalize_text_for_dedup(text)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 210, in normalize_text_for_dedup
+    text = strip_html_tags(text)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 204, in strip_html_tags
+    clean = re.sub(r'<[^>]+>', '', text)
+            ^^
+NameError: name 're' is not defined. Did you forget to import 're'
+2026-03-04 21:23:40 | ERROR   | ❌ Ошибка автопоста 0da9092afdc6b3fd: name 're' is not defined
+Traceback (most recent call last):
+  File "/root/projectss/bot_handler.py", line 576, in autopost_draft
+    success, result = await self.publish_post(draft.text, draft.channel_id, draft.photo)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 514, in publish_post
+    if await self._is_duplicate(text, channel_id):
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 467, in _is_duplicate
+    h = self._get_content_hash(text, channel_id)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 435, in _get_content_hash
+    normalized = normalize_text_for_dedup(text)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 210, in normalize_text_for_dedup
+    text = strip_html_tags(text)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 204, in strip_html_tags
+    clean = re.sub(r'<[^>]+>', '', text)
+            ^^
+NameError: name 're' is not defined. Did you forget to import 're'
+2026-03-04 21:24:40 | ERROR   | ❌ Ошибка автопоста dd575813f12d0bd7: name 're' is not defined
+Traceback (most recent call last):
+  File "/root/projectss/bot_handler.py", line 576, in autopost_draft
+    success, result = await self.publish_post(draft.text, draft.channel_id, draft.photo)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 514, in publish_post
+    if await self._is_duplicate(text, channel_id):
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 467, in _is_duplicate
+    h = self._get_content_hash(text, channel_id)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 435, in _get_content_hash
+    normalized = normalize_text_for_dedup(text)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 210, in normalize_text_for_dedup
+    text = strip_html_tags(text)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 204, in strip_html_tags
+    clean = re.sub(r'<[^>]+>', '', text)
+            ^^
+NameError: name 're' is not defined. Did you forget to import 're'
+2026-03-04 21:24:40 | ERROR   | ❌ Ошибка автопоста 86e04699a4f722c3: name 're' is not defined
+Traceback (most recent call last):
+  File "/root/projectss/bot_handler.py", line 576, in autopost_draft
+    success, result = await self.publish_post(draft.text, draft.channel_id, draft.photo)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 514, in publish_post
+    if await self._is_duplicate(text, channel_id):
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 467, in _is_duplicate
+    h = self._get_content_hash(text, channel_id)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 435, in _get_content_hash
+    normalized = normalize_text_for_dedup(text)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 210, in normalize_text_for_dedup
+    text = strip_html_tags(text)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 204, in strip_html_tags
+    clean = re.sub(r'<[^>]+>', '', text)
+            ^^
+NameError: name 're' is not defined. Did you forget to import 're'
+2026-03-04 21:24:40 | ERROR   | ❌ Ошибка автопоста 0da9092afdc6b3fd: name 're' is not defined
+Traceback (most recent call last):
+  File "/root/projectss/bot_handler.py", line 576, in autopost_draft
+    success, result = await self.publish_post(draft.text, draft.channel_id, draft.photo)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 514, in publish_post
+    if await self._is_duplicate(text, channel_id):
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 467, in _is_duplicate
+    h = self._get_content_hash(text, channel_id)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 435, in _get_content_hash
+    normalized = normalize_text_for_dedup(text)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 210, in normalize_text_for_dedup
+    text = strip_html_tags(text)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 204, in strip_html_tags
+    clean = re.sub(r'<[^>]+>', '', text)
+            ^^
+NameError: name 're' is not defined. Did you forget to import 're'

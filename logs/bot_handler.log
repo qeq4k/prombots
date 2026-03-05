@@ -14923,3 +14923,1161 @@ TypeError: object of type 'int' has no len()
 2026-03-04 18:11:29 | INFO    | ✅ Автопост опубликован: 77f638adccd94fe5
 2026-03-04 18:13:54 | INFO    | ✅ Автопост опубликован: a40cf39c78b7fc36
 2026-03-04 18:15:14 | INFO    | ✅ Автопост опубликован: e59c3820d4a4b02e
+2026-03-04 18:24:50 | INFO    | ✅ Автопост опубликован: 0290dac187265e5f
+2026-03-04 18:26:38 | INFO    | ✅ Автопост опубликован: ea2fa6726111d5c4
+2026-03-04 18:58:06 | INFO    | ============================================================
+2026-03-04 18:58:06 | INFO    | 🚀 ЗАПУСК BOT HANDLER
+2026-03-04 18:58:06 | INFO    | 📁 pending_posts: /root/projectss/pending_posts
+2026-03-04 18:58:06 | INFO    | ⏰ Автопостинг: ✅ ВКЛ
+2026-03-04 18:58:06 | INFO    | 🔗 Глобальная дедупликация: ✅ ВКЛ
+2026-03-04 18:58:06 | INFO    | ============================================================
+2026-03-04 18:58:07 | INFO    | ✅ Глобальная БД инициализирована
+2026-03-04 18:58:07 | INFO    | 🤖 Бот: @steroid_eco_bot
+2026-03-04 18:58:07 | INFO    | 📦 Индекс pending: 1 черновиков в 1 чатах
+2026-03-04 18:58:07 | INFO    | ✅ Бот запущен, ожидаю сообщения...
+2026-03-04 18:58:07 | INFO    | 🌙 Автопостинг запущен | День: 7-10 мин | Ночь: 25-35 мин
+2026-03-04 18:58:07 | INFO    | 🧹 Очистка запущена (каждые 6 ч)
+2026-03-04 18:59:07 | INFO    | ✅ Автопост опубликован: 482b92f29cea78a4
+2026-03-04 19:06:59 | INFO    | ✅ Автопост опубликован: 79c9b13f7a09b6ab
+2026-03-04 19:07:28 | INFO    | ✅ Автопост опубликован: 8391568224530fc7
+2026-03-04 19:09:07 | INFO    | ✅ Автопост опубликован: 6da40b58ecf42abd
+2026-03-04 19:09:07 | INFO    | ✅ Автопост опубликован: 6da40b58ecf42abd
+2026-03-04 19:21:49 | INFO    | ✅ Автопост опубликован: 0f3f72b3424e5be7
+2026-03-04 19:22:29 | INFO    | ✅ Автопост опубликован: c5b79e7f5d723868
+2026-03-04 19:29:58 | INFO    | 🛑 Сигнал 2
+2026-03-04 19:29:58 | INFO    | 🛑 Завершение, отмена 3 задач...
+2026-03-04 19:29:58 | INFO    | 💾 published_hashes сохранён
+2026-03-04 19:30:03 | INFO    | ============================================================
+2026-03-04 19:30:03 | INFO    | 🚀 ЗАПУСК BOT HANDLER
+2026-03-04 19:30:03 | INFO    | 📁 pending_posts: /root/projectss/pending_posts
+2026-03-04 19:30:03 | INFO    | ⏰ Автопостинг: ✅ ВКЛ
+2026-03-04 19:30:03 | INFO    | 🔗 Глобальная дедупликация: ✅ ВКЛ
+2026-03-04 19:30:03 | INFO    | ============================================================
+2026-03-04 19:30:04 | INFO    | ✅ Глобальная БД инициализирована
+2026-03-04 19:30:04 | INFO    | 🤖 Бот: @steroid_eco_bot
+2026-03-04 19:30:04 | INFO    | 📦 Загружено 6 published хешей
+2026-03-04 19:30:04 | INFO    | 📦 Индекс pending: 4 черновиков в 2 чатах
+2026-03-04 19:30:04 | INFO    | ✅ Бот запущен, ожидаю сообщения...
+2026-03-04 19:30:04 | INFO    | 🌙 Автопостинг запущен | День: 7-10 мин | Ночь: 25-35 мин
+2026-03-04 19:30:04 | INFO    | 🧹 Очистка запущена (каждые 6 ч)
+2026-03-04 19:31:04 | INFO    | ✅ Автопост опубликован: 94fb9054e992c7a5
+2026-03-04 19:31:04 | INFO    | ✅ Автопост опубликован: 03fb0d1f42d55ae3
+2026-03-04 19:32:19 | INFO    | 🛑 Сигнал 2
+2026-03-04 19:32:19 | INFO    | 🛑 Завершение, отмена 4 задач...
+2026-03-04 19:32:19 | INFO    | 💾 published_hashes сохранён
+2026-03-04 19:34:25 | INFO    | ============================================================
+2026-03-04 19:34:25 | INFO    | 🚀 ЗАПУСК BOT HANDLER
+2026-03-04 19:34:25 | INFO    | 📁 pending_posts: /root/projectss/pending_posts
+2026-03-04 19:34:25 | INFO    | ⏰ Автопостинг: ✅ ВКЛ
+2026-03-04 19:34:25 | INFO    | 🔗 Глобальная дедупликация: ✅ ВКЛ
+2026-03-04 19:34:25 | INFO    | ============================================================
+2026-03-04 19:34:25 | INFO    | ✅ Глобальная БД инициализирована
+2026-03-04 19:34:26 | INFO    | 🤖 Бот: @steroid_eco_bot
+2026-03-04 19:34:26 | INFO    | 📦 Загружено 8 published хешей
+2026-03-04 19:34:26 | INFO    | 📦 Индекс pending: 4 черновиков в 2 чатах
+2026-03-04 19:34:26 | INFO    | ✅ Бот запущен, ожидаю сообщения...
+2026-03-04 19:34:26 | INFO    | 🌙 Автопостинг запущен | День: 7-10 мин | Ночь: 25-35 мин
+2026-03-04 19:34:26 | INFO    | 🧹 Очистка запущена (каждые 6 ч)
+2026-03-04 19:35:26 | INFO    | ✅ Автопост опубликован: 13a33b72d0cd6461
+2026-03-04 19:35:26 | INFO    | ✅ Автопост опубликован: f1bc84b832614a48
+2026-03-04 19:45:26 | INFO    | ✅ Автопост опубликован: 28c09590ffab6f5b
+2026-03-04 19:45:26 | INFO    | ✅ Автопост опубликован: 29e305f1208ebfda
+2026-03-04 19:45:26 | INFO    | ✅ Автопост опубликован: 28c09590ffab6f5b
+2026-03-04 19:45:26 | INFO    | ✅ Автопост опубликован: 28c09590ffab6f5b
+2026-03-04 19:45:26 | INFO    | ✅ Автопост опубликован: 28c09590ffab6f5b
+2026-03-04 19:45:27 | INFO    | ✅ Автопост опубликован: b29845ecdf538ba8
+2026-03-04 19:45:27 | INFO    | ✅ Автопост опубликован: b29845ecdf538ba8
+2026-03-04 19:45:27 | INFO    | ✅ Автопост опубликован: b29845ecdf538ba8
+2026-03-04 19:45:27 | INFO    | ✅ Автопост опубликован: b29845ecdf538ba8
+2026-03-04 19:45:27 | INFO    | ✅ Автопост опубликован: f68adf02cfc532e7
+2026-03-04 19:45:31 | INFO    | ✅ Автопост опубликован: 8312c0d2e7840f41
+2026-03-04 19:45:32 | INFO    | ✅ Автопост опубликован: 29e305f1208ebfda
+2026-03-04 19:45:32 | INFO    | ✅ Автопост опубликован: 28c09590ffab6f5b
+2026-03-04 19:45:32 | INFO    | ✅ Автопост опубликован: 28c09590ffab6f5b
+2026-03-04 19:45:32 | INFO    | ✅ Автопост опубликован: 8312c0d2e7840f41
+2026-03-04 19:45:32 | WARNING | ⚠️ 429 Too Many Requests, ждём 5с (попытка 1/3)
+2026-03-04 19:45:34 | INFO    | ✅ Автопост опубликован: b75fee2a606fb10e
+2026-03-04 19:45:34 | INFO    | ✅ Автопост опубликован: b29845ecdf538ba8
+2026-03-04 19:45:34 | INFO    | ✅ Автопост опубликован: b29845ecdf538ba8
+2026-03-04 19:45:34 | INFO    | ✅ Автопост опубликован: f68adf02cfc532e7
+2026-03-04 19:45:34 | ERROR   | ❌ Чтение 8312c0d2e7840f41.json: [Errno 2] No such file or directory: 'pending_posts/8312c0d2e7840f41.json'
+2026-03-04 19:45:34 | ERROR   | ❌ Чтение 29e305f1208ebfda.json: [Errno 2] No such file or directory: 'pending_posts/29e305f1208ebfda.json'
+2026-03-04 19:45:34 | ERROR   | ❌ Чтение b29845ecdf538ba8.json: [Errno 2] No such file or directory: 'pending_posts/b29845ecdf538ba8.json'
+2026-03-04 19:45:34 | ERROR   | ❌ Чтение b75fee2a606fb10e.json: [Errno 2] No such file or directory: 'pending_posts/b75fee2a606fb10e.json'
+2026-03-04 19:45:37 | INFO    | ✅ Автопост опубликован: 8312c0d2e7840f41
+2026-03-04 19:47:54 | INFO    | 🛑 Сигнал 2
+2026-03-04 19:47:54 | INFO    | 🛑 Завершение, отмена 2 задач...
+2026-03-04 19:47:54 | INFO    | 💾 published_hashes сохранён
+2026-03-04 19:47:57 | INFO    | ============================================================
+2026-03-04 19:47:57 | INFO    | 🚀 ЗАПУСК BOT HANDLER
+2026-03-04 19:47:57 | INFO    | 📁 pending_posts: /root/projectss/pending_posts
+2026-03-04 19:47:57 | INFO    | ⏰ Автопостинг: ✅ ВКЛ
+2026-03-04 19:47:57 | INFO    | 🔗 Глобальная дедупликация: ✅ ВКЛ
+2026-03-04 19:47:57 | INFO    | ============================================================
+2026-03-04 19:47:57 | INFO    | ✅ Глобальная БД инициализирована
+2026-03-04 19:47:58 | INFO    | 🤖 Бот: @steroid_eco_bot
+2026-03-04 19:47:58 | INFO    | 📦 Загружено 16 published хешей
+2026-03-04 19:47:58 | INFO    | 📦 Индекс pending: 3 черновиков в 1 чатах
+2026-03-04 19:47:58 | INFO    | ✅ Бот запущен, ожидаю сообщения...
+2026-03-04 19:47:58 | INFO    | 🌙 Автопостинг запущен | День: 7-10 мин | Ночь: 25-35 мин
+2026-03-04 19:47:58 | INFO    | 🧹 Очистка запущена (каждые 6 ч)
+2026-03-04 19:48:58 | INFO    | ✅ Автопост опубликован: 42a5b058cfb2f311
+2026-03-04 19:50:33 | INFO    | 🛑 Сигнал 2
+2026-03-04 19:50:33 | INFO    | 🛑 Завершение, отмена 4 задач...
+2026-03-04 19:50:33 | INFO    | 💾 published_hashes сохранён
+2026-03-04 19:50:38 | INFO    | ============================================================
+2026-03-04 19:50:38 | INFO    | 🚀 ЗАПУСК BOT HANDLER
+2026-03-04 19:50:38 | INFO    | 📁 pending_posts: /root/projectss/pending_posts
+2026-03-04 19:50:38 | INFO    | ⏰ Автопостинг: ✅ ВКЛ
+2026-03-04 19:50:38 | INFO    | 🔗 Глобальная дедупликация: ✅ ВКЛ
+2026-03-04 19:50:38 | INFO    | ============================================================
+2026-03-04 19:50:39 | INFO    | ✅ Глобальная БД инициализирована
+2026-03-04 19:50:39 | INFO    | 🤖 Бот: @steroid_eco_bot
+2026-03-04 19:50:39 | INFO    | 📦 Загружено 17 published хешей
+2026-03-04 19:50:39 | INFO    | 📦 Индекс pending: 4 черновиков в 2 чатах
+2026-03-04 19:50:39 | INFO    | ✅ Бот запущен, ожидаю сообщения...
+2026-03-04 19:50:39 | INFO    | 🌙 Автопостинг запущен | День: 7-10 мин | Ночь: 25-35 мин
+2026-03-04 19:50:39 | INFO    | 🧹 Очистка запущена (каждые 6 ч)
+2026-03-04 19:54:58 | INFO    | ✅ Автопост опубликован: 4edca1f056b28142
+2026-03-04 19:57:01 | INFO    | ✅ Автопост опубликован: 1edb10180aafc29f
+2026-03-04 19:58:58 | INFO    | ❌ a5ba17574dfe4877 отклонён
+2026-03-04 20:02:18 | WARNING | ⏳ Пропуск поста: нужно ждать ещё 2.7 мин для -1003739906790
+2026-03-04 20:02:23 | WARNING | ⏳ Пропуск поста: нужно ждать ещё 2.6 мин для -1003739906790
+2026-03-04 20:04:58 | INFO    | ✅ Автопост опубликован: de1c147a8330c5f8
+2026-03-04 20:04:58 | INFO    | ✅ Автопост опубликован: de1c147a8330c5f8
+2026-03-04 20:04:59 | INFO    | ✅ Автопост опубликован: de1c147a8330c5f8
+2026-03-04 20:04:59 | INFO    | ✅ Автопост опубликован: de1c147a8330c5f8
+2026-03-04 20:04:59 | INFO    | ✅ Автопост опубликован: de1c147a8330c5f8
+2026-03-04 20:05:04 | INFO    | ✅ Автопост опубликован: de1c147a8330c5f8
+2026-03-04 20:05:04 | INFO    | ✅ Автопост опубликован: de1c147a8330c5f8
+2026-03-04 20:05:04 | INFO    | ✅ Автопост опубликован: de1c147a8330c5f8
+2026-03-04 20:05:04 | INFO    | ✅ Автопост опубликован: de1c147a8330c5f8
+2026-03-04 20:05:04 | INFO    | ✅ Автопост опубликован: de1c147a8330c5f8
+2026-03-04 20:07:01 | INFO    | ✅ Автопост опубликован: b7c04304764fe36b
+2026-03-04 20:07:01 | INFO    | ✅ Автопост опубликован: b7c04304764fe36b
+2026-03-04 20:07:01 | INFO    | ✅ Автопост опубликован: b7c04304764fe36b
+2026-03-04 20:07:01 | INFO    | ✅ Автопост опубликован: b7c04304764fe36b
+2026-03-04 20:07:01 | INFO    | ✅ Автопост опубликован: fa06d9366eda9b18
+2026-03-04 20:07:06 | INFO    | ✅ Автопост опубликован: fa06d9366eda9b18
+2026-03-04 20:07:06 | INFO    | ✅ Автопост опубликован: b7c04304764fe36b
+2026-03-04 20:07:07 | INFO    | ✅ Автопост опубликован: fa06d9366eda9b18
+2026-03-04 20:07:07 | INFO    | ✅ Автопост опубликован: b7c04304764fe36b
+2026-03-04 20:07:07 | INFO    | ✅ Автопост опубликован: fa06d9366eda9b18
+2026-03-04 20:07:07 | WARNING | ⚠️ 429 Too Many Requests, ждём 5с (попытка 1/3)
+2026-03-04 20:07:07 | WARNING | ⚠️ 429 Too Many Requests, ждём 5с (попытка 1/3)
+2026-03-04 20:07:07 | WARNING | ⚠️ 429 Too Many Requests, ждём 5с (попытка 1/3)
+2026-03-04 20:07:07 | WARNING | ⚠️ 429 Too Many Requests, ждём 5с (попытка 1/3)
+2026-03-04 20:07:07 | WARNING | ⚠️ 429 Too Many Requests, ждём 4с (попытка 1/3)
+2026-03-04 20:07:07 | WARNING | ⚠️ 429 Too Many Requests, ждём 4с (попытка 1/3)
+2026-03-04 20:07:07 | WARNING | ⚠️ 429 Too Many Requests, ждём 4с (попытка 1/3)
+2026-03-04 20:07:07 | WARNING | ⚠️ 429 Too Many Requests, ждём 4с (попытка 1/3)
+2026-03-04 20:07:11 | WARNING | ⚠️ 429 Too Many Requests, ждём 3с (попытка 1/3)
+2026-03-04 20:07:14 | INFO    | ✅ Автопост опубликован: fa06d9366eda9b18
+2026-03-04 20:07:14 | INFO    | ✅ Автопост опубликован: b7c04304764fe36b
+2026-03-04 20:07:14 | INFO    | ✅ Автопост опубликован: b7c04304764fe36b
+2026-03-04 20:07:14 | INFO    | ✅ Автопост опубликован: b7c04304764fe36b
+2026-03-04 20:07:14 | INFO    | ✅ Автопост опубликован: fa06d9366eda9b18
+2026-03-04 20:07:19 | INFO    | ✅ Автопост опубликован: fa06d9366eda9b18
+2026-03-04 20:07:19 | INFO    | ✅ Автопост опубликован: b7c04304764fe36b
+2026-03-04 20:07:19 | INFO    | ✅ Автопост опубликован: fa06d9366eda9b18
+2026-03-04 20:07:19 | INFO    | ✅ Автопост опубликован: fa06d9366eda9b18
+2026-03-04 20:15:04 | INFO    | ✅ Автопост опубликован: e4e66adfca962192
+2026-03-04 20:15:04 | INFO    | ✅ Автопост опубликован: e4e66adfca962192
+2026-03-04 20:15:04 | INFO    | ✅ Автопост опубликован: e4e66adfca962192
+2026-03-04 20:15:04 | INFO    | ✅ Автопост опубликован: 01107b6d2bd51a7f
+2026-03-04 20:15:04 | INFO    | ✅ Автопост опубликован: e4e66adfca962192
+2026-03-04 20:15:10 | INFO    | ✅ Автопост опубликован: 01107b6d2bd51a7f
+2026-03-04 20:15:10 | INFO    | ✅ Автопост опубликован: e4e66adfca962192
+2026-03-04 20:15:10 | INFO    | ✅ Автопост опубликован: e4e66adfca962192
+2026-03-04 20:17:20 | INFO    | ✅ Автопост опубликован: ae40ef535d883da9
+2026-03-04 20:17:20 | INFO    | ✅ Автопост опубликован: ae40ef535d883da9
+2026-03-04 20:17:20 | INFO    | ✅ Автопост опубликован: ae40ef535d883da9
+2026-03-04 20:17:20 | INFO    | ✅ Автопост опубликован: ae40ef535d883da9
+2026-03-04 20:17:20 | INFO    | ✅ Автопост опубликован: ae40ef535d883da9
+2026-03-04 20:17:26 | INFO    | ✅ Автопост опубликован: ae40ef535d883da9
+2026-03-04 20:17:26 | INFO    | ✅ Автопост опубликован: 61cf8ad7a3c11c8f
+2026-03-04 20:17:26 | INFO    | ✅ Автопост опубликован: ae40ef535d883da9
+2026-03-04 20:17:26 | INFO    | ✅ Автопост опубликован: ae40ef535d883da9
+2026-03-04 20:17:26 | INFO    | ✅ Автопост опубликован: 61cf8ad7a3c11c8f
+2026-03-04 20:25:10 | INFO    | ✅ Автопост опубликован: 28e53f077c994796
+2026-03-04 20:25:10 | INFO    | ✅ Автопост опубликован: 28e53f077c994796
+2026-03-04 20:25:10 | INFO    | ✅ Автопост опубликован: 28e53f077c994796
+2026-03-04 20:27:26 | INFO    | ✅ Автопост опубликован: 058616c5cb4faeb5
+2026-03-04 20:35:10 | INFO    | ✅ Автопост опубликован: 3aca1fb2be154e5a
+2026-03-04 20:35:10 | INFO    | ✅ Автопост опубликован: 3aca1fb2be154e5a
+2026-03-04 20:35:10 | INFO    | ✅ Автопост опубликован: 3aca1fb2be154e5a
+2026-03-04 20:35:10 | INFO    | ✅ Автопост опубликован: 3aca1fb2be154e5a
+2026-03-04 20:35:11 | INFO    | ✅ Автопост опубликован: 3aca1fb2be154e5a
+2026-03-04 20:37:26 | INFO    | ✅ Автопост опубликован: 1fa648884f836ed2
+2026-03-04 20:37:26 | INFO    | ✅ Автопост опубликован: 1fa648884f836ed2
+2026-03-04 20:37:26 | INFO    | ✅ Автопост опубликован: 1fa648884f836ed2
+2026-03-04 20:37:26 | INFO    | ✅ Автопост опубликован: 1fa648884f836ed2
+2026-03-04 20:37:26 | INFO    | ✅ Автопост опубликован: 1fa648884f836ed2
+2026-03-04 20:37:31 | INFO    | ✅ Автопост опубликован: 1fa648884f836ed2
+2026-03-04 20:37:32 | INFO    | ✅ Автопост опубликован: 1fa648884f836ed2
+2026-03-04 20:45:11 | INFO    | ✅ Автопост опубликован: 38c872b603289a0a
+2026-03-04 20:45:11 | INFO    | ✅ Автопост опубликован: c1f477708fb5c2da
+2026-03-04 20:45:11 | INFO    | ✅ Автопост опубликован: c1f477708fb5c2da
+2026-03-04 20:45:11 | INFO    | ✅ Автопост опубликован: c1f477708fb5c2da
+2026-03-04 20:45:11 | INFO    | ✅ Автопост опубликован: c1f477708fb5c2da
+2026-03-04 20:45:16 | INFO    | ✅ Автопост опубликован: 38c872b603289a0a
+2026-03-04 20:45:16 | INFO    | ✅ Автопост опубликован: c1f477708fb5c2da
+2026-03-04 20:45:16 | INFO    | ✅ Автопост опубликован: 38c872b603289a0a
+2026-03-04 20:45:16 | INFO    | ✅ Автопост опубликован: c1f477708fb5c2da
+2026-03-04 20:45:16 | INFO    | ✅ Автопост опубликован: c1f477708fb5c2da
+2026-03-04 20:45:16 | WARNING | ⚠️ 429 Too Many Requests, ждём 5с (попытка 1/3)
+2026-03-04 20:45:21 | INFO    | ✅ Автопост опубликован: c1f477708fb5c2da
+2026-03-04 20:46:26 | INFO    | 🛑 Сигнал 2
+2026-03-04 20:46:26 | INFO    | 🛑 Завершение, отмена 2 задач...
+2026-03-04 20:46:26 | INFO    | 💾 published_hashes сохранён
+2026-03-04 20:46:30 | INFO    | ============================================================
+2026-03-04 20:46:30 | INFO    | 🚀 ЗАПУСК BOT HANDLER
+2026-03-04 20:46:30 | INFO    | 📁 pending_posts: /root/projectss/pending_posts
+2026-03-04 20:46:30 | INFO    | ⏰ Автопостинг: ✅ ВКЛ
+2026-03-04 20:46:30 | INFO    | 🔗 Глобальная дедупликация: ✅ ВКЛ
+2026-03-04 20:46:30 | INFO    | ============================================================
+2026-03-04 20:46:30 | INFO    | ✅ Глобальная БД инициализирована
+2026-03-04 20:46:30 | INFO    | 🤖 Бот: @steroid_eco_bot
+2026-03-04 20:46:30 | INFO    | 📦 Загружено 32 published хешей
+2026-03-04 20:46:30 | INFO    | 📦 Индекс pending: 5 черновиков в 2 чатах
+2026-03-04 20:46:30 | INFO    | ✅ Бот запущен, ожидаю сообщения...
+2026-03-04 20:46:30 | INFO    | 🌙 Автопостинг запущен | День: 7-10 мин | Ночь: 25-35 мин
+2026-03-04 20:46:30 | INFO    | 🧹 Очистка запущена (каждые 6 ч)
+2026-03-04 20:46:43 | INFO    | ✅ Опубликован 583776f56e45a57a → -1003701005081
+2026-03-04 20:46:54 | INFO    | ✅ Опубликован 011677dfc4a6638f → -1003739906790
+2026-03-04 20:56:43 | INFO    | ✅ Автопост опубликован: 147a685abcfeffe4
+2026-03-04 20:56:43 | INFO    | ✅ Автопост опубликован: 0169a1b95dcd2b17
+2026-03-04 20:56:43 | INFO    | ✅ Автопост опубликован: 147a685abcfeffe4
+2026-03-04 20:56:43 | INFO    | ✅ Автопост опубликован: 147a685abcfeffe4
+2026-03-04 20:56:43 | INFO    | ✅ Автопост опубликован: 147a685abcfeffe4
+2026-03-04 20:56:48 | INFO    | ✅ Автопост опубликован: 0169a1b95dcd2b17
+2026-03-04 20:56:49 | INFO    | ✅ Автопост опубликован: 0169a1b95dcd2b17
+2026-03-04 20:56:49 | INFO    | ✅ Автопост опубликован: 147a685abcfeffe4
+2026-03-04 20:56:49 | INFO    | ✅ Автопост опубликован: 147a685abcfeffe4
+2026-03-04 20:56:49 | INFO    | ✅ Автопост опубликован: 0169a1b95dcd2b17
+2026-03-04 20:56:49 | WARNING | ⚠️ 429 Too Many Requests, ждём 5с (попытка 1/3)
+2026-03-04 20:56:49 | WARNING | ⚠️ 429 Too Many Requests, ждём 5с (попытка 1/3)
+2026-03-04 20:56:49 | WARNING | ⚠️ 429 Too Many Requests, ждём 5с (попытка 1/3)
+2026-03-04 20:56:49 | WARNING | ⚠️ 429 Too Many Requests, ждём 5с (попытка 1/3)
+2026-03-04 20:56:49 | WARNING | ⚠️ 429 Too Many Requests, ждём 4с (попытка 1/3)
+2026-03-04 20:56:49 | WARNING | ⚠️ 429 Too Many Requests, ждём 4с (попытка 1/3)
+2026-03-04 20:56:49 | WARNING | ⚠️ 429 Too Many Requests, ждём 4с (попытка 1/3)
+2026-03-04 20:56:49 | WARNING | ⚠️ 429 Too Many Requests, ждём 4с (попытка 1/3)
+2026-03-04 20:56:56 | INFO    | ✅ Автопост опубликован: 0169a1b95dcd2b17
+2026-03-04 20:56:56 | INFO    | ✅ Автопост опубликован: 0169a1b95dcd2b17
+2026-03-04 20:56:56 | INFO    | ✅ Автопост опубликован: 0169a1b95dcd2b17
+2026-03-04 20:56:56 | INFO    | ✅ Автопост опубликован: 147a685abcfeffe4
+2026-03-04 20:56:56 | INFO    | ✅ Автопост опубликован: 36c3ce8bbd2374cc
+2026-03-04 20:56:56 | INFO    | ✅ Автопост опубликован: 0169a1b95dcd2b17
+2026-03-04 20:56:56 | INFO    | ✅ Автопост опубликован: 36c3ce8bbd2374cc
+2026-03-04 20:56:56 | INFO    | ✅ Автопост опубликован: 36c3ce8bbd2374cc
+2026-03-04 20:56:56 | INFO    | ✅ Автопост опубликован: 41ce8f55334a03cd
+2026-03-04 20:56:56 | INFO    | ✅ Автопост опубликован: 36c3ce8bbd2374cc
+2026-03-04 20:57:01 | INFO    | ✅ Автопост опубликован: 147a685abcfeffe4
+2026-03-04 20:57:01 | INFO    | ✅ Автопост опубликован: 147a685abcfeffe4
+2026-03-04 20:57:01 | INFO    | ✅ Автопост опубликован: 0169a1b95dcd2b17
+2026-03-04 20:57:01 | INFO    | ✅ Автопост опубликован: 147a685abcfeffe4
+2026-03-04 20:57:01 | INFO    | ✅ Автопост опубликован: 41ce8f55334a03cd
+2026-03-04 20:57:01 | INFO    | ✅ Автопост опубликован: 0169a1b95dcd2b17
+2026-03-04 20:57:01 | INFO    | ✅ Автопост опубликован: 36c3ce8bbd2374cc
+2026-03-04 20:57:01 | INFO    | ✅ Автопост опубликован: 36c3ce8bbd2374cc
+2026-03-04 20:57:01 | INFO    | ✅ Автопост опубликован: 41ce8f55334a03cd
+2026-03-04 20:57:02 | INFO    | ✅ Автопост опубликован: 36c3ce8bbd2374cc
+2026-03-04 20:57:02 | WARNING | ⚠️ 429 Too Many Requests, ждём 5с (попытка 1/3)
+2026-03-04 20:57:07 | INFO    | ✅ Автопост опубликован: 36c3ce8bbd2374cc
+2026-03-04 21:07:02 | INFO    | ✅ Автопост опубликован: c0daae80418f17cf
+2026-03-04 21:07:02 | INFO    | ✅ Автопост опубликован: c0daae80418f17cf
+2026-03-04 21:07:02 | INFO    | ✅ Автопост опубликован: c0daae80418f17cf
+2026-03-04 21:07:02 | INFO    | ✅ Автопост опубликован: c0daae80418f17cf
+2026-03-04 21:07:02 | INFO    | ✅ Автопост опубликован: c0daae80418f17cf
+2026-03-04 21:07:07 | INFO    | ✅ Автопост опубликован: 8b0f0c54d5900e9d
+2026-03-04 21:07:07 | INFO    | ✅ Автопост опубликован: 8b0f0c54d5900e9d
+2026-03-04 21:07:07 | INFO    | ✅ Автопост опубликован: c0daae80418f17cf
+2026-03-04 21:07:07 | INFO    | ✅ Автопост опубликован: c0daae80418f17cf
+2026-03-04 21:07:07 | INFO    | ✅ Автопост опубликован: c0daae80418f17cf
+2026-03-04 21:07:07 | INFO    | ✅ Автопост опубликован: c0daae80418f17cf
+2026-03-04 21:07:07 | INFO    | ✅ Автопост опубликован: c0daae80418f17cf
+2026-03-04 21:07:07 | WARNING | ⚠️ 429 Too Many Requests, ждём 5с (попытка 1/3)
+2026-03-04 21:07:12 | INFO    | ✅ Автопост опубликован: c0daae80418f17cf
+2026-03-04 21:13:43 | INFO    | 🛑 Сигнал 15
+2026-03-04 21:13:43 | INFO    | 🛑 Завершение, отмена 2 задач...
+2026-03-04 21:13:43 | INFO    | 💾 published_hashes сохранён
+2026-03-04 21:13:51 | INFO    | ============================================================
+2026-03-04 21:13:51 | INFO    | 🚀 ЗАПУСК BOT HANDLER
+2026-03-04 21:13:51 | INFO    | 📁 pending_posts: /root/projectss/pending_posts
+2026-03-04 21:13:51 | INFO    | ⏰ Автопостинг: ✅ ВКЛ
+2026-03-04 21:13:51 | INFO    | 🔗 Глобальная дедупликация: ✅ ВКЛ
+2026-03-04 21:13:51 | INFO    | ============================================================
+2026-03-04 21:13:51 | INFO    | ✅ Глобальная БД инициализирована
+2026-03-04 21:13:51 | INFO    | 🤖 Бот: @steroid_eco_bot
+2026-03-04 21:13:51 | INFO    | 📦 Загружено 36 published хешей
+2026-03-04 21:13:51 | INFO    | 📦 Индекс pending: 5 черновиков в 2 чатах
+2026-03-04 21:13:51 | INFO    | ✅ Бот запущен, ожидаю сообщения...
+2026-03-04 21:13:51 | INFO    | 🌙 Автопостинг запущен | День: 7-10 мин | Ночь: 25-35 мин
+2026-03-04 21:13:51 | INFO    | 🧹 Очистка запущена (каждые 6 ч)
+2026-03-04 21:13:51 | WARNING | ⚠️ API 409: {"ok":false,"error_code":409,"description":"Conflict: terminated by other getUpdates request; make sure that only one bot instance is running"}
+2026-03-04 21:13:54 | INFO    | 📡 polling_worker завершён
+2026-03-04 21:14:09 | INFO    | 🛑 Сигнал 2
+2026-03-04 21:14:09 | INFO    | 🛑 Завершение, отмена 2 задач...
+2026-03-04 21:14:09 | INFO    | 💾 published_hashes сохранён
+2026-03-04 21:14:14 | INFO    | ============================================================
+2026-03-04 21:14:14 | INFO    | 🚀 ЗАПУСК BOT HANDLER
+2026-03-04 21:14:14 | INFO    | 📁 pending_posts: /root/projectss/pending_posts
+2026-03-04 21:14:14 | INFO    | ⏰ Автопостинг: ✅ ВКЛ
+2026-03-04 21:14:14 | INFO    | 🔗 Глобальная дедупликация: ✅ ВКЛ
+2026-03-04 21:14:14 | INFO    | ============================================================
+2026-03-04 21:14:14 | INFO    | ✅ Глобальная БД инициализирована
+2026-03-04 21:14:15 | INFO    | 🤖 Бот: @steroid_eco_bot
+2026-03-04 21:14:15 | INFO    | 📦 Загружено 36 published хешей
+2026-03-04 21:14:15 | INFO    | 📦 Индекс pending: 5 черновиков в 2 чатах
+2026-03-04 21:14:15 | INFO    | ✅ Бот запущен, ожидаю сообщения...
+2026-03-04 21:14:15 | INFO    | 🌙 Автопостинг запущен | День: 7-10 мин | Ночь: 25-35 мин
+2026-03-04 21:14:15 | INFO    | 🧹 Очистка запущена (каждые 6 ч)
+2026-03-04 21:14:15 | WARNING | ⚠️ API 409: {"ok":false,"error_code":409,"description":"Conflict: terminated by other getUpdates request; make sure that only one bot instance is running"}
+2026-03-04 21:14:18 | WARNING | ⚠️ API 409: {"ok":false,"error_code":409,"description":"Conflict: terminated by other getUpdates request; make sure that only one bot instance is running"}
+2026-03-04 21:14:21 | WARNING | ⚠️ API 409: {"ok":false,"error_code":409,"description":"Conflict: terminated by other getUpdates request; make sure that only one bot instance is running"}
+2026-03-04 21:14:24 | WARNING | ⚠️ API 409: {"ok":false,"error_code":409,"description":"Conflict: terminated by other getUpdates request; make sure that only one bot instance is running"}
+2026-03-04 21:14:27 | WARNING | ⚠️ API 409: {"ok":false,"error_code":409,"description":"Conflict: terminated by other getUpdates request; make sure that only one bot instance is running"}
+2026-03-04 21:14:30 | WARNING | ⚠️ API 409: {"ok":false,"error_code":409,"description":"Conflict: terminated by other getUpdates request; make sure that only one bot instance is running"}
+2026-03-04 21:14:33 | INFO    | 🛑 Сигнал 2
+2026-03-04 21:14:33 | INFO    | 🛑 Завершение, отмена 0 задач...
+2026-03-04 21:14:33 | INFO    | 💾 published_hashes сохранён
+2026-03-04 21:14:33 | INFO    | 📡 polling_worker завершён
+2026-03-04 21:14:51 | INFO    | ✅ Автопост опубликован: 9a8ee35f3b85e430
+2026-03-04 21:14:51 | INFO    | ✅ Автопост опубликован: faa3f446f9c7658f
+2026-03-04 21:15:00 | WARNING | ⚠️ Ошибка запроса, повтор 1/3: [Errno 104] Connection reset by peer
+2026-03-04 21:19:37 | INFO    | 🛑 Сигнал 15
+2026-03-04 21:19:37 | INFO    | 🛑 Завершение, отмена 2 задач...
+2026-03-04 21:19:37 | INFO    | 💾 published_hashes сохранён
+2026-03-04 21:19:51 | INFO    | 🌙 autopost_worker завершён
+2026-03-04 21:20:40 | INFO    | 🔒 Lock acquired (PID=47321)
+2026-03-04 21:20:40 | INFO    | ============================================================
+2026-03-04 21:20:40 | INFO    | 🚀 ЗАПУСК BOT HANDLER
+2026-03-04 21:20:40 | INFO    | 📁 pending_posts: /root/projectss/pending_posts
+2026-03-04 21:20:40 | INFO    | ⏰ Автопостинг: ✅ ВКЛ
+2026-03-04 21:20:40 | INFO    | 🔗 Глобальная дедупликация: ✅ ВКЛ
+2026-03-04 21:20:40 | INFO    | ============================================================
+2026-03-04 21:20:40 | INFO    | ✅ Глобальная БД инициализирована
+2026-03-04 21:20:40 | INFO    | 🤖 Бот: @steroid_eco_bot
+2026-03-04 21:20:40 | INFO    | 📦 Загружено 38 published хешей
+2026-03-04 21:20:40 | INFO    | 📦 Индекс pending: True
+2026-03-04 21:20:40 | INFO    | ✅ Бот запущен, ожидаю сообщения...
+2026-03-04 21:20:40 | INFO    | 🌙 Автопостинг запущен | День: 7-10 мин
+2026-03-04 21:20:40 | INFO    | 🧹 Очистка запущена (каждые 6 ч)
+2026-03-04 21:21:40 | ERROR   | ❌ Ошибка автопоста dd575813f12d0bd7: name 're' is not defined
+Traceback (most recent call last):
+  File "/root/projectss/bot_handler.py", line 576, in autopost_draft
+    success, result = await self.publish_post(draft.text, draft.channel_id, draft.photo)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 514, in publish_post
+    if await self._is_duplicate(text, channel_id):
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 467, in _is_duplicate
+    h = self._get_content_hash(text, channel_id)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 435, in _get_content_hash
+    normalized = normalize_text_for_dedup(text)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 210, in normalize_text_for_dedup
+    text = strip_html_tags(text)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 204, in strip_html_tags
+    clean = re.sub(r'<[^>]+>', '', text)
+            ^^
+NameError: name 're' is not defined. Did you forget to import 're'
+2026-03-04 21:21:40 | ERROR   | ❌ Ошибка автопоста 86e04699a4f722c3: name 're' is not defined
+Traceback (most recent call last):
+  File "/root/projectss/bot_handler.py", line 576, in autopost_draft
+    success, result = await self.publish_post(draft.text, draft.channel_id, draft.photo)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 514, in publish_post
+    if await self._is_duplicate(text, channel_id):
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 467, in _is_duplicate
+    h = self._get_content_hash(text, channel_id)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 435, in _get_content_hash
+    normalized = normalize_text_for_dedup(text)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 210, in normalize_text_for_dedup
+    text = strip_html_tags(text)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 204, in strip_html_tags
+    clean = re.sub(r'<[^>]+>', '', text)
+            ^^
+NameError: name 're' is not defined. Did you forget to import 're'
+2026-03-04 21:21:40 | ERROR   | ❌ Ошибка автопоста 0da9092afdc6b3fd: name 're' is not defined
+Traceback (most recent call last):
+  File "/root/projectss/bot_handler.py", line 576, in autopost_draft
+    success, result = await self.publish_post(draft.text, draft.channel_id, draft.photo)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 514, in publish_post
+    if await self._is_duplicate(text, channel_id):
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 467, in _is_duplicate
+    h = self._get_content_hash(text, channel_id)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 435, in _get_content_hash
+    normalized = normalize_text_for_dedup(text)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 210, in normalize_text_for_dedup
+    text = strip_html_tags(text)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 204, in strip_html_tags
+    clean = re.sub(r'<[^>]+>', '', text)
+            ^^
+NameError: name 're' is not defined. Did you forget to import 're'
+2026-03-04 21:22:28 | ERROR   | ❌ bot_handler уже запущен (PID=47321)
+2026-03-04 21:22:28 | ERROR   | ❌ bot_handler уже запущен — выход
+2026-03-04 21:22:28 | INFO    | 🛑 Graceful shutdown Prometheus метрик...
+2026-03-04 21:22:28 | INFO    | ✅ Prometheus метрики остановлены
+2026-03-04 21:22:34 | ERROR   | ❌ bot_handler уже запущен (PID=47321)
+2026-03-04 21:22:34 | ERROR   | ❌ bot_handler уже запущен — выход
+2026-03-04 21:22:34 | INFO    | 🛑 Graceful shutdown Prometheus метрик...
+2026-03-04 21:22:34 | INFO    | ✅ Prometheus метрики остановлены
+2026-03-04 21:22:40 | ERROR   | ❌ Ошибка автопоста dd575813f12d0bd7: name 're' is not defined
+Traceback (most recent call last):
+  File "/root/projectss/bot_handler.py", line 576, in autopost_draft
+    success, result = await self.publish_post(draft.text, draft.channel_id, draft.photo)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 514, in publish_post
+    if await self._is_duplicate(text, channel_id):
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 467, in _is_duplicate
+    h = self._get_content_hash(text, channel_id)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 435, in _get_content_hash
+    normalized = normalize_text_for_dedup(text)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 210, in normalize_text_for_dedup
+    text = strip_html_tags(text)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 204, in strip_html_tags
+    clean = re.sub(r'<[^>]+>', '', text)
+            ^^
+NameError: name 're' is not defined. Did you forget to import 're'
+2026-03-04 21:22:40 | ERROR   | ❌ Ошибка автопоста 86e04699a4f722c3: name 're' is not defined
+Traceback (most recent call last):
+  File "/root/projectss/bot_handler.py", line 576, in autopost_draft
+    success, result = await self.publish_post(draft.text, draft.channel_id, draft.photo)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 514, in publish_post
+    if await self._is_duplicate(text, channel_id):
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 467, in _is_duplicate
+    h = self._get_content_hash(text, channel_id)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 435, in _get_content_hash
+    normalized = normalize_text_for_dedup(text)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 210, in normalize_text_for_dedup
+    text = strip_html_tags(text)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 204, in strip_html_tags
+    clean = re.sub(r'<[^>]+>', '', text)
+            ^^
+NameError: name 're' is not defined. Did you forget to import 're'
+2026-03-04 21:22:40 | ERROR   | ❌ Ошибка автопоста 0da9092afdc6b3fd: name 're' is not defined
+Traceback (most recent call last):
+  File "/root/projectss/bot_handler.py", line 576, in autopost_draft
+    success, result = await self.publish_post(draft.text, draft.channel_id, draft.photo)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 514, in publish_post
+    if await self._is_duplicate(text, channel_id):
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 467, in _is_duplicate
+    h = self._get_content_hash(text, channel_id)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 435, in _get_content_hash
+    normalized = normalize_text_for_dedup(text)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 210, in normalize_text_for_dedup
+    text = strip_html_tags(text)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 204, in strip_html_tags
+    clean = re.sub(r'<[^>]+>', '', text)
+            ^^
+NameError: name 're' is not defined. Did you forget to import 're'
+2026-03-04 21:22:42 | ERROR   | ❌ bot_handler уже запущен (PID=47321)
+2026-03-04 21:22:42 | ERROR   | ❌ bot_handler уже запущен — выход
+2026-03-04 21:22:42 | INFO    | 🛑 Graceful shutdown Prometheus метрик...
+2026-03-04 21:22:42 | INFO    | ✅ Prometheus метрики остановлены
+2026-03-04 21:22:48 | ERROR   | ❌ bot_handler уже запущен (PID=47321)
+2026-03-04 21:22:48 | ERROR   | ❌ bot_handler уже запущен — выход
+2026-03-04 21:22:48 | INFO    | 🛑 Graceful shutdown Prometheus метрик...
+2026-03-04 21:22:48 | INFO    | ✅ Prometheus метрики остановлены
+2026-03-04 21:22:54 | ERROR   | ❌ bot_handler уже запущен (PID=47321)
+2026-03-04 21:22:54 | ERROR   | ❌ bot_handler уже запущен — выход
+2026-03-04 21:22:54 | INFO    | 🛑 Graceful shutdown Prometheus метрик...
+2026-03-04 21:22:54 | INFO    | ✅ Prometheus метрики остановлены
+2026-03-04 21:22:59 | ERROR   | ❌ bot_handler уже запущен (PID=47321)
+2026-03-04 21:22:59 | ERROR   | ❌ bot_handler уже запущен — выход
+2026-03-04 21:22:59 | INFO    | 🛑 Graceful shutdown Prometheus метрик...
+2026-03-04 21:22:59 | INFO    | ✅ Prometheus метрики остановлены
+2026-03-04 21:23:03 | ERROR   | ❌ bot_handler уже запущен (PID=47321)
+2026-03-04 21:23:03 | ERROR   | ❌ bot_handler уже запущен — выход
+2026-03-04 21:23:03 | INFO    | 🛑 Graceful shutdown Prometheus метрик...
+2026-03-04 21:23:03 | INFO    | ✅ Prometheus метрики остановлены
+2026-03-04 21:23:08 | ERROR   | ❌ bot_handler уже запущен (PID=47321)
+2026-03-04 21:23:08 | ERROR   | ❌ bot_handler уже запущен — выход
+2026-03-04 21:23:08 | INFO    | 🛑 Graceful shutdown Prometheus метрик...
+2026-03-04 21:23:08 | INFO    | ✅ Prometheus метрики остановлены
+2026-03-04 21:23:13 | ERROR   | ❌ bot_handler уже запущен (PID=47321)
+2026-03-04 21:23:13 | ERROR   | ❌ bot_handler уже запущен — выход
+2026-03-04 21:23:13 | INFO    | 🛑 Graceful shutdown Prometheus метрик...
+2026-03-04 21:23:13 | INFO    | ✅ Prometheus метрики остановлены
+2026-03-04 21:23:18 | ERROR   | ❌ bot_handler уже запущен (PID=47321)
+2026-03-04 21:23:18 | ERROR   | ❌ bot_handler уже запущен — выход
+2026-03-04 21:23:18 | INFO    | 🛑 Graceful shutdown Prometheus метрик...
+2026-03-04 21:23:18 | INFO    | ✅ Prometheus метрики остановлены
+2026-03-04 21:23:40 | ERROR   | ❌ Ошибка автопоста dd575813f12d0bd7: name 're' is not defined
+Traceback (most recent call last):
+  File "/root/projectss/bot_handler.py", line 576, in autopost_draft
+    success, result = await self.publish_post(draft.text, draft.channel_id, draft.photo)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 514, in publish_post
+    if await self._is_duplicate(text, channel_id):
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 467, in _is_duplicate
+    h = self._get_content_hash(text, channel_id)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 435, in _get_content_hash
+    normalized = normalize_text_for_dedup(text)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 210, in normalize_text_for_dedup
+    text = strip_html_tags(text)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 204, in strip_html_tags
+    clean = re.sub(r'<[^>]+>', '', text)
+            ^^
+NameError: name 're' is not defined. Did you forget to import 're'
+2026-03-04 21:23:40 | ERROR   | ❌ Ошибка автопоста 86e04699a4f722c3: name 're' is not defined
+Traceback (most recent call last):
+  File "/root/projectss/bot_handler.py", line 576, in autopost_draft
+    success, result = await self.publish_post(draft.text, draft.channel_id, draft.photo)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 514, in publish_post
+    if await self._is_duplicate(text, channel_id):
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 467, in _is_duplicate
+    h = self._get_content_hash(text, channel_id)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 435, in _get_content_hash
+    normalized = normalize_text_for_dedup(text)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 210, in normalize_text_for_dedup
+    text = strip_html_tags(text)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 204, in strip_html_tags
+    clean = re.sub(r'<[^>]+>', '', text)
+            ^^
+NameError: name 're' is not defined. Did you forget to import 're'
+2026-03-04 21:23:40 | ERROR   | ❌ Ошибка автопоста 0da9092afdc6b3fd: name 're' is not defined
+Traceback (most recent call last):
+  File "/root/projectss/bot_handler.py", line 576, in autopost_draft
+    success, result = await self.publish_post(draft.text, draft.channel_id, draft.photo)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 514, in publish_post
+    if await self._is_duplicate(text, channel_id):
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 467, in _is_duplicate
+    h = self._get_content_hash(text, channel_id)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 435, in _get_content_hash
+    normalized = normalize_text_for_dedup(text)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 210, in normalize_text_for_dedup
+    text = strip_html_tags(text)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 204, in strip_html_tags
+    clean = re.sub(r'<[^>]+>', '', text)
+            ^^
+NameError: name 're' is not defined. Did you forget to import 're'
+2026-03-04 21:24:40 | ERROR   | ❌ Ошибка автопоста dd575813f12d0bd7: name 're' is not defined
+Traceback (most recent call last):
+  File "/root/projectss/bot_handler.py", line 576, in autopost_draft
+    success, result = await self.publish_post(draft.text, draft.channel_id, draft.photo)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 514, in publish_post
+    if await self._is_duplicate(text, channel_id):
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 467, in _is_duplicate
+    h = self._get_content_hash(text, channel_id)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 435, in _get_content_hash
+    normalized = normalize_text_for_dedup(text)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 210, in normalize_text_for_dedup
+    text = strip_html_tags(text)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 204, in strip_html_tags
+    clean = re.sub(r'<[^>]+>', '', text)
+            ^^
+NameError: name 're' is not defined. Did you forget to import 're'
+2026-03-04 21:24:40 | ERROR   | ❌ Ошибка автопоста 86e04699a4f722c3: name 're' is not defined
+Traceback (most recent call last):
+  File "/root/projectss/bot_handler.py", line 576, in autopost_draft
+    success, result = await self.publish_post(draft.text, draft.channel_id, draft.photo)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 514, in publish_post
+    if await self._is_duplicate(text, channel_id):
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 467, in _is_duplicate
+    h = self._get_content_hash(text, channel_id)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 435, in _get_content_hash
+    normalized = normalize_text_for_dedup(text)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 210, in normalize_text_for_dedup
+    text = strip_html_tags(text)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 204, in strip_html_tags
+    clean = re.sub(r'<[^>]+>', '', text)
+            ^^
+NameError: name 're' is not defined. Did you forget to import 're'
+2026-03-04 21:24:40 | ERROR   | ❌ Ошибка автопоста 0da9092afdc6b3fd: name 're' is not defined
+Traceback (most recent call last):
+  File "/root/projectss/bot_handler.py", line 576, in autopost_draft
+    success, result = await self.publish_post(draft.text, draft.channel_id, draft.photo)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 514, in publish_post
+    if await self._is_duplicate(text, channel_id):
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 467, in _is_duplicate
+    h = self._get_content_hash(text, channel_id)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 435, in _get_content_hash
+    normalized = normalize_text_for_dedup(text)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 210, in normalize_text_for_dedup
+    text = strip_html_tags(text)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 204, in strip_html_tags
+    clean = re.sub(r'<[^>]+>', '', text)
+            ^^
+NameError: name 're' is not defined. Did you forget to import 're'
+2026-03-04 21:24:54 | INFO    | 🔒 Lock acquired (PID=48875)
+2026-03-04 21:24:54 | INFO    | ============================================================
+2026-03-04 21:24:54 | INFO    | 🚀 ЗАПУСК BOT HANDLER
+2026-03-04 21:24:54 | INFO    | 📁 pending_posts: /root/projectss/pending_posts
+2026-03-04 21:24:54 | INFO    | ⏰ Автопостинг: ✅ ВКЛ
+2026-03-04 21:24:54 | INFO    | 🔗 Глобальная дедупликация: ✅ ВКЛ
+2026-03-04 21:24:54 | INFO    | ============================================================
+2026-03-04 21:24:54 | INFO    | ✅ Глобальная БД инициализирована
+2026-03-04 21:24:54 | INFO    | 🤖 Бот: @steroid_eco_bot
+2026-03-04 21:24:54 | INFO    | 📦 Загружено 36 published хешей
+2026-03-04 21:24:54 | INFO    | 📦 Индекс pending: True
+2026-03-04 21:24:54 | INFO    | ✅ Бот запущен, ожидаю сообщения...
+2026-03-04 21:24:54 | INFO    | 🌙 Автопостинг запущен | День: 7-10 мин
+2026-03-04 21:24:54 | INFO    | 🧹 Очистка запущена (каждые 6 ч)
+2026-03-04 21:25:54 | ERROR   | ❌ Ошибка автопоста dd575813f12d0bd7: name 're' is not defined
+Traceback (most recent call last):
+  File "/root/projectss/bot_handler.py", line 576, in autopost_draft
+    success, result = await self.publish_post(draft.text, draft.channel_id, draft.photo)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 514, in publish_post
+    if await self._is_duplicate(text, channel_id):
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 467, in _is_duplicate
+    h = self._get_content_hash(text, channel_id)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 435, in _get_content_hash
+    normalized = normalize_text_for_dedup(text)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 210, in normalize_text_for_dedup
+    text = strip_html_tags(text)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 204, in strip_html_tags
+    clean = re.sub(r'<[^>]+>', '', text)
+            ^^
+NameError: name 're' is not defined. Did you forget to import 're'
+2026-03-04 21:25:54 | ERROR   | ❌ Ошибка автопоста 86e04699a4f722c3: name 're' is not defined
+Traceback (most recent call last):
+  File "/root/projectss/bot_handler.py", line 576, in autopost_draft
+    success, result = await self.publish_post(draft.text, draft.channel_id, draft.photo)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 514, in publish_post
+    if await self._is_duplicate(text, channel_id):
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 467, in _is_duplicate
+    h = self._get_content_hash(text, channel_id)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 435, in _get_content_hash
+    normalized = normalize_text_for_dedup(text)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 210, in normalize_text_for_dedup
+    text = strip_html_tags(text)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 204, in strip_html_tags
+    clean = re.sub(r'<[^>]+>', '', text)
+            ^^
+NameError: name 're' is not defined. Did you forget to import 're'
+2026-03-04 21:25:54 | ERROR   | ❌ Ошибка автопоста 0da9092afdc6b3fd: name 're' is not defined
+Traceback (most recent call last):
+  File "/root/projectss/bot_handler.py", line 576, in autopost_draft
+    success, result = await self.publish_post(draft.text, draft.channel_id, draft.photo)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 514, in publish_post
+    if await self._is_duplicate(text, channel_id):
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 467, in _is_duplicate
+    h = self._get_content_hash(text, channel_id)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 435, in _get_content_hash
+    normalized = normalize_text_for_dedup(text)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 210, in normalize_text_for_dedup
+    text = strip_html_tags(text)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 204, in strip_html_tags
+    clean = re.sub(r'<[^>]+>', '', text)
+            ^^
+NameError: name 're' is not defined. Did you forget to import 're'
+2026-03-04 21:26:54 | ERROR   | ❌ Ошибка автопоста dd575813f12d0bd7: name 're' is not defined
+Traceback (most recent call last):
+  File "/root/projectss/bot_handler.py", line 576, in autopost_draft
+    success, result = await self.publish_post(draft.text, draft.channel_id, draft.photo)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 514, in publish_post
+    if await self._is_duplicate(text, channel_id):
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 467, in _is_duplicate
+    h = self._get_content_hash(text, channel_id)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 435, in _get_content_hash
+    normalized = normalize_text_for_dedup(text)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 210, in normalize_text_for_dedup
+    text = strip_html_tags(text)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 204, in strip_html_tags
+    clean = re.sub(r'<[^>]+>', '', text)
+            ^^
+NameError: name 're' is not defined. Did you forget to import 're'
+2026-03-04 21:26:54 | ERROR   | ❌ Ошибка автопоста 86e04699a4f722c3: name 're' is not defined
+Traceback (most recent call last):
+  File "/root/projectss/bot_handler.py", line 576, in autopost_draft
+    success, result = await self.publish_post(draft.text, draft.channel_id, draft.photo)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 514, in publish_post
+    if await self._is_duplicate(text, channel_id):
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 467, in _is_duplicate
+    h = self._get_content_hash(text, channel_id)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 435, in _get_content_hash
+    normalized = normalize_text_for_dedup(text)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 210, in normalize_text_for_dedup
+    text = strip_html_tags(text)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 204, in strip_html_tags
+    clean = re.sub(r'<[^>]+>', '', text)
+            ^^
+NameError: name 're' is not defined. Did you forget to import 're'
+2026-03-04 21:26:54 | ERROR   | ❌ Ошибка автопоста 0da9092afdc6b3fd: name 're' is not defined
+Traceback (most recent call last):
+  File "/root/projectss/bot_handler.py", line 576, in autopost_draft
+    success, result = await self.publish_post(draft.text, draft.channel_id, draft.photo)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 514, in publish_post
+    if await self._is_duplicate(text, channel_id):
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 467, in _is_duplicate
+    h = self._get_content_hash(text, channel_id)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 435, in _get_content_hash
+    normalized = normalize_text_for_dedup(text)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 210, in normalize_text_for_dedup
+    text = strip_html_tags(text)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 204, in strip_html_tags
+    clean = re.sub(r'<[^>]+>', '', text)
+            ^^
+NameError: name 're' is not defined. Did you forget to import 're'
+2026-03-04 21:27:54 | ERROR   | ❌ Ошибка автопоста dd575813f12d0bd7: name 're' is not defined
+Traceback (most recent call last):
+  File "/root/projectss/bot_handler.py", line 576, in autopost_draft
+    success, result = await self.publish_post(draft.text, draft.channel_id, draft.photo)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 514, in publish_post
+    if await self._is_duplicate(text, channel_id):
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 467, in _is_duplicate
+    h = self._get_content_hash(text, channel_id)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 435, in _get_content_hash
+    normalized = normalize_text_for_dedup(text)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 210, in normalize_text_for_dedup
+    text = strip_html_tags(text)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 204, in strip_html_tags
+    clean = re.sub(r'<[^>]+>', '', text)
+            ^^
+NameError: name 're' is not defined. Did you forget to import 're'
+2026-03-04 21:27:54 | ERROR   | ❌ Ошибка автопоста 86e04699a4f722c3: name 're' is not defined
+Traceback (most recent call last):
+  File "/root/projectss/bot_handler.py", line 576, in autopost_draft
+    success, result = await self.publish_post(draft.text, draft.channel_id, draft.photo)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 514, in publish_post
+    if await self._is_duplicate(text, channel_id):
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 467, in _is_duplicate
+    h = self._get_content_hash(text, channel_id)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 435, in _get_content_hash
+    normalized = normalize_text_for_dedup(text)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 210, in normalize_text_for_dedup
+    text = strip_html_tags(text)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 204, in strip_html_tags
+    clean = re.sub(r'<[^>]+>', '', text)
+            ^^
+NameError: name 're' is not defined. Did you forget to import 're'
+2026-03-04 21:27:54 | ERROR   | ❌ Ошибка автопоста 0da9092afdc6b3fd: name 're' is not defined
+Traceback (most recent call last):
+  File "/root/projectss/bot_handler.py", line 576, in autopost_draft
+    success, result = await self.publish_post(draft.text, draft.channel_id, draft.photo)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 514, in publish_post
+    if await self._is_duplicate(text, channel_id):
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 467, in _is_duplicate
+    h = self._get_content_hash(text, channel_id)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 435, in _get_content_hash
+    normalized = normalize_text_for_dedup(text)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 210, in normalize_text_for_dedup
+    text = strip_html_tags(text)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/bot_handler.py", line 204, in strip_html_tags
+    clean = re.sub(r'<[^>]+>', '', text)
+            ^^
+NameError: name 're' is not defined. Did you forget to import 're'
+2026-03-04 21:28:51 | INFO    | 🛑 Сигнал 2
+2026-03-04 21:28:51 | INFO    | 🛑 Завершение, отмена 0 задач...
+2026-03-04 21:28:51 | INFO    | 💾 published_hashes сохранён
+2026-03-04 21:28:54 | WARNING | 🧹 Найден stale PID файл (PID=48875), удаляю
+2026-03-04 21:28:54 | INFO    | 🔒 Lock acquired (PID=51868)
+2026-03-04 21:28:54 | INFO    | ============================================================
+2026-03-04 21:28:54 | INFO    | 🚀 ЗАПУСК BOT HANDLER
+2026-03-04 21:28:54 | INFO    | 📁 pending_posts: /root/projectss/pending_posts
+2026-03-04 21:28:54 | INFO    | ⏰ Автопостинг: ✅ ВКЛ
+2026-03-04 21:28:54 | INFO    | 🔗 Глобальная дедупликация: ✅ ВКЛ
+2026-03-04 21:28:54 | INFO    | ============================================================
+2026-03-04 21:28:54 | INFO    | ✅ Глобальная БД инициализирована
+2026-03-04 21:28:54 | INFO    | 🤖 Бот: @steroid_eco_bot
+2026-03-04 21:28:54 | INFO    | 📦 Загружено 36 published хешей
+2026-03-04 21:28:54 | INFO    | 📦 Индекс pending: True
+2026-03-04 21:28:54 | INFO    | ✅ Бот запущен, ожидаю сообщения...
+2026-03-04 21:28:54 | INFO    | 🌙 Автопостинг запущен | День: 7-10 мин
+2026-03-04 21:28:54 | INFO    | 🧹 Очистка запущена (каждые 6 ч)
+2026-03-04 21:29:44 | INFO    | 🛑 Сигнал 2
+2026-03-04 21:29:44 | INFO    | 🛑 Завершение, отмена 0 задач...
+2026-03-04 21:29:44 | INFO    | 💾 published_hashes сохранён
+2026-03-04 21:29:47 | WARNING | 🧹 Найден stale PID файл (PID=51868), удаляю
+2026-03-04 21:29:47 | INFO    | 🔒 Lock acquired (PID=52012)
+2026-03-04 21:29:47 | INFO    | ============================================================
+2026-03-04 21:29:47 | INFO    | 🚀 ЗАПУСК BOT HANDLER
+2026-03-04 21:29:47 | INFO    | 📁 pending_posts: /root/projectss/pending_posts
+2026-03-04 21:29:47 | INFO    | ⏰ Автопостинг: ✅ ВКЛ
+2026-03-04 21:29:47 | INFO    | 🔗 Глобальная дедупликация: ✅ ВКЛ
+2026-03-04 21:29:47 | INFO    | ============================================================
+2026-03-04 21:29:47 | INFO    | ✅ Глобальная БД инициализирована
+2026-03-04 21:29:47 | INFO    | 🤖 Бот: @steroid_eco_bot
+2026-03-04 21:29:47 | INFO    | 📦 Загружено 36 published хешей
+2026-03-04 21:29:47 | INFO    | 📦 Индекс pending: True
+2026-03-04 21:29:47 | INFO    | ✅ Бот запущен, ожидаю сообщения...
+2026-03-04 21:29:47 | INFO    | 🌙 Автопостинг запущен | День: 7-10 мин
+2026-03-04 21:29:47 | INFO    | 🧹 Очистка запущена (каждые 6 ч)
+2026-03-04 21:30:47 | INFO    | ✅ Автопост опубликован: dd575813f12d0bd7
+2026-03-04 21:30:47 | INFO    | ✅ Автопост опубликован: 86e04699a4f722c3
+2026-03-04 21:37:31 | INFO    | 🛑 Сигнал 2
+2026-03-04 21:37:31 | INFO    | 🛑 Завершение, отмена 2 задач...
+2026-03-04 21:37:31 | INFO    | 💾 published_hashes сохранён
+2026-03-04 21:37:33 | WARNING | 🧹 Найден stale PID файл (PID=52012), удаляю
+2026-03-04 21:37:33 | INFO    | 🔒 Lock acquired (PID=54823)
+2026-03-04 21:37:33 | INFO    | ============================================================
+2026-03-04 21:37:33 | INFO    | 🚀 ЗАПУСК BOT HANDLER
+2026-03-04 21:37:33 | INFO    | 📁 pending_posts: /root/projectss/pending_posts
+2026-03-04 21:37:33 | INFO    | ⏰ Автопостинг: ✅ ВКЛ
+2026-03-04 21:37:33 | INFO    | 🔗 Глобальная дедупликация: ✅ ВКЛ
+2026-03-04 21:37:33 | INFO    | ============================================================
+2026-03-04 21:37:33 | INFO    | ✅ Глобальная БД инициализирована
+2026-03-04 21:37:33 | INFO    | 🤖 Бот: @steroid_eco_bot
+2026-03-04 21:37:33 | INFO    | 📦 Загружено 34 published хешей
+2026-03-04 21:37:33 | INFO    | 📦 Индекс pending: True
+2026-03-04 21:37:33 | INFO    | ✅ Бот запущен, ожидаю сообщения...
+2026-03-04 21:37:33 | INFO    | 🌙 Автопостинг запущен | День: 7-10 мин
+2026-03-04 21:37:33 | INFO    | 🧹 Очистка запущена (каждые 6 ч)
+2026-03-04 21:38:33 | INFO    | ✅ Автопост опубликован: 16ed2a69433e5894
+2026-03-04 21:38:34 | INFO    | ✅ Автопост опубликован: 743f91f62a870cab
+2026-03-04 21:48:34 | INFO    | ✅ Автопост опубликован: b49414a4ea56a7f7
+2026-03-04 21:48:34 | INFO    | ✅ Автопост опубликован: 02b9d0acbec5a7df
+2026-03-04 21:58:34 | INFO    | ✅ Автопост опубликован: c74e8b7c6f0823af
+2026-03-04 21:58:35 | INFO    | ✅ Автопост опубликован: 41e5608599633b51
+2026-03-04 22:08:35 | INFO    | ✅ Автопост опубликован: 6ef1d42e29e3c54a
+2026-03-04 22:08:35 | INFO    | ✅ Автопост опубликован: 9704ae275de71704
+2026-03-04 22:18:36 | INFO    | ✅ Автопост опубликован: 9a409ad4d8a2e33d
+2026-03-04 22:18:36 | INFO    | ✅ Автопост опубликован: 8dbaa06912f08fe7
+2026-03-04 22:23:36 | WARNING | 🗑️ Пропущен старый черновик 0da9092afdc6b3fd (возраст 71 мин)
+2026-03-04 22:28:36 | INFO    | ✅ Автопост опубликован: 2560498b3fb383b9
+2026-03-04 22:28:36 | INFO    | ✅ Автопост опубликован: 33bc4a771cec7ef2
+2026-03-04 22:37:36 | WARNING | 🗑️ Пропущен старый черновик 48a2ba22de7957d0 (возраст 70 мин)
+2026-03-04 22:38:37 | INFO    | ✅ Автопост опубликован: 5047f6a18a6cd42f
+2026-03-04 22:38:37 | WARNING | 🗑️ Пропущен старый черновик be34ac713af98f79 (возраст 70 мин)
+2026-03-04 22:48:37 | INFO    | ✅ Автопост опубликован: a041a2be4ea4770d
+2026-03-04 22:58:37 | INFO    | ✅ Автопост опубликован: cb85e31c2cea135a
+2026-03-04 22:59:38 | INFO    | ✅ Автопост опубликован: 8fa9326b09a7068e
+2026-03-04 23:05:38 | WARNING | 🗑️ Пропущен старый черновик 5c9e55ee0d94e0b7 (возраст 71 мин)
+2026-03-04 23:08:38 | INFO    | ✅ Автопост опубликован: ece26226d46a859d
+2026-03-04 23:09:38 | INFO    | ✅ Автопост опубликован: c1ae47991887a469
+2026-03-04 23:24:39 | INFO    | ✅ Автопост опубликован: f10c31b1e85c2180
+2026-03-04 23:31:39 | INFO    | ✅ Автопост опубликован: fc219367c495e206
+2026-03-04 23:41:39 | INFO    | ✅ Автопост опубликован: 660b29582de74b8c
+2026-03-04 23:41:39 | INFO    | ✅ Автопост опубликован: 43aad8a40bc07a14
+2026-03-04 23:59:40 | INFO    | ✅ Автопост опубликован: d15c60bc55280d66
+2026-03-05 00:05:40 | INFO    | ✅ Автопост опубликован: 2181f7f02f2545c5
+2026-03-05 00:15:40 | INFO    | ✅ Автопост опубликован: c868e442df86071a
+2026-03-05 00:15:40 | INFO    | ✅ Автопост опубликован: 475d11302a1d136b
+2026-03-05 00:50:41 | INFO    | ✅ Автопост опубликован: 5e16a8155dc3ced6
+2026-03-05 00:53:41 | INFO    | ✅ Автопост опубликован: cd192a9aefac9e12
+2026-03-05 01:00:41 | INFO    | ✅ Автопост опубликован: 388927f13d1a083e
+2026-03-05 01:04:42 | INFO    | ✅ Автопост опубликован: 52f54536a19203fd
+2026-03-05 01:26:42 | INFO    | ✅ Автопост опубликован: a79688c222e8418f
+2026-03-05 01:29:42 | INFO    | ✅ Автопост опубликован: d2e03fb76da595c5
+2026-03-05 01:39:43 | INFO    | ✅ Автопост опубликован: 295e08502e7e557b
+2026-03-05 01:47:43 | INFO    | ✅ Автопост опубликован: e49e1ba2a7220654
+2026-03-05 02:11:43 | INFO    | ✅ Автопост опубликован: 73e6b45a82c6f8d8
+2026-03-05 02:15:43 | INFO    | ✅ Автопост опубликован: 1b1a77d1778b17b6
+2026-03-05 02:23:44 | INFO    | ✅ Автопост опубликован: 0507065657a3134a
+2026-03-05 02:25:44 | INFO    | ✅ Автопост опубликован: 4ff350b47621992a
+2026-03-05 02:52:44 | INFO    | ✅ Автопост опубликован: a6ef966f04fcf185
+2026-03-05 02:52:44 | INFO    | ✅ Автопост опубликован: d66fbc626b24a602
+2026-03-05 03:02:45 | INFO    | ✅ Автопост опубликован: b1f443130ff89c7f
+2026-03-05 03:02:45 | INFO    | ✅ Автопост опубликован: 8451ad079a51dd1b
+2026-03-05 03:25:45 | INFO    | ✅ Автопост опубликован: fb6445e952ad3529
+2026-03-05 03:29:46 | INFO    | ✅ Автопост опубликован: 92133db209dced69
+2026-03-05 03:39:46 | INFO    | ✅ Автопост опубликован: ee686046725caa3f
+2026-03-05 03:43:46 | INFO    | ✅ Автопост опубликован: 162991b5a4397ae0
+2026-03-05 03:58:47 | INFO    | ✅ Автопост опубликован: 27236adf05ebcc55
+2026-03-05 04:08:47 | INFO    | ✅ Автопост опубликован: 36bfc48c3e35fba4
+2026-03-05 04:14:47 | INFO    | ✅ Автопост опубликован: 6d50b3ef53ea248d
+2026-03-05 04:18:48 | INFO    | ✅ Автопост опубликован: fb016f6a451f51a1
+2026-03-05 04:31:48 | INFO    | ✅ Автопост опубликован: f94f8aae97aa0d50
+2026-03-05 04:52:48 | INFO    | ✅ Автопост опубликован: b62a19ed7e8ca8d8
+2026-03-05 04:59:49 | INFO    | ✅ Автопост опубликован: dc232aadfe519580
+2026-03-05 05:02:49 | INFO    | ✅ Автопост опубликован: de12b11be5ad7f4a
+2026-03-05 05:09:49 | INFO    | ✅ Автопост опубликован: 249fb101d0f69363
+2026-03-05 05:34:50 | INFO    | ✅ Автопост опубликован: 7846e3f830dac03b
+2026-03-05 05:42:50 | INFO    | ✅ Автопост опубликован: 1f4b858c90ccb5d0
+2026-03-05 05:44:50 | INFO    | ✅ Автопост опубликован: d6c898f44c391080
+2026-03-05 05:53:50 | INFO    | ✅ Автопост опубликован: bce5f734326c3a76
+2026-03-05 05:54:51 | INFO    | ✅ Автопост опубликован: 03c924eea853c3e2
+2026-03-05 06:03:51 | INFO    | ✅ Автопост опубликован: 46f526bf5a2df981
+2026-03-05 06:04:51 | INFO    | ✅ Автопост опубликован: e61e27a09861e258
+2026-03-05 06:13:52 | INFO    | ✅ Автопост опубликован: 82e353e4cd964ff9
+2026-03-05 06:14:52 | INFO    | ✅ Автопост опубликован: ed3040593d639d55
+2026-03-05 06:23:53 | INFO    | ✅ Автопост опубликован: 58b4e297b543d6b6
+2026-03-05 06:24:53 | INFO    | ✅ Автопост опубликован: bb567020f6236eb6
+2026-03-05 06:33:53 | INFO    | ✅ Автопост опубликован: 002f6636efa31eba
+2026-03-05 06:34:54 | INFO    | ✅ Автопост опубликован: 17e328cd02e9e33f
+2026-03-05 06:36:54 | INFO    | ✅ Автопост опубликован: aa01c9581d1560dc
+2026-03-05 06:40:25 | INFO    | 🛑 Сигнал 2
+2026-03-05 06:40:25 | INFO    | 🛑 Завершение, отмена 73 задач...
+2026-03-05 06:40:25 | INFO    | 💾 published_hashes сохранён
+2026-03-05 06:40:28 | WARNING | 🧹 Найден stale PID файл (PID=54823), удаляю
+2026-03-05 06:40:28 | INFO    | 🔒 Lock acquired (PID=153207)
+2026-03-05 06:40:28 | INFO    | ============================================================
+2026-03-05 06:40:28 | INFO    | 🚀 ЗАПУСК BOT HANDLER
+2026-03-05 06:40:28 | INFO    | 📁 pending_posts: /root/projectss/pending_posts
+2026-03-05 06:40:28 | INFO    | ⏰ Автопостинг: ✅ ВКЛ
+2026-03-05 06:40:28 | INFO    | 🔗 Глобальная дедупликация: ✅ ВКЛ
+2026-03-05 06:40:28 | INFO    | ============================================================
+2026-03-05 06:40:28 | INFO    | ✅ Глобальная БД инициализирована
+2026-03-05 06:40:29 | INFO    | 🤖 Бот: @steroid_eco_bot
+2026-03-05 06:40:29 | INFO    | 📦 Загружено 18 published хешей
+2026-03-05 06:40:29 | INFO    | 📦 Индекс pending: True
+2026-03-05 06:40:29 | INFO    | ✅ Бот запущен, ожидаю сообщения...
+2026-03-05 06:40:29 | INFO    | 🌙 Автопостинг запущен | День: 7-10 мин
+2026-03-05 06:40:29 | INFO    | 🧹 Очистка запущена (каждые 6 ч)
+2026-03-05 06:41:29 | INFO    | ✅ Автопост опубликован: df6541bfbb16c4f0
+2026-03-05 06:41:29 | INFO    | ✅ Автопост опубликован: a892e7bab90a8345
+2026-03-05 06:42:12 | INFO    | 🛑 Сигнал 2
+2026-03-05 06:42:12 | INFO    | 🛑 Завершение, отмена 2 задач...
+2026-03-05 06:42:12 | INFO    | 💾 published_hashes сохранён
+2026-03-05 06:42:15 | WARNING | 🧹 Найден stale PID файл (PID=153207), удаляю
+2026-03-05 06:42:15 | INFO    | 🔒 Lock acquired (PID=153835)
+2026-03-05 06:42:15 | INFO    | ============================================================
+2026-03-05 06:42:15 | INFO    | 🚀 ЗАПУСК BOT HANDLER
+2026-03-05 06:42:15 | INFO    | 📁 pending_posts: /root/projectss/pending_posts
+2026-03-05 06:42:15 | INFO    | ⏰ Автопостинг: ✅ ВКЛ
+2026-03-05 06:42:15 | INFO    | 🔗 Глобальная дедупликация: ✅ ВКЛ
+2026-03-05 06:42:15 | INFO    | ============================================================
+2026-03-05 06:42:15 | INFO    | ✅ Глобальная БД инициализирована
+2026-03-05 06:42:15 | INFO    | 🤖 Бот: @steroid_eco_bot
+2026-03-05 06:42:15 | INFO    | 📦 Загружено 20 published хешей
+2026-03-05 06:42:15 | INFO    | 📦 Индекс pending: True
+2026-03-05 06:42:15 | INFO    | ✅ Бот запущен, ожидаю сообщения...
+2026-03-05 06:42:15 | INFO    | 🌙 Автопостинг запущен | День: 7-10 мин
+2026-03-05 06:42:15 | INFO    | 🧹 Очистка запущена (каждые 6 ч)
+2026-03-05 06:42:25 | INFO    | 🔘 Callback: publish_-1003635948209_2f0cdc852deb3b60 от -1003892651191
+2026-03-05 06:42:31 | INFO    | 🔘 Callback: publish_-1003635948209_2f0cdc852deb3b60 от -1003892651191
+2026-03-05 06:42:32 | INFO    | 🔘 Callback: edit_2f0cdc852deb3b60 от -1003892651191
+2026-03-05 06:42:32 | INFO    | 🔘 Callback: reject_2f0cdc852deb3b60 от -1003892651191
+2026-03-05 06:43:16 | INFO    | ✅ Автопост опубликован: 820df72070121e7c
+2026-03-05 06:43:16 | INFO    | ✅ Автопост опубликован: dcf10906129fab54
+2026-03-05 06:44:20 | INFO    | 🛑 Сигнал 2
+2026-03-05 06:44:20 | INFO    | 🛑 Завершение, отмена 2 задач...
+2026-03-05 06:44:20 | INFO    | 💾 published_hashes сохранён
+2026-03-05 06:44:22 | WARNING | 🧹 Найден stale PID файл (PID=153835), удаляю
+2026-03-05 06:44:22 | INFO    | 🔒 Lock acquired (PID=155095)
+2026-03-05 06:44:22 | INFO    | ============================================================
+2026-03-05 06:44:22 | INFO    | 🚀 ЗАПУСК BOT HANDLER
+2026-03-05 06:44:22 | INFO    | 📁 pending_posts: /root/projectss/pending_posts
+2026-03-05 06:44:22 | INFO    | ⏰ Автопостинг: ✅ ВКЛ
+2026-03-05 06:44:22 | INFO    | 🔗 Глобальная дедупликация: ✅ ВКЛ
+2026-03-05 06:44:22 | INFO    | ============================================================
+2026-03-05 06:44:22 | INFO    | ✅ Глобальная БД инициализирована
+2026-03-05 06:44:22 | INFO    | 🤖 Бот: @steroid_eco_bot
+2026-03-05 06:44:22 | INFO    | 📦 Загружено 22 published хешей
+2026-03-05 06:44:22 | INFO    | 📦 Индекс pending: True
+2026-03-05 06:44:22 | INFO    | ✅ Бот запущен, ожидаю сообщения...
+2026-03-05 06:44:22 | INFO    | 🌙 Автопостинг запущен | День: 7-10 мин
+2026-03-05 06:44:22 | INFO    | 🧹 Очистка запущена (каждые 6 ч)
+2026-03-05 06:44:51 | INFO    | 🛑 Сигнал 2
+2026-03-05 06:44:51 | INFO    | 🛑 Завершение, отмена 0 задач...
+2026-03-05 06:44:51 | INFO    | 💾 published_hashes сохранён
+2026-03-05 06:44:53 | INFO    | 📡 polling_worker завершён
+2026-03-05 06:44:53 | WARNING | 🧹 Найден stale PID файл (PID=155095), удаляю
+2026-03-05 06:44:53 | INFO    | 🔒 Lock acquired (PID=155192)
+2026-03-05 06:44:53 | INFO    | ============================================================
+2026-03-05 06:44:53 | INFO    | 🚀 ЗАПУСК BOT HANDLER
+2026-03-05 06:44:53 | INFO    | 📁 pending_posts: /root/projectss/pending_posts
+2026-03-05 06:44:53 | INFO    | ⏰ Автопостинг: ✅ ВКЛ
+2026-03-05 06:44:53 | INFO    | 🔗 Глобальная дедупликация: ✅ ВКЛ
+2026-03-05 06:44:53 | INFO    | ============================================================
+2026-03-05 06:44:53 | INFO    | ✅ Глобальная БД инициализирована
+2026-03-05 06:44:54 | INFO    | 🤖 Бот: @steroid_eco_bot
+2026-03-05 06:44:54 | INFO    | 📦 Загружено 22 published хешей
+2026-03-05 06:44:54 | INFO    | 📦 Индекс pending: True
+2026-03-05 06:44:54 | INFO    | ✅ Бот запущен, ожидаю сообщения...
+2026-03-05 06:44:54 | INFO    | 🌙 Автопостинг запущен | День: 7-10 мин
+2026-03-05 06:44:54 | INFO    | 🧹 Очистка запущена (каждые 6 ч)
+2026-03-05 06:44:58 | INFO    | 🔘 Callback: publish_-1003635948209_2f0cdc852deb3b60 от -1003892651191
+2026-03-05 06:44:58 | INFO    | ✅ Публикация: 2f0cdc852deb3b60 → -1003635948209
+2026-03-05 06:44:59 | INFO    | ✅ Пост 2f0cdc852deb3b60 опубликован в -1003635948209
+2026-03-05 06:45:12 | INFO    | 🔘 Callback: edit_dcf10906129fab54 от -1003711339547
+2026-03-05 06:45:12 | INFO    | ✏️ Редактирование: dcf10906129fab54
+2026-03-05 06:45:12 | ERROR   | ❌ Ошибка обработки callback edit_dcf10906129fab54: TelegramClient.send_message() got an unexpected keyword argument 'reply_to_message_id'
+Traceback (most recent call last):
+  File "/root/projectss/bot_handler.py", line 694, in handle_callback
+    await self.handle_edit(post_id, chat_id, message_id)
+  File "/root/projectss/bot_handler.py", line 734, in handle_edit
+    await self.telegram.send_message(
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: TelegramClient.send_message() got an unexpected keyword argument 'reply_to_message_id'
+2026-03-05 06:45:28 | INFO    | 🔘 Callback: reject_dcf10906129fab54 от -1003711339547
+2026-03-05 06:45:28 | INFO    | ❌ Отклонение: dcf10906129fab54
+2026-03-05 06:45:28 | INFO    | ✅ Пост dcf10906129fab54 отклонён и удалён
+2026-03-05 06:45:54 | INFO    | ✅ Автопост опубликован: d9add3911a805574
+2026-03-05 06:45:54 | INFO    | ✅ Автопост опубликован: 0f9240669b7ce577
+2026-03-05 06:46:37 | INFO    | 🛑 Сигнал 2
+2026-03-05 06:46:37 | INFO    | 🛑 Завершение, отмена 4 задач...
+2026-03-05 06:46:37 | INFO    | 💾 published_hashes сохранён
+2026-03-05 06:46:40 | WARNING | 🧹 Найден stale PID файл (PID=155192), удаляю
+2026-03-05 06:46:40 | INFO    | 🔒 Lock acquired (PID=157452)
+2026-03-05 06:46:40 | INFO    | ============================================================
+2026-03-05 06:46:40 | INFO    | 🚀 ЗАПУСК BOT HANDLER
+2026-03-05 06:46:40 | INFO    | 📁 pending_posts: /root/projectss/pending_posts
+2026-03-05 06:46:40 | INFO    | ⏰ Автопостинг: ✅ ВКЛ
+2026-03-05 06:46:40 | INFO    | 🔗 Глобальная дедупликация: ✅ ВКЛ
+2026-03-05 06:46:40 | INFO    | ============================================================
+2026-03-05 06:46:40 | INFO    | ✅ Глобальная БД инициализирована
+2026-03-05 06:46:40 | INFO    | 🤖 Бот: @steroid_eco_bot
+2026-03-05 06:46:40 | INFO    | 📦 Загружено 25 published хешей
+2026-03-05 06:46:40 | INFO    | 📦 Индекс pending: True
+2026-03-05 06:46:40 | INFO    | ✅ Бот запущен, ожидаю сообщения...
+2026-03-05 06:46:40 | INFO    | 🌙 Автопостинг запущен | День: 7-10 мин
+2026-03-05 06:46:40 | INFO    | 🧹 Очистка запущена (каждые 6 ч)
+2026-03-05 06:47:41 | INFO    | ✅ Автопост опубликован: ae1015fa0b6f320c
+2026-03-05 06:48:39 | INFO    | 🔘 Callback: edit_f09a661e89d9c13a от -1003659350130
+2026-03-05 06:48:39 | INFO    | ✏️ Редактирование: f09a661e89d9c13a
+2026-03-05 06:48:53 | INFO    | 🔘 Callback: publish_-1003739906790_f09a661e89d9c13a от -1003659350130
+2026-03-05 06:48:53 | INFO    | ✅ Публикация: f09a661e89d9c13a → -1003739906790
+2026-03-05 06:48:53 | WARNING | ⏳ Пропуск поста: нужно ждать ещё 8.8 мин для -1003739906790
+2026-03-05 06:48:53 | WARNING | ⚠️ Не удалось опубликовать f09a661e89d9c13a: Интервал: ждать 9 мин
+2026-03-05 06:52:59 | INFO    | 🛑 Сигнал 2
+2026-03-05 06:52:59 | INFO    | 🛑 Завершение, отмена 1 задач...
+2026-03-05 06:52:59 | INFO    | 💾 published_hashes сохранён
+2026-03-05 06:53:01 | WARNING | 🧹 Найден stale PID файл (PID=157452), удаляю
+2026-03-05 06:53:01 | INFO    | 🔒 Lock acquired (PID=158418)
+2026-03-05 06:53:01 | INFO    | ============================================================
+2026-03-05 06:53:01 | INFO    | 🚀 ЗАПУСК BOT HANDLER
+2026-03-05 06:53:01 | INFO    | 📁 pending_posts: /root/projectss/pending_posts
+2026-03-05 06:53:01 | INFO    | ⏰ Автопостинг: ✅ ВКЛ
+2026-03-05 06:53:01 | INFO    | 🔗 Глобальная дедупликация: ✅ ВКЛ
+2026-03-05 06:53:01 | INFO    | ============================================================
+2026-03-05 06:53:02 | INFO    | ✅ Глобальная БД инициализирована
+2026-03-05 06:53:02 | INFO    | 🤖 Бот: @steroid_eco_bot
+2026-03-05 06:53:02 | INFO    | 📦 Загружено 25 published хешей
+2026-03-05 06:53:02 | INFO    | 📦 Индекс pending: True
+2026-03-05 06:53:02 | INFO    | ✅ Бот запущен, ожидаю сообщения...
+2026-03-05 06:53:02 | INFO    | 🌙 Автопостинг запущен | День: 7-10 мин
+2026-03-05 06:53:02 | INFO    | 🧹 Очистка запущена (каждые 6 ч)
+2026-03-05 06:53:29 | INFO    | ✏️ Редактирование: 66fc44d4d8ae23ef
+2026-03-05 06:53:29 | INFO    | ✏️ 66fc44d4d8ae23ef → редактирование
+2026-03-05 06:53:41 | INFO    | ❌ /reject 66fc44d4d8ae23ef
+2026-03-05 06:54:02 | INFO    | ✅ Автопост опубликован: 59744df06defafac
+2026-03-05 06:54:02 | INFO    | ✅ Автопост опубликован: e6a3636053427cf1
+2026-03-05 06:58:07 | INFO    | ✅ Публикация: 570254bbfe824bb3 → -1003739906790
+2026-03-05 06:58:07 | WARNING | ⏳ Пропуск поста: нужно ждать ещё 5.9 мин для -1003739906790
+2026-03-05 06:58:35 | INFO    | ✅ Публикация: c8ffe066561daa5a → -1003701005081
+2026-03-05 06:58:35 | WARNING | ⏳ Пропуск поста: нужно ждать ещё 5.4 мин для -1003701005081
+2026-03-05 06:59:47 | INFO    | 🛑 Сигнал 2
+2026-03-05 06:59:47 | INFO    | 🛑 Завершение, отмена 2 задач...
+2026-03-05 06:59:47 | INFO    | 💾 published_hashes сохранён
+2026-03-05 06:59:49 | WARNING | 🧹 Найден stale PID файл (PID=158418), удаляю
+2026-03-05 06:59:49 | INFO    | 🔒 Lock acquired (PID=161621)
+2026-03-05 06:59:49 | INFO    | ============================================================
+2026-03-05 06:59:49 | INFO    | 🚀 ЗАПУСК BOT HANDLER
+2026-03-05 06:59:49 | INFO    | 📁 pending_posts: /root/projectss/pending_posts
+2026-03-05 06:59:49 | INFO    | ⏰ Автопостинг: ✅ ВКЛ
+2026-03-05 06:59:49 | INFO    | 🔗 Глобальная дедупликация: ✅ ВКЛ
+2026-03-05 06:59:49 | INFO    | ============================================================
+2026-03-05 06:59:49 | INFO    | ✅ Глобальная БД инициализирована
+2026-03-05 06:59:49 | INFO    | 🤖 Бот: @steroid_eco_bot
+2026-03-05 06:59:49 | INFO    | 📦 Загружено 26 published хешей
+2026-03-05 06:59:49 | INFO    | 📦 Индекс pending: True
+2026-03-05 06:59:49 | INFO    | ✅ Бот запущен, ожидаю сообщения...
+2026-03-05 06:59:49 | INFO    | 🌙 Автопостинг запущен | День: 7-10 мин
+2026-03-05 06:59:49 | INFO    | 🧹 Очистка запущена (каждые 6 ч)
+2026-03-05 07:00:43 | INFO    | ✅ Публикация: 5155c61b53fbe84e → -1003739906790
+2026-03-05 07:00:44 | INFO    | ✅ Опубликован 5155c61b53fbe84e → -1003739906790
+2026-03-05 07:00:45 | INFO    | ✅ Публикация: c8ffe066561daa5a → -1003701005081
+2026-03-05 07:00:45 | INFO    | ✅ Опубликован c8ffe066561daa5a → -1003701005081
+2026-03-05 07:00:50 | INFO    | ✅ Автопост опубликован: f09a661e89d9c13a
+2026-03-05 07:00:50 | INFO    | ✅ Автопост опубликован: 2513ff28673cdb70
+2026-03-05 07:05:50 | INFO    | ✅ Автопост опубликован: 570254bbfe824bb3
+2026-03-05 07:09:51 | INFO    | ✅ Автопост опубликован: cd22d9a2ab63ed7a
+2026-03-05 07:10:51 | INFO    | ✅ Автопост опубликован: 482bf6a199d2fa79
+2026-03-05 07:18:51 | INFO    | ✅ Автопост опубликован: 9fe8482d74fa9d26
+2026-03-05 07:20:51 | INFO    | ✅ Автопост опубликован: cd5039f6df57e4a6
+2026-03-05 07:20:52 | INFO    | ✅ Автопост опубликован: 989d1c6fc567bb07
+2026-03-05 07:20:52 | INFO    | ✅ Автопост опубликован: 6dc5b6472e1974ca
+2026-03-05 07:30:52 | INFO    | ✅ Автопост опубликован: ff9e19f26a74afce
+2026-03-05 07:32:52 | INFO    | ✅ Автопост опубликован: 4ccf099c4f7de1e9
+2026-03-05 07:33:53 | INFO    | ✅ Автопост опубликован: 1b2e9217df5094ca
+2026-03-05 07:37:53 | INFO    | ✅ Автопост опубликован: 2aaac450f6832bb8
+2026-03-05 07:43:53 | INFO    | ✅ Автопост опубликован: d7f9ec7eff727f06
+2026-03-05 07:46:54 | INFO    | ✅ Автопост опубликован: 324553a5f6f0dd82
+2026-03-05 07:48:54 | INFO    | ✅ Автопост опубликован: f472f768102af3fd
+2026-03-05 07:49:54 | INFO    | ✅ Автопост опубликован: db3d4adaa393111c
+2026-03-05 07:51:15 | INFO    | 🛑 Сигнал 2
+2026-03-05 07:51:15 | INFO    | 🛑 Завершение, отмена 17 задач...
+2026-03-05 07:51:15 | INFO    | 💾 published_hashes сохранён

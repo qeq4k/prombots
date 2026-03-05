@@ -161,6 +161,13 @@ TEXTS: Dict[str, Dict[str, str]] = {
         "search_history": "📜 Ваша история поиска:\n\n",
         "search_history_empty": "📜 История поиска пуста",
 
+        # --- История просмотров ---
+        "view_history": "🎬 Ваша история просмотров:\n\n",
+        "view_history_empty": "🎬 История просмотров пуста",
+
+        # --- Меню истории ---
+        "history_menu": "📂 Выберите тип истории:",
+
         # --- Статистика пользователя ---
         "user_stats": (
             "📊 Ваша статистика:\n\n"
@@ -485,6 +492,13 @@ TEXTS: Dict[str, Dict[str, str]] = {
         # --- История поиска ---
         "search_history": "📜 Your search history:\n\n",
         "search_history_empty": "📜 Search history is empty",
+
+        # --- История просмотров ---
+        "view_history": "🎬 Your view history:\n\n",
+        "view_history_empty": "🎬 View history is empty",
+
+        # --- Меню истории ---
+        "history_menu": "📂 Select history type:",
 
         # --- Статистика пользователя ---
         "user_stats": (

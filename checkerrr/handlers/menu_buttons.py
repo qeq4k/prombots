@@ -390,26 +390,39 @@ async def genres_button(message: Message, db: Database):
     )
 
 
+# ==================== 📊 МОЯ СТАТИСТИКА ====================
+
+@router.message(F.text == "📊 Моя статистика")
+async def my_stats_button(message: Message, db: Database):
+    """Кнопка 'Моя статистика'"""
+    user_id = message.from_user.id
+    lang = db.get_user_language(user_id)
+
+    stats = db.get_user_stats(user_id)
+    favorites = db.get_user_favorites(user_id)
+    last_search = stats.get('last_search_at', 'Никогда')
+    if last_search and isinstance(last_search, str):
+        last_search = last_search[:19]
+
+    text = get_text("user_stats", lang,
+                    total_searches=stats.get('total_searches', 0),
+                    favorites_count=len(favorites),
+                    last_search=last_search if last_search else "Никогда")
+
+    await message.answer(text)
+
+
 # ==================== 📜 ИСТОРИЯ ====================
 
 @router.message(F.text == "📜 История")
 async def history_button(message: Message, db: Database):
-    """Кнопка 'История'"""
+    """Кнопка 'История' - показывает меню выбора"""
     user_id = message.from_user.id
     lang = db.get_user_language(user_id)
+
+    from keyboards import get_history_menu_keyboard
     
-    history = db.get_user_search_history(user_id, limit=10)
-    
-    if not history:
-        await message.answer(
-            get_text("search_history_empty", lang),
-            reply_markup=get_main_keyboard(lang, is_admin=user_id in AppConfig.ADMIN_IDS)
-        )
-        return
-    
-    text = get_text("search_history", lang)
-    for item in history:
-        icon = "✅" if item['results_count'] > 0 else "❌"
-        text += f"{icon} {item['query']} ({item['query_type']})\n"
-    
-    await message.answer(text)
+    await message.answer(
+        get_text("history_menu", lang, default="📂 Выберите тип истории:"),
+        reply_markup=get_history_menu_keyboard(lang)
+    )
