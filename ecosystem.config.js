@@ -2,7 +2,7 @@ module.exports = {
   apps: [
     {
       name: "cinema",
-      script: "movie.py",
+      script: "cinema/movie.py",
       interpreter: "python3",
       cwd: "/root/projectss",
       autorestart: true,
@@ -13,7 +13,8 @@ module.exports = {
       restart_delay: 4000,
       env: {
         PYTHONUNBUFFERED: "1",
-        PYTHONIOENCODING: "utf-8"
+        PYTHONIOENCODING: "utf-8",
+        PYTHONPATH: "/root/projectss"
       },
       error_file: "/root/projectss/logs/cinema-error.log",
       out_file: "/root/projectss/logs/cinema-out.log",
@@ -23,7 +24,7 @@ module.exports = {
     },
     {
       name: "economy",
-      script: "economika.py",
+      script: "economy/economika.py",
       interpreter: "python3",
       cwd: "/root/projectss",
       autorestart: true,
@@ -34,7 +35,8 @@ module.exports = {
       restart_delay: 4000,
       env: {
         PYTHONUNBUFFERED: "1",
-        PYTHONIOENCODING: "utf-8"
+        PYTHONIOENCODING: "utf-8",
+        PYTHONPATH: "/root/projectss"
       },
       error_file: "/root/projectss/logs/economy-error.log",
       out_file: "/root/projectss/logs/economy-out.log",
@@ -44,7 +46,7 @@ module.exports = {
     },
     {
       name: "politics",
-      script: "politika.py",
+      script: "politics/politika.py",
       interpreter: "python3",
       cwd: "/root/projectss",
       autorestart: true,
@@ -55,7 +57,8 @@ module.exports = {
       restart_delay: 4000,
       env: {
         PYTHONUNBUFFERED: "1",
-        PYTHONIOENCODING: "utf-8"
+        PYTHONIOENCODING: "utf-8",
+        PYTHONPATH: "/root/projectss"
       },
       error_file: "/root/projectss/logs/politics-error.log",
       out_file: "/root/projectss/logs/politics-out.log",
@@ -106,8 +109,8 @@ module.exports = {
       time: true
     },
     {
-      name: "urgent_news",
-      script: "urgent_news.py",
+      name: "urgent",
+      script: "urgent/urgent_news.py",
       interpreter: "python3",
       cwd: "/root/projectss",
       autorestart: true,
@@ -118,7 +121,8 @@ module.exports = {
       restart_delay: 4000,
       env: {
         PYTHONUNBUFFERED: "1",
-        PYTHONIOENCODING: "utf-8"
+        PYTHONIOENCODING: "utf-8",
+        PYTHONPATH: "/root/projectss"
       },
       error_file: "/root/projectss/logs/urgent-error.log",
       out_file: "/root/projectss/logs/urgent-out.log",
@@ -144,6 +148,28 @@ module.exports = {
       },
       error_file: "/root/projectss/logs/crosspost-error.log",
       out_file: "/root/projectss/logs/crosspost-out.log",
+      log_date_format: "YYYY-MM-DD HH:mm:ss Z",
+      merge_logs: true,
+      time: true
+    },
+    {
+      name: "dashboard",
+      script: "dashboard/main.py",
+      interpreter: "python3",
+      cwd: "/root/projectss",
+      autorestart: true,
+      watch: false,
+      max_memory_restart: "150M",
+      max_restarts: 10,
+      min_uptime: "10s",
+      restart_delay: 4000,
+      env: {
+        PYTHONUNBUFFERED: "1",
+        PYTHONIOENCODING: "utf-8",
+        PYTHONPATH: "/root/projectss"
+      },
+      error_file: "/root/projectss/logs/dashboard-error.log",
+      out_file: "/root/projectss/logs/dashboard-out.log",
       log_date_format: "YYYY-MM-DD HH:mm:ss Z",
       merge_logs: true,
       time: true

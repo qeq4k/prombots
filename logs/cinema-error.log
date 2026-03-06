@@ -25881,3 +25881,69 @@
 2026-03-04T21:22:35: WARNING:__main__:⚠️ feeds.feedburner.com: нет записей
 2026-03-04T21:22:48: WARNING:__main__:⏱️ www.mirf.ru: таймаут
 2026-03-04T21:22:53: WARNING:__main__:📭 Нет подходящих кандидатов
+2026-03-06T20:51:34: Traceback (most recent call last):
+2026-03-06T20:51:34:   File "/root/projectss/cinema/movie.py", line 46, in <module>
+2026-03-06T20:51:34:     from shared import DigestGenerator, schedule_digest_for_category
+2026-03-06T20:51:34: ModuleNotFoundError: No module named 'shared'
+2026-03-06T20:51:54: Traceback (most recent call last):
+2026-03-06T20:51:54:   File "/root/projectss/cinema/movie.py", line 46, in <module>
+2026-03-06T20:51:54:     from shared import DigestGenerator, schedule_digest_for_category
+2026-03-06T20:51:54: ModuleNotFoundError: No module named 'shared'
+2026-03-06T20:52:11: Traceback (most recent call last):
+2026-03-06T20:52:11:   File "/root/projectss/cinema/movie.py", line 46, in <module>
+2026-03-06T20:52:11:     from shared import DigestGenerator, schedule_digest_for_category
+2026-03-06T20:52:11: ModuleNotFoundError: No module named 'shared'
+2026-03-06T20:52:26: Traceback (most recent call last):
+2026-03-06T20:52:26:   File "/root/projectss/cinema/movie.py", line 46, in <module>
+2026-03-06T20:52:26:     from shared import DigestGenerator, schedule_digest_for_category
+2026-03-06T20:52:26: ModuleNotFoundError: No module named 'shared'
+2026-03-06T20:52:36: Traceback (most recent call last):
+2026-03-06T20:52:36:   File "/root/projectss/cinema/movie.py", line 38, in <module>
+2026-03-06T20:52:36:     from openai import AsyncOpenAI
+2026-03-06T20:52:36:   File "/usr/local/lib/python3.12/dist-packages/openai/__init__.py", line 12, in <module>
+2026-03-06T20:52:36:     from ._client import Client, OpenAI, Stream, Timeout, Transport, AsyncClient, AsyncOpenAI, AsyncStream, RequestOptions
+2026-03-06T20:52:36:   File "/usr/local/lib/python3.12/dist-packages/openai/_client.py", line 32, in <module>
+2026-03-06T20:52:36:     from ._base_client import (
+2026-03-06T20:52:36:   File "/usr/local/lib/python3.12/dist-packages/openai/_base_client.py", line 171, in <module>
+2026-03-06T20:52:36:     class BasePage(GenericModel, Generic[_T]):
+2026-03-06T20:52:36:   File "/usr/local/lib/python3.12/dist-packages/pydantic/_internal/_model_construction.py", line 242, in __new__
+2026-03-06T20:52:36:     set_model_fields(cls, config_wrapper=config_wrapper, ns_resolver=ns_resolver)
+2026-03-06T20:52:36:   File "/usr/local/lib/python3.12/dist-packages/pydantic/_internal/_model_construction.py", line 566, in set_model_fields
+2026-03-06T20:52:36:     fields, class_vars = collect_model_fields(cls, config_wrapper, ns_resolver, typevars_map=typevars_map)
+2026-03-06T20:52:36:                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-06T20:52:36:   File "/usr/local/lib/python3.12/dist-packages/pydantic/_internal/_fields.py", line 256, in collect_model_fields
+2026-03-06T20:52:36:     type_hints = _typing_extra.get_model_type_hints(cls, ns_resolver=ns_resolver)
+2026-03-06T20:52:36:                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-06T20:52:36:   File "/usr/local/lib/python3.12/dist-packages/pydantic/_internal/_typing_extra.py", line 350, in get_model_type_hints
+2026-03-06T20:52:36:     hints[name] = try_eval_type(value, globalns, localns)
+2026-03-06T20:52:36:                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-06T20:52:36:   File "/usr/local/lib/python3.12/dist-packages/pydantic/_internal/_typing_extra.py", line 404, in try_eval_type
+2026-03-06T20:52:36:     return eval_type_backport(value, globalns, localns), True
+2026-03-06T20:52:36:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-06T20:52:36:   File "/usr/local/lib/python3.12/dist-packages/pydantic/_internal/_typing_extra.py", line 455, in eval_type_backport
+2026-03-06T20:52:36:     return _eval_type_backport(value, globalns, localns, type_params)
+2026-03-06T20:52:36: ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-06T20:52:36:   File "/usr/local/lib/python3.12/dist-packages/pydantic/_internal/_typing_extra.py", line 492, in _eval_type_backport
+2026-03-06T20:52:36:     return _eval_type(value, globalns, localns, type_params)
+2026-03-06T20:52:36:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-06T20:52:36:   File "/usr/local/lib/python3.12/dist-packages/pydantic/_internal/_typing_extra.py", line 545, in _eval_type
+2026-03-06T20:52:36:     return typing._eval_type(  # type: ignore
+2026-03-06T20:52:36:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-06T20:52:36:   File "/usr/lib/python3.12/typing.py", line 414, in _eval_type
+2026-03-06T20:52:36:     
+2026-03-06T20:52:36: return t._evaluate(globalns, localns, recursive_guard)
+2026-03-06T20:52:36:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-06T20:52:36:   File "/usr/lib/python3.12/typing.py", line 924, in _evaluate
+2026-03-06T20:52:36:     eval(self.__forward_code__, globalns, localns),
+2026-03-06T20:52:36:     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-06T20:52:36:   File "<string>", line 1, in <module>
+2026-03-06T20:52:36:   File "/usr/local/lib/python3.12/dist-packages/pydantic/_internal/_namespace_utils.py", line 97, in __getitem__
+2026-03-06T20:52:36:     return self.data[key]
+2026-03-06T20:52:36:            ^^^^^^^^^
+2026-03-06T20:52:36:   File "/usr/lib/python3.12/functools.py", line 995, in __get__
+2026-03-06T20:52:36:     val = self.func(instance)
+2026-03-06T20:52:36:           ^^^^^^^^^^^^^^^^^^^
+2026-03-06T20:52:36:   File "/usr/local/lib/python3.12/dist-packages/pydantic/_internal/_namespace_utils.py", line 91, in data
+2026-03-06T20:52:36:     return {k: v for ns in self._namespaces for k, v in ns.items()}
+2026-03-06T20:52:36:                                                         ^^^^^^^^^^
+2026-03-06T20:52:36: KeyboardInterrupt

@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🤖 Bot Admin Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #eee;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+        
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            background: linear-gradient(90deg, #00d9ff, #00ff88);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .timestamp {
+            color: #888;
+            font-size: 0.9em;
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .card {
+            background: rgba(255,255,255,0.05);
+            border-radius: 15px;
+            padding: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .card h2 {
+            font-size: 1.3em;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .bot-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px;
+            background: rgba(0,0,0,0.2);
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+        
+        .bot-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .bot-name {
+            font-weight: 600;
+        }
+        
+        .bot-channel {
+            font-size: 0.85em;
+            color: #888;
+        }
+        
+        .status-badge {
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            font-weight: 600;
+        }
+        
+        .status-online {
+            background: #00ff88;
+            color: #000;
+        }
+        
+        .status-offline, .status-stopped {
+            background: #ff4757;
+            color: #fff;
+        }
+        
+        .status-unknown {
+            background: #ffa502;
+            color: #000;
+        }
+        
+        .bot-stats {
+            display: flex;
+            gap: 15px;
+            margin-top: 8px;
+            font-size: 0.85em;
+            color: #888;
+        }
+        
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .stat-value {
+            color: #00d9ff;
+            font-weight: 600;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+        
+        .stat-box {
+            background: rgba(0,0,0,0.2);
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        
+        .stat-box .value {
+            font-size: 2em;
+            font-weight: 700;
+            background: linear-gradient(90deg, #00d9ff, #00ff88);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .stat-box .label {
+            font-size: 0.85em;
+            color: #888;
+            margin-top: 5px;
+        }
+        
+        .post-item {
+            padding: 12px;
+            background: rgba(0,0,0,0.2);
+            border-radius: 8px;
+            margin-bottom: 10px;
+            border-left: 3px solid #00d9ff;
+            overflow-wrap: break-word;
+            word-wrap: break-word;
+            hyphens: auto;
+        }
+        
+        .post-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .post-title {
+            font-size: 0.9em;
+            margin-bottom: 5px;
+            line-height: 1.4;
+            overflow-wrap: break-word;
+            word-wrap: break-word;
+            hyphens: auto;
+            max-width: 100%;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        
+        .post-meta {
+            font-size: 0.8em;
+            color: #888;
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .post-bot {
+            color: #00d9ff;
+        }
+        
+        .system-info {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+        
+        .system-item {
+            background: rgba(0,0,0,0.2);
+            padding: 15px;
+            border-radius: 8px;
+        }
+        
+        .system-label {
+            font-size: 0.85em;
+            color: #888;
+            margin-bottom: 5px;
+        }
+        
+        .system-value {
+            font-size: 1.2em;
+            font-weight: 600;
+            color: #00ff88;
+        }
+        
+        .progress-bar {
+            height: 8px;
+            background: rgba(0,0,0,0.3);
+            border-radius: 4px;
+            margin-top: 8px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #00d9ff, #00ff88);
+            border-radius: 4px;
+            transition: width 0.3s;
+        }
+        
+        .refresh-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #00d9ff, #00ff88);
+            border: none;
+            color: #000;
+            font-size: 1.5em;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(0,217,255,0.4);
+            transition: transform 0.2s;
+        }
+        
+        .refresh-btn:hover {
+            transform: scale(1.1) rotate(180deg);
+        }
+        
+        @media (max-width: 768px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .system-info {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🤖 Bot Admin Dashboard</h1>
+            <div class="timestamp">📅 {{ current_time }}</div>
+        </header>
+        
+        <div class="grid">
+            <!-- Статус ботов -->
+            <div class="card">
+                <h2>📊 Статус ботов</h2>
+                {% for bot in bots %}
+                <div class="bot-item">
+                    <div>
+                        <div class="bot-name">{{ bot.display }}</div>
+                        <div class="bot-channel">{{ bot.channel }}</div>
+                        <div class="bot-stats">
+                            <span class="stat-item">💾 <span class="stat-value">{{ bot.memory_mb }} MB</span></span>
+                            <span class="stat-item">🔄 <span class="stat-value">{{ bot.restarts }}</span></span>
+                        </div>
+                    </div>
+                    <span class="status-badge status-{{ bot.status }}">{{ bot.status }}</span>
+                </div>
+                {% endfor %}
+            </div>
+            
+            <!-- Статистика -->
+            <div class="card">
+                <h2>📈 Статистика</h2>
+                <div class="stats-grid">
+                    <div class="stat-box">
+                        <div class="value">{{ stats.posts_today }}</div>
+                        <div class="label">Постов сегодня</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="value">{{ stats.posts_week }}</div>
+                        <div class="label">Постов за неделю</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="value">{{ stats.duplicates_blocked }}</div>
+                        <div class="label">Дубликатов</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="value">{{ stats.llm_calls }}</div>
+                        <div class="label">LLM вызовов</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Система -->
+            <div class="card">
+                <h2>🖥️ Система</h2>
+                <div class="system-info">
+                    <div class="system-item">
+                        <div class="system-label">RAM</div>
+                        <div class="system-value">{{ system.ram_used }} / {{ system.ram_total }} MB</div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: {{ ram_percent }}%"></div>
+                        </div>
+                        <div style="font-size: 0.8em; color: #888; margin-top: 5px;">{{ ram_percent }}%</div>
+                    </div>
+                    <div class="system-item">
+                        <div class="system-label">Диск</div>
+                        <div class="system-value">{{ system.disk_used }} / {{ system.disk_total }}</div>
+                        <div style="font-size: 0.8em; color: #888; margin-top: 5px;">{{ system.disk_percent }}</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Последние посты -->
+            <div class="card">
+                <h2>📝 Последние посты</h2>
+                {% for post in recent_posts %}
+                <div class="post-item">
+                    <div class="post-title">{{ post.title }}</div>
+                    <div class="post-meta">
+                        <span class="post-bot">🤖 {{ post.bot }}</span>
+                        <span>📰 {{ post.source }}</span>
+                        <span>⭐ {{ post.priority }}</span>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    
+    <button class="refresh-btn" onclick="location.reload()" title="Обновить">🔄</button>
+    
+    <script>
+        // Автообновление каждые 30 секунд
+        setInterval(() => {
+            location.reload();
+        }, 30000);
+    </script>
+</body>
+</html>

@@ -7429,3 +7429,90 @@ NameError: name 'get_favorites_keyboard' is not defined. Did you mean: 'get_main
 2026-03-05 09:43:42,381 - database - INFO - ✅ Таблицы БД созданы/проверены
 2026-03-05 09:43:42,382 - database - INFO - ✅ Таблицы БД проверены/созданы
 2026-03-05 09:43:42,586 - bot_new - INFO - ✅ Бот инициализирован успешно
+2026-03-06 20:51:49,858 - database - INFO - ✅ Подключение к БД установлено: /root/projectss/checkerrr/movies.db
+2026-03-06 20:51:49,976 - database - INFO - ✅ Таблицы БД созданы/проверены
+2026-03-06 20:51:49,977 - database - INFO - ✅ Таблицы БД проверены/созданы
+2026-03-06 20:51:50,123 - __main__ - INFO - ✅ Бот инициализирован успешно
+2026-03-06 20:51:50,126 - __main__ - INFO - 🚀 Запуск бота...
+2026-03-06 20:51:50,130 - __main__ - INFO - ✅ Сервисы инициализированы
+2026-03-06 20:51:50,131 - __main__ - INFO - ✅ Middleware зарегистрированы
+2026-03-06 20:51:50,131 - __main__ - INFO - ✅ Роутеры зарегистрированы
+2026-03-06 20:51:50,156 - cache - INFO - ✅ Redis подключен: localhost:6379
+2026-03-06 20:51:50,157 - __main__ - INFO - ✅ Redis кэш инициализирован
+2026-03-06 20:51:50,158 - aiogram.dispatcher - INFO - Start polling
+2026-03-06 20:51:50,960 - aiogram.dispatcher - INFO - Run polling for bot @kinocode26_bot id=8554826085 - 'KinoCode26'
+2026-03-06 20:52:01,779 - aiogram.dispatcher - ERROR - Failed to fetch updates - TelegramNetworkError: HTTP Client says - ClientOSError: [Errno 104] Connection reset by peer
+2026-03-06 20:52:01,780 - aiogram.dispatcher - WARNING - Sleep for 1.000000 seconds and try again... (tryings = 0, bot id = 8554826085)
+2026-03-06 20:52:13,802 - aiogram.dispatcher - INFO - Connection established (tryings = 1, bot id = 8554826085)
+2026-03-06 20:52:39,763 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2026-03-06 20:52:39,764 - aiogram.dispatcher - INFO - Polling stopped for bot @kinocode26_bot id=8554826085 - 'KinoCode26'
+2026-03-06 20:52:39,764 - aiogram.dispatcher - INFO - Polling stopped
+2026-03-06 20:52:40,747 - cache - INFO - ✅ Redis отключен
+2026-03-06 20:52:40,748 - database - INFO - ✅ Соединение с БД закрыто
+2026-03-06 20:52:40,750 - __main__ - INFO - ✅ Бот остановлен корректно
+2026-03-06 20:53:25,592 - database - INFO - ✅ Подключение к БД установлено: /root/projectss/checkerrr/movies.db
+2026-03-06 20:53:25,864 - database - INFO - ✅ Таблицы БД созданы/проверены
+2026-03-06 20:53:25,865 - database - INFO - ✅ Таблицы БД проверены/созданы
+2026-03-06 20:53:25,938 - __main__ - INFO - ✅ Бот инициализирован успешно
+2026-03-06 20:53:25,939 - __main__ - INFO - 🚀 Запуск бота...
+2026-03-06 20:53:25,940 - __main__ - INFO - ✅ Сервисы инициализированы
+2026-03-06 20:53:25,940 - __main__ - INFO - ✅ Middleware зарегистрированы
+2026-03-06 20:53:25,941 - __main__ - INFO - ✅ Роутеры зарегистрированы
+2026-03-06 20:53:26,597 - cache - INFO - ✅ Redis подключен: localhost:6379
+2026-03-06 20:53:26,599 - __main__ - INFO - ✅ Redis кэш инициализирован
+2026-03-06 20:53:26,601 - aiogram.dispatcher - INFO - Start polling
+2026-03-06 20:53:26,818 - aiogram.dispatcher - INFO - Run polling for bot @kinocode26_bot id=8554826085 - 'KinoCode26'
+2026-03-06 20:57:54,710 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2026-03-06 20:57:54,711 - aiogram.dispatcher - INFO - Polling stopped for bot @kinocode26_bot id=8554826085 - 'KinoCode26'
+2026-03-06 20:57:54,712 - aiogram.dispatcher - INFO - Polling stopped
+2026-03-06 20:57:55,652 - cache - INFO - ✅ Redis отключен
+2026-03-06 20:57:55,653 - database - INFO - ✅ Соединение с БД закрыто
+2026-03-06 20:57:55,653 - __main__ - INFO - ✅ Бот остановлен корректно
+2026-03-06 20:58:26,498 - database - INFO - ✅ Подключение к БД установлено: /root/projectss/checkerrr/movies.db
+2026-03-06 20:58:26,621 - database - INFO - ✅ Таблицы БД созданы/проверены
+2026-03-06 20:58:26,621 - database - INFO - ✅ Таблицы БД проверены/созданы
+2026-03-06 20:58:26,703 - __main__ - INFO - ✅ Бот инициализирован успешно
+2026-03-06 20:58:26,704 - __main__ - INFO - 🚀 Запуск бота...
+2026-03-06 20:58:26,705 - __main__ - INFO - ✅ Сервисы инициализированы
+2026-03-06 20:58:26,705 - __main__ - INFO - ✅ Middleware зарегистрированы
+2026-03-06 20:58:26,705 - __main__ - INFO - ✅ Роутеры зарегистрированы
+2026-03-06 20:58:26,723 - cache - INFO - ✅ Redis подключен: localhost:6379
+2026-03-06 20:58:26,725 - __main__ - INFO - ✅ Redis кэш инициализирован
+2026-03-06 20:58:26,727 - aiogram.dispatcher - INFO - Start polling
+2026-03-06 20:58:27,405 - aiogram.dispatcher - INFO - Run polling for bot @kinocode26_bot id=8554826085 - 'KinoCode26'
+2026-03-06 21:12:02,894 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2026-03-06 21:12:02,899 - aiogram.dispatcher - INFO - Polling stopped for bot @kinocode26_bot id=8554826085 - 'KinoCode26'
+2026-03-06 21:12:02,900 - aiogram.dispatcher - INFO - Polling stopped
+2026-03-06 21:12:03,156 - cache - INFO - ✅ Redis отключен
+2026-03-06 21:12:03,157 - database - INFO - ✅ Соединение с БД закрыто
+2026-03-06 21:12:03,157 - __main__ - INFO - ✅ Бот остановлен корректно
+2026-03-06 21:12:50,697 - database - INFO - ✅ Подключение к БД установлено: /root/projectss/checkerrr/movies.db
+2026-03-06 21:12:50,984 - database - INFO - ✅ Таблицы БД созданы/проверены
+2026-03-06 21:12:50,986 - database - INFO - ✅ Таблицы БД проверены/созданы
+2026-03-06 21:12:51,764 - __main__ - INFO - ✅ Бот инициализирован успешно
+2026-03-06 21:12:51,765 - __main__ - INFO - 🚀 Запуск бота...
+2026-03-06 21:12:51,765 - __main__ - INFO - ✅ Сервисы инициализированы
+2026-03-06 21:12:51,766 - __main__ - INFO - ✅ Middleware зарегистрированы
+2026-03-06 21:12:51,766 - __main__ - INFO - ✅ Роутеры зарегистрированы
+2026-03-06 21:12:51,774 - cache - INFO - ✅ Redis подключен: localhost:6379
+2026-03-06 21:12:51,774 - __main__ - INFO - ✅ Redis кэш инициализирован
+2026-03-06 21:12:51,775 - aiogram.dispatcher - INFO - Start polling
+2026-03-06 21:12:51,957 - aiogram.dispatcher - INFO - Run polling for bot @kinocode26_bot id=8554826085 - 'KinoCode26'
+2026-03-06 21:19:25,518 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2026-03-06 21:19:25,519 - aiogram.dispatcher - INFO - Polling stopped for bot @kinocode26_bot id=8554826085 - 'KinoCode26'
+2026-03-06 21:19:25,519 - aiogram.dispatcher - INFO - Polling stopped
+2026-03-06 21:19:26,772 - cache - INFO - ✅ Redis отключен
+2026-03-06 21:19:26,773 - database - INFO - ✅ Соединение с БД закрыто
+2026-03-06 21:19:26,776 - __main__ - INFO - ✅ Бот остановлен корректно
+2026-03-06 21:20:03,552 - database - INFO - ✅ Подключение к БД установлено: /root/projectss/checkerrr/movies.db
+2026-03-06 21:20:03,678 - database - INFO - ✅ Таблицы БД созданы/проверены
+2026-03-06 21:20:03,679 - database - INFO - ✅ Таблицы БД проверены/созданы
+2026-03-06 21:20:03,757 - __main__ - INFO - ✅ Бот инициализирован успешно
+2026-03-06 21:20:03,758 - __main__ - INFO - 🚀 Запуск бота...
+2026-03-06 21:20:03,759 - __main__ - INFO - ✅ Сервисы инициализированы
+2026-03-06 21:20:03,759 - __main__ - INFO - ✅ Middleware зарегистрированы
+2026-03-06 21:20:03,759 - __main__ - INFO - ✅ Роутеры зарегистрированы
+2026-03-06 21:20:03,772 - cache - INFO - ✅ Redis подключен: localhost:6379
+2026-03-06 21:20:03,772 - __main__ - INFO - ✅ Redis кэш инициализирован
+2026-03-06 21:20:03,773 - aiogram.dispatcher - INFO - Start polling
+2026-03-06 21:20:04,551 - aiogram.dispatcher - INFO - Run polling for bot @kinocode26_bot id=8554826085 - 'KinoCode26'

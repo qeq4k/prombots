@@ -645,6 +645,12 @@ __all__ = [
     "DigestGenerator",
     "create_digest_for_category",
     "schedule_digest_for_category",
+    # Auto Rubrics
+    "AutoRubrics",
+    "add_rubric_to_text",
+    # Seasonal Templates
+    "SeasonalTemplates",
+    "apply_seasonal_template",
 ]
 
 # Import digest module
@@ -652,4 +658,16 @@ from shared.digest import (
     DigestGenerator,
     create_digest_for_category,
     schedule_digest_for_category,
+)
+
+# Import rubrics module
+from shared.rubrics import (
+    AutoRubrics,
+    add_rubric_to_text,
+)
+
+# Import seasonal module
+from shared.seasonal import (
+    SeasonalTemplates,
+    apply_seasonal_template,
 )
