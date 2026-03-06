@@ -43,6 +43,9 @@ from dotenv import load_dotenv
 from rapidfuzz import fuzz
 from global_dedup import init_global_db, is_global_duplicate, mark_global_posted, get_universal_hash, get_content_dedup_hash
 
+# ✅ DIGEST GENERATOR — для ежедневных дайджестов
+from shared import DigestGenerator, schedule_digest_for_category
+
 try:
     import pymorphy3
     MORPHY = pymorphy3.MorphAnalyzer()
@@ -266,6 +269,8 @@ class BotConfig(BaseSettings):
     db_path: str = "eco_memory.db"
     min_delay_between_posts: int = 600
     domain_min_delay: float = 1.2
+
+    autopost_enabled: bool = True  # ✅ Для дайджестов
 
     fuzzy_threshold: int = 80
     duplicate_check_hours: int = 72
@@ -2495,6 +2500,17 @@ async def main():
     llm = CachedLLMClient()
     alert_manager = AlertManager(config.tg_token)
     duplicate_detector = DuplicateDetector()
+
+    # ✅ ЗАПУСК ПЛАНИРОВЩИКА ДАЙДЖЕСТОВ (ежедневно в 21:00)
+    digest_task = None
+    if config.autopost_enabled:
+        try:
+            digest_task = asyncio.create_task(
+                schedule_digest_for_category(llm, alert_manager.telegram, config, "economy", hour=21)
+            )
+            logger.info("✅ Планировщик дайджестов запущен (21:00 daily)")
+        except Exception as e:
+            logger.warning(f"⚠️ Не удалось запустить планировщик дайджестов: {e}")
     
     logger.info("=" * 60)
     logger.info("🚀 @ecosteroid PRODUCTION 2026 (REWRITTEN)")

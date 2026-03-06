@@ -125,6 +125,28 @@ module.exports = {
       log_date_format: "YYYY-MM-DD HH:mm:ss Z",
       merge_logs: true,
       time: true
+    },
+    {
+      name: "crosspost",
+      script: "crosspost/main.py",
+      interpreter: "python3",
+      cwd: "/root/projectss",
+      autorestart: true,
+      watch: false,
+      max_memory_restart: "200M",
+      max_restarts: 10,
+      min_uptime: "10s",
+      restart_delay: 4000,
+      env: {
+        PYTHONUNBUFFERED: "1",
+        PYTHONIOENCODING: "utf-8",
+        PYTHONPATH: "/root/projectss"
+      },
+      error_file: "/root/projectss/logs/crosspost-error.log",
+      out_file: "/root/projectss/logs/crosspost-out.log",
+      log_date_format: "YYYY-MM-DD HH:mm:ss Z",
+      merge_logs: true,
+      time: true
     }
   ]
 };

@@ -42,6 +42,9 @@ from tenacity import retry, stop_after_attempt, wait_exponential, retry_if_excep
 from dotenv import load_dotenv
 from difflib import SequenceMatcher
 
+# ✅ DIGEST GENERATOR — для ежедневных дайджестов
+from shared import DigestGenerator, schedule_digest_for_category
+
 try:
     import pymorphy3
     MORPHY = pymorphy3.MorphAnalyzer()
@@ -253,6 +256,8 @@ class BotConfig(BaseSettings):
     db_path: str = "cinema_memory.db"
     min_delay_between_posts: int = 1700
     domain_min_delay: float = 1.2
+
+    autopost_enabled: bool = True  # ✅ Для дайджестов
 
     fuzzy_threshold: float = 0.85
     duplicate_check_hours: int = 24  # Кино-новости живут дольше — проверяем за 24 часа
@@ -1368,7 +1373,7 @@ class CachedLLMClient:
 
         # ✅ УБРАНА ��ЛОКИРОВКА 2026 года �� это текущий год!
         # Новости с актуальной датой (2026) должны проходить
-        # Блокируем только явные фейки типа "в 2026 году" в будущем контексте
+        # Блокируем только явные фейки ти��а "в 2026 году" в будущем контексте
         # Но это уже обрабатывается через LLM проверку
 
         return False
@@ -2548,6 +2553,17 @@ async def main():
     llm = CachedLLMClient()
     alert_manager = AlertManager(config.tg_token)
     duplicate_detector = DuplicateDetector()
+
+    # ✅ ЗАПУСК ПЛАНИРОВЩИКА ДАЙДЖЕСТОВ (ежедневно в 23:00)
+    digest_task = None
+    if config.autopost_enabled:
+        try:
+            digest_task = asyncio.create_task(
+                schedule_digest_for_category(llm, alert_manager.telegram, config, "cinema", hour=23)
+            )
+            logger.info("✅ Планировщик дайджестов запущен (23:00 daily)")
+        except Exception as e:
+            logger.warning(f"⚠️ Не удалось запустить планировщик дайджестов: {e}")
     
     logger.info("=" * 60)
     logger.info("🚀 @Film_orbita PRODUCTION 2026 — OPTIMIZED")

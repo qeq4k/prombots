@@ -30,14 +30,14 @@ class CrosspostConfig:
     router_api_key: str = field(default_factory=lambda: os.getenv("ROUTER_API_KEY", ""))
     llm_base_url: str = "https://routerai.ru/v1"
     llm_model_analyze: str = "openai/gpt-oss-20b"  # Для анализа
-    llm_model_adapt: str = "openai/gpt-oss-120b"   # Для адаптации текста
+    llm_model_adapt: str = "openai/gpt-oss-20b"   # Для адаптации текста
     
     # Настройки анализа
     analyze_delay_seconds: int = 60  # Задержка перед анализом (даём посту устояться)
     max_post_age_hours: int = 24     # Не анализируем посты старше 24 часов
     
     # Настройки публикации
-    auto_publish: bool = False       # Если True — публиковать без модерации
+    auto_publish: bool = True       # Если True — публиковать без модерации
     min_interest_score: int = 60     # Минимальный интерес (0-100) для кросс-поста
     
     # Интервалы между кросс-постами (минуты)

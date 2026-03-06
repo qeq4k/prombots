@@ -89,6 +89,17 @@ except Exception as e:
     logger.warning(f"⚠️ Prometheus metrics error: {e}")
     prom_metrics = None
 
+# ============ CROSSPOST INTEGRATION ============
+crossposter_service = None
+CROSSPOST_ENABLED = True
+try:
+    from crosspost.crossposter import crossposter as crossposter_service
+    logger.info("✅ Crosspost сервис загружен")
+except ImportError as e:
+    logger.warning(f"⚠️ Crosspost сервис не загружен: {e}")
+    CROSSPOST_ENABLED = False
+    crossposter_service = None
+
 load_dotenv()
 
 # ============ ИМПОРТ ИЗ SHARED PACKAGE ============
@@ -191,6 +202,10 @@ class BotHandler:
         elif channel_id == config.tg_channel_cinema:
             return "cinema"
         return ""
+    
+    def _get_channel_key(self, channel_id: str) -> str:
+        """✅ Возвращает ключ канала (politics/economy/cinema) для crosspost"""
+        return self._get_category(channel_id)
 
     def _get_content_hash(self, text: str, channel_id: str) -> str:
         normalized = normalize_text_for_dedup(text)
@@ -343,6 +358,17 @@ class BotHandler:
                     await delete_draft(draft_path)
                     self._processed_drafts.add(post_id)
                     logger.info(f"✅ Автопост опубликован: {post_id}")
+                    
+                    # ✅ CROSSPOST: Отправляем на анализ для кросс-постинга
+                    if CROSSPOST_ENABLED and crossposter_service:
+                        try:
+                            await crossposter_service.analyze_and_queue(
+                                post_text=draft.text,
+                                source_channel=self._get_channel_key(draft.channel_id),
+                                post_id=post_id
+                            )
+                        except Exception as e:
+                            logger.warning(f"⚠️ Crosspost анализ ошибки: {e}")
                 elif result == "Дубликат":
                     logger.debug(f"🗑️ Дубликат удалён: {post_id}")
                     await delete_draft(draft_path)
@@ -459,24 +485,36 @@ class BotHandler:
         if not draft_path.exists():
             await self.telegram.send_message(chat_id, f"❌ Черновик <code>{post_id}</code> не найден")
             return
-        
+
         draft = await read_draft(draft_path)
         if not draft:
             return
-        
+
         if not channel_id or channel_id in ("undefined", ""):
             channel_id = draft.channel_id
-        
+
         success, result = await self.publish_post(draft.text, channel_id, draft.photo)
-        
+
         await self.telegram.send_message(
             chat_id,
             f"{'✅' if success else '❌'} {result}\nПост: <code>{post_id}</code>\nКанал: <code>{channel_id}</code>"
         )
-        
+
         if success:
             await delete_draft(draft_path)
             logger.info(f"✅ Опубликован {post_id} → {channel_id}")
+            
+            # ✅ CROSSPOST: Отправляем на анализ
+            if CROSSPOST_ENABLED and crossposter_service:
+                try:
+                    channel_key = self._get_channel_key(channel_id)
+                    await crossposter_service.analyze_and_queue(
+                        post_text=draft.text,
+                        source_channel=channel_key,
+                        post_id=post_id
+                    )
+                except Exception as e:
+                    logger.warning(f"⚠️ Crosspost анализ ошибки: {e}")
 
     async def handle_edit_button(self, chat_id: int, post_id: str, draft_path: Path, msg_id: Optional[int]):
         """✏️ Редактирование поста"""

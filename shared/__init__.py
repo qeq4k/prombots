@@ -641,4 +641,15 @@ __all__ = [
     # Global dedup check
     "check_global_dedup_available",
     "require_global_dedup",
+    # Digest Generator
+    "DigestGenerator",
+    "create_digest_for_category",
+    "schedule_digest_for_category",
 ]
+
+# Import digest module
+from shared.digest import (
+    DigestGenerator,
+    create_digest_for_category,
+    schedule_digest_for_category,
+)

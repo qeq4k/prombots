@@ -41,6 +41,9 @@ from tenacity import retry, stop_after_attempt, wait_exponential, retry_if_excep
 from dotenv import load_dotenv
 from rapidfuzz import fuzz
 
+# ✅ DIGEST GENERATOR — для ежедневных дайджестов
+from shared import DigestGenerator, schedule_digest_for_category
+
 # ✅ SINGLE INSTANCE LOCK - предотвращает запуск нескольких копий бота
 # Не используется при запуске через PM2 (PM2 сам управляет процессами)
 LOCK_FILE = Path("politika.lock")
@@ -301,6 +304,8 @@ class BotConfig(BaseSettings):
     db_path: str = "polit_memory.db"
     min_delay_between_posts: int = 600
     domain_min_delay: float = 1.2
+
+    autopost_enabled: bool = True  # ✅ Для дайджестов
 
     fuzzy_threshold: int = 85
     duplicate_check_hours: int = 72
@@ -2608,6 +2613,17 @@ async def main():
     llm = CachedLLMClient()
     alert_manager = AlertManager(config.tg_token)
     duplicate_detector = DuplicateDetector()
+
+    # ✅ ЗАПУСК ПЛАНИРОВЩИКА ДАЙДЖЕСТОВ (ежедневно в 22:00)
+    digest_task = None
+    if config.autopost_enabled:
+        try:
+            digest_task = asyncio.create_task(
+                schedule_digest_for_category(llm, alert_manager.telegram, config, "politics", hour=22)
+            )
+            logger.info("✅ Планировщик дайджестов запущен (22:00 daily)")
+        except Exception as e:
+            logger.warning(f"⚠️ Не удалось запустить планировщик дайджестов: {e}")
 
     logger.info("=" * 60)
     logger.info("🚀 @I_Politika PRODUCTION 2026")

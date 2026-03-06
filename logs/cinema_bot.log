@@ -31888,3 +31888,900 @@ Albe
 2026-03-06 19:37:15 | INFO    | ⏱️ Время обработки цикла: 32.77 сек
 2026-03-06 19:37:15 | INFO    | ✅ Опубликовано: 1
 2026-03-06 19:37:15 | INFO    | 😴 ☀️ ДЕНЬ | Следующий ци��л через 29 мин 35 сек
+2026-03-06 20:06:50 | INFO    | ============================================================
+2026-03-06 20:06:50 | INFO    | 🔄 Цикл #16 | ☀️ ДЕНЬ | 2026-03-06 20:06:50
+2026-03-06 20:06:50 | INFO    | ============================================================
+2026-03-06 20:06:50 | INFO    | 🔄 Загружаем 7 фидов...
+2026-03-06 20:06:50 | INFO    | ✅ www.kinonews.ru: 30 записей
+2026-03-06 20:06:50 | INFO    | ✅ www.kg-portal.ru: 30 записей
+2026-03-06 20:06:50 | INFO    | ✅ www.mirf.ru: 12 записей
+2026-03-06 20:06:51 | INFO    | ✅ www.intermedia.ru: 150 записей
+2026-03-06 20:06:52 | INFO    | ✅ variety.com: 10 записей
+2026-03-06 20:07:01 | INFO    | ✅ editorial.rottentomatoes.com: 35 записей
+2026-03-06 20:07:01 | WARNING | ❌ feeds.feedburner.com: Cannot connect to host feeds.feedburner.com:443 ss
+2026-03-06 20:07:01 | INFO    | 📊 Успешно загружено: 6/7
+2026-03-06 20:07:01 | INFO    | 📊 Отбрано 4 фидов из 4
+2026-03-06 20:07:01 | INFO    | 🔗 Дубликат по ссылке (< 24ч): Режиссер «Легенды о волках» показал тизер нового м
+2026-03-06 20:07:01 | INFO    | ✓ Скор: 3 (SUPER:0, HOT:0, Ключ:1, Возраст:0.2ч): James G. Robinson, Morgan Creek Co-Founder, Dies at 90
+2026-03-06 20:07:02 | INFO    | ✓ Скор: 7 (SUPER:0, HOT:1, Ключ:2, Возраст:0.4ч): Netflix Out as Investor in Meghan Markle Brand As Ever
+2026-03-06 20:07:02 | INFO    | ✓ Скор: 4 (SUPER:0, HOT:0, Ключ:2, Возраст:0.4ч): Ben Stiller Tells Trump’s White House to Remove ‘Tropic Thun
+2026-03-06 20:07:02 | INFO    | 🔗 Дубликат по ссылке (< 24ч): ‘Heated Rivalry’ Creator Jacob Tierney Says Season
+2026-03-06 20:07:02 | INFO    | ✓ Скор: 8 (SUPER:0, HOT:1, Ключ:3, Возраст:1.4ч): ‘Frankenstein’ Lead Oscar Isaac, ‘La Llorona’ Director Jayro
+2026-03-06 20:07:02 | INFO    | ✓ Скор: 6 (SUPER:0, HOT:1, Ключ:1, Возраст:1.5ч): ‘Bridesmaids’ Reunion Set for Oscars With Kristen Wiig, Maya
+2026-03-06 20:07:02 | INFO    | 🔗 Дубликат по ссылке (< 24ч): Green Apple Entertainment Signs Four-Film Deal wit
+2026-03-06 20:07:02 | INFO    | ✓ Скор: 1 (SUPER:0, HOT:0, Ключ:1, Возраст:2.1ч): "Охота на Голлума" станет началом новой трилогии "Властелин 
+2026-03-06 20:07:02 | INFO    | 🌟 Супер-горячая новость: звезда=100, процессы=1
+2026-03-06 20:07:02 | INFO    | 🔗 Дубликат по ссылке (< 24ч): Боевик с Киану Ривзом обрел исполнительницу главно
+2026-03-06 20:07:02 | INFO    | 🌟 Супер-горячая новость: звезда=100, процессы=2
+2026-03-06 20:07:02 | INFO    | 🔗 Дубликат по ссылке (< 24ч): Анонсирован следующий проект режиссера Квентина Та
+2026-03-06 20:07:02 | INFO    | ✓ Скор: 2 (SUPER:0, HOT:0, Ключ:2, Возраст:12.1ч): Венсан Кассель сыграет в четвертом сезоне сериала "Белый лот
+2026-03-06 20:07:02 | INFO    | 🌟 Супер-горячая новость: звезда=80, процессы=1
+2026-03-06 20:07:02 | INFO    | 🔗 Дубликат по ссылке (< 24ч): Уточнен график выхода фильма "Вольтрон" с Генри Ка
+2026-03-06 20:07:02 | INFO    | 🌟 Супер-горячая новость: звезда=80, процессы=1
+2026-03-06 20:07:02 | INFO    | 🔗 Дубликат по ссылке (< 24ч): Питер Джексон получит "Золотую пальмовую ветвь" в 
+2026-03-06 20:07:02 | INFO    | 🔗 Дубликат по ссылке (< 24ч): Netflix назначил Бена Аффлека консультантом по ИИ
+2026-03-06 20:07:03 | INFO    | 🔗 Дубликат по ссылке (< 24ч): Хоумлендер обретает бессмертие в трейлере сериала 
+2026-03-06 20:07:03 | INFO    | ✓ Скор: 2 (SUPER:0, HOT:0, Ключ:2, Возраст:13.6ч): Уточнен съемочный график фильма о Ганнибале с Дензелом Вашин
+2026-03-06 20:07:03 | INFO    | 🌟 Супер-горячая новость: звезда=100, процессы=1
+2026-03-06 20:07:03 | INFO    | 📊 Найдено записей: 8
+2026-03-06 20:07:03 | INFO    | 🏆 ТОП-1 новость: ‘Frankenstein’ Lead Oscar Isaac, ‘La Llorona’ Director Jayro Bustamant (score=8)
+2026-03-06 20:07:03 | INFO    | 🏆 ТОП-1 для обработки: ‘Frankenstein’ Lead Oscar Isaac, ‘La Llorona’ Director Jayro Bustamant
+2026-03-06 20:07:03 | INFO    | 🌍 Английский текст — перевод (Mistral)...
+2026-03-06 20:07:09 | INFO    | HTTP Request: POST https://routerai.ru/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-06 20:07:09 | INFO    | ✅ Перевод выполнен: 823 символов
+2026-03-06 20:07:09 | INFO    | ✅ Перевод выполнен: 823 символов
+2026-03-06 20:07:09 | INFO    | ⚡ Автоодобрено (HOT тема): ‘Frankenstein’ Lead Oscar Isaac, ‘La Llorona’ Director Jayro
+2026-03-06 20:07:18 | INFO    | HTTP Request: POST https://routerai.ru/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-06 20:07:18 | INFO    | ✅ Генерация прошла все проверки: 1131 символов
+2026-03-06 20:07:18 | INFO    | 📤 Попытка отправки 1/3
+2026-03-06 20:07:18 | INFO    | ✅ Пост отправлен в предложку (ID: 8b5f8796c43c5ee1)
+2026-03-06 20:07:18 | INFO    | ✅ ТОП-1 новость отправлена в предложку
+2026-03-06 20:07:18 | INFO    | ⏱️ Время обработки цикла: 27.98 сек
+2026-03-06 20:07:18 | INFO    | ✅ Опубликовано: 1
+2026-03-06 20:07:18 | INFO    | 😴 ☀️ ДЕНЬ | Следующий ци��л через 25 мин 10 сек
+2026-03-06 20:10:31 | INFO    | 🛑 Получен сигнал остановки: 2
+2026-03-06 20:10:51 | INFO    | ✅ Глобальная дедупликация включена
+2026-03-06 20:10:52 | INFO    | 📊 Prometheus метрики запущены на порту http://localhost:8002/metrics (bot=cinema)
+2026-03-06 20:10:52 | INFO    | ✅ Prometheus метрики запущены на порту 8002
+2026-03-06 20:10:53 | INFO    | ✅ Локальная БД инициализирована
+2026-03-06 20:10:53 | INFO    | ✅ Глобальная БД дедупликации инициализирована
+2026-03-06 20:10:55 | INFO    | 💾 Загружен кэш: 421 записей
+2026-03-06 20:10:55 | INFO    | ============================================================
+2026-03-06 20:10:55 | INFO    | 🚀 @Film_orbita PRODUCTION 2026 — OPTIMIZED
+2026-03-06 20:10:55 | INFO    |    Модель: openai/gpt-oss-20b
+2026-03-06 20:10:55 | INFO    |    Лимит: 48 постов/день, 3/цикл
+2026-03-06 20:10:55 | INFO    |    Фидов за цикл: 4 из 7
+2026-03-06 20:10:55 | INFO    |    ⚡ Автоодобрение: 1+ HOT слово
+2026-03-06 20:10:55 | INFO    |    🔄 Fuzzy дубликаты: порог 85%
+2026-03-06 20:10:55 | INFO    |    💾 Кэш��рование: 421 записей
+2026-03-06 20:10:55 | INFO    |    🚫 Защита от выдумок: ВКЛ
+2026-03-06 20:10:55 | INFO    |    🕒 Приоритет свежести: <2 часов
+2026-03-06 20:10:55 | INFO    |    🚫 Чёрный список: 1 доменов
+2026-03-06 20:10:55 | INFO    |    🌍 Глобальная дедупликация: ✅ ВКЛ
+2026-03-06 20:10:55 | INFO    |    ☀️ ДЕНЬ: 20-40 мин
+2026-03-06 20:10:55 | INFO    |    🌙 НОЧЬ: 40-50 мин
+2026-03-06 20:10:55 | INFO    | ============================================================
+2026-03-06 20:10:55 | INFO    | ============================================================
+2026-03-06 20:10:55 | INFO    | 🔄 Цикл #1 | ☀️ ДЕНЬ | 2026-03-06 20:10:55
+2026-03-06 20:10:55 | INFO    | ============================================================
+2026-03-06 20:10:55 | INFO    | 🔄 Загружаем 7 фидов...
+2026-03-06 20:10:55 | INFO    | ✅ www.kinonews.ru: 30 записей
+2026-03-06 20:10:56 | INFO    | ✅ variety.com: 10 записей
+2026-03-06 20:10:57 | INFO    | ✅ www.intermedia.ru: 150 записей
+2026-03-06 20:10:57 | INFO    | ✅ www.mirf.ru: 12 записей
+2026-03-06 20:11:25 | INFO    | ✅ editorial.rottentomatoes.com: 35 записей
+2026-03-06 20:11:25 | WARNING | ⏱️ www.kg-portal.ru: таймаут
+2026-03-06 20:11:25 | WARNING | ⏱️ feeds.feedburner.com: таймаут
+2026-03-06 20:11:25 | INFO    | 📊 Успешно загружено: 5/7
+2026-03-06 20:11:25 | INFO    | 📊 Отбрано 4 фидов из 4
+2026-03-06 20:11:29 | INFO    | ✓ Скор: 3 (SUPER:0, HOT:0, Ключ:1, Возраст:0.2ч): James G. Robinson, Morgan Creek Co-Founder, Dies at 90
+2026-03-06 20:11:29 | INFO    | ✓ Скор: 7 (SUPER:0, HOT:1, Ключ:2, Возраст:0.5ч): Netflix Out as Investor in Meghan Markle Brand As Ever
+2026-03-06 20:11:29 | INFO    | ✓ Скор: 4 (SUPER:0, HOT:0, Ключ:2, Возраст:0.5ч): Ben Stiller Tells Trump’s White House to Remove ‘Tropic Thun
+2026-03-06 20:11:29 | INFO    | 🔗 Дубликат по ссылке (< 24ч): ‘Heated Rivalry’ Creator Jacob Tierney Says Season
+2026-03-06 20:11:30 | INFO    | 🔗 Дубликат по ссылке (< 24ч): ‘Frankenstein’ Lead Oscar Isaac, ‘La Llorona’ Dire
+2026-03-06 20:11:30 | INFO    | ✓ Скор: 6 (SUPER:0, HOT:1, Ключ:1, Возраст:1.5ч): ‘Bridesmaids’ Reunion Set for Oscars With Kristen Wiig, Maya
+2026-03-06 20:11:30 | INFO    | 🔗 Дубликат по ссылке (< 24ч): Green Apple Entertainment Signs Four-Film Deal wit
+2026-03-06 20:11:31 | INFO    | 🔗 Дубликат по ссылке (< 24ч): Наркодилеров ждет «Возмездие» на НТВ
+2026-03-06 20:11:31 | INFO    | ✓ Скор: 3 (SUPER:0, HOT:0, Ключ:3, Возраст:5.2ч): Карла Гуджино, Хэмиш Линклейтер и Кейт Сигел снимаются в нов
+2026-03-06 20:11:32 | INFO    | ✓ Скор: 4 (SUPER:0, HOT:1, Ключ:1, Возраст:5.6ч): Сюзи Кватро выпустила песню «Little Miss Lovely» из нового а
+2026-03-06 20:11:32 | INFO    | ✓ Скор: 4 (SUPER:0, HOT:1, Ключ:1, Возраст:5.8ч): «Мегаполис» подарил новую жизнь песне «Женское сердце»
+2026-03-06 20:11:32 | INFO    | ✓ Скор: 4 (SUPER:0, HOT:1, Ключ:1, Возраст:6.0ч): «Танцы минус» представили сборник ремиксов
+2026-03-06 20:11:32 | INFO    | 🔗 Дубликат по ссылке (< 24ч): «#ВАМЛЮБИМЫЕ»: весенняя премьера от Института подд
+2026-03-06 20:11:33 | INFO    | ✓ Скор: 1 (SUPER:0, HOT:0, Ключ:1, Возраст:7.4ч): Надя Терешкевич и Венсан Кассель снимутся в новом сезоне «Бе
+2026-03-06 20:11:34 | INFO    | ✓ Скор: 1 (SUPER:0, HOT:0, Ключ:1, Возраст:7.7ч): Ирина Апексимова получила награду от Сергея Собянина
+2026-03-06 20:11:34 | INFO    | 🔗 Дубликат по ссылке (< 24ч): Режиссер «Легенды о волках» показал тизер нового м
+2026-03-06 20:11:34 | INFO    | 📊 Найдено записей: 10
+2026-03-06 20:11:34 | INFO    | 🏆 ТОП-1 новость: Netflix Out as Investor in Meghan Markle Brand As Ever (score=7)
+2026-03-06 20:11:34 | INFO    | 🏆 ТОП-1 для обработки: Netflix Out as Investor in Meghan Markle Brand As Ever
+2026-03-06 20:11:34 | INFO    | 🌍 Английский текст — перевод (Mistral)...
+2026-03-06 20:11:40 | INFO    | HTTP Request: POST https://routerai.ru/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-06 20:11:40 | INFO    | ✅ Перевод выполнен: 676 символов
+2026-03-06 20:11:40 | INFO    | ✅ Перевод выполнен: 676 символов
+2026-03-06 20:11:40 | INFO    | ⚡ Автоодобрено (HOT тема): Netflix Out as Investor in Meghan Markle Brand As Ever
+2026-03-06 20:11:52 | INFO    | HTTP Request: POST https://routerai.ru/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-06 20:11:52 | INFO    | ✅ Генерация прошла все проверки: 783 символов
+2026-03-06 20:11:52 | INFO    | 📤 Попытка отправки 1/3
+2026-03-06 20:11:52 | INFO    | ✅ Пост отправлен в предложку (ID: 96a1483ffda2750a)
+2026-03-06 20:11:52 | INFO    | ✅ ТОП-1 новость отправлена в предложку
+2026-03-06 20:11:52 | INFO    | ⏱️ Время обработки цикла: 56.83 сек
+2026-03-06 20:11:52 | INFO    | ✅ Опубликовано: 1
+2026-03-06 20:11:52 | INFO    | 😴 ☀️ ДЕНЬ | Следующий ци��л через 27 мин 53 сек
+2026-03-06 20:28:34 | INFO    | ✅ Глобальная дедупликация включена
+2026-03-06 20:28:34 | WARNING | ⚠️ Порт 8002 уже используется — метрики отключены (возможно запущен другой экземпляр)
+2026-03-06 20:28:34 | INFO    | ✅ Prometheus метрики запущены на порту 8002
+2026-03-06 20:28:34 | INFO    | 🛑 Graceful shutdown Prometheus метрик...
+2026-03-06 20:28:34 | INFO    | ✅ Prometheus метрики остановлены
+2026-03-06 20:28:50 | INFO    | 🛑 Получен сигнал остановки: 2
+2026-03-06 20:29:02 | INFO    | ✅ Глобальная дедупликация включена
+2026-03-06 20:29:02 | INFO    | 📊 Prometheus метрики запущены на порту http://localhost:8002/metrics (bot=cinema)
+2026-03-06 20:29:02 | INFO    | ✅ Prometheus метрики запущены на порту 8002
+2026-03-06 20:29:02 | INFO    | ✅ Локальная БД инициализирована
+2026-03-06 20:29:02 | INFO    | ✅ Глобальная БД дедупликации инициализирована
+2026-03-06 20:29:03 | INFO    | 💾 Загружен кэш: 421 записей
+2026-03-06 20:29:03 | CRITICAL | 💥 Критическая ошибка: 'BotConfig' object has no attribute 'autopost_enabled'
+Traceback (most recent call last):
+  File "/root/projectss/movie.py", line 2750, in <module>
+    asyncio.run(main())
+  File "/usr/lib/python3.12/asyncio/runners.py", line 194, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/root/projectss/movie.py", line 2557, in main
+    if config.autopost_enabled:
+       ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/pydantic/main.py", line 1026, in __getattr__
+    raise AttributeError(f'{type(self).__name__!r} object has no attribute {item!r}')
+AttributeError: 'BotConfig' object has no attribute 'autopost_enabled'
+2026-03-06 20:29:03 | INFO    | 🛑 Graceful shutdown Prometheus метрик...
+2026-03-06 20:29:03 | INFO    |    📊 Остановка сервера на порту 8002
+2026-03-06 20:29:03 | INFO    | ✅ Prometheus метрики остановлены
+2026-03-06 20:29:16 | INFO    | ✅ Глобальная дедупликация включена
+2026-03-06 20:29:16 | INFO    | 📊 Prometheus метрики запущены на порту http://localhost:8002/metrics (bot=cinema)
+2026-03-06 20:29:16 | INFO    | ✅ Prometheus метрики запущены на порту 8002
+2026-03-06 20:29:16 | INFO    | ✅ Локальная БД инициализирована
+2026-03-06 20:29:16 | INFO    | ✅ Глобальная БД дедупликации инициализирована
+2026-03-06 20:29:17 | INFO    | 💾 Загружен кэш: 421 записей
+2026-03-06 20:29:17 | CRITICAL | 💥 Критическая ошибка: 'BotConfig' object has no attribute 'autopost_enabled'
+Traceback (most recent call last):
+  File "/root/projectss/movie.py", line 2750, in <module>
+    asyncio.run(main())
+  File "/usr/lib/python3.12/asyncio/runners.py", line 194, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/root/projectss/movie.py", line 2557, in main
+    if config.autopost_enabled:
+       ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/pydantic/main.py", line 1026, in __getattr__
+    raise AttributeError(f'{type(self).__name__!r} object has no attribute {item!r}')
+AttributeError: 'BotConfig' object has no attribute 'autopost_enabled'
+2026-03-06 20:29:17 | INFO    | 🛑 Graceful shutdown Prometheus метрик...
+2026-03-06 20:29:17 | INFO    |    📊 Остановка сервера на порту 8002
+2026-03-06 20:29:17 | INFO    | ✅ Prometheus метрики остановлены
+2026-03-06 20:29:32 | INFO    | ✅ Глобальная дедупликация включена
+2026-03-06 20:29:32 | INFO    | 📊 Prometheus метрики запущены на порту http://localhost:8002/metrics (bot=cinema)
+2026-03-06 20:29:32 | INFO    | ✅ Prometheus метрики запущены на порту 8002
+2026-03-06 20:29:32 | INFO    | ✅ Локальная БД инициализирована
+2026-03-06 20:29:32 | INFO    | ✅ Глобальная БД дедупликации инициализирована
+2026-03-06 20:29:32 | INFO    | 💾 Загружен кэш: 421 записей
+2026-03-06 20:29:32 | CRITICAL | 💥 Критическая ошибка: 'BotConfig' object has no attribute 'autopost_enabled'
+Traceback (most recent call last):
+  File "/root/projectss/movie.py", line 2750, in <module>
+    asyncio.run(main())
+  File "/usr/lib/python3.12/asyncio/runners.py", line 194, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/root/projectss/movie.py", line 2557, in main
+    if config.autopost_enabled:
+       ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/pydantic/main.py", line 1026, in __getattr__
+    raise AttributeError(f'{type(self).__name__!r} object has no attribute {item!r}')
+AttributeError: 'BotConfig' object has no attribute 'autopost_enabled'
+2026-03-06 20:29:32 | INFO    | 🛑 Graceful shutdown Prometheus метрик...
+2026-03-06 20:29:32 | INFO    |    📊 Остановка сервера на порту 8002
+2026-03-06 20:29:32 | INFO    | ✅ Prometheus метрики остановлены
+2026-03-06 20:29:46 | INFO    | ✅ Глобальная дедупликация включена
+2026-03-06 20:29:46 | INFO    | 📊 Prometheus метрики запущены на порту http://localhost:8002/metrics (bot=cinema)
+2026-03-06 20:29:46 | INFO    | ✅ Prometheus метрики запущены на порту 8002
+2026-03-06 20:29:46 | INFO    | ✅ Локальная БД инициализирована
+2026-03-06 20:29:46 | INFO    | ✅ Глобальная БД дедупликации инициализирована
+2026-03-06 20:29:46 | INFO    | 💾 Загружен кэш: 421 записей
+2026-03-06 20:29:46 | CRITICAL | 💥 Критическая ошибка: 'BotConfig' object has no attribute 'autopost_enabled'
+Traceback (most recent call last):
+  File "/root/projectss/movie.py", line 2750, in <module>
+    asyncio.run(main())
+  File "/usr/lib/python3.12/asyncio/runners.py", line 194, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/root/projectss/movie.py", line 2557, in main
+    if config.autopost_enabled:
+       ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/pydantic/main.py", line 1026, in __getattr__
+    raise AttributeError(f'{type(self).__name__!r} object has no attribute {item!r}')
+AttributeError: 'BotConfig' object has no attribute 'autopost_enabled'
+2026-03-06 20:29:46 | INFO    | 🛑 Graceful shutdown Prometheus метрик...
+2026-03-06 20:29:46 | INFO    |    📊 Остановка сервера на порту 8002
+2026-03-06 20:29:46 | INFO    | ✅ Prometheus метрики остановлены
+2026-03-06 20:29:59 | INFO    | ✅ Глобальная дедупликация включена
+2026-03-06 20:30:01 | INFO    | 📊 Prometheus метрики запущены на порту http://localhost:8002/metrics (bot=cinema)
+2026-03-06 20:30:01 | INFO    | ✅ Prometheus метрики запущены на порту 8002
+2026-03-06 20:30:01 | INFO    | ✅ Локальная БД инициализирована
+2026-03-06 20:30:01 | INFO    | ✅ Глобальная БД дедупликации инициализирована
+2026-03-06 20:30:02 | INFO    | 💾 Загружен кэш: 421 записей
+2026-03-06 20:30:02 | CRITICAL | 💥 Критическая ошибка: 'BotConfig' object has no attribute 'autopost_enabled'
+Traceback (most recent call last):
+  File "/root/projectss/movie.py", line 2750, in <module>
+    asyncio.run(main())
+  File "/usr/lib/python3.12/asyncio/runners.py", line 194, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/root/projectss/movie.py", line 2557, in main
+    if config.autopost_enabled:
+       ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/pydantic/main.py", line 1026, in __getattr__
+    raise AttributeError(f'{type(self).__name__!r} object has no attribute {item!r}')
+AttributeError: 'BotConfig' object has no attribute 'autopost_enabled'
+2026-03-06 20:30:02 | INFO    | 🛑 Graceful shutdown Prometheus метрик...
+2026-03-06 20:30:02 | INFO    |    📊 Остановка сервера на порту 8002
+2026-03-06 20:30:02 | INFO    | ✅ Prometheus метрики остановлены
+2026-03-06 20:30:13 | INFO    | ✅ Глобальная дедупликация включена
+2026-03-06 20:30:13 | INFO    | 📊 Prometheus метрики запущены на порту http://localhost:8002/metrics (bot=cinema)
+2026-03-06 20:30:13 | INFO    | ✅ Prometheus метрики запущены на порту 8002
+2026-03-06 20:30:13 | INFO    | ✅ Локальная БД инициализирована
+2026-03-06 20:30:13 | INFO    | ✅ Глобальная БД дедупликации инициализирована
+2026-03-06 20:30:14 | INFO    | 💾 Загружен кэш: 421 записей
+2026-03-06 20:30:14 | CRITICAL | 💥 Критическая ошибка: 'BotConfig' object has no attribute 'autopost_enabled'
+Traceback (most recent call last):
+  File "/root/projectss/movie.py", line 2750, in <module>
+    asyncio.run(main())
+  File "/usr/lib/python3.12/asyncio/runners.py", line 194, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/root/projectss/movie.py", line 2557, in main
+    if config.autopost_enabled:
+       ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/pydantic/main.py", line 1026, in __getattr__
+    raise AttributeError(f'{type(self).__name__!r} object has no attribute {item!r}')
+AttributeError: 'BotConfig' object has no attribute 'autopost_enabled'
+2026-03-06 20:30:14 | INFO    | 🛑 Graceful shutdown Prometheus метрик...
+2026-03-06 20:30:14 | INFO    |    📊 Остановка сервера на порту 8002
+2026-03-06 20:30:14 | INFO    | ✅ Prometheus метрики остановлены
+2026-03-06 20:30:23 | INFO    | ✅ Глобальная дедупликация включена
+2026-03-06 20:30:23 | INFO    | 📊 Prometheus метрики запущены на порту http://localhost:8002/metrics (bot=cinema)
+2026-03-06 20:30:23 | INFO    | ✅ Prometheus метрики запущены на порту 8002
+2026-03-06 20:30:23 | INFO    | ✅ Локальная БД инициализирована
+2026-03-06 20:30:23 | INFO    | ✅ Глобальная БД дедупликации инициализирована
+2026-03-06 20:30:23 | INFO    | 💾 Загружен кэш: 421 записей
+2026-03-06 20:30:23 | CRITICAL | 💥 Критическая ошибка: 'BotConfig' object has no attribute 'autopost_enabled'
+Traceback (most recent call last):
+  File "/root/projectss/movie.py", line 2750, in <module>
+    asyncio.run(main())
+  File "/usr/lib/python3.12/asyncio/runners.py", line 194, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/root/projectss/movie.py", line 2557, in main
+    if config.autopost_enabled:
+       ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/pydantic/main.py", line 1026, in __getattr__
+    raise AttributeError(f'{type(self).__name__!r} object has no attribute {item!r}')
+AttributeError: 'BotConfig' object has no attribute 'autopost_enabled'
+2026-03-06 20:30:23 | INFO    | 🛑 Graceful shutdown Prometheus метрик...
+2026-03-06 20:30:23 | INFO    |    📊 Остановка сервера на порту 8002
+2026-03-06 20:30:23 | INFO    | ✅ Prometheus метрики остановлены
+2026-03-06 20:30:38 | INFO    | ✅ Глобальная дедупликация включена
+2026-03-06 20:30:38 | INFO    | 📊 Prometheus метрики запущены на порту http://localhost:8002/metrics (bot=cinema)
+2026-03-06 20:30:38 | INFO    | ✅ Prometheus метрики запущены на порту 8002
+2026-03-06 20:30:38 | INFO    | ✅ Локальная БД инициализирована
+2026-03-06 20:30:38 | INFO    | ✅ Глобальная БД дедупликации инициализирована
+2026-03-06 20:30:38 | INFO    | 💾 Загружен кэш: 421 записей
+2026-03-06 20:30:38 | CRITICAL | 💥 Критическая ошибка: 'BotConfig' object has no attribute 'autopost_enabled'
+Traceback (most recent call last):
+  File "/root/projectss/movie.py", line 2750, in <module>
+    asyncio.run(main())
+  File "/usr/lib/python3.12/asyncio/runners.py", line 194, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/root/projectss/movie.py", line 2557, in main
+    if config.autopost_enabled:
+       ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/pydantic/main.py", line 1026, in __getattr__
+    raise AttributeError(f'{type(self).__name__!r} object has no attribute {item!r}')
+AttributeError: 'BotConfig' object has no attribute 'autopost_enabled'
+2026-03-06 20:30:38 | INFO    | 🛑 Graceful shutdown Prometheus метрик...
+2026-03-06 20:30:38 | INFO    |    📊 Остановка сервера на порту 8002
+2026-03-06 20:30:38 | INFO    | ✅ Prometheus метрики остановлены
+2026-03-06 20:30:53 | INFO    | ✅ Глобальная дедупликация включена
+2026-03-06 20:30:53 | INFO    | 📊 Prometheus метрики запущены на порту http://localhost:8002/metrics (bot=cinema)
+2026-03-06 20:30:53 | INFO    | ✅ Prometheus метрики запущены на порту 8002
+2026-03-06 20:30:53 | INFO    | ✅ Локальная БД инициализирована
+2026-03-06 20:30:53 | INFO    | ✅ Глобальная БД дедупликации инициализирована
+2026-03-06 20:30:54 | INFO    | 💾 Загружен кэш: 421 записей
+2026-03-06 20:30:54 | CRITICAL | 💥 Критическая ошибка: 'BotConfig' object has no attribute 'autopost_enabled'
+Traceback (most recent call last):
+  File "/root/projectss/movie.py", line 2750, in <module>
+    asyncio.run(main())
+  File "/usr/lib/python3.12/asyncio/runners.py", line 194, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/root/projectss/movie.py", line 2557, in main
+    if config.autopost_enabled:
+       ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/pydantic/main.py", line 1026, in __getattr__
+    raise AttributeError(f'{type(self).__name__!r} object has no attribute {item!r}')
+AttributeError: 'BotConfig' object has no attribute 'autopost_enabled'
+2026-03-06 20:30:54 | INFO    | 🛑 Graceful shutdown Prometheus метрик...
+2026-03-06 20:30:54 | INFO    |    📊 Остановка сервера на порту 8002
+2026-03-06 20:30:54 | INFO    | ✅ Prometheus метрики остановлены
+2026-03-06 20:31:09 | INFO    | ✅ Глобальная дедупликация включена
+2026-03-06 20:31:09 | INFO    | 📊 Prometheus метрики запущены на порту http://localhost:8002/metrics (bot=cinema)
+2026-03-06 20:31:09 | INFO    | ✅ Prometheus метрики запущены на порту 8002
+2026-03-06 20:31:09 | INFO    | ✅ Локальная БД инициализирована
+2026-03-06 20:31:09 | INFO    | ✅ Глобальная БД дедупликации инициализирована
+2026-03-06 20:31:10 | INFO    | 💾 Загружен кэш: 421 записей
+2026-03-06 20:31:10 | CRITICAL | 💥 Критическая ошибка: 'BotConfig' object has no attribute 'autopost_enabled'
+Traceback (most recent call last):
+  File "/root/projectss/movie.py", line 2750, in <module>
+    asyncio.run(main())
+  File "/usr/lib/python3.12/asyncio/runners.py", line 194, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/root/projectss/movie.py", line 2557, in main
+    if config.autopost_enabled:
+       ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/pydantic/main.py", line 1026, in __getattr__
+    raise AttributeError(f'{type(self).__name__!r} object has no attribute {item!r}')
+AttributeError: 'BotConfig' object has no attribute 'autopost_enabled'
+2026-03-06 20:31:10 | INFO    | 🛑 Graceful shutdown Prometheus метрик...
+2026-03-06 20:31:10 | INFO    |    📊 Остановка сервера на порту 8002
+2026-03-06 20:31:10 | INFO    | ✅ Prometheus метрики остановлены
+2026-03-06 20:31:24 | INFO    | ✅ Глобальная дедупликация включена
+2026-03-06 20:31:25 | INFO    | 📊 Prometheus метрики запущены на порту http://localhost:8002/metrics (bot=cinema)
+2026-03-06 20:31:25 | INFO    | ✅ Prometheus метрики запущены на порту 8002
+2026-03-06 20:31:25 | INFO    | ✅ Локальная БД инициализирована
+2026-03-06 20:31:25 | INFO    | ✅ Глобальная БД дедупликации инициализирована
+2026-03-06 20:31:27 | INFO    | 💾 Загружен кэш: 421 записей
+2026-03-06 20:31:27 | CRITICAL | 💥 Критическая ошибка: 'BotConfig' object has no attribute 'autopost_enabled'
+Traceback (most recent call last):
+  File "/root/projectss/movie.py", line 2750, in <module>
+    asyncio.run(main())
+  File "/usr/lib/python3.12/asyncio/runners.py", line 194, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/root/projectss/movie.py", line 2557, in main
+    if config.autopost_enabled:
+       ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/pydantic/main.py", line 1026, in __getattr__
+    raise AttributeError(f'{type(self).__name__!r} object has no attribute {item!r}')
+AttributeError: 'BotConfig' object has no attribute 'autopost_enabled'
+2026-03-06 20:31:27 | INFO    | 🛑 Graceful shutdown Prometheus метрик...
+2026-03-06 20:31:27 | INFO    |    📊 Остановка сервера на порту 8002
+2026-03-06 20:31:27 | INFO    | ✅ Prometheus метрики остановлены
+2026-03-06 20:31:45 | INFO    | ✅ Глобальная дедупликация включена
+2026-03-06 20:31:45 | INFO    | 📊 Prometheus метрики запущены на порту http://localhost:8002/metrics (bot=cinema)
+2026-03-06 20:31:45 | INFO    | ✅ Prometheus метрики запущены на порту 8002
+2026-03-06 20:31:45 | INFO    | ✅ Локальная БД инициализирована
+2026-03-06 20:31:45 | INFO    | ✅ Глобальная БД дедупликации инициализирована
+2026-03-06 20:31:47 | INFO    | 💾 Загружен кэш: 421 записей
+2026-03-06 20:31:47 | CRITICAL | 💥 Критическая ошибка: 'BotConfig' object has no attribute 'autopost_enabled'
+Traceback (most recent call last):
+  File "/root/projectss/movie.py", line 2750, in <module>
+    asyncio.run(main())
+  File "/usr/lib/python3.12/asyncio/runners.py", line 194, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/root/projectss/movie.py", line 2557, in main
+    if config.autopost_enabled:
+       ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/pydantic/main.py", line 1026, in __getattr__
+    raise AttributeError(f'{type(self).__name__!r} object has no attribute {item!r}')
+AttributeError: 'BotConfig' object has no attribute 'autopost_enabled'
+2026-03-06 20:31:47 | INFO    | 🛑 Graceful shutdown Prometheus метрик...
+2026-03-06 20:31:47 | INFO    |    📊 Остановка сервера на порту 8002
+2026-03-06 20:31:47 | INFO    | ✅ Prometheus метрики остановлены
+2026-03-06 20:31:58 | INFO    | ✅ Глобальная дедупликация включена
+2026-03-06 20:31:58 | INFO    | 📊 Prometheus метрики запущены на порту http://localhost:8002/metrics (bot=cinema)
+2026-03-06 20:31:58 | INFO    | ✅ Prometheus метрики запущены на порту 8002
+2026-03-06 20:31:58 | INFO    | ✅ Локальная БД инициализирована
+2026-03-06 20:31:58 | INFO    | ✅ Глобальная БД дедупликации инициализирована
+2026-03-06 20:31:58 | INFO    | 💾 Загружен кэш: 421 записей
+2026-03-06 20:31:58 | CRITICAL | 💥 Критическая ошибка: 'BotConfig' object has no attribute 'autopost_enabled'
+Traceback (most recent call last):
+  File "/root/projectss/movie.py", line 2750, in <module>
+    asyncio.run(main())
+  File "/usr/lib/python3.12/asyncio/runners.py", line 194, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/root/projectss/movie.py", line 2557, in main
+    if config.autopost_enabled:
+       ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/pydantic/main.py", line 1026, in __getattr__
+    raise AttributeError(f'{type(self).__name__!r} object has no attribute {item!r}')
+AttributeError: 'BotConfig' object has no attribute 'autopost_enabled'
+2026-03-06 20:31:59 | INFO    | 🛑 Graceful shutdown Prometheus метрик...
+2026-03-06 20:31:59 | INFO    |    📊 Остановка сервера на порту 8002
+2026-03-06 20:31:59 | INFO    | ✅ Prometheus метрики остановлены
+2026-03-06 20:32:13 | INFO    | ✅ Глобальная дедупликация включена
+2026-03-06 20:32:14 | INFO    | 📊 Prometheus метрики запущены на порту http://localhost:8002/metrics (bot=cinema)
+2026-03-06 20:32:14 | INFO    | ✅ Prometheus метрики запущены на порту 8002
+2026-03-06 20:32:15 | INFO    | ✅ Локальная БД инициализирована
+2026-03-06 20:32:15 | INFO    | ✅ Глобальная БД дедупликации инициализирована
+2026-03-06 20:32:15 | INFO    | 💾 Загружен кэш: 421 записей
+2026-03-06 20:32:15 | CRITICAL | 💥 Критическая ошибка: 'BotConfig' object has no attribute 'autopost_enabled'
+Traceback (most recent call last):
+  File "/root/projectss/movie.py", line 2750, in <module>
+    asyncio.run(main())
+  File "/usr/lib/python3.12/asyncio/runners.py", line 194, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/root/projectss/movie.py", line 2557, in main
+    if config.autopost_enabled:
+       ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/pydantic/main.py", line 1026, in __getattr__
+    raise AttributeError(f'{type(self).__name__!r} object has no attribute {item!r}')
+AttributeError: 'BotConfig' object has no attribute 'autopost_enabled'
+2026-03-06 20:32:16 | INFO    | 🛑 Graceful shutdown Prometheus метрик...
+2026-03-06 20:32:16 | INFO    |    📊 Остановка сервера на порту 8002
+2026-03-06 20:32:16 | INFO    | ✅ Prometheus метрики остановлены
+2026-03-06 20:32:30 | INFO    | ✅ Глобальная дедупликация включена
+2026-03-06 20:32:30 | INFO    | 📊 Prometheus метрики запущены на порту http://localhost:8002/metrics (bot=cinema)
+2026-03-06 20:32:30 | INFO    | ✅ Prometheus метрики запущены на порту 8002
+2026-03-06 20:32:30 | INFO    | ✅ Локальная БД инициализирована
+2026-03-06 20:32:30 | INFO    | ✅ Глобальная БД дедупликации инициализирована
+2026-03-06 20:32:32 | INFO    | 💾 Загружен кэш: 421 записей
+2026-03-06 20:32:32 | CRITICAL | 💥 Критическая ошибка: 'BotConfig' object has no attribute 'autopost_enabled'
+Traceback (most recent call last):
+  File "/root/projectss/movie.py", line 2750, in <module>
+    asyncio.run(main())
+  File "/usr/lib/python3.12/asyncio/runners.py", line 194, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/root/projectss/movie.py", line 2557, in main
+    if config.autopost_enabled:
+       ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/pydantic/main.py", line 1026, in __getattr__
+    raise AttributeError(f'{type(self).__name__!r} object has no attribute {item!r}')
+AttributeError: 'BotConfig' object has no attribute 'autopost_enabled'
+2026-03-06 20:32:32 | INFO    | 🛑 Graceful shutdown Prometheus метрик...
+2026-03-06 20:32:32 | INFO    |    📊 Остановка сервера на порту 8002
+2026-03-06 20:32:32 | INFO    | ✅ Prometheus метрики остановлены
+2026-03-06 20:32:43 | INFO    | ✅ Глобальная дедупликация включена
+2026-03-06 20:32:44 | INFO    | 📊 Prometheus метрики запущены на порту http://localhost:8002/metrics (bot=cinema)
+2026-03-06 20:32:44 | INFO    | ✅ Prometheus метрики запущены на порту 8002
+2026-03-06 20:32:44 | INFO    | ✅ Локальная БД инициализирована
+2026-03-06 20:32:44 | INFO    | ✅ Глобальная БД дедупликации инициализирована
+2026-03-06 20:32:47 | INFO    | 💾 Загружен кэш: 421 записей
+2026-03-06 20:32:47 | CRITICAL | 💥 Критическая ошибка: 'BotConfig' object has no attribute 'autopost_enabled'
+Traceback (most recent call last):
+  File "/root/projectss/movie.py", line 2750, in <module>
+    asyncio.run(main())
+  File "/usr/lib/python3.12/asyncio/runners.py", line 194, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/root/projectss/movie.py", line 2557, in main
+    if config.autopost_enabled:
+       ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/pydantic/main.py", line 1026, in __getattr__
+    raise AttributeError(f'{type(self).__name__!r} object has no attribute {item!r}')
+AttributeError: 'BotConfig' object has no attribute 'autopost_enabled'
+2026-03-06 20:32:47 | INFO    | 🛑 Graceful shutdown Prometheus метрик...
+2026-03-06 20:32:47 | INFO    |    📊 Остановка сервера на порту 8002
+2026-03-06 20:32:47 | INFO    | ✅ Prometheus метрики остановлены
+2026-03-06 20:32:59 | INFO    | ✅ Глобальная дедупликация включена
+2026-03-06 20:32:59 | INFO    | 📊 Prometheus метрики запущены на порту http://localhost:8002/metrics (bot=cinema)
+2026-03-06 20:32:59 | INFO    | ✅ Prometheus метрики запущены на порту 8002
+2026-03-06 20:33:00 | INFO    | ✅ Локальная БД инициализирована
+2026-03-06 20:33:00 | INFO    | ✅ Глобальная БД дедупликации инициализирована
+2026-03-06 20:33:01 | INFO    | 💾 Загружен кэш: 421 записей
+2026-03-06 20:33:01 | CRITICAL | 💥 Критическая ошибка: 'BotConfig' object has no attribute 'autopost_enabled'
+Traceback (most recent call last):
+  File "/root/projectss/movie.py", line 2750, in <module>
+    asyncio.run(main())
+  File "/usr/lib/python3.12/asyncio/runners.py", line 194, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/root/projectss/movie.py", line 2557, in main
+    if config.autopost_enabled:
+       ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/pydantic/main.py", line 1026, in __getattr__
+    raise AttributeError(f'{type(self).__name__!r} object has no attribute {item!r}')
+AttributeError: 'BotConfig' object has no attribute 'autopost_enabled'
+2026-03-06 20:33:03 | INFO    | 🛑 Graceful shutdown Prometheus метрик...
+2026-03-06 20:33:03 | INFO    |    📊 Остановка сервера на порту 8002
+2026-03-06 20:33:03 | INFO    | ✅ Prometheus метрики остановлены
+2026-03-06 20:33:12 | INFO    | ✅ Глобальная дедупликация включена
+2026-03-06 20:33:12 | INFO    | 📊 Prometheus метрики запущены на порту http://localhost:8002/metrics (bot=cinema)
+2026-03-06 20:33:12 | INFO    | ✅ Prometheus метрики запущены на порту 8002
+2026-03-06 20:33:12 | INFO    | ✅ Локальная БД инициализирована
+2026-03-06 20:33:12 | INFO    | ✅ Глобальная БД дедупликации инициализирована
+2026-03-06 20:33:12 | INFO    | 💾 Загружен кэш: 421 записей
+2026-03-06 20:33:12 | CRITICAL | 💥 Критическая ошибка: 'BotConfig' object has no attribute 'autopost_enabled'
+Traceback (most recent call last):
+  File "/root/projectss/movie.py", line 2750, in <module>
+    asyncio.run(main())
+  File "/usr/lib/python3.12/asyncio/runners.py", line 194, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/root/projectss/movie.py", line 2557, in main
+    if config.autopost_enabled:
+       ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/pydantic/main.py", line 1026, in __getattr__
+    raise AttributeError(f'{type(self).__name__!r} object has no attribute {item!r}')
+AttributeError: 'BotConfig' object has no attribute 'autopost_enabled'
+2026-03-06 20:33:12 | INFO    | 🛑 Graceful shutdown Prometheus метрик...
+2026-03-06 20:33:12 | INFO    |    📊 Остановка сервера на порту 8002
+2026-03-06 20:33:12 | INFO    | ✅ Prometheus метрики остановлены
+2026-03-06 20:33:23 | INFO    | ✅ Глобальная дедупликация включена
+2026-03-06 20:33:23 | INFO    | 📊 Prometheus метрики запущены на порту http://localhost:8002/metrics (bot=cinema)
+2026-03-06 20:33:23 | INFO    | ✅ Prometheus метрики запущены на порту 8002
+2026-03-06 20:33:23 | INFO    | ✅ Локальная БД инициализирована
+2026-03-06 20:33:23 | INFO    | ✅ Глобальная БД дедупликации инициализирована
+2026-03-06 20:33:23 | INFO    | 💾 Загружен кэш: 421 записей
+2026-03-06 20:33:23 | CRITICAL | 💥 Критическая ошибка: 'BotConfig' object has no attribute 'autopost_enabled'
+Traceback (most recent call last):
+  File "/root/projectss/movie.py", line 2750, in <module>
+    asyncio.run(main())
+  File "/usr/lib/python3.12/asyncio/runners.py", line 194, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/root/projectss/movie.py", line 2557, in main
+    if config.autopost_enabled:
+       ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/pydantic/main.py", line 1026, in __getattr__
+    raise AttributeError(f'{type(self).__name__!r} object has no attribute {item!r}')
+AttributeError: 'BotConfig' object has no attribute 'autopost_enabled'
+2026-03-06 20:33:24 | INFO    | 🛑 Graceful shutdown Prometheus метрик...
+2026-03-06 20:33:24 | INFO    |    📊 Остановка сервера на порту 8002
+2026-03-06 20:33:24 | INFO    | ✅ Prometheus метрики остановлены
+2026-03-06 20:33:39 | INFO    | ✅ Глобальная дедупликация включена
+2026-03-06 20:33:39 | INFO    | 📊 Prometheus метрики запущены на порту http://localhost:8002/metrics (bot=cinema)
+2026-03-06 20:33:39 | INFO    | ✅ Prometheus метрики запущены на порту 8002
+2026-03-06 20:33:39 | INFO    | ✅ Локальная БД инициализирована
+2026-03-06 20:33:39 | INFO    | ✅ Глобальная БД дедупликации инициализирована
+2026-03-06 20:33:40 | INFO    | 💾 Загружен кэш: 421 записей
+2026-03-06 20:33:40 | CRITICAL | 💥 Критическая ошибка: 'BotConfig' object has no attribute 'autopost_enabled'
+Traceback (most recent call last):
+  File "/root/projectss/movie.py", line 2750, in <module>
+    asyncio.run(main())
+  File "/usr/lib/python3.12/asyncio/runners.py", line 194, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/root/projectss/movie.py", line 2557, in main
+    if config.autopost_enabled:
+       ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/pydantic/main.py", line 1026, in __getattr__
+    raise AttributeError(f'{type(self).__name__!r} object has no attribute {item!r}')
+AttributeError: 'BotConfig' object has no attribute 'autopost_enabled'
+2026-03-06 20:33:40 | INFO    | 🛑 Graceful shutdown Prometheus метрик...
+2026-03-06 20:33:40 | INFO    |    📊 Остановка сервера на порту 8002
+2026-03-06 20:33:40 | INFO    | ✅ Prometheus метрики остановлены
+2026-03-06 20:33:52 | INFO    | ✅ Глобальная дедупликация включена
+2026-03-06 20:33:52 | INFO    | 📊 Prometheus метрики запущены на порту http://localhost:8002/metrics (bot=cinema)
+2026-03-06 20:33:52 | INFO    | ✅ Prometheus метрики запущены на порту 8002
+2026-03-06 20:33:52 | INFO    | ✅ Локальная БД инициализирована
+2026-03-06 20:33:52 | INFO    | ✅ Глобальная БД дедупликации инициализирована
+2026-03-06 20:33:53 | INFO    | 💾 Загружен кэш: 421 записей
+2026-03-06 20:33:53 | CRITICAL | 💥 Критическая ошибка: 'BotConfig' object has no attribute 'autopost_enabled'
+Traceback (most recent call last):
+  File "/root/projectss/movie.py", line 2750, in <module>
+    asyncio.run(main())
+  File "/usr/lib/python3.12/asyncio/runners.py", line 194, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/root/projectss/movie.py", line 2557, in main
+    if config.autopost_enabled:
+       ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/pydantic/main.py", line 1026, in __getattr__
+    raise AttributeError(f'{type(self).__name__!r} object has no attribute {item!r}')
+AttributeError: 'BotConfig' object has no attribute 'autopost_enabled'
+2026-03-06 20:33:53 | INFO    | 🛑 Graceful shutdown Prometheus метрик...
+2026-03-06 20:33:53 | INFO    |    📊 Остановка сервера на порту 8002
+2026-03-06 20:33:53 | INFO    | ✅ Prometheus метрики остановлены
+2026-03-06 20:34:06 | INFO    | ✅ Глобальная дедупликация включена
+2026-03-06 20:34:06 | INFO    | 📊 Prometheus метрики запущены на порту http://localhost:8002/metrics (bot=cinema)
+2026-03-06 20:34:06 | INFO    | ✅ Prometheus метрики запущены на порту 8002
+2026-03-06 20:34:06 | INFO    | ✅ Локальная БД инициализирована
+2026-03-06 20:34:06 | INFO    | ✅ Глобальная БД дедупликации инициализирована
+2026-03-06 20:34:07 | INFO    | 💾 Загружен кэш: 421 записей
+2026-03-06 20:34:07 | CRITICAL | 💥 Критическая ошибка: 'BotConfig' object has no attribute 'autopost_enabled'
+Traceback (most recent call last):
+  File "/root/projectss/movie.py", line 2750, in <module>
+    signal.signal(signal.SIGTERM, signal_handler)
+        ^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/runners.py", line 194, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/root/projectss/movie.py", line 2557, in main
+    # ✅ ЗАПУСК ПЛАНИРОВЩИКА ДАЙДЖЕСТОВ (ежедневно в 23:00)
+        ^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/pydantic/main.py", line 1026, in __getattr__
+    raise AttributeError(f'{type(self).__name__!r} object has no attribute {item!r}')
+AttributeError: 'BotConfig' object has no attribute 'autopost_enabled'
+2026-03-06 20:34:07 | INFO    | 🛑 Graceful shutdown Prometheus метрик...
+2026-03-06 20:34:07 | INFO    |    📊 Остановка сервера на порту 8002
+2026-03-06 20:34:07 | INFO    | ✅ Prometheus метрики остановлены
+2026-03-06 20:34:21 | INFO    | ✅ Глобальная дедупликация включена
+2026-03-06 20:34:21 | INFO    | 📊 Prometheus метрики запущены на порту http://localhost:8002/metrics (bot=cinema)
+2026-03-06 20:34:21 | INFO    | ✅ Prometheus метрики запущены на порту 8002
+2026-03-06 20:34:21 | INFO    | ✅ Локальная БД инициализирована
+2026-03-06 20:34:21 | INFO    | ✅ Глобальная БД дедупликации инициализирована
+2026-03-06 20:34:21 | INFO    | 💾 Загружен кэш: 421 записей
+2026-03-06 20:34:21 | WARNING | ⚠️ Не удалось запустить планировщик дайджестов: 'AlertManager' object has no attribute 'telegram'
+2026-03-06 20:34:21 | INFO    | ============================================================
+2026-03-06 20:34:21 | INFO    | 🚀 @Film_orbita PRODUCTION 2026 — OPTIMIZED
+2026-03-06 20:34:21 | INFO    |    Модель: openai/gpt-oss-20b
+2026-03-06 20:34:21 | INFO    |    Лимит: 48 постов/день, 3/цикл
+2026-03-06 20:34:21 | INFO    |    Фидов за цикл: 4 из 7
+2026-03-06 20:34:21 | INFO    |    ⚡ Автоодобрение: 1+ HOT слово
+2026-03-06 20:34:21 | INFO    |    🔄 Fuzzy дубликаты: порог 85%
+2026-03-06 20:34:21 | INFO    |    💾 Кэш��рование: 421 записей
+2026-03-06 20:34:21 | INFO    |    🚫 Защита от выдумок: ВКЛ
+2026-03-06 20:34:21 | INFO    |    🕒 Приоритет свежести: <2 часов
+2026-03-06 20:34:21 | INFO    |    🚫 Чёрный список: 1 доменов
+2026-03-06 20:34:21 | INFO    |    🌍 Глобальная дедупликация: ✅ ВКЛ
+2026-03-06 20:34:21 | INFO    |    ☀️ ДЕНЬ: 20-40 мин
+2026-03-06 20:34:21 | INFO    |    🌙 НОЧЬ: 40-50 мин
+2026-03-06 20:34:21 | INFO    | ============================================================
+2026-03-06 20:34:21 | INFO    | ============================================================
+2026-03-06 20:34:21 | INFO    | 🔄 Цикл #1 | ☀️ ДЕНЬ | 2026-03-06 20:34:21
+2026-03-06 20:34:21 | INFO    | ============================================================
+2026-03-06 20:34:21 | INFO    | 🔄 Загружаем 7 фидов...
+2026-03-06 20:34:22 | INFO    | ✅ www.kinonews.ru: 30 записей
+2026-03-06 20:34:22 | INFO    | ✅ www.intermedia.ru: 150 записей
+2026-03-06 20:34:22 | INFO    | ✅ www.mirf.ru: 12 записей
+2026-03-06 20:34:22 | WARNING | ⚠️ feeds.feedburner.com: нет записей
+2026-03-06 20:34:23 | INFO    | ✅ www.kg-portal.ru: 30 записей
+2026-03-06 20:34:25 | INFO    | ✅ variety.com: 10 записей
+2026-03-06 20:34:39 | INFO    | ✅ editorial.rottentomatoes.com: 35 записей
+2026-03-06 20:34:39 | INFO    | 📊 Успешно загружено: 6/7
+2026-03-06 20:34:39 | INFO    | 📊 Отбрано 4 фидов из 4
+2026-03-06 20:34:39 | INFO    | 🔗 Дубликат по ссылке (< 24ч): Режиссер «Легенды о волках» показал тизер нового м
+2026-03-06 20:34:43 | INFO    | 🌟 Супер-горячая новость: звезда=100, процессы=4
+2026-03-06 20:34:43 | INFO    | ✓ Скор: 1406 (SUPER:140, HOT:0, Ключ:4, Возраст:0.3ч): Best New Horror Movies of 2026
+2026-03-06 20:34:44 | INFO    | 🌟 Супер-горячая новость: звезда=100, процессы=3
+2026-03-06 20:34:44 | INFO    | 🔗 Дубликат по ссылке (< 24ч): All Christian Bale Movies Ranked
+2026-03-06 20:34:44 | INFO    | 🔗 Дубликат по ссылке (< 24ч): All Jessie Buckley Movies Ranked by Tomatometer
+2026-03-06 20:34:44 | INFO    | 🌟 Супер-горячая новость: звезда=80, процессы=3
+2026-03-06 20:34:44 | INFO    | 🔗 Дубликат по ссылке (< 24ч): Peaky Blinders: The Immortal Man First Reviews: Ev
+2026-03-06 20:34:45 | INFO    | 🌟 Супер-горячая новость: звезда=100, процессы=2
+2026-03-06 20:34:45 | INFO    | 🌟 Супер-горячая новость: звезда=100, процессы=2
+2026-03-06 20:34:45 | INFO    | 🌟 Супер-горячая новость: звезда=100, процессы=1
+2026-03-06 20:34:48 | INFO    | 🌟 Супер-горячая новость: звезда=100, процессы=1
+2026-03-06 20:34:49 | INFO    | 🌟 Супер-горячая новость: звезда=100, процессы=6
+2026-03-06 20:34:49 | INFO    | 🌟 Супер-горячая новость: звезда=100, процессы=2
+2026-03-06 20:34:50 | INFO    | 🌟 Супер-горячая новость: звезда=100, процессы=4
+2026-03-06 20:34:50 | INFO    | 🌟 Супер-горячая новость: звезда=100, процессы=4
+2026-03-06 20:34:50 | INFO    | ✓ Скор: 3 (SUPER:0, HOT:0, Ключ:1, Возраст:0.6ч): James G. Robinson, Morgan Creek Co-Founder, Dies at 90
+2026-03-06 20:34:50 | INFO    | 🔗 Дубликат по ссылке (< 24ч): Netflix Out as Investor in Meghan Markle Brand As 
+2026-03-06 20:34:51 | INFO    | ✓ Скор: 4 (SUPER:0, HOT:0, Ключ:2, Возраст:0.9ч): Ben Stiller Tells Trump’s White House to Remove ‘Tropic Thun
+2026-03-06 20:34:51 | INFO    | 🔗 Дубликат по ссылке (< 24ч): ‘Heated Rivalry’ Creator Jacob Tierney Says Season
+2026-03-06 20:34:51 | INFO    | 🔗 Дубликат по ссылке (< 24ч): ‘Frankenstein’ Lead Oscar Isaac, ‘La Llorona’ Dire
+2026-03-06 20:34:51 | INFO    | ✓ Скор: 6 (SUPER:0, HOT:1, Ключ:1, Возраст:1.9ч): ‘Bridesmaids’ Reunion Set for Oscars With Kristen Wiig, Maya
+2026-03-06 20:34:51 | INFO    | 📊 Найдено записей: 4
+2026-03-06 20:34:51 | INFO    | 🏆 ТОП-1 новость: Best New Horror Movies of 2026 (score=1406)
+2026-03-06 20:34:51 | INFO    | 🏆 ТОП-1 для обработки: Best New Horror Movies of 2026
+2026-03-06 20:34:52 | INFO    | 🌍 Английский текст — перевод (Mistral)...
+2026-03-06 20:35:08 | INFO    | HTTP Request: POST https://routerai.ru/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-06 20:35:08 | INFO    | ✅ Перевод выполнен: 2026 символов
+2026-03-06 20:35:08 | INFO    | ✅ Перевод выполнен: 2026 символов
+2026-03-06 20:35:08 | INFO    | 🔍 LLM classify для ТОП-1...
+2026-03-06 20:35:09 | INFO    | 🛑 Получен сигнал остановки: 2
+2026-03-06 20:35:11 | INFO    | HTTP Request: POST https://routerai.ru/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-06 20:35:11 | INFO    | ✅ LLM одобрил ТОП-1
+2026-03-06 20:35:37 | INFO    | ✅ Глобальная дедупликация включена
+2026-03-06 20:35:38 | INFO    | 📊 Prometheus метрики запущены на порту http://localhost:8002/metrics (bot=cinema)
+2026-03-06 20:35:38 | INFO    | ✅ Prometheus метрики запущены на порту 8002
+2026-03-06 20:35:38 | INFO    | ✅ Локальная БД инициализирована
+2026-03-06 20:35:39 | INFO    | ✅ Глобальная БД дедупликации инициализирована
+2026-03-06 20:35:42 | INFO    | 💾 Загружен кэш: 421 записей
+2026-03-06 20:35:42 | WARNING | ⚠️ Не удалось запустить планировщик дайджестов: 'AlertManager' object has no attribute 'telegram'
+2026-03-06 20:35:42 | INFO    | ============================================================
+2026-03-06 20:35:42 | INFO    | 🚀 @Film_orbita PRODUCTION 2026 — OPTIMIZED
+2026-03-06 20:35:42 | INFO    |    Модель: openai/gpt-oss-20b
+2026-03-06 20:35:42 | INFO    |    Лимит: 48 постов/день, 3/цикл
+2026-03-06 20:35:42 | INFO    |    Фидов за цикл: 4 из 7
+2026-03-06 20:35:42 | INFO    |    ⚡ Автоодобрение: 1+ HOT слово
+2026-03-06 20:35:42 | INFO    |    🔄 Fuzzy дубликаты: порог 85%
+2026-03-06 20:35:42 | INFO    |    💾 Кэш��рование: 421 записей
+2026-03-06 20:35:42 | INFO    |    🚫 Защита от выдумок: ВКЛ
+2026-03-06 20:35:42 | INFO    |    🕒 Приоритет свежести: <2 часов
+2026-03-06 20:35:42 | INFO    |    🚫 Чёрный список: 1 доменов
+2026-03-06 20:35:42 | INFO    |    🌍 Глобальная дедупликация: ✅ ВКЛ
+2026-03-06 20:35:42 | INFO    |    ☀️ ДЕНЬ: 20-40 мин
+2026-03-06 20:35:42 | INFO    |    🌙 НОЧЬ: 40-50 мин
+2026-03-06 20:35:42 | INFO    | ============================================================
+2026-03-06 20:35:42 | INFO    | ============================================================
+2026-03-06 20:35:42 | INFO    | 🔄 Цикл #1 | ☀️ ДЕНЬ | 2026-03-06 20:35:42
+2026-03-06 20:35:42 | INFO    | ============================================================
+2026-03-06 20:35:42 | INFO    | 🔄 Загружаем 7 фидов...
+2026-03-06 20:35:42 | INFO    | ✅ www.kinonews.ru: 30 записей
+2026-03-06 20:35:43 | INFO    | ✅ www.intermedia.ru: 150 записей
+2026-03-06 20:35:43 | INFO    | ✅ variety.com: 10 записей
+2026-03-06 20:35:59 | INFO    | ✅ editorial.rottentomatoes.com: 35 записей
+2026-03-06 20:35:59 | WARNING | ⏱️ www.kg-portal.ru: таймаут
+2026-03-06 20:35:59 | WARNING | ⏱️ www.mirf.ru: таймаут
+2026-03-06 20:35:59 | WARNING | ⏱️ feeds.feedburner.com: таймаут
+2026-03-06 20:35:59 | INFO    | 📊 Успешно загружено: 4/7
+2026-03-06 20:35:59 | INFO    | 📊 Отбрано 4 фидов из 4
+2026-03-06 20:36:04 | INFO    | 🌟 Супер-горячая новость: звезда=100, процессы=4
+2026-03-06 20:36:05 | INFO    | ✓ Скор: 1406 (SUPER:140, HOT:0, Ключ:4, Возраст:0.4ч): Best New Horror Movies of 2026
+2026-03-06 20:36:06 | INFO    | 🌟 Супер-горячая новость: звезда=100, процессы=3
+2026-03-06 20:36:06 | INFO    | 🔗 Дубликат по ссылке (< 24ч): All Christian Bale Movies Ranked
+2026-03-06 20:36:06 | INFO    | 🔗 Дубликат по ссылке (< 24ч): All Jessie Buckley Movies Ranked by Tomatometer
+2026-03-06 20:36:07 | INFO    | 🌟 Супер-горячая новость: звезда=80, процессы=3
+2026-03-06 20:36:07 | INFO    | 🔗 Дубликат по ссылке (< 24ч): Peaky Blinders: The Immortal Man First Reviews: Ev
+2026-03-06 20:36:07 | INFO    | 🌟 Супер-горячая новость: звезда=100, процессы=2
+2026-03-06 20:36:07 | INFO    | 🌟 Супер-горячая новость: звезда=100, процессы=2
+2026-03-06 20:36:07 | INFO    | 🌟 Супер-горячая новость: звезда=100, процессы=1
+2026-03-06 20:36:11 | INFO    | 🌟 Супер-горячая новость: звезда=100, процессы=1
+2026-03-06 20:36:12 | INFO    | 🌟 Супер-горячая новость: звезда=100, процессы=6
+2026-03-06 20:36:12 | INFO    | 🌟 Супер-горячая новость: звезда=100, процессы=2
+2026-03-06 20:36:13 | INFO    | 🌟 Супер-горячая новость: звезда=100, процессы=4
+2026-03-06 20:36:13 | INFO    | 🌟 Супер-горячая новость: звезда=100, процессы=4
+2026-03-06 20:36:13 | INFO    | ✓ Скор: 1 (SUPER:0, HOT:0, Ключ:1, Возраст:2.6ч): "Охота на Голлума" станет началом новой трилогии "Властелин 
+2026-03-06 20:36:13 | INFO    | 🌟 Супер-горячая новость: звезда=100, процессы=1
+2026-03-06 20:36:13 | INFO    | 🔗 Дубликат по ссылке (< 24ч): Боевик с Киану Ривзом обрел исполнительницу главно
+2026-03-06 20:36:13 | INFO    | 🌟 Супер-горячая новость: звезда=100, процессы=2
+2026-03-06 20:36:13 | INFO    | 🔗 Дубликат по ссылке (< 24ч): Анонсирован следующий проект режиссера Квентина Та
+2026-03-06 20:36:14 | INFO    | ✓ Скор: 2 (SUPER:0, HOT:0, Ключ:2, Возраст:12.6ч): Венсан Кассель сыграет в четвертом сезоне сериала "Белый лот
+2026-03-06 20:36:14 | INFO    | 🌟 Супер-горячая новость: звезда=80, процессы=1
+2026-03-06 20:36:14 | INFO    | 🔗 Дубликат по ссылке (< 24ч): Уточнен график выхода фильма "Вольтрон" с Генри Ка
+2026-03-06 20:36:14 | INFO    | 🌟 Супер-горячая новость: звезда=80, процессы=1
+2026-03-06 20:36:14 | INFO    | 🔗 Дубликат по ссылке (< 24ч): Питер Джексон получит "Золотую пальмовую ветвь" в 
+2026-03-06 20:36:14 | INFO    | 🔗 Дубликат по ссылке (< 24ч): Netflix назначил Бена Аффлека консультантом по ИИ
+2026-03-06 20:36:14 | INFO    | 🔗 Дубликат по ссылке (< 24ч): Хоумлендер обретает бессмертие в трейлере сериала 
+2026-03-06 20:36:14 | INFO    | ✓ Скор: 2 (SUPER:0, HOT:0, Ключ:2, Возраст:14.1ч): Уточнен съемочный график фильма о Ганнибале с Дензелом Вашин
+2026-03-06 20:36:14 | INFO    | 🌟 Супер-горячая новость: звезда=100, процессы=1
+2026-03-06 20:36:15 | INFO    | 🔗 Дубликат по ссылке (< 24ч): Наркодилеров ждет «Возмездие» на НТВ
+2026-03-06 20:36:16 | INFO    | ✓ Скор: 3 (SUPER:0, HOT:0, Ключ:3, Возраст:5.6ч): Карла Гуджино, Хэмиш Линклейтер и Кейт Сигел снимаются в нов
+2026-03-06 20:36:16 | INFO    | ✓ Скор: 4 (SUPER:0, HOT:1, Ключ:1, Возраст:6.1ч): Сюзи Кватро выпустила песню «Little Miss Lovely» из нового а
+2026-03-06 20:36:16 | INFO    | ✓ Скор: 4 (SUPER:0, HOT:1, Ключ:1, Возраст:6.2ч): «Мегаполис» подарил новую жизнь песне «Женское сердце»
+2026-03-06 20:36:16 | INFO    | ✓ Скор: 4 (SUPER:0, HOT:1, Ключ:1, Возраст:6.4ч): «Танцы минус» представили сборник ремиксов
+2026-03-06 20:36:16 | INFO    | 🔗 Дубликат по ссылке (< 24ч): «#ВАМЛЮБИМЫЕ»: весенняя премьера от Института подд
+2026-03-06 20:36:16 | INFO    | ✓ Скор: 1 (SUPER:0, HOT:0, Ключ:1, Возраст:7.8ч): Надя Терешкевич и Венсан Кассель снимутся в новом сезоне «Бе
+2026-03-06 20:36:17 | INFO    | ✓ Скор: 1 (SUPER:0, HOT:0, Ключ:1, Возраст:8.1ч): Ирина Апексимова получила награду от Сергея Собянина
+2026-03-06 20:36:17 | INFO    | 📊 Найдено записей: 10
+2026-03-06 20:36:17 | INFO    | 🏆 ТОП-1 новость: Best New Horror Movies of 2026 (score=1406)
+2026-03-06 20:36:17 | INFO    | 🏆 ТОП-1 для обработки: Best New Horror Movies of 2026
+2026-03-06 20:36:17 | INFO    | 🌍 Английский текст — перевод (Mistral)...
+2026-03-06 20:36:33 | INFO    | HTTP Request: POST https://routerai.ru/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-06 20:36:33 | INFO    | ✅ Перевод выполнен: 2012 символов
+2026-03-06 20:36:33 | INFO    | ✅ Перевод выполнен: 2012 символов
+2026-03-06 20:36:33 | INFO    | 🔍 LLM classify для ТОП-1...
+2026-03-06 20:36:36 | INFO    | HTTP Request: POST https://routerai.ru/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-06 20:36:36 | INFO    | ✅ LLM одобрил ТОП-1
+2026-03-06 20:36:50 | INFO    | HTTP Request: POST https://routerai.ru/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-06 20:36:50 | WARNING | 🚨 Много английских слов: ['jessie', 'buckley', 'help', 'raimi', 'rachel']
+2026-03-06 20:36:50 | WARNING | ⚠️ Генерация содержит слишком много английских слов
+2026-03-06 20:36:50 | WARNING | ⚠️ Генерация пуста: Best New Horror Movies of 2026
+2026-03-06 20:36:50 | INFO    | ⏱️ Время обработки цикла: 68.66 сек
+2026-03-06 20:36:50 | INFO    | 😴 ☀️ ДЕНЬ | Следующий ци��л через 22 мин 29 сек
