@@ -276,7 +276,8 @@ class BotHandler:
 
         try:
             formatted = format_text_for_channel(text)
-            if photo:
+            # ✅ ПРОВЕРКА: отправляем фото только если это валидный URL или file_id
+            if photo and photo not in ("no", "None", "null", ""):
                 success, result = await self.telegram.send_photo(channel_id, photo, formatted)
             else:
                 msg_id = await self.telegram.send_message(channel_id, formatted)

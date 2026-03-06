@@ -305,6 +305,10 @@ class BotConfig(BaseSettings):
     fuzzy_threshold: int = 85
     duplicate_check_hours: int = 72
 
+    # ✅ Настройки картинок
+    enable_images: bool = True  # Глобальное включение/выключение картинок
+    skip_image_domains: list = []  # Домены для пропуска картинок (с водяными знаками)
+
     model_config = SettingsConfigDict(
         env_file=".env",
         env_file_encoding="utf-8",
@@ -1694,6 +1698,7 @@ async def fetch_article_text(session: aiohttp.ClientSession, url: str) -> str:
         logger.debug(f"Error fetching {url[:60]}: {str(e)[:80]}")
         return ""
 
+
 async def process_feed(
     session: aiohttp.ClientSession,
     feed_url: str,
@@ -1936,17 +1941,15 @@ async def send_to_channel(
         logger.critical("❌ Текст не на русском языке!")
         return False
 
-    # Формируем сообщение для отправки
-    payload = {
-        "chat_id": config.tg_channel,
-        "text": text,
-        "parse_mode": "HTML",
-        "disable_web_page_preview": False
-    }
-
     try:
+        # 📝 Отправляем только текст
         url = f"https://api.telegram.org/bot{config.tg_token}/sendMessage"
-        # ✅ Переиспользуем сессию из основного цикла
+        payload = {
+            "chat_id": config.tg_channel,
+            "text": text,
+            "parse_mode": "HTML",
+            "disable_web_page_preview": False
+        }
         async with session.post(url, json=payload) as response:
             result = await response.json()
             if result.get("ok"):
@@ -1957,6 +1960,7 @@ async def send_to_channel(
             else:
                 logger.error(f"❌ Ошибка Telegram: {result.get('description')}")
                 return False
+
     except asyncio.TimeoutError:
         logger.error("❌ Таймаут при отправке в Telegram (60 сек)")
         return False
@@ -2012,7 +2016,6 @@ async def send_to_suggestion(
         "created_at": datetime.now(timezone.utc).isoformat(),
         "post_id": post_id,
         "status": "pending",
-        "photo": ""
     }
 
     await write_draft_atomic(draft_path, draft_data)
@@ -2033,32 +2036,13 @@ async def send_to_suggestion(
         "reply_markup": keyboard,
         "disable_web_page_preview": False
     }
-
+    url = f"https://api.telegram.org/bot{config.tg_token}/sendMessage"
     try:
-        url = f"https://api.telegram.org/bot{config.tg_token}/sendMessage"
-        # ✅ Переиспользуем сессию из основного цикла
         async with session.post(url, json=payload) as response:
             result = await response.json()
             if result.get("ok"):
                 metrics.log_post_sent('politics', 'manual')
-                
-                logger.info(f"��� Пост отправлен в предложку (ID: {post_id})")
-
-                # ✅ Глобальная дедупликация по оригинальному заголовку
-                if GLOBAL_DEDUP_ENABLED:
-                    try:
-                        title_for_hash = original_title if original_title else text[:100]
-                        content_hash = get_universal_hash(title_for_hash, link, pub_date, config.category)
-                        await mark_global_posted(
-                            content_hash,
-                            config.tg_channel,
-                            config.category,
-                            title_for_hash[:100],
-                            config.category
-                        )
-                    except Exception as e:
-                        logger.warning(f"⚠️ Ошибка отметки в глобальной БД: {e}")
-                return True
+                logger.info(f"✅ Пост отправлен в предложку (ID: {post_id})")
             else:
                 logger.error(f"❌ Ошибка Telegram: {result.get('description')}")
                 return False
@@ -2069,6 +2053,23 @@ async def send_to_suggestion(
         logger.error(f"❌ Ошибка отправки: {e}")
         metrics.log_error(f"send_to_suggestion: {e}")
         return False
+
+    # ✅ Глобальная дедупликация по оригинальному заголовку
+    if GLOBAL_DEDUP_ENABLED:
+        try:
+            title_for_hash = original_title if original_title else text[:100]
+            content_hash = get_universal_hash(title_for_hash, link, pub_date, config.category)
+            await mark_global_posted(
+                content_hash,
+                config.tg_channel,
+                config.category,
+                title_for_hash[:100],
+                config.category
+            )
+        except Exception as e:
+            logger.warning(f"⚠️ Ошибка отметки в глобальной БД: {e}")
+
+    return True
 
 async def send_to_suggestion_with_retry(
     session: aiohttp.ClientSession,

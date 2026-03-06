@@ -300,6 +300,16 @@ class TelegramClient:
 
     async def send_photo(self, chat_id: str, photo: str, caption: str = "",
                          parse_mode: str = "HTML") -> Tuple[bool, str]:
+        # ✅ ПРОВЕРКА: валидный ли URL или file_id
+        if not photo or photo in ("no", "None", "null", ""):
+            return False, "Некорректное фото"
+        
+        # Проверяем что это URL или file_id (начинается с http://, https://, или base64/file_id)
+        if not (photo.startswith(("http://", "https://", "file://", "attach://")) or 
+                (len(photo) > 10 and photo[:100].isalnum())):
+            logger.warning(f"⚠️ Некорректный URL фото: {photo[:100]}")
+            return False, "Некорректный URL фото"
+        
         payload = {
             "chat_id": chat_id,
             "photo": photo,
