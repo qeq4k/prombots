@@ -853,6 +853,302 @@ def is_politics_candidate(title: str, summary: str) -> Tuple[bool, int, int]:
     return matches >= 1, matches, high_priority_matches
 
 
+# ================= КЛАСТЕРИЗАЦИЯ НОВОСТЕЙ =================
+def extract_key_entities(text: str) -> Dict[str, List[str]]:
+    """
+    🎯 Извлекает ключевые сущности из текста для кластеризации.
+    Возвращает: {
+        'persons': [...],      # Фамилии (Путин, Лавров, и т.д.)
+        'organizations': [...], # Организации (Госдума, МИД, Кремль)
+        'locations': [...],     # Локации (Москва, Донбасс, Украина)
+        'events': [...]         # События (выборы, саммит, референдум)
+    }
+    """
+    text_lower = text.lower()
+    
+    # 📋 Словари для извлечения сущностей
+    PERSONS = {
+        'путин', 'президент', 'медведев', 'лавров', 'песков', 'патрушев',
+        'мишустин', 'матвиенко', 'володин', 'захарова', 'лукашенко',
+        'трамп', 'байден', 'макрон', 'шольц', 'эрдоган', 'си цзиньпин',
+        'зеленский', 'нетаньяху', 'ким чен ын', 'путин владимир',
+        'губернатор', 'министр', 'депутат', 'сенатор', 'посол'
+    }
+    
+    ORGANIZATIONS = {
+        'госдум', 'совет федераци', 'правительств', 'кремль', 'минцифр',
+        'минфин', 'минэконом', 'роскомнадзор', 'фсб', 'мвд', 'ск рф', 'прокуратур',
+        'мид', 'сбербанк', 'газпром', 'роснефть', 'ростех', 'вэб.рф',
+        'нато', 'оон', 'ес', 'евросоюз', 'снг', 'одец', 'брис',
+        'партия', 'облдум', 'заксобр', 'администрац'
+    }
+    
+    LOCATIONS = {
+        'москв', 'петербург', 'крым', 'севастополь', 'донбасс', 'лнр', 'днр',
+        'украин', 'киев', 'харьков', 'одесс', 'запорож', 'херсон',
+        'сири', 'турци', 'кит', 'сша', 'америк', 'европ', 'германи', 'франци',
+        'белорус', 'казахстан', 'узбекистан', 'сибир', 'дальн', 'урал',
+        'регион', 'област', 'город', 'столиц'
+    }
+    
+    EVENTS = {
+        'выбор', 'голосован', 'референдум', 'саммит', 'переговор', 'встреч',
+        'совещан', 'заявлен', 'подписан', 'указ', 'закон', 'санкц',
+        'протест', 'митинг', 'конфликт', 'операци', 'обстрел', 'удар',
+        'арест', 'отставк', 'назначен', 'отчёт', 'доклад'
+    }
+    
+    entities = {
+        'persons': [],
+        'organizations': [],
+        'locations': [],
+        'events': []
+    }
+    
+    # Извлекаем сущности
+    for word in PERSONS:
+        if word in text_lower:
+            entities['persons'].append(word)
+    
+    for word in ORGANIZATIONS:
+        if word in text_lower:
+            entities['organizations'].append(word)
+    
+    for word in LOCATIONS:
+        if word in text_lower:
+            entities['locations'].append(word)
+    
+    for word in EVENTS:
+        if word in text_lower:
+            entities['events'].append(word)
+    
+    # Извлекаем имена собственные (заглавные буквы)
+    proper_nouns = re.findall(r'[А-ЯЁ][а-яё]{2,}(?:\s+[А-ЯЁ][а-яё]+)*', text)
+    for noun in proper_nouns[:10]:  # Ограничиваем количество
+        noun_lower = noun.lower()
+        # Добавляем если это не шум
+        if len(noun) >= 3 and noun_lower not in entities['persons']:
+            # Проверяем, не является ли это началом предложения
+            if not re.match(r'^(В|На|Под|Для|С|По|К|Об|О|Из|За|Через|После)\s', noun + ' '):
+                entities['persons'].append(noun_lower)
+    
+    return entities
+
+
+def calculate_news_similarity(news1: Dict, news2: Dict) -> float:
+    """
+    🔍 Рассчитывает схожесть двух новостей (0.0 - 1.0).
+    Учитывает:
+    - Fuzzy-схожесть заголовков (40%)
+    - Пересечение ключевых сущностей (40%)
+    - Временна́я близость (20%)
+    """
+    from difflib import SequenceMatcher
+    
+    title1 = news1.get('title', '')
+    title2 = news2.get('title', '')
+    summary1 = news1.get('summary', '')
+    summary2 = news2.get('summary', '')
+    pub_date1 = news1.get('pub_date')
+    pub_date2 = news2.get('pub_date')
+    
+    # 1. Fuzzy-схожесть заголовков (0.0 - 1.0)
+    title_similarity = SequenceMatcher(None, title1.lower(), title2.lower()).ratio()
+    
+    # 2. Пересечение ключевых сущностей (0.0 - 1.0)
+    entities1 = extract_key_entities(f"{title1} {summary1}")
+    entities2 = extract_key_entities(f"{title2} {summary2}")
+    
+    entity_scores = []
+    for key in ['persons', 'organizations', 'locations', 'events']:
+        set1 = set(entities1.get(key, []))
+        set2 = set(entities2.get(key, []))
+        if set1 or set2:
+            # Jaccard similarity
+            intersection = len(set1 & set2)
+            union = len(set1 | set2)
+            if union > 0:
+                entity_scores.append(intersection / union)
+    
+    entity_similarity = sum(entity_scores) / len(entity_scores) if entity_scores else 0.0
+    
+    # 3. Временна́я близость (0.0 - 1.0)
+    time_similarity = 0.5  # По умолчанию средняя
+    if pub_date1 and pub_date2:
+        time_diff_hours = abs((pub_date1 - pub_date2).total_seconds()) / 3600
+        if time_diff_hours < 1:
+            time_similarity = 1.0
+        elif time_diff_hours < 3:
+            time_similarity = 0.8
+        elif time_diff_hours < 6:
+            time_similarity = 0.6
+        elif time_diff_hours < 12:
+            time_similarity = 0.4
+        elif time_diff_hours < 24:
+            time_similarity = 0.2
+        else:
+            time_similarity = 0.0
+    
+    # Итоговая схожесть (взвешенная средняя)
+    total_similarity = (
+        title_similarity * 0.4 +
+        entity_similarity * 0.4 +
+        time_similarity * 0.2
+    )
+    
+    return total_similarity
+
+
+def cluster_news_candidates(candidates: List[Dict], threshold: float = 0.55) -> List[List[Dict]]:
+    """
+    🍇 Группирует новости в кластеры по смыслу.
+    
+    Args:
+        candidates: Список кандидатов новостей
+        threshold: Порог схожести для объединения в кластер (0.0 - 1.0)
+    
+    Returns:
+        Список кластеров, где каждый кластер — список новостей
+    """
+    if not candidates:
+        return []
+    
+    # Сортируем по приоритету (важные новости первыми)
+    sorted_candidates = sorted(
+        candidates,
+        key=lambda x: (x.get('high_priority_matches', 0) * 5 + x.get('keyword_matches', 0) * 2),
+        reverse=True
+    )
+    
+    clusters = []  # [[news1, news2, ...], [news3, news4, ...], ...]
+    
+    for candidate in sorted_candidates:
+        placed = False
+        
+        # Пытаемся найти подходящий кластер
+        for cluster in clusters:
+            # Проверяем схожесть с каждой новостью в кластере
+            max_similarity_in_cluster = max(
+                calculate_news_similarity(candidate, news)
+                for news in cluster
+            )
+            
+            if max_similarity_in_cluster >= threshold:
+                cluster.append(candidate)
+                placed = True
+                break
+        
+        # Если не нашли кластер — создаём новый
+        if not placed:
+            clusters.append([candidate])
+    
+    # Логгируем результаты
+    logger.info(f"🍇 Кластеризация: {len(candidates)} новостей → {len(clusters)} кластеров")
+    for i, cluster in enumerate(clusters, 1):
+        if len(cluster) > 1:
+            logger.info(f"   Кластер #{i}: {len(cluster)} новостей")
+            for news in cluster:
+                logger.info(f"      • {news['title'][:50]}")
+    
+    return clusters
+
+
+def merge_cluster_news(cluster: List[Dict]) -> Dict:
+    """
+    🔗 Объединяет новости из одного кластера в одну.
+
+    Логика:
+    1. Берём лучший заголовок (от приоритетного источника)
+    2. Извлекаем уникальные факты из каждой новости
+    3. Формируем единый текст с буллетами
+
+    Returns:
+        Объединённый кандидат
+    """
+    if not cluster:
+        return None
+
+    if len(cluster) == 1:
+        # Если одна новость — возвращаем как есть
+        news = cluster[0]
+        return {
+            **news,
+            'is_merged': False,
+            'merged_count': 1
+        }
+
+    # 1. Выбираем лучший заголовок (от приоритетного источника)
+    priority_order = {
+        'https://tass.ru/rss/v2.xml': 1,
+        'https://ria.ru/export/rss2/archive/index.xml': 2,
+        'https://www.interfax.ru/rss.asp': 3,
+        'https://lenta.ru/rss/news': 4,
+    }
+
+    best_news = min(
+        cluster,
+        key=lambda x: priority_order.get(x.get('source', ''), 99)
+    )
+
+    # 2. Собираем все уникальные факты из summary
+    all_facts = []
+    seen_facts = set()
+
+    for news in cluster:
+        summary = news.get('summary', '')
+        # Разбиваем на предложения
+        sentences = re.split(r'(?<=[.!?])\s+', summary)
+        for sent in sentences:
+            sent = sent.strip()
+            # Нормализуем для проверки дубликатов
+            sent_norm = re.sub(r'[^\w\s]', '', sent.lower())
+            # Добавляем только уникальные факты
+            if sent and len(sent) > 20 and sent_norm not in seen_facts:
+                seen_facts.add(sent_norm)
+                all_facts.append(sent)
+
+    # 3. Формируем объединённый текст
+    # Берём заголовок из лучшей новости
+    merged_title = best_news['title']
+
+    # Формируем тело из уникальных фактов (с буллетами)
+    # Первые 1-2 предложения — основной текст, остальные — буллетами
+    if len(all_facts) >= 3:
+        # Первое предложение как основное
+        main_text = all_facts[0]
+        # Остальные — буллетами
+        bullet_facts = []
+        for fact in all_facts[1:8]:
+            # Очищаем от лишних пробелов и переносов
+            fact_clean = re.sub(r'\s+', ' ', fact).strip()
+            if len(fact_clean) > 15:
+                bullet_facts.append(f"• {fact_clean}")
+        merged_body = main_text + '\n\n' + '\n'.join(bullet_facts)
+    else:
+        # Если мало фактов — просто объединяем
+        merged_body = '\n\n'.join(all_facts[:6])
+
+    # 4. Создаём объединённый кандидат
+    merged = {
+        'title': merged_title,
+        'link': best_news['link'],
+        'pub_date': best_news['pub_date'],
+        'source': best_news['source'],
+        'hash': best_news['hash'],
+        'title_normalized': best_news['title_normalized'],
+        'keyword_matches': max(n.get('keyword_matches', 0) for n in cluster),
+        'high_priority_matches': max(n.get('high_priority_matches', 0) for n in cluster),
+        'summary': merged_body,
+        'is_merged': True,
+        'merged_count': len(cluster),
+        'cluster_sources': list(set(n.get('source', '') for n in cluster))
+    }
+
+    logger.info(f"🔗 Объединено {len(cluster)} новостей в одну: {merged_title[:50]}")
+
+    return merged
+
+
 def is_digest_headline(title: str) -> bool:
     """
     ✅ ФИЛЬТР ДАЙДЖЕСТОВ/СВОДОК.
@@ -1112,10 +1408,10 @@ def postprocess_text(raw) -> str:
 
     # ✅ ИСПРАВЛЕНО: sentences вместо sentences[:120]
     if extracted_header and len(extracted_header) > 10:
-        header = extracted_header[:120]
+        header = f"🏛️{extracted_header[:120]}🏛️"
         body_sentences = sentences
     else:
-        header = sentences[:120] if sentences else "Политическая новость"
+        header = f"🏛️{sentences[:120]}🏛️" if sentences else "🏛️Политическая новость🏛️"
         body_sentences = sentences[1:]
 
     if body_sentences:
@@ -2104,15 +2400,44 @@ async def collect_and_process_news(
             logger.warning("📭 Нет подходящих кандидатов")
             return 0
 
+        # 🍇 КЛАСТЕРИЗАЦИЯ НОВОСТЕЙ ПО СМЫСЛУ
+        # Группируем похожие новости из разных фидов в одну
+        clusters = cluster_news_candidates(candidates, threshold=0.55)
+        
+        # Объединяем новости внутри кластеров
+        merged_candidates = []
+        for cluster in clusters:
+            merged = merge_cluster_news(cluster)
+            if merged:
+                merged_candidates.append(merged)
+        
+        # Пересчитываем рейтинги для объединённых кандидатов
+        for c in merged_candidates:
+            age_hours = (datetime.now(timezone.utc) - c["pub_date"]).total_seconds() / 3600
+            freshness_bonus = 5 if age_hours < 2 else (3 if age_hours < 4 else 1)
+            # Бонус за объединение нескольких новостей
+            merge_bonus = c.get('merged_count', 1) * 2
+            
+            c["rating"] = (
+                c.get("high_priority_matches", 0) * 5 +
+                c.get("keyword_matches", 0) * 2 +
+                freshness_bonus +
+                merge_bonus
+            )
+        
+        # Сортируем по рейтингу
+        merged_candidates.sort(key=lambda x: x.get("rating", 0), reverse=True)
+        
         logger.info("=" * 60)
-        logger.info(f"📊 ТОП-{min(3, len(candidates))} кандидатов для публикации:")
-        for i, c in enumerate(candidates[:3], 1):
+        logger.info(f"📊 ТОП-{min(3, len(merged_candidates))} кандидатов для публикации:")
+        for i, c in enumerate(merged_candidates[:3], 1):
             age_h = (datetime.now(timezone.utc) - c["pub_date"]).total_seconds() / 3600
-            logger.info(f"   {i}. [{c.get('rating', 0):>3}] {c['title'][:60]} (возраст: {age_h:.1f}ч, HOT:{c.get('high_priority_matches', 0)}, ключ:{c.get('keyword_matches', 0)})")
+            merged_info = f" (объединено {c.get('merged_count', 1)})" if c.get('is_merged') else ""
+            logger.info(f"   {i}. [{c.get('rating', 0):>3}] {c['title'][:60]} (возраст: {age_h:.1f}ч, HOT:{c.get('high_priority_matches', 0)}, ключ:{c.get('keyword_matches', 0)}{merged_info})")
         logger.info("=" * 60)
 
         # Пробуем топ-3 на случай если рерайт упадёт
-        for idx, best in enumerate(candidates[:3], 1):
+        for idx, best in enumerate(merged_candidates[:3], 1):
             if not isinstance(best, dict):
                 logger.error(f"❌ Кандидат не словарь, а {type(best)}")
                 continue
@@ -2318,15 +2643,35 @@ async def main():
                     )
                     posts_published = await state.current_task
 
+                    # ✅ НОЧНЫЕ ЗАДЕРЖКИ: 1.5-2x длиннее чем днем
+                    is_night = config.is_night_time()
+                    night_multiplier = 1.8 if is_night else 1.0
+
                     if posts_published > 0:
                         logger.info(f"✅ Опубликовано: {posts_published}")
-                        # ✅ Нашли новость — следующая через 10-15 минут
-                        delay = random.randint(600, 900)
-                        logger.info(f"⏱️ Задержка 10-15 мин (была публикация)")
+                        # ✅ Нашли новость — следующая через 10-15 минут (ночью 18-27 мин)
+                        base_delay_min = 600
+                        base_delay_max = 900
+                        delay = random.randint(
+                            int(base_delay_min * night_multiplier),
+                            int(base_delay_max * night_multiplier)
+                        )
+                        if is_night:
+                            logger.info(f"⏱️ Задержка {delay // 60} мин (НОЧЬ 1.8x, была публикация)")
+                        else:
+                            logger.info(f"⏱️ Задержка {delay // 60} мин (была публикация)")
                     else:
-                        # ✅ Не нашли новостей — следующая через 5-10 минут
-                        delay = random.randint(300, 600)
-                        logger.info(f"⏱️ Задержка 5-10 мин (нет новостей, ищем дальше)")
+                        # ✅ Не нашли новостей — следующая через 5-10 минут (ночью 9-18 мин)
+                        base_delay_min = 300
+                        base_delay_max = 600
+                        delay = random.randint(
+                            int(base_delay_min * night_multiplier),
+                            int(base_delay_max * night_multiplier)
+                        )
+                        if is_night:
+                            logger.info(f"⏱️ Задержка {delay // 60} мин (НОЧЬ 1.8x, нет новостей)")
+                        else:
+                            logger.info(f"⏱️ Задержка {delay // 60} мин (нет новостей, ищем дальше)")
 
                     if cycle % 10 == 0:
                         await cleanup_old_posts()
@@ -2373,7 +2718,7 @@ async def run_tests():
         ("validate_html_tags", lambda: validate_html_tags("<b>Заголовок") == "<b>Заголовок</b>"),
         ("ssl_context", lambda: isinstance(create_secure_ssl_context(), ssl.SSLContext)),
         ("postprocess_text", lambda: "\n\n" in postprocess_text("**Заголовок**\n\nТекст поста здесь.")),
-        
+
         # Тесты postprocess_text
         ("postprocess_empty", lambda: "Политическая новость" in postprocess_text("")),
         ("postprocess_short", lambda: "Политическая новость" in postprocess_text("коротко")),
@@ -2385,6 +2730,45 @@ async def run_tests():
         ("postprocess_very_long", lambda: len(postprocess_text("**H**\n\n" + "A" * 2000)) <= 900),
         ("postprocess_unbalanced_b", lambda: "</b>" in postprocess_text("**Заголовок**\n\nТекст <b>жирный")),
         ("postprocess_multiple_paragraphs", lambda: "\n\n" in postprocess_text("**Заголовок**\n\nПервый важный абзац текста.\n\nВторой важный абзац текста.\n\nТретий важный абзац текста.")),
+
+        # ✅ Тесты кластеризации новостей
+        ("extract_key_entities", lambda: 'путин' in extract_key_entities("Путин провел совещание в Кремле")['persons']),
+        ("extract_key_entities_org", lambda: 'госдум' in extract_key_entities("Госдума приняла закон")['organizations']),
+        ("extract_key_entities_loc", lambda: 'москв' in extract_key_entities("В Москве прошло событие")['locations']),
+        ("extract_key_entities_event", lambda: 'выбор' in extract_key_entities("Выборы состоялись вчера")['events']),
+        ("calculate_news_similarity_same", lambda: calculate_news_similarity(
+            {'title': 'Путин подписал указ', 'summary': 'Президент утвердил новый закон', 'pub_date': datetime.now(timezone.utc)},
+            {'title': 'Путин подписал указ', 'summary': 'Президент утвердил новый закон', 'pub_date': datetime.now(timezone.utc)}
+        ) > 0.8),
+        ("calculate_news_similarity_different", lambda: calculate_news_similarity(
+            {'title': 'Путин подписал указ', 'summary': 'Президент утвердил закон', 'pub_date': datetime.now(timezone.utc)},
+            {'title': 'В Москве открыли театр', 'summary': 'Новый культурный центр начал работу', 'pub_date': datetime.now(timezone.utc)}
+        ) < 0.5),
+        ("cluster_news_candidates", lambda: len(cluster_news_candidates([
+            {'title': 'Путин подписал указ', 'summary': 'Президент утвердил закон', 'pub_date': datetime.now(timezone.utc), 'source': 'tass', 'high_priority_matches': 1, 'keyword_matches': 2},
+            {'title': 'Путин утвердил указ', 'summary': 'Президент подписал документ', 'pub_date': datetime.now(timezone.utc), 'source': 'ria', 'high_priority_matches': 1, 'keyword_matches': 2},
+        ], threshold=0.5)) == 1),
+        ("merge_cluster_news_single", lambda: merge_cluster_news([
+            {'title': 'Путин подписал указ', 'summary': 'Президент утвердил закон', 'pub_date': datetime.now(timezone.utc), 
+             'source': 'https://tass.ru/rss/v2.xml', 'link': 'http://test', 'hash': 'abc', 'title_normalized': 'путин указ',
+             'high_priority_matches': 1, 'keyword_matches': 2}
+        ])['is_merged'] == False),
+        ("merge_cluster_news_merged", lambda: merge_cluster_news([
+            {'title': 'Путин подписал указ', 'summary': 'Президент утвердил закон. Новые меры вступают в силу.', 'pub_date': datetime.now(timezone.utc),
+             'source': 'https://tass.ru/rss/v2.xml', 'link': 'http://test1', 'hash': 'abc1', 'title_normalized': 'путин указ',
+             'high_priority_matches': 1, 'keyword_matches': 2},
+            {'title': 'Путин утвердил документ', 'summary': 'Президент подписал важный указ. Документ опубликован.', 'pub_date': datetime.now(timezone.utc),
+             'source': 'https://ria.ru/export/rss2/archive/index.xml', 'link': 'http://test2', 'hash': 'abc2', 'title_normalized': 'путин указ',
+             'high_priority_matches': 1, 'keyword_matches': 2},
+        ])['is_merged'] == True),
+        ("merge_cluster_news_has_bullets", lambda: '•' in merge_cluster_news([
+            {'title': 'Путин подписал указ', 'summary': 'Президент утвердил закон. Меры вступают в силу с завтра.', 'pub_date': datetime.now(timezone.utc),
+             'source': 'https://tass.ru/rss/v2.xml', 'link': 'http://test1', 'hash': 'abc1', 'title_normalized': 'путин указ',
+             'high_priority_matches': 1, 'keyword_matches': 2},
+            {'title': 'Путин утвердил документ', 'summary': 'Президент подписал указ. Документ опубликован на портале.', 'pub_date': datetime.now(timezone.utc),
+             'source': 'https://ria.ru/export/rss2/archive/index.xml', 'link': 'http://test2', 'hash': 'abc2', 'title_normalized': 'путин указ',
+             'high_priority_matches': 1, 'keyword_matches': 2},
+        ])['summary']),
     ]
 
     for name, test_fn in tests:

@@ -138,7 +138,8 @@ class BotConfig:
     def get_autopost_delay_minutes(self, hour: Optional[int] = None) -> float:
         if hour is None:
             hour = datetime.now(timezone.utc).hour
-        if self.autopost_night_start_hour <= hour < self.autopost_night_end_hour:
+        # ✅ ИСПРАВЛЕНО: ночь с 22:00 до 05:00 (через полночь)
+        if hour >= self.autopost_night_start_hour or hour < self.autopost_night_end_hour:
             return random.uniform(self.autopost_night_min_minutes, self.autopost_night_max_minutes)
         return random.uniform(self.autopost_day_min_minutes, self.autopost_day_max_minutes)
 
@@ -436,7 +437,8 @@ def format_text_for_channel(text: str) -> str:
         return text
     lines = text.split('\n', 1)
     header = lines[0].strip()
-    if not header.startswith('<b>'):
+    # ✅ ПРОВЕРЯЕМ: если уже есть <b> в любом месте — не добавляем
+    if '<b>' not in header:
         header = f"<b>{header}</b>"
     return header if len(lines) == 1 else f"{header}\n{lines[1]}"
 

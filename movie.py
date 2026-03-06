@@ -1037,13 +1037,13 @@ def postprocess_text(raw) -> str:
     MAX_POST_LENGTH = 4096  # ← Увеличенный лимит Telegram (4096 символов)
     TRUNCATE_LENGTH = 4000
     MIN_TRUNCATE_SPACE = 3500
-    
+
     if isinstance(raw, list):
         raw = '\n'.join(str(item) for item in raw if item)
-    
+
     raw = safe_to_string(raw)
     if not raw or len(raw) < 20:
-        return f"🎬<b>Кино новости</b>\n\n{CHANNEL}"
+        return f"🎬<b>Кино новости</b>🎬\n\n{CHANNEL}"
     
     # Удаляем неправильную подпись
     raw = re.sub(r'@?Cinema_steroid@?', '', raw, flags=re.IGNORECASE)
@@ -1062,7 +1062,7 @@ def postprocess_text(raw) -> str:
     
     lines = [line.strip() for line in text.splitlines() if line.strip()]
     if not lines:
-        return f"🎬<b>Кино новости</b>\n\n{CHANNEL}"
+        return f"🎬<b>Кино новости</b>🎬\n\n{CHANNEL}"
     
     # Проверяем что первая строка начинается с 🎬<b>
     first_line = lines[0]
@@ -1088,6 +1088,10 @@ def postprocess_text(raw) -> str:
         if '</b>' not in header_raw and '<b>' in header_raw:
             header_raw += '</b>'
     
+    # ✅ ДОБАВЛЯЕМ 🎬 В КОНЕЦ ЗАГОЛОВКА
+    if not header_raw.rstrip().endswith('🎬'):
+        header_raw = header_raw.rstrip() + '🎬'
+
     header = header_raw.strip()
     body_lines = lines[1:] if len(lines) > 1 else []
     body = "\n\n".join(body_lines[:5]) if body_lines else ""
@@ -1362,7 +1366,7 @@ class CachedLLMClient:
                 metrics.log_fake_date()
                 return True
 
-        # ✅ УБРАНА БЛОКИРОВКА 2026 года — это текущий год!
+        # ✅ УБРАНА ��ЛОКИРОВКА 2026 года �� это текущий год!
         # Новости с актуальной датой (2026) должны проходить
         # Блокируем только явные фейки типа "в 2026 году" в будущем контексте
         # Но это уже обрабатывается через LLM проверку

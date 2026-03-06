@@ -1356,10 +1356,10 @@ def postprocess_text(raw) -> str:
         return f"<b>Экономическая новость</b>\n\n{CHANNEL}"
 
     if extracted_header and len(extracted_header) > 10:
-        header = extracted_header[:120]
+        header = f"💰{extracted_header[:120]}💰"
         body_sentences = sentences
     else:
-        header = sentences[:120]
+        header = f"💰{sentences[:120]}💰"
         body_sentences = sentences[1:]
 
     if body_sentences:
@@ -1396,7 +1396,7 @@ def postprocess_text(raw) -> str:
     if len(formatted) > MAX_POST_LENGTH:
         temp_text = formatted.replace(f"\n\n{CHANNEL}", "")
         truncated = temp_text[:TRUNCATE_LENGTH]
-        
+
         # 🔍 УМНАЯ ОБРЕЗКА: ищем конец последнего完整ного предложения
         last_period = truncated.rfind('.')
         if last_period > MIN_TRUNCATE_SPACE:
@@ -1407,7 +1407,7 @@ def postprocess_text(raw) -> str:
                 final_body = truncated[:last_space] + '...'
             else:
                 final_body = truncated + '...'
-        
+
         if final_body.count('<b>') > final_body.count('</b>'):
             final_body += '</b>'
         # ✅ ПУСТАЯ СТРОКА перед подписью (при обрезке тоже)
@@ -1604,7 +1604,7 @@ class CachedLLMClient:
             # Конкретная дата + год + событие: "28 февраля 2024 года начал", "15 марта 2025 произошел"
             r'\d{1,2}\s+(?:янв|февр|мар|апр|ма|июн|июл|авг|сен|окт|ноя|дек)[а-я]*\s+(?:2023|2024|2025|2027|2028|2029|2030)\s*(?:года|г\.?)?\s*[,.]?\s*(?:начал|произош|удар|обстрел|убил|взорвал|подписал|объявил)',
             # Год + событие в прошедшем времени: "в 2024 году начал", "2023 году произошел"
-            r'(?:в\s+)?(?:2023|2024|2025|2027|2028|2029|2030)\s*году\s+(?:начал|произош|удар|обстрел|убил|взорвал|подписал|объявил|случил)',
+            r'(?:в\s+)?(?:2023|2024|2025|2027|2028|2029|2030)\s*году\s+(?:начал|произош|удар|обстрел|убил|��зорвал|подписал|объявил|случил)',
             # Событие + дату: "начал операцию 28 февраля 2024", "произошел взрыв 15 марта 2025"
             r'(?:начал|произош|удар|обстрел|убил|взорвал)[а-я]*\s+(?:в\s+)?(?:2023|2024|2025|2027|2028|2029|2030)\s*(?:году|год)?',
         ]
@@ -2326,7 +2326,7 @@ async def collect_and_process_news(llm, duplicate_detector, session):
             logger.warning("📭 Нет подходящих кандидатов")
             return (False, False)  # ❌ Новость не найдена
 
-        logger.info(f"🚀 Начинаем обработку {len(candidates)} кандидатов")
+        logger.info(f"🚀 Начинаем обработку {len(candidates)} кандид��тов")
 
         # Берем топ-3, но обрабатываем только пока не опубликуем одного
         for best in candidates[:3]:
@@ -2531,21 +2531,43 @@ async def main():
                     )
                     news_found, news_published = await state.current_task
 
+                    # ✅ НОЧНЫЕ ЗАДЕРЖКИ: 1.5-2x длиннее чем днем
+                    is_night = config.is_night_time()
+                    night_multiplier = 1.8 if is_night else 1.0
+
                     # ✅ ЛОГИКА ЗАДЕРЖЕК: зависит от того, НАЙДЕНА ли новость, а не опубликована
                     if news_found:
                         # ✅ Новость найдена и обработана (отправлена в модерку или сразу в канал)
                         # Следующий цикл через 15-25 минут — даём время на модерацию + защита от спама
+                        # Ночью: 27-45 минут (1.8x)
                         if news_published:
                             logger.info(f"✅ Новость опубликована")
                         else:
                             logger.info(f"⏳ Новость найдена, но ожидает публикации (модерация/ошибка)")
-                        delay = random.randint(900, 1500)  # 15-25 мин
-                        logger.info(f"⏱️ Задержка 15-25 мин (новость найдена)")
+                        base_delay_min = 900
+                        base_delay_max = 1500
+                        delay = random.randint(
+                            int(base_delay_min * night_multiplier),
+                            int(base_delay_max * night_multiplier)
+                        )
+                        if is_night:
+                            logger.info(f"⏱️ Задержка {delay // 60} мин (НОЧЬ 1.8x, новость найдена)")
+                        else:
+                            logger.info(f"⏱️ Задержка {delay // 60} мин (новость найдена)")
                     else:
                         # ✅ Новость НЕ найдена — нет подходящих кандидатов
                         # Следующий цикл через 10-15 минут — активный поиск
-                        delay = random.randint(600, 900)  # 10-15 мин
-                        logger.info(f"⏱️ Задержка 10-15 мин (новость не найдена, ищем дальше)")
+                        # Ночью: 18-27 минут (1.8x)
+                        base_delay_min = 600
+                        base_delay_max = 900
+                        delay = random.randint(
+                            int(base_delay_min * night_multiplier),
+                            int(base_delay_max * night_multiplier)
+                        )
+                        if is_night:
+                            logger.info(f"⏱️ Задержка {delay // 60} мин (НОЧЬ 1.8x, новость не найдена)")
+                        else:
+                            logger.info(f"⏱️ Задержка {delay // 60} мин (новость не найдена, ищем дальше)")
 
                     if cycle % 10 == 0:
                         await cleanup_old_posts()

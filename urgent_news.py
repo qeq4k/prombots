@@ -656,22 +656,30 @@ def format_urgent_post(title: str, summary: str, link: str, category: str, prior
     Если есть rewritten_text от LLM — используем его.
     Иначе — заголовок + summary.
     """
-    # Подпись канала
-    if category == "politics":
-        signature = "@I_Politika"
-    elif category == "economy":
-        signature = "@eco_steroid"
-    else:
-        signature = "@Film_orbita"
+    # ✅ ЭМОДЗИ ДЛЯ КАТЕГОРИЙ
+    CATEGORY_EMOJIS = {
+        "economy": "💰",
+        "politics": "🏛️",
+        "cinema": "🎬",
+    }
+    # ✅ ТЕГИ КАНАЛОВ
+    CHANNEL_TAGS = {
+        "economy": "@eco_steroid",
+        "politics": "@I_Politika",
+        "cinema": "@Film_orbita",
+    }
+    
+    emoji = CATEGORY_EMOJIS.get(category, "💰")
+    channel_tag = CHANNEL_TAGS.get(category, "@eco_steroid")
 
     # Если есть рерайт от LLM — используем его
     if rewritten_text:
-        text = rewritten_text + f"\n\n{signature}"
+        text = rewritten_text + f"\n\n{channel_tag}"
         return text
 
     # Формируем текст как обычный пост
-    # Заголовок жирным
-    text = f"<b>{title}</b>"
+    # Заголовок с эмодзи
+    text = f"{emoji}<b>{title}</b>{emoji}"
 
     # Тело новости (если есть)
     if summary:
@@ -681,7 +689,7 @@ def format_urgent_post(title: str, summary: str, link: str, category: str, prior
         text += f"\n\n{summary_text}"
 
     # Пустая строка + подпись канала
-    text += f"\n\n{signature}"
+    text += f"\n\n{channel_tag}"
 
     return text
 
