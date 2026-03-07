@@ -7516,3 +7516,1675 @@ NameError: name 'get_favorites_keyboard' is not defined. Did you mean: 'get_main
 2026-03-06 21:20:03,772 - __main__ - INFO - ✅ Redis кэш инициализирован
 2026-03-06 21:20:03,773 - aiogram.dispatcher - INFO - Start polling
 2026-03-06 21:20:04,551 - aiogram.dispatcher - INFO - Run polling for bot @kinocode26_bot id=8554826085 - 'KinoCode26'
+2026-03-06 21:46:01,204 - database - INFO - ✅ Подключение к БД установлено: /root/projectss/checkerrr/movies.db
+2026-03-06 21:46:01,207 - database - INFO - ✅ Таблицы БД созданы/проверены
+2026-03-06 21:46:01,207 - database - INFO - ✅ Таблицы БД проверены/созданы
+2026-03-06 21:46:01,289 - bot_new - INFO - ✅ Бот инициализирован успешно
+2026-03-06 21:46:08,487 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2026-03-06 21:46:08,488 - aiogram.dispatcher - INFO - Polling stopped for bot @kinocode26_bot id=8554826085 - 'KinoCode26'
+2026-03-06 21:46:08,489 - aiogram.dispatcher - INFO - Polling stopped
+2026-03-06 21:46:08,741 - cache - INFO - ✅ Redis отключен
+2026-03-06 21:46:08,743 - database - INFO - ✅ Соединение с БД закрыто
+2026-03-06 21:46:08,744 - __main__ - INFO - ✅ Бот остановлен корректно
+2026-03-06 21:46:17,628 - database - INFO - ✅ Подключение к БД установлено: /root/projectss/checkerrr/movies.db
+2026-03-06 21:46:17,631 - database - INFO - ✅ Таблицы БД созданы/проверены
+2026-03-06 21:46:17,631 - database - INFO - ✅ Таблицы БД проверены/созданы
+2026-03-06 21:46:17,712 - __main__ - INFO - ✅ Бот инициализирован успешно
+2026-03-06 21:46:17,712 - __main__ - INFO - 🚀 Запуск бота...
+2026-03-06 21:46:17,713 - __main__ - INFO - ✅ Сервисы инициализированы
+2026-03-06 21:46:17,713 - __main__ - INFO - ✅ Middleware зарегистрированы
+2026-03-06 21:46:17,720 - handlers.smart_search - ERROR - ❌ Ошибка инициализации MovieRecommender: 'Config' object has no attribute 'ROUTER_API_KEY'
+2026-03-06 21:46:17,720 - __main__ - INFO - ✅ Роутеры зарегистрированы
+2026-03-06 21:46:18,156 - cache - INFO - ✅ Redis подключен: localhost:6379
+2026-03-06 21:46:18,157 - __main__ - INFO - ✅ Redis кэш инициализирован
+2026-03-06 21:46:18,158 - aiogram.dispatcher - INFO - Start polling
+2026-03-06 21:46:18,336 - aiogram.dispatcher - INFO - Run polling for bot @kinocode26_bot id=8554826085 - 'KinoCode26'
+2026-03-06 21:47:50,821 - database - INFO - ✅ Подключение к БД установлено: /root/projectss/checkerrr/movies.db
+2026-03-06 21:47:50,825 - database - INFO - ✅ Таблицы БД созданы/проверены
+2026-03-06 21:47:50,826 - database - INFO - ✅ Таблицы БД проверены/созданы
+2026-03-06 21:47:50,901 - bot_new - INFO - ✅ Бот инициализирован успешно
+2026-03-06 21:47:51,293 - aiogram.event - INFO - Update id=375093858 is handled. Duration 474 ms by bot id=8554826085
+2026-03-06 21:47:56,708 - aiogram.event - INFO - Update id=375093859 is handled. Duration 128 ms by bot id=8554826085
+2026-03-06 21:51:23,690 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2026-03-06 21:51:23,691 - aiogram.dispatcher - INFO - Polling stopped for bot @kinocode26_bot id=8554826085 - 'KinoCode26'
+2026-03-06 21:51:23,691 - aiogram.dispatcher - INFO - Polling stopped
+2026-03-06 21:51:23,943 - cache - INFO - ✅ Redis отключен
+2026-03-06 21:51:23,944 - database - INFO - ✅ Соединение с БД закрыто
+2026-03-06 21:51:23,944 - __main__ - INFO - ✅ Бот остановлен корректно
+2026-03-06 21:51:34,404 - database - INFO - ✅ Подключение к БД установлено: /root/projectss/checkerrr/movies.db
+2026-03-06 21:51:34,406 - database - INFO - ✅ Таблицы БД созданы/проверены
+2026-03-06 21:51:34,407 - database - INFO - ✅ Таблицы БД проверены/созданы
+2026-03-06 21:51:34,482 - __main__ - INFO - ✅ Бот инициализирован успешно
+2026-03-06 21:51:34,483 - __main__ - INFO - 🚀 Запуск бота...
+2026-03-06 21:51:34,484 - __main__ - INFO - ✅ Сервисы инициализированы
+2026-03-06 21:51:34,484 - __main__ - INFO - ✅ Middleware зарегистрированы
+2026-03-06 21:51:34,485 - handlers.smart_search - INFO - ✅ MovieRecommender инициализирован
+2026-03-06 21:51:34,485 - __main__ - INFO - ✅ Роутеры зарегистрированы
+2026-03-06 21:51:34,493 - cache - INFO - ✅ Redis подключен: localhost:6379
+2026-03-06 21:51:34,494 - __main__ - INFO - ✅ Redis кэш инициализирован
+2026-03-06 21:51:34,495 - aiogram.dispatcher - INFO - Start polling
+2026-03-06 21:51:34,757 - aiogram.dispatcher - INFO - Run polling for bot @kinocode26_bot id=8554826085 - 'KinoCode26'
+2026-03-06 21:52:23,997 - database - INFO - ✅ Подключение к БД установлено: /root/projectss/checkerrr/movies.db
+2026-03-06 21:52:23,999 - database - INFO - ✅ Таблицы БД созданы/проверены
+2026-03-06 21:52:23,999 - database - INFO - ✅ Таблицы БД проверены/созданы
+2026-03-06 21:52:24,080 - bot_new - INFO - ✅ Бот инициализирован успешно
+2026-03-06 21:52:24,408 - aiogram.event - INFO - Update id=375093860 is handled. Duration 412 ms by bot id=8554826085
+2026-03-06 21:52:26,201 - aiogram.event - INFO - Update id=375093861 is handled. Duration 78 ms by bot id=8554826085
+2026-03-06 21:52:33,427 - recommender - ERROR - ❌ LLM API error 404: <!DOCTYPE html>
+<html lang='ru'>
+<head>
+<title>RouterAI ✨</title>
+<meta content='' name='description'>
+<meta content='index, follow' name='robots'>
+<meta content='website' property='og:type'>
+<meta co
+2026-03-06 21:52:33,429 - recommender - INFO - 🔍 Анализ запроса: {'genres': [], 'tags': [], 'mood': '', 'year_from': 2020, 'year_to': 2026, 'exclude': [], 'keywords': ['хочу', 'что-то', 'like', 'матрицы', 'но', 'посвеже']}
+2026-03-06 21:52:33,430 - recommender - INFO - 📊 Найдено фильмов: 3
+2026-03-06 21:52:33,486 - recommender - ERROR - ❌ LLM API error 404: <!DOCTYPE html>
+<html lang='ru'>
+<head>
+<title>RouterAI ✨</title>
+<meta content='' name='description'>
+<meta content='index, follow' name='robots'>
+<meta content='website' property='og:type'>
+<meta co
+2026-03-06 21:52:33,630 - handlers.smart_search - INFO - 🎯 Умный поиск: хочу что-то like Матрицы но посвеже... (найдено фильмов: 0)
+2026-03-06 21:52:33,631 - aiogram.event - INFO - Update id=375093862 is handled. Duration 339 ms by bot id=8554826085
+2026-03-06 21:53:16,332 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2026-03-06 21:53:16,334 - aiogram.dispatcher - INFO - Polling stopped for bot @kinocode26_bot id=8554826085 - 'KinoCode26'
+2026-03-06 21:53:16,334 - aiogram.dispatcher - INFO - Polling stopped
+2026-03-06 21:53:16,586 - cache - INFO - ✅ Redis отключен
+2026-03-06 21:53:16,587 - database - INFO - ✅ Соединение с БД закрыто
+2026-03-06 21:53:16,587 - __main__ - INFO - ✅ Бот остановлен корректно
+2026-03-06 21:53:24,854 - database - INFO - ✅ Подключение к БД установлено: /root/projectss/checkerrr/movies.db
+2026-03-06 21:53:24,856 - database - INFO - ✅ Таблицы БД созданы/проверены
+2026-03-06 21:53:24,857 - database - INFO - ✅ Таблицы БД проверены/созданы
+2026-03-06 21:53:25,089 - __main__ - INFO - ✅ Бот инициализирован успешно
+2026-03-06 21:53:25,090 - __main__ - INFO - 🚀 Запуск бота...
+2026-03-06 21:53:25,090 - __main__ - INFO - ✅ Сервисы инициализированы
+2026-03-06 21:53:25,090 - __main__ - INFO - ✅ Middleware зарегистрированы
+2026-03-06 21:53:25,092 - handlers.smart_search - INFO - ✅ MovieRecommender инициализирован
+2026-03-06 21:53:25,092 - __main__ - INFO - ✅ Роутеры зарегистрированы
+2026-03-06 21:53:25,100 - cache - INFO - ✅ Redis подключен: localhost:6379
+2026-03-06 21:53:25,100 - __main__ - INFO - ✅ Redis кэш инициализирован
+2026-03-06 21:53:25,101 - aiogram.dispatcher - INFO - Start polling
+2026-03-06 21:53:25,351 - aiogram.dispatcher - INFO - Run polling for bot @kinocode26_bot id=8554826085 - 'KinoCode26'
+2026-03-06 21:53:40,798 - aiogram.event - INFO - Update id=375093863 is handled. Duration 178 ms by bot id=8554826085
+2026-03-06 21:53:42,623 - database - INFO - ✅ Подключение к БД установлено: /root/projectss/checkerrr/movies.db
+2026-03-06 21:53:42,625 - database - INFO - ✅ Таблицы БД созданы/проверены
+2026-03-06 21:53:42,625 - database - INFO - ✅ Таблицы БД проверены/созданы
+2026-03-06 21:53:42,702 - bot_new - INFO - ✅ Бот инициализирован успешно
+2026-03-06 21:53:42,957 - aiogram.event - INFO - Update id=375093864 is handled. Duration 336 ms by bot id=8554826085
+2026-03-06 21:53:44,008 - aiogram.event - INFO - Update id=375093865 is handled. Duration 130 ms by bot id=8554826085
+2026-03-06 21:53:59,252 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2026-03-06 21:53:59,253 - aiogram.dispatcher - INFO - Polling stopped for bot @kinocode26_bot id=8554826085 - 'KinoCode26'
+2026-03-06 21:53:59,253 - aiogram.dispatcher - INFO - Polling stopped
+2026-03-06 21:53:59,505 - cache - INFO - ✅ Redis отключен
+2026-03-06 21:53:59,505 - database - INFO - ✅ Соединение с БД закрыто
+2026-03-06 21:53:59,506 - __main__ - INFO - ✅ Бот остановлен корректно
+2026-03-06 21:54:07,692 - database - INFO - ✅ Подключение к БД установлено: /root/projectss/checkerrr/movies.db
+2026-03-06 21:54:07,694 - database - INFO - ✅ Таблицы БД созданы/проверены
+2026-03-06 21:54:07,694 - database - INFO - ✅ Таблицы БД проверены/созданы
+2026-03-06 21:54:07,766 - __main__ - INFO - ✅ Бот инициализирован успешно
+2026-03-06 21:54:07,766 - __main__ - INFO - 🚀 Запуск бота...
+2026-03-06 21:54:07,767 - __main__ - INFO - ✅ Сервисы инициализированы
+2026-03-06 21:54:07,767 - __main__ - INFO - ✅ Middleware зарегистрированы
+2026-03-06 21:54:07,768 - handlers.smart_search - INFO - ✅ MovieRecommender инициализирован
+2026-03-06 21:54:07,769 - __main__ - INFO - ✅ Роутеры зарегистрированы
+2026-03-06 21:54:07,778 - cache - INFO - ✅ Redis подключен: localhost:6379
+2026-03-06 21:54:07,779 - __main__ - INFO - ✅ Redis кэш инициализирован
+2026-03-06 21:54:07,780 - aiogram.dispatcher - INFO - Start polling
+2026-03-06 21:54:08,139 - aiogram.dispatcher - INFO - Run polling for bot @kinocode26_bot id=8554826085 - 'KinoCode26'
+2026-03-06 21:54:08,200 - database - INFO - ✅ Подключение к БД установлено: /root/projectss/checkerrr/movies.db
+2026-03-06 21:54:08,202 - database - INFO - ✅ Таблицы БД созданы/проверены
+2026-03-06 21:54:08,202 - database - INFO - ✅ Таблицы БД проверены/созданы
+2026-03-06 21:54:08,276 - bot_new - INFO - ✅ Бот инициализирован успешно
+2026-03-06 21:54:08,605 - aiogram.event - INFO - Update id=375093866 is handled. Duration 406 ms by bot id=8554826085
+2026-03-06 21:54:10,497 - aiogram.event - INFO - Update id=375093867 is handled. Duration 82 ms by bot id=8554826085
+2026-03-06 21:55:04,993 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2026-03-06 21:55:04,994 - aiogram.dispatcher - INFO - Polling stopped for bot @kinocode26_bot id=8554826085 - 'KinoCode26'
+2026-03-06 21:55:04,994 - aiogram.dispatcher - INFO - Polling stopped
+2026-03-06 21:55:05,247 - cache - INFO - ✅ Redis отключен
+2026-03-06 21:55:05,248 - database - INFO - ✅ Соединение с БД закрыто
+2026-03-06 21:55:05,248 - __main__ - INFO - ✅ Бот остановлен корректно
+2026-03-06 21:55:15,888 - database - INFO - ✅ Подключение к БД установлено: /root/projectss/checkerrr/movies.db
+2026-03-06 21:55:15,891 - database - INFO - ✅ Таблицы БД созданы/проверены
+2026-03-06 21:55:15,892 - database - INFO - ✅ Таблицы БД проверены/созданы
+2026-03-06 21:55:15,958 - __main__ - INFO - ✅ Бот инициализирован успешно
+2026-03-06 21:55:15,959 - __main__ - INFO - 🚀 Запуск бота...
+2026-03-06 21:55:15,960 - __main__ - INFO - ✅ Сервисы инициализированы
+2026-03-06 21:55:15,961 - __main__ - INFO - ✅ Middleware зарегистрированы
+2026-03-06 21:55:15,963 - handlers.smart_search - INFO - ✅ MovieRecommender инициализирован
+2026-03-06 21:55:15,964 - __main__ - INFO - ✅ Роутеры зарегистрированы
+2026-03-06 21:55:15,972 - cache - INFO - ✅ Redis подключен: localhost:6379
+2026-03-06 21:55:15,973 - __main__ - INFO - ✅ Redis кэш инициализирован
+2026-03-06 21:55:15,974 - aiogram.dispatcher - INFO - Start polling
+2026-03-06 21:55:16,559 - aiogram.dispatcher - INFO - Run polling for bot @kinocode26_bot id=8554826085 - 'KinoCode26'
+2026-03-06 21:56:35,059 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2026-03-06 21:56:35,060 - aiogram.dispatcher - INFO - Polling stopped for bot @kinocode26_bot id=8554826085 - 'KinoCode26'
+2026-03-06 21:56:35,061 - aiogram.dispatcher - INFO - Polling stopped
+2026-03-06 21:56:35,312 - cache - INFO - ✅ Redis отключен
+2026-03-06 21:56:35,313 - database - INFO - ✅ Соединение с БД закрыто
+2026-03-06 21:56:35,313 - __main__ - INFO - ✅ Бот остановлен корректно
+2026-03-06 21:56:43,160 - database - INFO - ✅ Подключение к БД установлено: /root/projectss/checkerrr/movies.db
+2026-03-06 21:56:43,162 - database - INFO - ✅ Таблицы БД созданы/проверены
+2026-03-06 21:56:43,162 - database - INFO - ✅ Таблицы БД проверены/созданы
+2026-03-06 21:56:43,237 - __main__ - INFO - ✅ Бот инициализирован успешно
+2026-03-06 21:56:43,238 - __main__ - INFO - 🚀 Запуск бота...
+2026-03-06 21:56:43,238 - __main__ - INFO - ✅ Сервисы инициализированы
+2026-03-06 21:56:43,238 - __main__ - INFO - ✅ Middleware зарегистрированы
+2026-03-06 21:56:43,240 - handlers.smart_search - INFO - ✅ MovieRecommender инициализирован
+2026-03-06 21:56:43,240 - __main__ - INFO - ✅ Роутеры зарегистрированы
+2026-03-06 21:56:43,249 - cache - INFO - ✅ Redis подключен: localhost:6379
+2026-03-06 21:56:43,249 - __main__ - INFO - ✅ Redis кэш инициализирован
+2026-03-06 21:56:43,250 - aiogram.dispatcher - INFO - Start polling
+2026-03-06 21:56:43,468 - aiogram.dispatcher - INFO - Run polling for bot @kinocode26_bot id=8554826085 - 'KinoCode26'
+2026-03-06 21:56:43,525 - database - INFO - ✅ Подключение к БД установлено: /root/projectss/checkerrr/movies.db
+2026-03-06 21:56:43,527 - database - INFO - ✅ Таблицы БД созданы/проверены
+2026-03-06 21:56:43,527 - database - INFO - ✅ Таблицы БД проверены/созданы
+2026-03-06 21:56:43,598 - bot_new - INFO - ✅ Бот инициализирован успешно
+2026-03-06 21:56:43,955 - aiogram.event - INFO - Update id=375093868 is handled. Duration 432 ms by bot id=8554826085
+2026-03-06 21:56:45,068 - aiogram.event - INFO - Update id=375093869 is handled. Duration 81 ms by bot id=8554826085
+2026-03-06 21:57:12,374 - recommender - ERROR - ❌ LLM API error 404: <!DOCTYPE html>
+<html lang='ru'>
+<head>
+<title>RouterAI ✨</title>
+<meta content='' name='description'>
+<meta content='index, follow' name='robots'>
+<meta content='website' property='og:type'>
+<meta co
+2026-03-06 21:57:12,376 - recommender - INFO - 🔍 Анализ запроса: {'genres': [], 'tags': [], 'mood': '', 'year_from': 2020, 'year_to': 2026, 'exclude': [], 'keywords': ['фильмы', 'типа', 'форсажа']}
+2026-03-06 21:57:12,377 - recommender - INFO - 📊 Найдено фильмов: 0
+2026-03-06 21:57:12,519 - handlers.smart_search - INFO - 🎯 Умный поиск: фильмы типа форсажа... (найдено фильмов: 0)
+2026-03-06 21:57:12,520 - aiogram.event - INFO - Update id=375093870 is handled. Duration 244 ms by bot id=8554826085
+2026-03-06 21:57:16,482 - aiogram.event - INFO - Update id=375093871 is handled. Duration 198 ms by bot id=8554826085
+2026-03-06 21:57:23,419 - recommender - ERROR - ❌ LLM API error 404: <!DOCTYPE html>
+<html lang='ru'>
+<head>
+<title>RouterAI ✨</title>
+<meta content='' name='description'>
+<meta content='index, follow' name='robots'>
+<meta content='website' property='og:type'>
+<meta co
+2026-03-06 21:57:23,421 - recommender - INFO - 🔍 Анализ запроса: {'genres': [], 'tags': [], 'mood': '', 'year_from': 2020, 'year_to': 2026, 'exclude': [], 'keywords': ['что-то', 'новое', 'вышло', 'за', '2025-202']}
+2026-03-06 21:57:23,422 - recommender - INFO - 📊 Найдено фильмов: 2
+2026-03-06 21:57:23,457 - recommender - ERROR - ❌ LLM API error 404: <!DOCTYPE html>
+<html lang='ru'>
+<head>
+<title>RouterAI ✨</title>
+<meta content='' name='description'>
+<meta content='index, follow' name='robots'>
+<meta content='website' property='og:type'>
+<meta co
+2026-03-06 21:57:23,600 - handlers.smart_search - INFO - 🎯 Умный поиск: что-то новое вышло за 2025-202... (найдено фильмов: 0)
+2026-03-06 21:57:23,601 - aiogram.event - INFO - Update id=375093872 is handled. Duration 276 ms by bot id=8554826085
+2026-03-06 21:57:27,880 - aiogram.event - INFO - Update id=375093873 is handled. Duration 90 ms by bot id=8554826085
+2026-03-06 21:57:30,443 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2026-03-06 21:57:30,444 - aiogram.dispatcher - INFO - Polling stopped for bot @kinocode26_bot id=8554826085 - 'KinoCode26'
+2026-03-06 21:57:30,445 - aiogram.dispatcher - INFO - Polling stopped
+2026-03-06 21:57:30,697 - cache - INFO - ✅ Redis отключен
+2026-03-06 21:57:30,698 - database - INFO - ✅ Соединение с БД закрыто
+2026-03-06 21:57:30,698 - __main__ - INFO - ✅ Бот остановлен корректно
+2026-03-06 21:57:39,614 - database - INFO - ✅ Подключение к БД установлено: /root/projectss/checkerrr/movies.db
+2026-03-06 21:57:39,616 - database - INFO - ✅ Таблицы БД созданы/проверены
+2026-03-06 21:57:39,616 - database - INFO - ✅ Таблицы БД проверены/созданы
+2026-03-06 21:57:39,693 - __main__ - INFO - ✅ Бот инициализирован успешно
+2026-03-06 21:57:39,694 - __main__ - INFO - 🚀 Запуск бота...
+2026-03-06 21:57:39,694 - __main__ - INFO - ✅ Сервисы инициализированы
+2026-03-06 21:57:39,695 - __main__ - INFO - ✅ Middleware зарегистрированы
+2026-03-06 21:57:39,696 - handlers.smart_search - INFO - ✅ MovieRecommender инициализирован
+2026-03-06 21:57:39,696 - __main__ - INFO - ✅ Роутеры зарегистрированы
+2026-03-06 21:57:39,706 - cache - INFO - ✅ Redis подключен: localhost:6379
+2026-03-06 21:57:39,707 - __main__ - INFO - ✅ Redis кэш инициализирован
+2026-03-06 21:57:39,708 - aiogram.dispatcher - INFO - Start polling
+2026-03-06 21:57:39,858 - aiogram.dispatcher - INFO - Run polling for bot @kinocode26_bot id=8554826085 - 'KinoCode26'
+2026-03-06 21:57:40,119 - recommender - ERROR - ❌ LLM API error 404: <!DOCTYPE html>
+<html lang='ru'>
+<head>
+<title>RouterAI ✨</title>
+<meta content='' name='description'>
+<meta content='index, follow' name='robots'>
+<meta content='website' property='og:type'>
+<meta co
+2026-03-06 21:57:40,120 - recommender - INFO - 🔍 Анализ запроса: {'genres': [], 'tags': [], 'mood': '', 'year_from': 2020, 'year_to': 2026, 'exclude': [], 'keywords': ['фильмы', 'жанра', 'гонок', 'типо', 'форсаж']}
+2026-03-06 21:57:40,121 - recommender - INFO - 📊 Найдено фильмов: 0
+2026-03-06 21:57:40,262 - handlers.smart_search - INFO - 🎯 Умный поиск: фильмы жанра гонок типо форсаж... (найдено фильмов: 0)
+2026-03-06 21:57:40,262 - aiogram.event - INFO - Update id=375093874 is handled. Duration 343 ms by bot id=8554826085
+2026-03-06 21:59:30,596 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2026-03-06 21:59:30,597 - aiogram.dispatcher - INFO - Polling stopped for bot @kinocode26_bot id=8554826085 - 'KinoCode26'
+2026-03-06 21:59:30,597 - aiogram.dispatcher - INFO - Polling stopped
+2026-03-06 21:59:30,852 - cache - INFO - ✅ Redis отключен
+2026-03-06 21:59:30,852 - database - INFO - ✅ Соединение с БД закрыто
+2026-03-06 21:59:30,853 - __main__ - INFO - ✅ Бот остановлен корректно
+2026-03-06 21:59:43,548 - database - INFO - ✅ Подключение к БД установлено: /root/projectss/checkerrr/movies.db
+2026-03-06 21:59:43,550 - database - INFO - ✅ Таблицы БД созданы/проверены
+2026-03-06 21:59:43,551 - database - INFO - ✅ Таблицы БД проверены/созданы
+2026-03-06 21:59:43,626 - __main__ - INFO - ✅ Бот инициализирован успешно
+2026-03-06 21:59:43,627 - __main__ - INFO - 🚀 Запуск бота...
+2026-03-06 21:59:43,627 - __main__ - INFO - ✅ Сервисы инициализированы
+2026-03-06 21:59:43,627 - __main__ - INFO - ✅ Middleware зарегистрированы
+2026-03-06 21:59:43,635 - handlers.smart_search - INFO - ✅ MovieRecommender инициализирован
+2026-03-06 21:59:43,635 - __main__ - INFO - ✅ Роутеры зарегистрированы
+2026-03-06 21:59:43,644 - cache - INFO - ✅ Redis подключен: localhost:6379
+2026-03-06 21:59:43,644 - __main__ - INFO - ✅ Redis кэш инициализирован
+2026-03-06 21:59:43,645 - aiogram.dispatcher - INFO - Start polling
+2026-03-06 21:59:43,788 - aiogram.dispatcher - INFO - Run polling for bot @kinocode26_bot id=8554826085 - 'KinoCode26'
+2026-03-06 22:02:12,165 - aiogram.event - INFO - Update id=375093875 is handled. Duration 193 ms by bot id=8554826085
+2026-03-06 22:02:13,412 - recommender - INFO - 💾 Cache hit для: фильмы жанра гонок типо форсаж
+2026-03-06 22:02:13,695 - handlers.smart_search - INFO - 🎯 Умный поиск: фильмы жанра гонок типо форсаж... (найдено фильмов: 0)
+2026-03-06 22:02:13,695 - aiogram.event - INFO - Update id=375093876 is handled. Duration 456 ms by bot id=8554826085
+2026-03-06 22:02:27,774 - database - INFO - ✅ Подключение к БД установлено: /root/projectss/checkerrr/movies.db
+2026-03-06 22:02:27,776 - database - INFO - ✅ Таблицы БД созданы/проверены
+2026-03-06 22:02:27,777 - database - INFO - ✅ Таблицы БД проверены/созданы
+2026-03-06 22:02:27,855 - bot_new - INFO - ✅ Бот инициализирован успешно
+2026-03-06 22:02:28,083 - aiogram.event - INFO - Update id=375093877 is handled. Duration 311 ms by bot id=8554826085
+2026-03-06 22:02:29,524 - aiogram.event - INFO - Update id=375093878 is handled. Duration 239 ms by bot id=8554826085
+2026-03-06 22:02:30,853 - recommender - INFO - 💾 Cache hit для: фильмы жанра гонок типо форсаж
+2026-03-06 22:02:30,979 - handlers.smart_search - INFO - 🎯 Умный поиск: фильмы жанра гонок типо форсаж... (найдено фильмов: 0)
+2026-03-06 22:02:30,979 - aiogram.event - INFO - Update id=375093879 is handled. Duration 196 ms by bot id=8554826085
+2026-03-06 22:04:02,688 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2026-03-06 22:04:02,689 - aiogram.dispatcher - INFO - Polling stopped for bot @kinocode26_bot id=8554826085 - 'KinoCode26'
+2026-03-06 22:04:02,689 - aiogram.dispatcher - INFO - Polling stopped
+2026-03-06 22:04:02,942 - cache - INFO - ✅ Redis отключен
+2026-03-06 22:04:02,943 - database - INFO - ✅ Соединение с БД закрыто
+2026-03-06 22:04:02,943 - __main__ - INFO - ✅ Бот остановлен корректно
+2026-03-06 22:04:11,707 - database - INFO - ✅ Подключение к БД установлено: /root/projectss/checkerrr/movies.db
+2026-03-06 22:04:11,709 - database - INFO - ✅ Таблицы БД созданы/проверены
+2026-03-06 22:04:11,709 - database - INFO - ✅ Таблицы БД проверены/созданы
+2026-03-06 22:04:11,784 - __main__ - INFO - ✅ Бот инициализирован успешно
+2026-03-06 22:04:11,785 - __main__ - INFO - 🚀 Запуск бота...
+2026-03-06 22:04:11,785 - __main__ - INFO - ✅ Сервисы инициализированы
+2026-03-06 22:04:11,785 - __main__ - INFO - ✅ Middleware зарегистрированы
+2026-03-06 22:04:11,793 - handlers.smart_search - INFO - ✅ MovieRecommender инициализирован
+2026-03-06 22:04:11,793 - __main__ - INFO - ✅ Роутеры зарегистрированы
+2026-03-06 22:04:11,800 - cache - INFO - ✅ Redis подключен: localhost:6379
+2026-03-06 22:04:11,800 - __main__ - INFO - ✅ Redis кэш инициализирован
+2026-03-06 22:04:11,801 - aiogram.dispatcher - INFO - Start polling
+2026-03-06 22:04:12,155 - aiogram.dispatcher - INFO - Run polling for bot @kinocode26_bot id=8554826085 - 'KinoCode26'
+2026-03-06 22:04:46,640 - database - INFO - ✅ Подключение к БД установлено: /root/projectss/checkerrr/movies.db
+2026-03-06 22:04:46,645 - database - INFO - ✅ Таблицы БД созданы/проверены
+2026-03-06 22:04:46,646 - database - INFO - ✅ Таблицы БД проверены/созданы
+2026-03-06 22:04:46,728 - bot_new - INFO - ✅ Бот инициализирован успешно
+2026-03-06 22:04:47,232 - aiogram.event - INFO - Update id=375093880 is handled. Duration 596 ms by bot id=8554826085
+2026-03-06 22:04:54,446 - aiogram.event - INFO - Update id=375093881 is handled. Duration 76 ms by bot id=8554826085
+2026-03-06 22:04:55,702 - recommender - INFO - 💾 Cache hit для: фильмы жанра гонок типо форсаж
+2026-03-06 22:04:55,833 - handlers.smart_search - INFO - 🎯 Умный поиск: фильмы жанра гонок типо форсаж... (найдено фильмов: 0)
+2026-03-06 22:04:55,833 - aiogram.event - INFO - Update id=375093882 is handled. Duration 204 ms by bot id=8554826085
+2026-03-06 22:05:13,818 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2026-03-06 22:05:13,819 - aiogram.dispatcher - INFO - Polling stopped for bot @kinocode26_bot id=8554826085 - 'KinoCode26'
+2026-03-06 22:05:13,819 - aiogram.dispatcher - INFO - Polling stopped
+2026-03-06 22:05:14,071 - cache - INFO - ✅ Redis отключен
+2026-03-06 22:05:14,072 - database - INFO - ✅ Соединение с БД закрыто
+2026-03-06 22:05:14,073 - __main__ - INFO - ✅ Бот остановлен корректно
+2026-03-06 22:05:24,268 - database - INFO - ✅ Подключение к БД установлено: /root/projectss/checkerrr/movies.db
+2026-03-06 22:05:24,270 - database - INFO - ✅ Таблицы БД созданы/проверены
+2026-03-06 22:05:24,271 - database - INFO - ✅ Таблицы БД проверены/созданы
+2026-03-06 22:05:24,347 - __main__ - INFO - ✅ Бот инициализирован успешно
+2026-03-06 22:05:24,348 - __main__ - INFO - 🚀 Запуск бота...
+2026-03-06 22:05:24,348 - __main__ - INFO - ✅ Сервисы инициализированы
+2026-03-06 22:05:24,348 - __main__ - INFO - ✅ Middleware зарегистрированы
+2026-03-06 22:05:24,349 - handlers.smart_search - INFO - ✅ MovieRecommender инициализирован
+2026-03-06 22:05:24,350 - __main__ - INFO - ✅ Роутеры зарегистрированы
+2026-03-06 22:05:24,357 - cache - INFO - ✅ Redis подключен: localhost:6379
+2026-03-06 22:05:24,357 - __main__ - INFO - ✅ Redis кэш инициализирован
+2026-03-06 22:05:24,358 - aiogram.dispatcher - INFO - Start polling
+2026-03-06 22:05:24,493 - aiogram.dispatcher - INFO - Run polling for bot @kinocode26_bot id=8554826085 - 'KinoCode26'
+2026-03-06 22:05:29,023 - database - INFO - ✅ Подключение к БД установлено: /root/projectss/checkerrr/movies.db
+2026-03-06 22:05:29,025 - database - INFO - ✅ Таблицы БД созданы/проверены
+2026-03-06 22:05:29,026 - database - INFO - ✅ Таблицы БД проверены/созданы
+2026-03-06 22:05:29,103 - bot_new - INFO - ✅ Бот инициализирован успешно
+2026-03-06 22:05:29,462 - aiogram.event - INFO - Update id=375093883 is handled. Duration 440 ms by bot id=8554826085
+2026-03-06 22:05:30,880 - aiogram.event - INFO - Update id=375093884 is handled. Duration 152 ms by bot id=8554826085
+2026-03-06 22:05:32,312 - recommender - ERROR - ❌ LLM API error 404: <!DOCTYPE html>
+<html lang='ru'>
+<head>
+<title>RouterAI ✨</title>
+<meta content='' name='description'>
+<meta content='index, follow' name='robots'>
+<meta content='website' property='og:type'>
+<meta co
+2026-03-06 22:05:32,313 - recommender - INFO - 🔍 Анализ запроса: {'genres': [], 'tags': [], 'mood': '', 'year_from': 2020, 'year_to': 2026, 'exclude': [], 'keywords': ['😕', 'к', 'сожалению,', 'ничего', 'не', 'нашлось', 'по', 'вашему', 'запросу.', 'попробуйте', 'сформулировать', 'иначе', 'или', 'выберите', 'случайный', 'фильм!']}
+2026-03-06 22:05:32,314 - recommender - INFO - 📊 Найдено фильмов в БД: 8
+2026-03-06 22:05:32,333 - recommender - ERROR - ❌ LLM API error 404: <!DOCTYPE html>
+<html lang='ru'>
+<head>
+<title>RouterAI ✨</title>
+<meta content='' name='description'>
+<meta content='index, follow' name='robots'>
+<meta content='website' property='og:type'>
+<meta co
+2026-03-06 22:05:32,491 - handlers.smart_search - INFO - 🎯 Умный поиск: 😕 К сожалению, ничего не нашлось по вашему запросу... (найдено фильмов: 0)
+2026-03-06 22:05:32,491 - aiogram.event - INFO - Update id=375093885 is handled. Duration 307 ms by bot id=8554826085
+2026-03-06 22:05:37,624 - aiogram.event - INFO - Update id=375093886 is handled. Duration 72 ms by bot id=8554826085
+2026-03-06 22:05:40,127 - recommender - INFO - 💾 Cache hit для: фильмы жанра гонок типо форсаж
+2026-03-06 22:05:40,265 - handlers.smart_search - INFO - 🎯 Умный поиск: фильмы жанра гонок типо форсаж... (найдено фильмов: 0)
+2026-03-06 22:05:40,266 - aiogram.event - INFO - Update id=375093887 is handled. Duration 216 ms by bot id=8554826085
+2026-03-06 22:09:23,868 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2026-03-06 22:09:23,869 - aiogram.dispatcher - INFO - Polling stopped for bot @kinocode26_bot id=8554826085 - 'KinoCode26'
+2026-03-06 22:09:23,869 - aiogram.dispatcher - INFO - Polling stopped
+2026-03-06 22:09:24,122 - cache - INFO - ✅ Redis отключен
+2026-03-06 22:09:24,123 - database - INFO - ✅ Соединение с БД закрыто
+2026-03-06 22:09:24,123 - __main__ - INFO - ✅ Бот остановлен корректно
+2026-03-06 22:09:35,505 - database - INFO - ✅ Подключение к БД установлено: /root/projectss/checkerrr/movies.db
+2026-03-06 22:09:35,507 - database - INFO - ✅ Таблицы БД созданы/проверены
+2026-03-06 22:09:35,508 - database - INFO - ✅ Таблицы БД проверены/созданы
+2026-03-06 22:09:35,581 - __main__ - INFO - ✅ Бот инициализирован успешно
+2026-03-06 22:09:35,582 - __main__ - INFO - 🚀 Запуск бота...
+2026-03-06 22:09:35,582 - __main__ - INFO - ✅ Сервисы инициализированы
+2026-03-06 22:09:35,583 - __main__ - INFO - ✅ Middleware зарегистрированы
+2026-03-06 22:09:35,816 - handlers.smart_search - INFO - ✅ MovieRecommender инициализирован
+2026-03-06 22:09:35,816 - __main__ - INFO - ✅ Роутеры зарегистрированы
+2026-03-06 22:09:35,825 - cache - INFO - ✅ Redis подключен: localhost:6379
+2026-03-06 22:09:35,826 - __main__ - INFO - ✅ Redis кэш инициализирован
+2026-03-06 22:09:35,827 - aiogram.dispatcher - INFO - Start polling
+2026-03-06 22:09:35,966 - aiogram.dispatcher - INFO - Run polling for bot @kinocode26_bot id=8554826085 - 'KinoCode26'
+2026-03-06 22:11:22,141 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2026-03-06 22:11:22,142 - aiogram.dispatcher - INFO - Polling stopped for bot @kinocode26_bot id=8554826085 - 'KinoCode26'
+2026-03-06 22:11:22,142 - aiogram.dispatcher - INFO - Polling stopped
+2026-03-06 22:11:22,394 - cache - INFO - ✅ Redis отключен
+2026-03-06 22:11:22,395 - database - INFO - ✅ Соединение с БД закрыто
+2026-03-06 22:11:22,395 - __main__ - INFO - ✅ Бот остановлен корректно
+2026-03-06 22:11:32,236 - database - INFO - ✅ Подключение к БД установлено: /root/projectss/checkerrr/movies.db
+2026-03-06 22:11:32,239 - database - INFO - ✅ Таблицы БД созданы/проверены
+2026-03-06 22:11:32,239 - database - INFO - ✅ Таблицы БД проверены/созданы
+2026-03-06 22:11:32,319 - __main__ - INFO - ✅ Бот инициализирован успешно
+2026-03-06 22:11:32,320 - __main__ - INFO - 🚀 Запуск бота...
+2026-03-06 22:11:32,321 - __main__ - INFO - ✅ Сервисы инициализированы
+2026-03-06 22:11:32,321 - __main__ - INFO - ✅ Middleware зарегистрированы
+2026-03-06 22:11:32,328 - handlers.smart_search - INFO - ✅ MovieRecommender инициализирован
+2026-03-06 22:11:32,328 - __main__ - INFO - ✅ Роутеры зарегистрированы
+2026-03-06 22:11:32,336 - cache - INFO - ✅ Redis подключен: localhost:6379
+2026-03-06 22:11:32,336 - __main__ - INFO - ✅ Redis кэш инициализирован
+2026-03-06 22:11:32,338 - aiogram.dispatcher - INFO - Start polling
+2026-03-06 22:11:32,576 - aiogram.dispatcher - INFO - Run polling for bot @kinocode26_bot id=8554826085 - 'KinoCode26'
+2026-03-06 22:12:12,783 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2026-03-06 22:12:12,786 - aiogram.dispatcher - INFO - Polling stopped for bot @kinocode26_bot id=8554826085 - 'KinoCode26'
+2026-03-06 22:12:12,787 - aiogram.dispatcher - INFO - Polling stopped
+2026-03-06 22:12:13,039 - cache - INFO - ✅ Redis отключен
+2026-03-06 22:12:13,040 - database - INFO - ✅ Соединение с БД закрыто
+2026-03-06 22:12:13,040 - __main__ - INFO - ✅ Бот остановлен корректно
+2026-03-06 22:12:20,628 - database - INFO - ✅ Подключение к БД установлено: /root/projectss/checkerrr/movies.db
+2026-03-06 22:12:20,630 - database - INFO - ✅ Таблицы БД созданы/проверены
+2026-03-06 22:12:20,632 - database - INFO - ✅ Таблицы БД проверены/созданы
+2026-03-06 22:12:20,712 - __main__ - INFO - ✅ Бот инициализирован успешно
+2026-03-06 22:12:20,713 - __main__ - INFO - 🚀 Запуск бота...
+2026-03-06 22:12:20,713 - __main__ - INFO - ✅ Сервисы инициализированы
+2026-03-06 22:12:20,713 - __main__ - INFO - ✅ Middleware зарегистрированы
+2026-03-06 22:12:20,714 - handlers.smart_search - INFO - ✅ MovieRecommender инициализирован
+2026-03-06 22:12:20,714 - __main__ - INFO - ✅ Роутеры зарегистрированы
+2026-03-06 22:12:20,722 - cache - INFO - ✅ Redis подключен: localhost:6379
+2026-03-06 22:12:20,723 - __main__ - INFO - ✅ Redis кэш инициализирован
+2026-03-06 22:12:20,724 - aiogram.dispatcher - INFO - Start polling
+2026-03-06 22:12:20,878 - aiogram.dispatcher - INFO - Run polling for bot @kinocode26_bot id=8554826085 - 'KinoCode26'
+2026-03-06 22:12:20,943 - database - INFO - ✅ Подключение к БД установлено: /root/projectss/checkerrr/movies.db
+2026-03-06 22:12:20,945 - database - INFO - ✅ Таблицы БД созданы/проверены
+2026-03-06 22:12:20,945 - database - INFO - ✅ Таблицы БД проверены/созданы
+2026-03-06 22:12:21,024 - bot_new - INFO - ✅ Бот инициализирован успешно
+2026-03-06 22:12:21,357 - aiogram.event - INFO - Update id=375093888 is handled. Duration 416 ms by bot id=8554826085
+2026-03-06 22:12:22,574 - aiogram.event - INFO - Update id=375093889 is handled. Duration 78 ms by bot id=8554826085
+2026-03-06 22:14:35,709 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2026-03-06 22:14:35,710 - aiogram.dispatcher - INFO - Polling stopped for bot @kinocode26_bot id=8554826085 - 'KinoCode26'
+2026-03-06 22:14:35,710 - aiogram.dispatcher - INFO - Polling stopped
+2026-03-06 22:14:35,963 - cache - INFO - ✅ Redis отключен
+2026-03-06 22:14:35,963 - database - INFO - ✅ Соединение с БД закрыто
+2026-03-06 22:14:35,964 - __main__ - INFO - ✅ Бот остановлен корректно
+2026-03-06 22:14:35,966 - aiogram.event - INFO - Update id=375093890 is not handled. Duration 130748 ms by bot id=8554826085
+2026-03-06 22:14:46,418 - database - INFO - ✅ Подключение к БД установлено: /root/projectss/checkerrr/movies.db
+2026-03-06 22:14:46,420 - database - INFO - ✅ Таблицы БД созданы/проверены
+2026-03-06 22:14:46,420 - database - INFO - ✅ Таблицы БД проверены/созданы
+2026-03-06 22:14:46,498 - __main__ - INFO - ✅ Бот инициализирован успешно
+2026-03-06 22:14:46,499 - __main__ - INFO - 🚀 Запуск бота...
+2026-03-06 22:14:46,499 - __main__ - INFO - ✅ Сервисы инициализированы
+2026-03-06 22:14:46,500 - __main__ - INFO - ✅ Middleware зарегистрированы
+2026-03-06 22:14:46,507 - handlers.smart_search - INFO - ✅ MovieRecommender инициализирован
+2026-03-06 22:14:46,508 - __main__ - INFO - ✅ Роутеры зарегистрированы
+2026-03-06 22:14:46,516 - cache - INFO - ✅ Redis подключен: localhost:6379
+2026-03-06 22:14:46,517 - __main__ - INFO - ✅ Redis кэш инициализирован
+2026-03-06 22:14:46,518 - aiogram.dispatcher - INFO - Start polling
+2026-03-06 22:14:46,677 - aiogram.dispatcher - INFO - Run polling for bot @kinocode26_bot id=8554826085 - 'KinoCode26'
+2026-03-06 22:14:58,147 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2026-03-06 22:14:58,148 - aiogram.dispatcher - INFO - Polling stopped for bot @kinocode26_bot id=8554826085 - 'KinoCode26'
+2026-03-06 22:14:58,149 - aiogram.dispatcher - INFO - Polling stopped
+2026-03-06 22:14:58,401 - cache - INFO - ✅ Redis отключен
+2026-03-06 22:14:58,402 - database - INFO - ✅ Соединение с БД закрыто
+2026-03-06 22:14:58,402 - __main__ - INFO - ✅ Бот остановлен корректно
+2026-03-06 22:15:06,338 - database - INFO - ✅ Подключение к БД установлено: /root/projectss/checkerrr/movies.db
+2026-03-06 22:15:06,340 - database - INFO - ✅ Таблицы БД созданы/проверены
+2026-03-06 22:15:06,340 - database - INFO - ✅ Таблицы БД проверены/созданы
+2026-03-06 22:15:06,416 - __main__ - INFO - ✅ Бот инициализирован успешно
+2026-03-06 22:15:06,417 - __main__ - INFO - 🚀 Запуск бота...
+2026-03-06 22:15:06,417 - __main__ - INFO - ✅ Сервисы инициализированы
+2026-03-06 22:15:06,417 - __main__ - INFO - ✅ Middleware зарегистрированы
+2026-03-06 22:15:06,418 - handlers.smart_search - INFO - ✅ MovieRecommender инициализирован
+2026-03-06 22:15:06,418 - __main__ - INFO - ✅ Роутеры зарегистрированы
+2026-03-06 22:15:06,426 - cache - INFO - ✅ Redis подключен: localhost:6379
+2026-03-06 22:15:06,427 - __main__ - INFO - ✅ Redis кэш инициализирован
+2026-03-06 22:15:06,428 - aiogram.dispatcher - INFO - Start polling
+2026-03-06 22:15:06,566 - aiogram.dispatcher - INFO - Run polling for bot @kinocode26_bot id=8554826085 - 'KinoCode26'
+2026-03-06 22:15:06,626 - database - INFO - ✅ Подключение к БД установлено: /root/projectss/checkerrr/movies.db
+2026-03-06 22:15:06,628 - database - INFO - ✅ Таблицы БД созданы/проверены
+2026-03-06 22:15:06,628 - database - INFO - ✅ Таблицы БД проверены/созданы
+2026-03-06 22:15:06,702 - bot_new - INFO - ✅ Бот инициализирован успешно
+2026-03-06 22:15:07,006 - aiogram.event - INFO - Update id=375093891 is handled. Duration 382 ms by bot id=8554826085
+2026-03-06 22:15:07,954 - aiogram.event - INFO - Update id=375093892 is handled. Duration 71 ms by bot id=8554826085
+2026-03-06 22:15:15,249 - recommender - ERROR - ❌ LLM API error 401: {"error":{"message":"Missing Authentication header","code":401}}
+2026-03-06 22:15:15,250 - recommender - INFO - 🔍 Анализ запроса: {'genres': [], 'tags': [], 'mood': '', 'year_from': 2020, 'year_to': 2026, 'exclude': [], 'keywords': ['фильмы', 'жанра', 'гонок', 'типо', 'форсаж']}
+2026-03-06 22:15:15,250 - recommender - INFO - 📊 Найдено фильмов в БД: 0
+2026-03-06 22:15:15,250 - recommender - INFO - ⚠️ БД пуста, используем LLM рекомендации
+2026-03-06 22:15:15,325 - recommender - ERROR - ❌ LLM API error 401: {"error":{"message":"Missing Authentication header","code":401}}
+2026-03-06 22:15:15,459 - handlers.smart_search - INFO - 🎯 Умный поиск: фильмы жанра гонок типо форсаж... (найдено фильмов: 0)
+2026-03-06 22:15:15,459 - aiogram.event - INFO - Update id=375093893 is handled. Duration 420 ms by bot id=8554826085
+2026-03-06 22:15:28,517 - recommender - ERROR - ❌ LLM API error 401: {"error":{"message":"Missing Authentication header","code":401}}
+2026-03-06 22:15:28,518 - recommender - INFO - 🔍 Анализ запроса: {'genres': [], 'tags': [], 'mood': '', 'year_from': 2020, 'year_to': 2026, 'exclude': [], 'keywords': ['фильмы', 'про', 'гонки']}
+2026-03-06 22:15:28,519 - recommender - INFO - 📊 Найдено фильмов в БД: 0
+2026-03-06 22:15:28,519 - recommender - INFO - ⚠️ БД пуста, используем LLM рекомендации
+2026-03-06 22:17:17,218 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2026-03-06 22:17:17,219 - aiogram.dispatcher - INFO - Polling stopped for bot @kinocode26_bot id=8554826085 - 'KinoCode26'
+2026-03-06 22:17:17,219 - aiogram.dispatcher - INFO - Polling stopped
+2026-03-06 22:17:17,472 - cache - INFO - ✅ Redis отключен
+2026-03-06 22:17:17,473 - database - INFO - ✅ Соединение с БД закрыто
+2026-03-06 22:17:17,473 - __main__ - INFO - ✅ Бот остановлен корректно
+2026-03-06 22:17:17,475 - aiogram.event - INFO - Update id=375093894 is not handled. Duration 109102 ms by bot id=8554826085
+2026-03-06 22:17:27,996 - database - INFO - ✅ Подключение к БД установлено: /root/projectss/checkerrr/movies.db
+2026-03-06 22:17:27,998 - database - INFO - ✅ Таблицы БД созданы/проверены
+2026-03-06 22:17:27,999 - database - INFO - ✅ Таблицы БД проверены/созданы
+2026-03-06 22:17:28,073 - __main__ - INFO - ✅ Бот инициализирован успешно
+2026-03-06 22:17:28,074 - __main__ - INFO - 🚀 Запуск бота...
+2026-03-06 22:17:28,075 - __main__ - INFO - ✅ Сервисы инициализированы
+2026-03-06 22:17:28,075 - __main__ - INFO - ✅ Middleware зарегистрированы
+2026-03-06 22:17:28,085 - handlers.smart_search - INFO - ✅ MovieRecommender инициализирован
+2026-03-06 22:17:28,085 - __main__ - INFO - ✅ Роутеры зарегистрированы
+2026-03-06 22:17:28,094 - cache - INFO - ✅ Redis подключен: localhost:6379
+2026-03-06 22:17:28,094 - __main__ - INFO - ✅ Redis кэш инициализирован
+2026-03-06 22:17:28,095 - aiogram.dispatcher - INFO - Start polling
+2026-03-06 22:17:28,420 - aiogram.dispatcher - INFO - Run polling for bot @kinocode26_bot id=8554826085 - 'KinoCode26'
+2026-03-06 22:17:41,756 - database - INFO - ✅ Подключение к БД установлено: /root/projectss/checkerrr/movies.db
+2026-03-06 22:17:41,758 - database - INFO - ✅ Таблицы БД созданы/проверены
+2026-03-06 22:17:41,759 - database - INFO - ✅ Таблицы БД проверены/созданы
+2026-03-06 22:17:41,828 - bot_new - INFO - ✅ Бот инициализирован успешно
+2026-03-06 22:17:42,159 - aiogram.event - INFO - Update id=375093895 is handled. Duration 404 ms by bot id=8554826085
+2026-03-06 22:17:43,935 - aiogram.event - INFO - Update id=375093896 is handled. Duration 75 ms by bot id=8554826085
+2026-03-06 22:17:47,803 - recommender - INFO - 💾 Cache hit для: фильмы жанра гонок типо форсаж
+2026-03-06 22:17:47,966 - handlers.smart_search - INFO - 🎯 Умный поиск: фильмы жанра гонок типо форсаж... (найдено фильмов: 0)
+2026-03-06 22:17:47,966 - aiogram.event - INFO - Update id=375093897 is handled. Duration 239 ms by bot id=8554826085
+2026-03-06 22:18:23,231 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2026-03-06 22:18:23,232 - aiogram.dispatcher - INFO - Polling stopped for bot @kinocode26_bot id=8554826085 - 'KinoCode26'
+2026-03-06 22:18:23,233 - aiogram.dispatcher - INFO - Polling stopped
+2026-03-06 22:18:23,924 - cache - INFO - ✅ Redis отключен
+2026-03-06 22:18:23,925 - database - INFO - ✅ Соединение с БД закрыто
+2026-03-06 22:18:23,925 - __main__ - INFO - ✅ Бот остановлен корректно
+2026-03-06 22:18:34,869 - database - INFO - ✅ Подключение к БД установлено: /root/projectss/checkerrr/movies.db
+2026-03-06 22:18:35,210 - database - INFO - ✅ Таблицы БД созданы/проверены
+2026-03-06 22:18:35,211 - database - INFO - ✅ Таблицы БД проверены/созданы
+2026-03-06 22:18:35,290 - __main__ - INFO - ✅ Бот инициализирован успешно
+2026-03-06 22:18:35,290 - __main__ - INFO - 🚀 Запуск бота...
+2026-03-06 22:18:35,291 - __main__ - INFO - ✅ Сервисы инициализированы
+2026-03-06 22:18:35,291 - __main__ - INFO - ✅ Middleware зарегистрированы
+2026-03-06 22:18:35,301 - handlers.smart_search - INFO - ✅ MovieRecommender инициализирован
+2026-03-06 22:18:35,301 - __main__ - INFO - ✅ Роутеры зарегистрированы
+2026-03-06 22:18:35,310 - cache - INFO - ✅ Redis подключен: localhost:6379
+2026-03-06 22:18:35,310 - __main__ - INFO - ✅ Redis кэш инициализирован
+2026-03-06 22:18:35,311 - aiogram.dispatcher - INFO - Start polling
+2026-03-06 22:18:35,583 - aiogram.dispatcher - INFO - Run polling for bot @kinocode26_bot id=8554826085 - 'KinoCode26'
+2026-03-06 22:18:43,934 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2026-03-06 22:18:43,935 - aiogram.dispatcher - INFO - Polling stopped for bot @kinocode26_bot id=8554826085 - 'KinoCode26'
+2026-03-06 22:18:43,935 - aiogram.dispatcher - INFO - Polling stopped
+2026-03-06 22:18:44,186 - cache - INFO - ✅ Redis отключен
+2026-03-06 22:18:44,187 - database - INFO - ✅ Соединение с БД закрыто
+2026-03-06 22:18:44,187 - __main__ - INFO - ✅ Бот остановлен корректно
+2026-03-06 22:18:52,050 - database - INFO - ✅ Подключение к БД установлено: /root/projectss/checkerrr/movies.db
+2026-03-06 22:18:52,053 - database - INFO - ✅ Таблицы БД созданы/проверены
+2026-03-06 22:18:52,053 - database - INFO - ✅ Таблицы БД проверены/созданы
+2026-03-06 22:18:52,137 - __main__ - INFO - ✅ Бот инициализирован успешно
+2026-03-06 22:18:52,138 - __main__ - INFO - 🚀 Запуск бота...
+2026-03-06 22:18:52,138 - __main__ - INFO - ✅ Сервисы инициализированы
+2026-03-06 22:18:52,138 - __main__ - INFO - ✅ Middleware зарегистрированы
+2026-03-06 22:18:52,139 - handlers.smart_search - INFO - ✅ MovieRecommender инициализирован
+2026-03-06 22:18:52,139 - __main__ - INFO - ✅ Роутеры зарегистрированы
+2026-03-06 22:18:52,148 - cache - INFO - ✅ Redis подключен: localhost:6379
+2026-03-06 22:18:52,149 - __main__ - INFO - ✅ Redis кэш инициализирован
+2026-03-06 22:18:52,150 - aiogram.dispatcher - INFO - Start polling
+2026-03-06 22:18:52,285 - aiogram.dispatcher - INFO - Run polling for bot @kinocode26_bot id=8554826085 - 'KinoCode26'
+2026-03-06 22:18:52,344 - database - INFO - ✅ Подключение к БД установлено: /root/projectss/checkerrr/movies.db
+2026-03-06 22:18:52,346 - database - INFO - ✅ Таблицы БД созданы/проверены
+2026-03-06 22:18:52,346 - database - INFO - ✅ Таблицы БД проверены/созданы
+2026-03-06 22:18:52,423 - bot_new - INFO - ✅ Бот инициализирован успешно
+2026-03-06 22:18:52,736 - aiogram.event - INFO - Update id=375093898 is handled. Duration 394 ms by bot id=8554826085
+2026-03-06 22:18:54,024 - aiogram.event - INFO - Update id=375093899 is handled. Duration 69 ms by bot id=8554826085
+2026-03-06 22:18:58,334 - recommender - INFO - 💾 Cache hit для: фильмы жанра гонок типо форсаж
+2026-03-06 22:18:58,461 - handlers.smart_search - INFO - 🎯 Умный поиск: фильмы жанра гонок типо форсаж... (найдено фильмов: 0)
+2026-03-06 22:18:58,461 - aiogram.event - INFO - Update id=375093900 is handled. Duration 199 ms by bot id=8554826085
+2026-03-06 22:19:01,779 - aiogram.event - INFO - Update id=375093901 is handled. Duration 78 ms by bot id=8554826085
+2026-03-06 22:19:06,479 - recommender - ERROR - ❌ LLM API error 401: {"error":{"message":"Missing Authentication header","code":401}}
+2026-03-06 22:19:06,480 - recommender - INFO - 🔍 Анализ запроса: {'genres': [], 'tags': [], 'mood': '', 'year_from': 2020, 'year_to': 2026, 'exclude': [], 'keywords': ['фильм', 'про', 'гонки']}
+2026-03-06 22:19:06,480 - recommender - INFO - 📊 Найдено фильмов в БД: 0
+2026-03-06 22:19:06,481 - recommender - INFO - ⚠️ БД пуста, используем LLM рекомендации
+2026-03-06 22:19:06,566 - recommender - ERROR - ❌ LLM API error 401: {"error":{"message":"Missing Authentication header","code":401}}
+2026-03-06 22:19:06,707 - handlers.smart_search - INFO - 🎯 Умный поиск: фильм про гонки... (найдено фильмов: 0)
+2026-03-06 22:19:06,707 - aiogram.event - INFO - Update id=375093902 is handled. Duration 373 ms by bot id=8554826085
+2026-03-06 22:19:24,413 - aiogram.event - INFO - Update id=375093903 is handled. Duration 74 ms by bot id=8554826085
+2026-03-06 22:19:25,825 - recommender - ERROR - ❌ LLM API error 401: {"error":{"message":"Missing Authentication header","code":401}}
+2026-03-06 22:19:25,826 - recommender - INFO - 🔍 Анализ запроса: {'genres': [], 'tags': [], 'mood': '', 'year_from': 2020, 'year_to': 2026, 'exclude': [], 'keywords': ['фильмы', 'с', 'ди', 'каприо']}
+2026-03-06 22:19:25,827 - recommender - INFO - 📊 Найдено фильмов в БД: 6
+2026-03-06 22:19:25,898 - recommender - ERROR - ❌ LLM API error 401: {"error":{"message":"Missing Authentication header","code":401}}
+2026-03-06 22:19:26,021 - handlers.smart_search - INFO - 🎯 Умный поиск: фильмы с Ди Каприо... (найдено фильмов: 0)
+2026-03-06 22:19:26,021 - aiogram.event - INFO - Update id=375093904 is handled. Duration 392 ms by bot id=8554826085
+2026-03-06 22:20:21,110 - aiogram.event - INFO - Update id=375093905 is handled. Duration 205 ms by bot id=8554826085
+2026-03-06 22:20:35,649 - aiogram.event - INFO - Update id=375093906 is handled. Duration 78 ms by bot id=8554826085
+2026-03-06 22:20:42,610 - recommender - ERROR - ❌ LLM API error 401: {"error":{"message":"Missing Authentication header","code":401}}
+2026-03-06 22:20:42,611 - recommender - INFO - 🔍 Анализ запроса: {'genres': [], 'tags': [], 'mood': '', 'year_from': 2020, 'year_to': 2026, 'exclude': [], 'keywords': ['ромком', 'чтобы', 'поплакать']}
+2026-03-06 22:20:42,611 - recommender - INFO - 📊 Найдено фильмов в БД: 0
+2026-03-06 22:20:42,611 - recommender - INFO - ⚠️ БД пуста, используем LLM рекомендации
+2026-03-06 22:20:42,686 - recommender - ERROR - ❌ LLM API error 401: {"error":{"message":"Missing Authentication header","code":401}}
+2026-03-06 22:20:42,817 - handlers.smart_search - INFO - 🎯 Умный поиск: ромком чтобы поплакать... (найдено фильмов: 0)
+2026-03-06 22:20:42,818 - aiogram.event - INFO - Update id=375093907 is handled. Duration 364 ms by bot id=8554826085
+2026-03-06 22:21:16,990 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2026-03-06 22:21:16,991 - aiogram.dispatcher - INFO - Polling stopped for bot @kinocode26_bot id=8554826085 - 'KinoCode26'
+2026-03-06 22:21:16,992 - aiogram.dispatcher - INFO - Polling stopped
+2026-03-06 22:21:17,245 - cache - INFO - ✅ Redis отключен
+2026-03-06 22:21:17,245 - database - INFO - ✅ Соединение с БД закрыто
+2026-03-06 22:21:17,245 - __main__ - INFO - ✅ Бот остановлен корректно
+2026-03-06 22:21:28,519 - database - INFO - ✅ Подключение к БД установлено: /root/projectss/checkerrr/movies.db
+2026-03-06 22:21:28,521 - database - INFO - ✅ Таблицы БД созданы/проверены
+2026-03-06 22:21:28,522 - database - INFO - ✅ Таблицы БД проверены/созданы
+2026-03-06 22:21:28,596 - __main__ - INFO - ✅ Бот инициализирован успешно
+2026-03-06 22:21:28,597 - __main__ - INFO - 🚀 Запуск бота...
+2026-03-06 22:21:28,597 - __main__ - INFO - ✅ Сервисы инициализированы
+2026-03-06 22:21:28,597 - __main__ - INFO - ✅ Middleware зарегистрированы
+2026-03-06 22:21:28,606 - handlers.smart_search - INFO - ✅ MovieRecommender инициализирован
+2026-03-06 22:21:28,606 - __main__ - INFO - ✅ Роутеры зарегистрированы
+2026-03-06 22:21:28,614 - cache - INFO - ✅ Redis подключен: localhost:6379
+2026-03-06 22:21:28,614 - __main__ - INFO - ✅ Redis кэш инициализирован
+2026-03-06 22:21:28,615 - aiogram.dispatcher - INFO - Start polling
+2026-03-06 22:21:28,756 - aiogram.dispatcher - INFO - Run polling for bot @kinocode26_bot id=8554826085 - 'KinoCode26'
+2026-03-06 22:21:48,977 - database - INFO - ✅ Подключение к БД установлено: /root/projectss/checkerrr/movies.db
+2026-03-06 22:21:48,979 - database - INFO - ✅ Таблицы БД созданы/проверены
+2026-03-06 22:21:48,979 - database - INFO - ✅ Таблицы БД проверены/созданы
+2026-03-06 22:21:49,057 - bot_new - INFO - ✅ Бот инициализирован успешно
+2026-03-06 22:21:49,378 - aiogram.event - INFO - Update id=375093908 is handled. Duration 403 ms by bot id=8554826085
+2026-03-06 22:21:50,913 - aiogram.event - INFO - Update id=375093909 is handled. Duration 72 ms by bot id=8554826085
+2026-03-06 22:21:55,910 - recommender - INFO - 💾 Cache hit для: фильм про гонки
+2026-03-06 22:21:56,055 - handlers.smart_search - INFO - 🎯 Умный поиск: фильм про гонки... (найдено фильмов: 0)
+2026-03-06 22:21:56,056 - aiogram.event - INFO - Update id=375093910 is handled. Duration 217 ms by bot id=8554826085
+2026-03-06 22:22:10,021 - recommender - ERROR - ❌ LLM API error 401: {"error":{"message":"Missing Authentication header","code":401}}
+2026-03-06 22:22:10,023 - recommender - INFO - 🔍 Анализ запроса: {'genres': ['фантастика'], 'tags': [], 'mood': '', 'year_from': 2020, 'year_to': 2026, 'exclude': [], 'keywords': ['фильмы', 'про', 'киберпанк']}
+2026-03-06 22:22:10,024 - recommender - INFO - 📊 Найдено фильмов в БД: 0
+2026-03-06 22:22:10,152 - handlers.smart_search - INFO - 🎯 Умный поиск: фильмы про киберпанк... (найдено фильмов: 0)
+2026-03-06 22:22:10,152 - aiogram.event - INFO - Update id=375093911 is handled. Duration 304 ms by bot id=8554826085
+2026-03-06 22:24:17,903 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2026-03-06 22:24:17,904 - aiogram.dispatcher - INFO - Polling stopped for bot @kinocode26_bot id=8554826085 - 'KinoCode26'
+2026-03-06 22:24:17,904 - aiogram.dispatcher - INFO - Polling stopped
+2026-03-06 22:24:18,157 - cache - INFO - ✅ Redis отключен
+2026-03-06 22:24:18,158 - database - INFO - ✅ Соединение с БД закрыто
+2026-03-06 22:24:18,158 - __main__ - INFO - ✅ Бот остановлен корректно
+2026-03-06 22:24:29,212 - database - INFO - ✅ Подключение к БД установлено: /root/projectss/checkerrr/movies.db
+2026-03-06 22:24:29,215 - database - INFO - ✅ Таблицы БД созданы/проверены
+2026-03-06 22:24:29,215 - database - INFO - ✅ Таблицы БД проверены/созданы
+2026-03-06 22:24:29,293 - __main__ - INFO - ✅ Бот инициализирован успешно
+2026-03-06 22:24:29,295 - __main__ - INFO - 🚀 Запуск бота...
+2026-03-06 22:24:29,295 - __main__ - INFO - ✅ Сервисы инициализированы
+2026-03-06 22:24:29,296 - __main__ - INFO - ✅ Middleware зарегистрированы
+2026-03-06 22:24:29,305 - handlers.smart_search - INFO - ✅ MovieRecommender инициализирован
+2026-03-06 22:24:29,305 - __main__ - INFO - ✅ Роутеры зарегистрированы
+2026-03-06 22:24:29,316 - cache - INFO - ✅ Redis подключен: localhost:6379
+2026-03-06 22:24:29,317 - __main__ - INFO - ✅ Redis кэш инициализирован
+2026-03-06 22:24:29,318 - aiogram.dispatcher - INFO - Start polling
+2026-03-06 22:24:29,483 - aiogram.dispatcher - INFO - Run polling for bot @kinocode26_bot id=8554826085 - 'KinoCode26'
+2026-03-06 22:24:47,266 - aiogram.event - INFO - Update id=375093912 is handled. Duration 167 ms by bot id=8554826085
+2026-03-06 22:24:51,078 - database - INFO - ✅ Подключение к БД установлено: /root/projectss/checkerrr/movies.db
+2026-03-06 22:24:51,080 - database - INFO - ✅ Таблицы БД созданы/проверены
+2026-03-06 22:24:51,081 - database - INFO - ✅ Таблицы БД проверены/созданы
+2026-03-06 22:24:51,157 - bot_new - INFO - ✅ Бот инициализирован успешно
+2026-03-06 22:24:51,388 - aiogram.event - INFO - Update id=375093913 is handled. Duration 311 ms by bot id=8554826085
+2026-03-06 22:24:52,560 - aiogram.event - INFO - Update id=375093914 is handled. Duration 110 ms by bot id=8554826085
+2026-03-06 22:24:56,667 - recommender - INFO - 💾 Cache hit для: фильм про гонки
+2026-03-06 22:24:56,813 - handlers.smart_search - INFO - 🎯 Умный поиск: фильм про гонки... (найдено фильмов: 0)
+2026-03-06 22:24:56,813 - aiogram.event - INFO - Update id=375093915 is handled. Duration 235 ms by bot id=8554826085
+2026-03-06 22:24:59,520 - aiogram.event - INFO - Update id=375093916 is handled. Duration 70 ms by bot id=8554826085
+2026-03-06 22:25:02,394 - recommender - ERROR - ❌ LLM API error 404: <!DOCTYPE html>
+<html lang='ru'>
+<head>
+<title>RouterAI ✨</title>
+<meta content='' name='description'>
+<meta content='index, follow' name='robots'>
+<meta content='website' property='og:type'>
+<meta co
+2026-03-06 22:25:02,396 - recommender - INFO - 🔍 Анализ запроса: {'genres': [], 'tags': [], 'mood': '', 'year_from': 2020, 'year_to': 2026, 'exclude': [], 'keywords': ['фильмы', 'про', 'гонки']}
+2026-03-06 22:25:02,397 - recommender - INFO - 📊 Найдено фильмов в БД: 0
+2026-03-06 22:25:02,530 - recommender - ERROR - ❌ LLM API error 404: <!DOCTYPE html>
+<html lang='ru'>
+<head>
+<title>RouterAI ✨</title>
+<meta content='' name='description'>
+<meta content='index, follow' name='robots'>
+<meta content='website' property='og:type'>
+<meta co
+2026-03-06 22:25:02,664 - handlers.smart_search - INFO - 🎯 Умный поиск: фильмы про гонки... (найдено фильмов: 0)
+2026-03-06 22:25:02,664 - aiogram.event - INFO - Update id=375093917 is handled. Duration 366 ms by bot id=8554826085
+2026-03-06 22:25:03,906 - aiogram.event - INFO - Update id=375093918 is handled. Duration 80 ms by bot id=8554826085
+2026-03-06 22:25:07,259 - recommender - ERROR - ❌ LLM API error 404: <!DOCTYPE html>
+<html lang='ru'>
+<head>
+<title>RouterAI ✨</title>
+<meta content='' name='description'>
+<meta content='index, follow' name='robots'>
+<meta content='website' property='og:type'>
+<meta co
+2026-03-06 22:25:07,260 - recommender - INFO - 🔍 Анализ запроса: {'genres': [], 'tags': [], 'mood': '', 'year_from': 2020, 'year_to': 2026, 'exclude': [], 'keywords': ['фильмы', 'с', 'дикаприо']}
+2026-03-06 22:25:07,261 - recommender - INFO - 📊 Найдено фильмов в БД: 6
+2026-03-06 22:25:07,280 - recommender - ERROR - ❌ LLM API error 404: <!DOCTYPE html>
+<html lang='ru'>
+<head>
+<title>RouterAI ✨</title>
+<meta content='' name='description'>
+<meta content='index, follow' name='robots'>
+<meta content='website' property='og:type'>
+<meta co
+2026-03-06 22:25:07,409 - handlers.smart_search - INFO - 🎯 Умный поиск: фильмы с дикаприо... (найдено фильмов: 0)
+2026-03-06 22:25:07,410 - aiogram.event - INFO - Update id=375093919 is handled. Duration 266 ms by bot id=8554826085
+2026-03-06 22:27:06,752 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2026-03-06 22:27:06,755 - aiogram.dispatcher - INFO - Polling stopped for bot @kinocode26_bot id=8554826085 - 'KinoCode26'
+2026-03-06 22:27:06,755 - aiogram.dispatcher - INFO - Polling stopped
+2026-03-06 22:27:07,272 - cache - INFO - ✅ Redis отключен
+2026-03-06 22:27:07,273 - database - INFO - ✅ Соединение с БД закрыто
+2026-03-06 22:27:07,273 - __main__ - INFO - ✅ Бот остановлен корректно
+2026-03-06 22:27:17,793 - database - INFO - ✅ Подключение к БД установлено: /root/projectss/checkerrr/movies.db
+2026-03-06 22:27:17,795 - database - INFO - ✅ Таблицы БД созданы/проверены
+2026-03-06 22:27:17,796 - database - INFO - ✅ Таблицы БД проверены/созданы
+2026-03-06 22:27:18,107 - __main__ - INFO - ✅ Бот инициализирован успешно
+2026-03-06 22:27:18,108 - __main__ - INFO - 🚀 Запуск бота...
+2026-03-06 22:27:18,109 - __main__ - INFO - ✅ Сервисы инициализированы
+2026-03-06 22:27:18,109 - __main__ - INFO - ✅ Middleware зарегистрированы
+2026-03-06 22:27:18,121 - handlers.smart_search - INFO - ✅ MovieRecommender инициализирован
+2026-03-06 22:27:18,121 - __main__ - INFO - ✅ Роутеры зарегистрированы
+2026-03-06 22:27:18,135 - cache - INFO - ✅ Redis подключен: localhost:6379
+2026-03-06 22:27:18,136 - __main__ - INFO - ✅ Redis кэш инициализирован
+2026-03-06 22:27:18,137 - aiogram.dispatcher - INFO - Start polling
+2026-03-06 22:27:18,283 - aiogram.dispatcher - INFO - Run polling for bot @kinocode26_bot id=8554826085 - 'KinoCode26'
+2026-03-06 22:27:36,702 - aiogram.event - INFO - Update id=375093920 is handled. Duration 182 ms by bot id=8554826085
+2026-03-06 22:27:37,523 - aiogram.event - INFO - Update id=375093921 is handled. Duration 162 ms by bot id=8554826085
+2026-03-06 22:27:40,721 - recommender - INFO - 💾 Cache hit для: фильмы с дикаприо
+2026-03-06 22:27:40,900 - handlers.smart_search - INFO - 🎯 Умный поиск: фильмы с дикаприо... (найдено фильмов: 0)
+2026-03-06 22:27:40,901 - aiogram.event - INFO - Update id=375093922 is handled. Duration 255 ms by bot id=8554826085
+2026-03-06 22:27:45,701 - database - INFO - ✅ Подключение к БД установлено: /root/projectss/checkerrr/movies.db
+2026-03-06 22:27:45,703 - database - INFO - ✅ Таблицы БД созданы/проверены
+2026-03-06 22:27:45,703 - database - INFO - ✅ Таблицы БД проверены/созданы
+2026-03-06 22:27:45,780 - bot_new - INFO - ✅ Бот инициализирован успешно
+2026-03-06 22:27:45,990 - aiogram.event - INFO - Update id=375093923 is handled. Duration 290 ms by bot id=8554826085
+2026-03-06 22:27:47,181 - aiogram.event - INFO - Update id=375093924 is handled. Duration 79 ms by bot id=8554826085
+2026-03-06 22:27:50,818 - recommender - INFO - 💾 Cache hit для: фильмы с Ди Каприо
+2026-03-06 22:27:50,933 - handlers.smart_search - INFO - 🎯 Умный поиск: фильмы с Ди Каприо... (найдено фильмов: 0)
+2026-03-06 22:27:50,934 - aiogram.event - INFO - Update id=375093925 is handled. Duration 186 ms by bot id=8554826085
+2026-03-06 22:28:00,264 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2026-03-06 22:28:00,265 - aiogram.dispatcher - INFO - Polling stopped for bot @kinocode26_bot id=8554826085 - 'KinoCode26'
+2026-03-06 22:28:00,266 - aiogram.dispatcher - INFO - Polling stopped
+2026-03-06 22:28:00,518 - cache - INFO - ✅ Redis отключен
+2026-03-06 22:28:00,519 - database - INFO - ✅ Соединение с БД закрыто
+2026-03-06 22:28:00,520 - __main__ - INFO - ✅ Бот остановлен корректно
+2026-03-06 22:28:08,511 - database - INFO - ✅ Подключение к БД установлено: /root/projectss/checkerrr/movies.db
+2026-03-06 22:28:08,514 - database - INFO - ✅ Таблицы БД созданы/проверены
+2026-03-06 22:28:08,514 - database - INFO - ✅ Таблицы БД проверены/созданы
+2026-03-06 22:28:08,586 - __main__ - INFO - ✅ Бот инициализирован успешно
+2026-03-06 22:28:08,587 - __main__ - INFO - 🚀 Запуск бота...
+2026-03-06 22:28:08,588 - __main__ - INFO - ✅ Сервисы инициализированы
+2026-03-06 22:28:08,588 - __main__ - INFO - ✅ Middleware зарегистрированы
+2026-03-06 22:28:08,590 - handlers.smart_search - INFO - ✅ MovieRecommender инициализирован
+2026-03-06 22:28:08,590 - __main__ - INFO - ✅ Роутеры зарегистрированы
+2026-03-06 22:28:08,598 - cache - INFO - ✅ Redis подключен: localhost:6379
+2026-03-06 22:28:08,598 - __main__ - INFO - ✅ Redis кэш инициализирован
+2026-03-06 22:28:08,599 - aiogram.dispatcher - INFO - Start polling
+2026-03-06 22:28:08,984 - aiogram.dispatcher - INFO - Run polling for bot @kinocode26_bot id=8554826085 - 'KinoCode26'
+2026-03-06 22:28:09,273 - database - INFO - ✅ Подключение к БД установлено: /root/projectss/checkerrr/movies.db
+2026-03-06 22:28:09,278 - database - INFO - ✅ Таблицы БД созданы/проверены
+2026-03-06 22:28:09,279 - database - INFO - ✅ Таблицы БД проверены/созданы
+2026-03-06 22:28:09,371 - bot_new - INFO - ✅ Бот инициализирован успешно
+2026-03-06 22:28:09,707 - aiogram.event - INFO - Update id=375093926 is handled. Duration 435 ms by bot id=8554826085
+2026-03-06 22:28:10,792 - aiogram.event - INFO - Update id=375093927 is handled. Duration 91 ms by bot id=8554826085
+2026-03-06 22:28:13,535 - recommender - INFO - 💾 Cache hit для: фильмы с Ди Каприо
+2026-03-06 22:28:13,677 - handlers.smart_search - INFO - 🎯 Умный поиск: фильмы с Ди Каприо... (найдено фильмов: 0)
+2026-03-06 22:28:13,677 - aiogram.event - INFO - Update id=375093928 is handled. Duration 217 ms by bot id=8554826085
+2026-03-06 22:30:59,458 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2026-03-06 22:30:59,459 - aiogram.dispatcher - INFO - Polling stopped for bot @kinocode26_bot id=8554826085 - 'KinoCode26'
+2026-03-06 22:30:59,459 - aiogram.dispatcher - INFO - Polling stopped
+2026-03-06 22:30:59,711 - cache - INFO - ✅ Redis отключен
+2026-03-06 22:30:59,712 - database - INFO - ✅ Соединение с БД закрыто
+2026-03-06 22:30:59,712 - __main__ - INFO - ✅ Бот остановлен корректно
+2026-03-06 22:31:07,823 - database - INFO - ✅ Подключение к БД установлено: /root/projectss/checkerrr/movies.db
+2026-03-06 22:31:07,825 - database - INFO - ✅ Таблицы БД созданы/проверены
+2026-03-06 22:31:07,825 - database - INFO - ✅ Таблицы БД проверены/созданы
+2026-03-06 22:31:07,901 - __main__ - INFO - ✅ Бот инициализирован успешно
+2026-03-06 22:31:07,901 - __main__ - INFO - 🚀 Запуск бота...
+2026-03-06 22:31:07,902 - __main__ - INFO - ✅ Сервисы инициализированы
+2026-03-06 22:31:07,902 - __main__ - INFO - ✅ Middleware зарегистрированы
+2026-03-06 22:31:07,904 - handlers.smart_search - INFO - ✅ MovieRecommender инициализирован
+2026-03-06 22:31:07,905 - __main__ - INFO - ✅ Роутеры зарегистрированы
+2026-03-06 22:31:07,913 - cache - INFO - ✅ Redis подключен: localhost:6379
+2026-03-06 22:31:07,913 - __main__ - INFO - ✅ Redis кэш инициализирован
+2026-03-06 22:31:07,914 - aiogram.dispatcher - INFO - Start polling
+2026-03-06 22:31:08,060 - aiogram.dispatcher - INFO - Run polling for bot @kinocode26_bot id=8554826085 - 'KinoCode26'
+2026-03-06 22:31:33,786 - database - INFO - ✅ Подключение к БД установлено: /root/projectss/checkerrr/movies.db
+2026-03-06 22:31:33,788 - database - INFO - ✅ Таблицы БД созданы/проверены
+2026-03-06 22:31:33,789 - database - INFO - ✅ Таблицы БД проверены/созданы
+2026-03-06 22:31:33,867 - bot_new - INFO - ✅ Бот инициализирован успешно
+2026-03-06 22:31:34,195 - aiogram.event - INFO - Update id=375093929 is handled. Duration 411 ms by bot id=8554826085
+2026-03-06 22:31:35,290 - aiogram.event - INFO - Update id=375093930 is handled. Duration 131 ms by bot id=8554826085
+2026-03-06 22:31:38,084 - recommender - INFO - 🎭 Найдены актёры в запросе: ['Ди Каприо']
+2026-03-06 22:31:38,084 - recommender - INFO - 🔍 Анализ запроса: {'actors': ['Ди Каприо'], 'is_actor_search': True, 'genres': [], 'tags': [], 'keywords': []}
+2026-03-06 22:31:38,086 - recommender - INFO - 📊 Найдено фильмов в БД: 4
+2026-03-06 22:31:38,112 - recommender - ERROR - ❌ LLM API error 404: <!DOCTYPE html>
+<html lang='ru'>
+<head>
+<title>RouterAI ✨</title>
+<meta content='' name='description'>
+<meta content='index, follow' name='robots'>
+<meta content='website' property='og:type'>
+<meta co
+2026-03-06 22:31:38,250 - handlers.smart_search - INFO - 🎯 Умный поиск: фильмы с Ди Каприо... (найдено фильмов: 0)
+2026-03-06 22:31:38,250 - aiogram.event - INFO - Update id=375093931 is handled. Duration 239 ms by bot id=8554826085
+2026-03-06 22:32:58,454 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2026-03-06 22:32:58,455 - aiogram.dispatcher - INFO - Polling stopped for bot @kinocode26_bot id=8554826085 - 'KinoCode26'
+2026-03-06 22:32:58,455 - aiogram.dispatcher - INFO - Polling stopped
+2026-03-06 22:32:58,707 - cache - INFO - ✅ Redis отключен
+2026-03-06 22:32:58,708 - database - INFO - ✅ Соединение с БД закрыто
+2026-03-06 22:32:58,708 - __main__ - INFO - ✅ Бот остановлен корректно
+2026-03-06 22:33:09,803 - database - INFO - ✅ Подключение к БД установлено: /root/projectss/checkerrr/movies.db
+2026-03-06 22:33:09,806 - database - INFO - ✅ Таблицы БД созданы/проверены
+2026-03-06 22:33:09,807 - database - INFO - ✅ Таблицы БД проверены/созданы
+2026-03-06 22:33:09,897 - __main__ - INFO - ✅ Бот инициализирован успешно
+2026-03-06 22:33:09,900 - __main__ - INFO - 🚀 Запуск бота...
+2026-03-06 22:33:09,900 - __main__ - INFO - ✅ Сервисы инициализированы
+2026-03-06 22:33:09,901 - __main__ - INFO - ✅ Middleware зарегистрированы
+2026-03-06 22:33:09,913 - handlers.smart_search - INFO - ✅ MovieRecommender инициализирован
+2026-03-06 22:33:09,914 - __main__ - INFO - ✅ Роутеры зарегистрированы
+2026-03-06 22:33:09,920 - cache - INFO - ✅ Redis подключен: localhost:6379
+2026-03-06 22:33:09,921 - __main__ - INFO - ✅ Redis кэш инициализирован
+2026-03-06 22:33:09,922 - aiogram.dispatcher - INFO - Start polling
+2026-03-06 22:33:10,181 - aiogram.dispatcher - INFO - Run polling for bot @kinocode26_bot id=8554826085 - 'KinoCode26'
+2026-03-06 22:33:22,753 - database - INFO - ✅ Подключение к БД установлено: /root/projectss/checkerrr/movies.db
+2026-03-06 22:33:22,755 - database - INFO - ✅ Таблицы БД созданы/проверены
+2026-03-06 22:33:22,755 - database - INFO - ✅ Таблицы БД проверены/созданы
+2026-03-06 22:33:22,831 - bot_new - INFO - ✅ Бот инициализирован успешно
+2026-03-06 22:33:23,155 - aiogram.event - INFO - Update id=375093932 is handled. Duration 404 ms by bot id=8554826085
+2026-03-06 22:33:23,887 - aiogram.event - INFO - Update id=375093933 is handled. Duration 73 ms by bot id=8554826085
+2026-03-06 22:33:26,759 - recommender - ERROR - ❌ LLM API error 404: <!DOCTYPE html>
+<html lang='ru'>
+<head>
+<title>RouterAI ✨</title>
+<meta content='' name='description'>
+<meta content='index, follow' name='robots'>
+<meta content='website' property='og:type'>
+<meta co
+2026-03-06 22:33:26,761 - recommender - INFO - 🔍 Анализ запроса: {'genres': [], 'tags': [], 'mood': '', 'year_from': 2020, 'year_to': 2026, 'exclude': [], 'keywords': ['фильмы', 'про', 'гонки']}
+2026-03-06 22:33:26,762 - recommender - INFO - 📊 Найдено фильмов в БД: 0
+2026-03-06 22:33:26,783 - recommender - ERROR - ❌ LLM API error 404: <!DOCTYPE html>
+<html lang='ru'>
+<head>
+<title>RouterAI ✨</title>
+<meta content='' name='description'>
+<meta content='index, follow' name='robots'>
+<meta content='website' property='og:type'>
+<meta co
+2026-03-06 22:33:26,985 - handlers.smart_search - ERROR - ❌ Ошибка умного поиска: 'MovieRecommender' object has no attribute 'cache'
+Traceback (most recent call last):
+  File "/root/projectss/checkerrr/handlers/smart_search.py", line 111, in smart_search_query
+    stats = recommender.get_stats()
+            ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/checkerrr/recommender/__init__.py", line 616, in get_stats
+    "cache_size": len(self.cache),
+                      ^^^^^^^^^^
+AttributeError: 'MovieRecommender' object has no attribute 'cache'
+2026-03-06 22:33:27,042 - aiogram.event - INFO - Update id=375093934 is not handled. Duration 378 ms by bot id=8554826085
+2026-03-06 22:33:27,043 - aiogram.event - ERROR - Cause exception while process update id=375093934 by bot id=8554826085
+TelegramBadRequest: Telegram server says - Bad Request: message to edit not found
+Traceback (most recent call last):
+  File "/root/projectss/checkerrr/handlers/smart_search.py", line 111, in smart_search_query
+    stats = recommender.get_stats()
+            ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/checkerrr/recommender/__init__.py", line 616, in get_stats
+    "cache_size": len(self.cache),
+                      ^^^^^^^^^^
+AttributeError: 'MovieRecommender' object has no attribute 'cache'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/dist-packages/aiogram/dispatcher/dispatcher.py", line 320, in _process_update
+    response = await self.feed_update(bot, update, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/aiogram/dispatcher/dispatcher.py", line 164, in feed_update
+    response = await self.update.wrap_outer_middleware(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/aiogram/dispatcher/middlewares/error.py", line 27, in __call__
+    return await handler(event, data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/aiogram/dispatcher/middlewares/user_context.py", line 58, in __call__
+    return await handler(event, data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/aiogram/fsm/middleware.py", line 43, in __call__
+    return await handler(event, data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/aiogram/dispatcher/event/telegram.py", line 126, in trigger
+    return await wrapped_inner(event, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/aiogram/dispatcher/event/handler.py", line 71, in call
+    return await wrapped()
+           ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/aiogram/dispatcher/dispatcher.py", line 283, in _listen_update
+    return await self.propagate_event(update_type=update_type, event=event, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/aiogram/dispatcher/router.py", line 161, in propagate_event
+    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/aiogram/dispatcher/router.py", line 153, in _wrapped
+    return await self._propagate_event(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/aiogram/dispatcher/router.py", line 189, in _propagate_event
+    response = await router.propagate_event(update_type=update_type, event=event, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/aiogram/dispatcher/router.py", line 161, in propagate_event
+    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/aiogram/dispatcher/router.py", line 153, in _wrapped
+    return await self._propagate_event(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/aiogram/dispatcher/router.py", line 181, in _propagate_event
+    response = await observer.trigger(event, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/aiogram/dispatcher/event/telegram.py", line 126, in trigger
+    return await wrapped_inner(event, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/checkerrr/middlewares/subscription.py", line 58, in __call__
+    return await handler(event, data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/checkerrr/middlewares/subscription.py", line 242, in __call__
+    return await handler(event, data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/aiogram/dispatcher/event/handler.py", line 71, in call
+    return await wrapped()
+           ^^^^^^^^^^^^^^^
+  File "/root/projectss/checkerrr/handlers/smart_search.py", line 116, in smart_search_query
+    await thinking_msg.edit_text(
+  File "/usr/local/lib/python3.12/dist-packages/aiogram/methods/base.py", line 82, in emit
+    return await bot(self)
+           ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/aiogram/client/bot.py", line 487, in __call__
+    return await self.session(self, method, timeout=request_timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/aiogram/client/session/base.py", line 259, in __call__
+    return cast(TelegramType, await middleware(bot, method))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/aiogram/client/session/aiohttp.py", line 177, in make_request
+    response = self.check_response(
+               ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/aiogram/client/session/base.py", line 121, in check_response
+    raise TelegramBadRequest(method=method, message=description)
+aiogram.exceptions.TelegramBadRequest: Telegram server says - Bad Request: message to edit not found
+2026-03-06 22:33:30,274 - aiogram.event - INFO - Update id=375093935 is handled. Duration 74 ms by bot id=8554826085
+2026-03-06 22:33:32,057 - recommender - ERROR - ❌ LLM API error 404: <!DOCTYPE html>
+<html lang='ru'>
+<head>
+<title>RouterAI ✨</title>
+<meta content='' name='description'>
+<meta content='index, follow' name='robots'>
+<meta content='website' property='og:type'>
+<meta co
+2026-03-06 22:33:32,058 - recommender - INFO - 🔍 Анализ запроса: {'genres': [], 'tags': [], 'mood': '', 'year_from': 2020, 'year_to': 2026, 'exclude': [], 'keywords': ['фильмы', 'с', 'ди']}
+2026-03-06 22:33:32,058 - recommender - INFO - 📊 Найдено фильмов в БД: 6
+2026-03-06 22:33:32,076 - recommender - ERROR - ❌ LLM API error 404: <!DOCTYPE html>
+<html lang='ru'>
+<head>
+<title>RouterAI ✨</title>
+<meta content='' name='description'>
+<meta content='index, follow' name='robots'>
+<meta content='website' property='og:type'>
+<meta co
+2026-03-06 22:33:32,201 - handlers.smart_search - ERROR - ❌ Ошибка умного поиска: 'MovieRecommender' object has no attribute 'cache'
+Traceback (most recent call last):
+  File "/root/projectss/checkerrr/handlers/smart_search.py", line 111, in smart_search_query
+    stats = recommender.get_stats()
+            ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/checkerrr/recommender/__init__.py", line 616, in get_stats
+    "cache_size": len(self.cache),
+                      ^^^^^^^^^^
+AttributeError: 'MovieRecommender' object has no attribute 'cache'
+2026-03-06 22:33:32,249 - aiogram.event - INFO - Update id=375093936 is not handled. Duration 291 ms by bot id=8554826085
+2026-03-06 22:33:32,250 - aiogram.event - ERROR - Cause exception while process update id=375093936 by bot id=8554826085
+TelegramBadRequest: Telegram server says - Bad Request: message to edit not found
+Traceback (most recent call last):
+  File "/root/projectss/checkerrr/handlers/smart_search.py", line 111, in smart_search_query
+    stats = recommender.get_stats()
+            ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/checkerrr/recommender/__init__.py", line 616, in get_stats
+    "cache_size": len(self.cache),
+                      ^^^^^^^^^^
+AttributeError: 'MovieRecommender' object has no attribute 'cache'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/dist-packages/aiogram/dispatcher/dispatcher.py", line 320, in _process_update
+    response = await self.feed_update(bot, update, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/aiogram/dispatcher/dispatcher.py", line 164, in feed_update
+    response = await self.update.wrap_outer_middleware(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/aiogram/dispatcher/middlewares/error.py", line 27, in __call__
+    return await handler(event, data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/aiogram/dispatcher/middlewares/user_context.py", line 58, in __call__
+    return await handler(event, data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/aiogram/fsm/middleware.py", line 43, in __call__
+    return await handler(event, data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/aiogram/dispatcher/event/telegram.py", line 126, in trigger
+    return await wrapped_inner(event, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/aiogram/dispatcher/event/handler.py", line 71, in call
+    return await wrapped()
+           ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/aiogram/dispatcher/dispatcher.py", line 283, in _listen_update
+    return await self.propagate_event(update_type=update_type, event=event, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/aiogram/dispatcher/router.py", line 161, in propagate_event
+    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/aiogram/dispatcher/router.py", line 153, in _wrapped
+    return await self._propagate_event(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/aiogram/dispatcher/router.py", line 189, in _propagate_event
+    response = await router.propagate_event(update_type=update_type, event=event, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/aiogram/dispatcher/router.py", line 161, in propagate_event
+    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/aiogram/dispatcher/router.py", line 153, in _wrapped
+    return await self._propagate_event(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/aiogram/dispatcher/router.py", line 181, in _propagate_event
+    response = await observer.trigger(event, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/aiogram/dispatcher/event/telegram.py", line 126, in trigger
+    return await wrapped_inner(event, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/checkerrr/middlewares/subscription.py", line 58, in __call__
+    return await handler(event, data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/checkerrr/middlewares/subscription.py", line 242, in __call__
+    return await handler(event, data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/aiogram/dispatcher/event/handler.py", line 71, in call
+    return await wrapped()
+           ^^^^^^^^^^^^^^^
+  File "/root/projectss/checkerrr/handlers/smart_search.py", line 116, in smart_search_query
+    await thinking_msg.edit_text(
+  File "/usr/local/lib/python3.12/dist-packages/aiogram/methods/base.py", line 82, in emit
+    return await bot(self)
+           ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/aiogram/client/bot.py", line 487, in __call__
+    return await self.session(self, method, timeout=request_timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/aiogram/client/session/base.py", line 259, in __call__
+    return cast(TelegramType, await middleware(bot, method))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/aiogram/client/session/aiohttp.py", line 177, in make_request
+    response = self.check_response(
+               ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/aiogram/client/session/base.py", line 121, in check_response
+    raise TelegramBadRequest(method=method, message=description)
+aiogram.exceptions.TelegramBadRequest: Telegram server says - Bad Request: message to edit not found
+2026-03-06 22:33:34,909 - aiogram.event - INFO - Update id=375093937 is handled. Duration 74 ms by bot id=8554826085
+2026-03-06 22:33:40,940 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2026-03-06 22:33:40,941 - aiogram.dispatcher - INFO - Polling stopped for bot @kinocode26_bot id=8554826085 - 'KinoCode26'
+2026-03-06 22:33:40,941 - aiogram.dispatcher - INFO - Polling stopped
+2026-03-06 22:33:41,194 - cache - INFO - ✅ Redis отключен
+2026-03-06 22:33:41,194 - database - INFO - ✅ Соединение с БД закрыто
+2026-03-06 22:33:41,194 - __main__ - INFO - ✅ Бот остановлен корректно
+2026-03-06 22:33:49,704 - database - INFO - ✅ Подключение к БД установлено: /root/projectss/checkerrr/movies.db
+2026-03-06 22:33:49,707 - database - INFO - ✅ Таблицы БД созданы/проверены
+2026-03-06 22:33:49,708 - database - INFO - ✅ Таблицы БД проверены/созданы
+2026-03-06 22:33:49,784 - __main__ - INFO - ✅ Бот инициализирован успешно
+2026-03-06 22:33:49,785 - __main__ - INFO - 🚀 Запуск бота...
+2026-03-06 22:33:49,786 - __main__ - INFO - ✅ Сервисы инициализированы
+2026-03-06 22:33:49,786 - __main__ - INFO - ✅ Middleware зарегистрированы
+2026-03-06 22:33:49,787 - handlers.smart_search - INFO - ✅ MovieRecommender инициализирован
+2026-03-06 22:33:49,788 - __main__ - INFO - ✅ Роутеры зарегистрированы
+2026-03-06 22:33:49,796 - cache - INFO - ✅ Redis подключен: localhost:6379
+2026-03-06 22:33:49,796 - __main__ - INFO - ✅ Redis кэш инициализирован
+2026-03-06 22:33:49,797 - aiogram.dispatcher - INFO - Start polling
+2026-03-06 22:33:49,945 - aiogram.dispatcher - INFO - Run polling for bot @kinocode26_bot id=8554826085 - 'KinoCode26'
+2026-03-06 22:33:52,806 - database - INFO - ✅ Подключение к БД установлено: /root/projectss/checkerrr/movies.db
+2026-03-06 22:33:52,809 - database - INFO - ✅ Таблицы БД созданы/проверены
+2026-03-06 22:33:52,809 - database - INFO - ✅ Таблицы БД проверены/созданы
+2026-03-06 22:33:52,891 - bot_new - INFO - ✅ Бот инициализирован успешно
+2026-03-06 22:33:53,208 - aiogram.event - INFO - Update id=375093938 is handled. Duration 403 ms by bot id=8554826085
+2026-03-06 22:33:54,490 - aiogram.event - INFO - Update id=375093939 is handled. Duration 97 ms by bot id=8554826085
+2026-03-06 22:34:02,352 - recommender - INFO - 🎭 Найдены актёры в запросе: ['Роберт Де Ниро', 'Роберт Де Ниро']
+2026-03-06 22:34:02,352 - recommender - INFO - 🔍 Анализ запроса: {'actors': ['Роберт Де Ниро', 'Роберт Де Ниро'], 'is_actor_search': True, 'genres': [], 'tags': [], 'keywords': []}
+2026-03-06 22:34:02,355 - recommender - INFO - 📊 Найдено фильмов в БД: 9
+2026-03-06 22:34:02,355 - handlers.smart_search - ERROR - ❌ Ошибка умного поиска: 'NoneType' object is not subscriptable
+Traceback (most recent call last):
+  File "/root/projectss/checkerrr/handlers/smart_search.py", line 98, in smart_search_query
+    response = await recommender.recommend(query, message.from_user.id)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/checkerrr/recommender/__init__.py", line 548, in recommend
+    response = await self.format_recommendation(query, movies)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/checkerrr/recommender/__init__.py", line 412, in format_recommendation
+    f"   {m['description'][:150]}..."
+          ~~~~~~~~~~~~~~~~^^^^^^
+TypeError: 'NoneType' object is not subscriptable
+2026-03-06 22:34:02,424 - aiogram.event - INFO - Update id=375093940 is handled. Duration 144 ms by bot id=8554826085
+2026-03-06 22:39:24,035 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2026-03-06 22:39:24,036 - aiogram.dispatcher - INFO - Polling stopped for bot @kinocode26_bot id=8554826085 - 'KinoCode26'
+2026-03-06 22:39:24,037 - aiogram.dispatcher - INFO - Polling stopped
+2026-03-06 22:39:24,289 - cache - INFO - ✅ Redis отключен
+2026-03-06 22:39:24,290 - database - INFO - ✅ Соединение с БД закрыто
+2026-03-06 22:39:24,290 - __main__ - INFO - ✅ Бот остановлен корректно
+2026-03-06 22:39:34,622 - database - INFO - ✅ Подключение к БД установлено: /root/projectss/checkerrr/movies.db
+2026-03-06 22:39:34,624 - database - INFO - ✅ Таблицы БД созданы/проверены
+2026-03-06 22:39:34,624 - database - INFO - ✅ Таблицы БД проверены/созданы
+2026-03-06 22:39:35,124 - __main__ - INFO - ✅ Бот инициализирован успешно
+2026-03-06 22:39:35,125 - __main__ - INFO - 🚀 Запуск бота...
+2026-03-06 22:39:35,125 - __main__ - INFO - ✅ Сервисы инициализированы
+2026-03-06 22:39:35,125 - __main__ - INFO - ✅ Middleware зарегистрированы
+2026-03-06 22:39:35,125 - __main__ - INFO - ✅ Роутеры зарегистрированы
+2026-03-06 22:39:35,134 - cache - INFO - ✅ Redis подключен: localhost:6379
+2026-03-06 22:39:35,134 - __main__ - INFO - ✅ Redis кэш инициализирован
+2026-03-06 22:39:35,135 - aiogram.dispatcher - INFO - Start polling
+2026-03-06 22:39:35,287 - aiogram.dispatcher - INFO - Run polling for bot @kinocode26_bot id=8554826085 - 'KinoCode26'
+2026-03-06 22:47:10,467 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2026-03-06 22:47:10,469 - aiogram.dispatcher - INFO - Polling stopped for bot @kinocode26_bot id=8554826085 - 'KinoCode26'
+2026-03-06 22:47:10,469 - aiogram.dispatcher - INFO - Polling stopped
+2026-03-06 22:47:10,721 - cache - INFO - ✅ Redis отключен
+2026-03-06 22:47:10,722 - database - INFO - ✅ Соединение с БД закрыто
+2026-03-06 22:47:10,722 - __main__ - INFO - ✅ Бот остановлен корректно
+2026-03-06 22:49:19,878 - database - INFO - ✅ Подключение к БД установлено: /root/projectss/checkerrr/movies.db
+2026-03-06 22:49:20,003 - database - INFO - ✅ Таблицы БД созданы/проверены
+2026-03-06 22:49:20,004 - database - INFO - ✅ Таблицы БД проверены/созданы
+2026-03-06 22:49:20,338 - __main__ - INFO - ✅ Бот инициализирован успешно
+2026-03-06 22:49:20,340 - __main__ - INFO - 🚀 Запуск бота...
+2026-03-06 22:49:20,341 - __main__ - INFO - ✅ Сервисы инициализированы
+2026-03-06 22:49:20,341 - __main__ - INFO - ✅ Middleware зарегистрированы
+2026-03-06 22:49:20,342 - __main__ - INFO - ✅ Роутеры зарегистрированы
+2026-03-06 22:49:20,351 - cache - INFO - ✅ Redis подключен: localhost:6379
+2026-03-06 22:49:20,352 - __main__ - INFO - ✅ Redis кэш инициализирован
+2026-03-06 22:49:20,354 - aiogram.dispatcher - INFO - Start polling
+2026-03-06 22:49:20,837 - aiogram.dispatcher - INFO - Run polling for bot @kinocode26_bot id=8554826085 - 'KinoCode26'
+2026-03-06 22:49:20,938 - database - INFO - ✅ Подключение к БД установлено: /root/projectss/checkerrr/movies.db
+2026-03-06 22:49:21,068 - database - INFO - ✅ Таблицы БД созданы/проверены
+2026-03-06 22:49:21,069 - database - INFO - ✅ Таблицы БД проверены/созданы
+2026-03-06 22:49:21,149 - bot_new - INFO - ✅ Бот инициализирован успешно
+2026-03-06 22:49:21,472 - aiogram.event - INFO - Update id=375093943 is handled. Duration 320 ms by bot id=8554826085
+2026-03-06 22:49:22,129 - aiogram.event - INFO - Update id=375093941 is handled. Duration 1206 ms by bot id=8554826085
+2026-03-06 22:49:22,131 - aiogram.event - INFO - Update id=375093942 is handled. Duration 980 ms by bot id=8554826085
+2026-03-06 22:49:23,969 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2026-03-06 22:49:23,971 - aiogram.dispatcher - INFO - Polling stopped for bot @kinocode26_bot id=8554826085 - 'KinoCode26'
+2026-03-06 22:49:23,971 - aiogram.dispatcher - INFO - Polling stopped
+2026-03-06 22:49:24,224 - cache - INFO - ✅ Redis отключен
+2026-03-06 22:49:24,224 - database - INFO - ✅ Соединение с БД закрыто
+2026-03-06 22:49:24,225 - __main__ - INFO - ✅ Бот остановлен корректно
+2026-03-06 22:49:33,919 - database - INFO - ✅ Подключение к БД установлено: /root/projectss/checkerrr/movies.db
+2026-03-06 22:49:34,030 - database - INFO - ✅ Таблицы БД созданы/проверены
+2026-03-06 22:49:34,030 - database - INFO - ✅ Таблицы БД проверены/созданы
+2026-03-06 22:49:34,108 - __main__ - INFO - ✅ Бот инициализирован успешно
+2026-03-06 22:49:34,109 - __main__ - INFO - 🚀 Запуск бота...
+2026-03-06 22:49:34,110 - __main__ - INFO - ✅ Сервисы инициализированы
+2026-03-06 22:49:34,110 - __main__ - INFO - ✅ Middleware зарегистрированы
+2026-03-06 22:49:34,110 - __main__ - INFO - ✅ Роутеры зарегистрированы
+2026-03-06 22:49:34,118 - cache - INFO - ✅ Redis подключен: localhost:6379
+2026-03-06 22:49:34,119 - __main__ - INFO - ✅ Redis кэш инициализирован
+2026-03-06 22:49:34,120 - aiogram.dispatcher - INFO - Start polling
+2026-03-06 22:49:34,270 - aiogram.dispatcher - INFO - Run polling for bot @kinocode26_bot id=8554826085 - 'KinoCode26'
+2026-03-06 22:51:46,400 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2026-03-06 22:51:46,401 - aiogram.dispatcher - INFO - Polling stopped for bot @kinocode26_bot id=8554826085 - 'KinoCode26'
+2026-03-06 22:51:46,402 - aiogram.dispatcher - INFO - Polling stopped
+2026-03-06 22:51:46,653 - cache - INFO - ✅ Redis отключен
+2026-03-06 22:51:46,654 - database - INFO - ✅ Соединение с БД закрыто
+2026-03-06 22:51:46,654 - __main__ - INFO - ✅ Бот остановлен корректно
+2026-03-06 22:57:22,229 - database - INFO - ✅ Подключение к БД установлено: /root/projectss/checkerrr/movies.db
+2026-03-06 22:57:22,231 - database - INFO - ✅ Таблицы БД созданы/проверены
+2026-03-06 22:57:22,231 - database - INFO - ✅ Таблицы БД проверены/созданы
+2026-03-06 22:57:22,737 - __main__ - INFO - ✅ Бот инициализирован успешно
+2026-03-06 22:57:22,738 - __main__ - INFO - 🚀 Запуск бота...
+2026-03-06 22:57:22,738 - __main__ - INFO - ✅ Сервисы инициализированы
+2026-03-06 22:57:22,738 - __main__ - INFO - ✅ Middleware зарегистрированы
+2026-03-06 22:57:22,739 - __main__ - INFO - ✅ Роутеры зарегистрированы
+2026-03-06 22:57:22,747 - cache - INFO - ✅ Redis подключен: localhost:6379
+2026-03-06 22:57:22,747 - __main__ - INFO - ✅ Redis кэш инициализирован
+2026-03-06 22:57:22,748 - aiogram.dispatcher - INFO - Start polling
+2026-03-06 22:57:23,158 - aiogram.dispatcher - INFO - Run polling for bot @kinocode26_bot id=8554826085 - 'KinoCode26'
+2026-03-06 22:57:23,227 - database - INFO - ✅ Подключение к БД установлено: /root/projectss/checkerrr/movies.db
+2026-03-06 22:57:23,229 - database - INFO - ✅ Таблицы БД созданы/проверены
+2026-03-06 22:57:23,229 - database - INFO - ✅ Таблицы БД проверены/созданы
+2026-03-06 22:57:23,310 - bot_new - INFO - ✅ Бот инициализирован успешно
+2026-03-06 22:57:23,578 - aiogram.event - INFO - Update id=375093945 is not handled. Duration 267 ms by bot id=8554826085
+2026-03-06 22:57:23,579 - aiogram.event - ERROR - Cause exception while process update id=375093945 by bot id=8554826085
+TelegramBadRequest: Telegram server says - Bad Request: query is too old and response timeout expired or query ID is invalid
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/dist-packages/aiogram/dispatcher/dispatcher.py", line 320, in _process_update
+    response = await self.feed_update(bot, update, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/aiogram/dispatcher/dispatcher.py", line 164, in feed_update
+    response = await self.update.wrap_outer_middleware(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/aiogram/dispatcher/middlewares/error.py", line 27, in __call__
+    return await handler(event, data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/aiogram/dispatcher/middlewares/user_context.py", line 58, in __call__
+    return await handler(event, data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/aiogram/fsm/middleware.py", line 43, in __call__
+    return await handler(event, data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/aiogram/dispatcher/event/telegram.py", line 126, in trigger
+    return await wrapped_inner(event, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/aiogram/dispatcher/event/handler.py", line 71, in call
+    return await wrapped()
+           ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/aiogram/dispatcher/dispatcher.py", line 283, in _listen_update
+    return await self.propagate_event(update_type=update_type, event=event, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/aiogram/dispatcher/router.py", line 161, in propagate_event
+    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/aiogram/dispatcher/router.py", line 153, in _wrapped
+    return await self._propagate_event(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/aiogram/dispatcher/router.py", line 189, in _propagate_event
+    response = await router.propagate_event(update_type=update_type, event=event, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/aiogram/dispatcher/router.py", line 161, in propagate_event
+    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/aiogram/dispatcher/router.py", line 153, in _wrapped
+    return await self._propagate_event(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/aiogram/dispatcher/router.py", line 181, in _propagate_event
+    response = await observer.trigger(event, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/aiogram/dispatcher/event/telegram.py", line 126, in trigger
+    return await wrapped_inner(event, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/checkerrr/middlewares/subscription.py", line 58, in __call__
+    return await handler(event, data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projectss/checkerrr/middlewares/subscription.py", line 242, in __call__
+    return await handler(event, data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/aiogram/dispatcher/event/handler.py", line 71, in call
+    return await wrapped()
+           ^^^^^^^^^^^^^^^
+  File "/root/projectss/checkerrr/handlers/search_admin.py", line 717, in user_stats_month
+    await callback.answer()
+  File "/usr/local/lib/python3.12/dist-packages/aiogram/methods/base.py", line 82, in emit
+    return await bot(self)
+           ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/aiogram/client/bot.py", line 487, in __call__
+    return await self.session(self, method, timeout=request_timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/aiogram/client/session/base.py", line 259, in __call__
+    return cast(TelegramType, await middleware(bot, method))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/aiogram/client/session/aiohttp.py", line 177, in make_request
+    response = self.check_response(
+               ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/aiogram/client/session/base.py", line 121, in check_response
+    raise TelegramBadRequest(method=method, message=description)
+aiogram.exceptions.TelegramBadRequest: Telegram server says - Bad Request: query is too old and response timeout expired or query ID is invalid
+2026-03-06 22:57:23,638 - aiogram.event - INFO - Update id=375093944 is handled. Duration 412 ms by bot id=8554826085
+2026-03-06 22:57:26,739 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2026-03-06 22:57:26,740 - aiogram.dispatcher - INFO - Polling stopped for bot @kinocode26_bot id=8554826085 - 'KinoCode26'
+2026-03-06 22:57:26,740 - aiogram.dispatcher - INFO - Polling stopped
+2026-03-06 22:57:26,993 - cache - INFO - ✅ Redis отключен
+2026-03-06 22:57:26,993 - database - INFO - ✅ Соединение с БД закрыто
+2026-03-06 22:57:26,994 - __main__ - INFO - ✅ Бот остановлен корректно
+2026-03-06 22:57:38,108 - database - INFO - ✅ Подключение к БД установлено: /root/projectss/checkerrr/movies.db
+2026-03-06 22:57:38,220 - database - INFO - ✅ Таблицы БД созданы/проверены
+2026-03-06 22:57:38,220 - database - INFO - ✅ Таблицы БД проверены/созданы
+2026-03-06 22:57:38,293 - __main__ - INFO - ✅ Бот инициализирован успешно
+2026-03-06 22:57:38,294 - __main__ - INFO - 🚀 Запуск бота...
+2026-03-06 22:57:38,295 - __main__ - INFO - ✅ Сервисы инициализированы
+2026-03-06 22:57:38,295 - __main__ - INFO - ✅ Middleware зарегистрированы
+2026-03-06 22:57:38,295 - __main__ - INFO - ✅ Роутеры зарегистрированы
+2026-03-06 22:57:38,302 - cache - INFO - ✅ Redis подключен: localhost:6379
+2026-03-06 22:57:38,302 - __main__ - INFO - ✅ Redis кэш инициализирован
+2026-03-06 22:57:38,303 - aiogram.dispatcher - INFO - Start polling
+2026-03-06 22:57:38,460 - aiogram.dispatcher - INFO - Run polling for bot @kinocode26_bot id=8554826085 - 'KinoCode26'
+2026-03-06 22:57:44,571 - aiogram.event - INFO - Update id=375093946 is handled. Duration 174 ms by bot id=8554826085
+2026-03-06 22:57:45,608 - aiogram.event - INFO - Update id=375093947 is handled. Duration 73 ms by bot id=8554826085
+2026-03-06 22:57:47,834 - aiogram.event - INFO - Update id=375093948 is handled. Duration 76 ms by bot id=8554826085
+2026-03-06 22:57:49,148 - aiogram.event - INFO - Update id=375093949 is handled. Duration 83 ms by bot id=8554826085
+2026-03-06 22:57:50,016 - aiogram.event - INFO - Update id=375093950 is handled. Duration 76 ms by bot id=8554826085
+2026-03-06 23:03:43,244 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2026-03-06 23:03:43,246 - aiogram.dispatcher - INFO - Polling stopped for bot @kinocode26_bot id=8554826085 - 'KinoCode26'
+2026-03-06 23:03:43,247 - aiogram.dispatcher - INFO - Polling stopped
+2026-03-06 23:03:43,502 - cache - INFO - ✅ Redis отключен
+2026-03-06 23:03:43,503 - database - INFO - ✅ Соединение с БД закрыто
+2026-03-06 23:03:43,503 - __main__ - INFO - ✅ Бот остановлен корректно
+2026-03-06 23:04:17,707 - database - INFO - ✅ Подключение к БД установлено: /root/projectss/checkerrr/movies.db
+2026-03-06 23:04:18,029 - database - INFO - ✅ Таблицы БД созданы/проверены
+2026-03-06 23:04:18,030 - database - INFO - ✅ Таблицы БД проверены/созданы
+2026-03-06 23:04:18,123 - __main__ - INFO - ✅ Бот инициализирован успешно
+2026-03-06 23:04:18,124 - __main__ - INFO - 🚀 Запуск бота...
+2026-03-06 23:04:18,125 - __main__ - INFO - ✅ Сервисы инициализированы
+2026-03-06 23:04:18,125 - __main__ - INFO - ✅ Middleware зарегистрированы
+2026-03-06 23:04:18,125 - __main__ - INFO - ✅ Роутеры зарегистрированы
+2026-03-06 23:04:18,156 - cache - INFO - ✅ Redis подключен: localhost:6379
+2026-03-06 23:04:18,156 - __main__ - INFO - ✅ Redis кэш инициализирован
+2026-03-06 23:04:18,157 - aiogram.dispatcher - INFO - Start polling
+2026-03-06 23:04:18,868 - aiogram.dispatcher - INFO - Run polling for bot @kinocode26_bot id=8554826085 - 'KinoCode26'
+2026-03-06 23:05:48,150 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2026-03-06 23:05:48,152 - aiogram.dispatcher - INFO - Polling stopped for bot @kinocode26_bot id=8554826085 - 'KinoCode26'
+2026-03-06 23:05:48,154 - aiogram.dispatcher - INFO - Polling stopped
+2026-03-06 23:05:48,406 - cache - INFO - ✅ Redis отключен
+2026-03-06 23:05:48,407 - database - INFO - ✅ Соединение с БД закрыто
+2026-03-06 23:05:48,409 - __main__ - INFO - ✅ Бот остановлен корректно
+2026-03-06 23:06:21,533 - database - INFO - ✅ Подключение к БД установлено: /root/projectss/checkerrr/movies.db
+2026-03-06 23:06:21,649 - database - INFO - ✅ Таблицы БД созданы/проверены
+2026-03-06 23:06:21,650 - database - INFO - ✅ Таблицы БД проверены/созданы
+2026-03-06 23:06:21,727 - __main__ - INFO - ✅ Бот инициализирован успешно
+2026-03-06 23:06:21,728 - __main__ - INFO - 🚀 Запуск бота...
+2026-03-06 23:06:21,728 - __main__ - INFO - ✅ Сервисы инициализированы
+2026-03-06 23:06:21,729 - __main__ - INFO - ✅ Middleware зарегистрированы
+2026-03-06 23:06:21,729 - __main__ - INFO - ✅ Роутеры зарегистрированы
+2026-03-06 23:06:21,740 - cache - INFO - ✅ Redis подключен: localhost:6379
+2026-03-06 23:06:21,740 - __main__ - INFO - ✅ Redis кэш инициализирован
+2026-03-06 23:06:21,741 - aiogram.dispatcher - INFO - Start polling
+2026-03-06 23:06:21,900 - aiogram.dispatcher - INFO - Run polling for bot @kinocode26_bot id=8554826085 - 'KinoCode26'
+2026-03-06 23:36:53,511 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2026-03-06 23:36:53,513 - aiogram.dispatcher - INFO - Polling stopped for bot @kinocode26_bot id=8554826085 - 'KinoCode26'
+2026-03-06 23:36:53,514 - aiogram.dispatcher - INFO - Polling stopped
+2026-03-06 23:36:53,769 - cache - INFO - ✅ Redis отключен
+2026-03-06 23:36:53,771 - database - INFO - ✅ Соединение с БД закрыто
+2026-03-06 23:36:53,771 - __main__ - INFO - ✅ Бот остановлен корректно
+2026-03-06 23:37:35,149 - database - INFO - ✅ Подключение к БД установлено: /root/projectss/checkerrr/movies.db
+2026-03-06 23:37:35,265 - database - INFO - ✅ Таблицы БД созданы/проверены
+2026-03-06 23:37:35,266 - database - INFO - ✅ Таблицы БД проверены/созданы
+2026-03-06 23:37:35,343 - __main__ - INFO - ✅ Бот инициализирован успешно
+2026-03-06 23:37:35,344 - __main__ - INFO - 🚀 Запуск бота...
+2026-03-06 23:37:35,345 - __main__ - INFO - ✅ Сервисы инициализированы
+2026-03-06 23:37:35,345 - __main__ - INFO - ✅ Middleware зарегистрированы
+2026-03-06 23:37:35,345 - __main__ - INFO - ✅ Роутеры зарегистрированы
+2026-03-06 23:37:35,898 - cache - INFO - ✅ Redis подключен: localhost:6379
+2026-03-06 23:37:35,898 - __main__ - INFO - ✅ Redis кэш инициализирован
+2026-03-06 23:37:35,900 - aiogram.dispatcher - INFO - Start polling
+2026-03-06 23:37:36,090 - aiogram.dispatcher - INFO - Run polling for bot @kinocode26_bot id=8554826085 - 'KinoCode26'
+2026-03-06 23:47:32,791 - aiogram.event - INFO - Update id=375093951 is handled. Duration 241 ms by bot id=8554826085
+2026-03-06 23:47:33,966 - aiogram.event - INFO - Update id=375093952 is handled. Duration 131 ms by bot id=8554826085
+2026-03-06 23:52:08,350 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2026-03-06 23:52:08,351 - aiogram.dispatcher - INFO - Polling stopped for bot @kinocode26_bot id=8554826085 - 'KinoCode26'
+2026-03-06 23:52:08,351 - aiogram.dispatcher - INFO - Polling stopped
+2026-03-06 23:52:08,603 - cache - INFO - ✅ Redis отключен
+2026-03-06 23:52:08,604 - database - INFO - ✅ Соединение с БД закрыто
+2026-03-06 23:52:08,605 - __main__ - INFO - ✅ Бот остановлен корректно
+2026-03-06 23:52:18,554 - database - INFO - ✅ Подключение к БД установлено: /root/projectss/checkerrr/movies.db
+2026-03-06 23:52:18,558 - database - INFO - ✅ Таблицы БД созданы/проверены
+2026-03-06 23:52:18,559 - database - INFO - ✅ Таблицы БД проверены/созданы
+2026-03-06 23:52:18,631 - __main__ - INFO - ✅ Бот инициализирован успешно
+2026-03-06 23:52:18,632 - __main__ - INFO - 🚀 Запуск бота...
+2026-03-06 23:52:18,632 - __main__ - INFO - ✅ Сервисы инициализированы
+2026-03-06 23:52:18,632 - __main__ - INFO - ✅ Middleware зарегистрированы
+2026-03-06 23:52:18,632 - __main__ - INFO - ✅ Роутеры зарегистрированы
+2026-03-06 23:52:18,759 - cache - INFO - ✅ Redis подключен: localhost:6379
+2026-03-06 23:52:18,760 - __main__ - INFO - ✅ Redis кэш инициализирован
+2026-03-06 23:52:18,760 - __main__ - INFO - ✅ Задача отправки статистики запущена
+2026-03-06 23:52:18,761 - aiogram.dispatcher - INFO - Start polling
+2026-03-06 23:52:19,109 - aiogram.dispatcher - INFO - Run polling for bot @kinocode26_bot id=8554826085 - 'KinoCode26'
+2026-03-06 23:57:10,055 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2026-03-06 23:57:10,057 - aiogram.dispatcher - INFO - Polling stopped for bot @kinocode26_bot id=8554826085 - 'KinoCode26'
+2026-03-06 23:57:10,058 - aiogram.dispatcher - INFO - Polling stopped
+2026-03-06 23:57:10,311 - cache - INFO - ✅ Redis отключен
+2026-03-06 23:57:10,312 - database - INFO - ✅ Соединение с БД закрыто
+2026-03-06 23:57:10,312 - __main__ - INFO - ✅ Бот остановлен корректно
+2026-03-06 23:57:20,679 - database - INFO - ✅ Подключение к БД установлено: /root/projectss/checkerrr/movies.db
+2026-03-06 23:57:20,799 - database - INFO - ✅ Таблицы БД созданы/проверены
+2026-03-06 23:57:20,800 - database - INFO - ✅ Таблицы БД проверены/созданы
+2026-03-06 23:57:20,873 - __main__ - INFO - ✅ Бот инициализирован успешно
+2026-03-06 23:57:20,874 - __main__ - INFO - 🚀 Запуск бота...
+2026-03-06 23:57:20,875 - __main__ - INFO - ✅ Сервисы инициализированы
+2026-03-06 23:57:20,875 - __main__ - INFO - ✅ Middleware зарегистрированы
+2026-03-06 23:57:20,875 - __main__ - INFO - ✅ Роутеры зарегистрированы
+2026-03-06 23:57:20,883 - cache - INFO - ✅ Redis подключен: localhost:6379
+2026-03-06 23:57:20,883 - __main__ - INFO - ✅ Redis кэш инициализирован
+2026-03-06 23:57:20,883 - __main__ - INFO - ✅ Задача отправки статистики запущена
+2026-03-06 23:57:20,884 - aiogram.dispatcher - INFO - Start polling
+2026-03-06 23:57:21,028 - aiogram.dispatcher - INFO - Run polling for bot @kinocode26_bot id=8554826085 - 'KinoCode26'
+2026-03-07 00:02:20,888 - database - ERROR - Ошибка получения количества поисков: near "days": syntax error
+2026-03-07 00:02:20,889 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 00:02:20,889 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 00:07:20,898 - database - ERROR - Ошибка получения количества поисков: near "days": syntax error
+2026-03-07 00:07:20,898 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 00:07:20,898 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 00:12:20,905 - database - ERROR - Ошибка получения количества поисков: near "days": syntax error
+2026-03-07 00:12:20,906 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 00:12:20,906 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 00:17:20,918 - database - ERROR - Ошибка получения количества поисков: near "days": syntax error
+2026-03-07 00:17:20,918 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 00:17:20,919 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 00:22:20,933 - database - ERROR - Ошибка получения количества поисков: near "days": syntax error
+2026-03-07 00:22:20,933 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 00:22:20,934 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 00:27:20,941 - database - ERROR - Ошибка получения количества поисков: near "days": syntax error
+2026-03-07 00:27:20,942 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 00:27:20,942 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 00:32:20,957 - database - ERROR - Ошибка получения количества поисков: near "days": syntax error
+2026-03-07 00:32:20,957 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 00:32:20,958 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 00:37:20,973 - database - ERROR - Ошибка получения количества поисков: near "days": syntax error
+2026-03-07 00:37:20,973 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 00:37:20,974 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 00:42:20,987 - database - ERROR - Ошибка получения количества поисков: near "days": syntax error
+2026-03-07 00:42:20,987 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 00:42:20,988 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 00:47:20,994 - database - ERROR - Ошибка получения количества поисков: near "days": syntax error
+2026-03-07 00:47:20,995 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 00:47:20,995 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 00:52:21,004 - database - ERROR - Ошибка получения количества поисков: near "days": syntax error
+2026-03-07 00:52:21,005 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 00:52:21,005 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 00:57:21,014 - database - ERROR - Ошибка получения количества поисков: near "days": syntax error
+2026-03-07 00:57:21,014 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 00:57:21,014 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 01:02:21,023 - database - ERROR - Ошибка получения количества поисков: near "days": syntax error
+2026-03-07 01:02:21,023 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 01:02:21,023 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 01:07:21,036 - database - ERROR - Ошибка получения количества поисков: near "days": syntax error
+2026-03-07 01:07:21,036 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 01:07:21,037 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 01:12:21,048 - database - ERROR - Ошибка получения количества поисков: near "days": syntax error
+2026-03-07 01:12:21,049 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 01:12:21,049 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 01:17:21,057 - database - ERROR - Ошибка получения количества поисков: near "days": syntax error
+2026-03-07 01:17:21,057 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 01:17:21,057 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 01:22:21,067 - database - ERROR - Ошибка получения количества поисков: near "days": syntax error
+2026-03-07 01:22:21,067 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 01:22:21,068 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 01:27:21,076 - database - ERROR - Ошибка получения количества поисков: near "days": syntax error
+2026-03-07 01:27:21,077 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 01:27:21,077 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 01:32:21,086 - database - ERROR - Ошибка получения количества поисков: near "days": syntax error
+2026-03-07 01:32:21,086 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 01:32:21,086 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 01:37:21,094 - database - ERROR - Ошибка получения количества поисков: near "days": syntax error
+2026-03-07 01:37:21,094 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 01:37:21,094 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 01:42:21,110 - database - ERROR - Ошибка получения количества поисков: near "days": syntax error
+2026-03-07 01:42:21,111 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 01:42:21,111 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 01:47:21,127 - database - ERROR - Ошибка получения количества поисков: near "days": syntax error
+2026-03-07 01:47:21,128 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 01:47:21,128 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 01:52:21,142 - database - ERROR - Ошибка получения количества поисков: near "days": syntax error
+2026-03-07 01:52:21,142 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 01:52:21,142 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 01:57:21,154 - database - ERROR - Ошибка получения количества поисков: near "days": syntax error
+2026-03-07 01:57:21,154 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 01:57:21,155 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 02:02:21,164 - database - ERROR - Ошибка получения количества поисков: near "days": syntax error
+2026-03-07 02:02:21,165 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 02:02:21,165 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 02:07:21,175 - database - ERROR - Ошибка получения количества поисков: near "days": syntax error
+2026-03-07 02:07:21,175 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 02:07:21,175 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 02:12:21,183 - database - ERROR - Ошибка получения количества поисков: near "days": syntax error
+2026-03-07 02:12:21,183 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 02:12:21,184 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 02:17:21,194 - database - ERROR - Ошибка получения количества поисков: near "days": syntax error
+2026-03-07 02:17:21,195 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 02:17:21,195 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 02:22:21,203 - database - ERROR - Ошибка получения количества поисков: near "days": syntax error
+2026-03-07 02:22:21,204 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 02:22:21,204 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 02:27:21,212 - database - ERROR - Ошибка получения количества поисков: near "days": syntax error
+2026-03-07 02:27:21,212 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 02:27:21,212 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 02:32:21,222 - database - ERROR - Ошибка получения количества поисков: near "days": syntax error
+2026-03-07 02:32:21,222 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 02:32:21,222 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 02:37:21,232 - database - ERROR - Ошибка получения количества поисков: near "days": syntax error
+2026-03-07 02:37:21,232 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 02:37:21,233 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 02:42:21,241 - database - ERROR - Ошибка получения количества поисков: near "days": syntax error
+2026-03-07 02:42:21,242 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 02:42:21,242 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 02:47:21,259 - database - ERROR - Ошибка получения количества поисков: near "days": syntax error
+2026-03-07 02:47:21,259 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 02:47:21,260 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 02:52:21,272 - database - ERROR - Ошибка получения количества поисков: near "days": syntax error
+2026-03-07 02:52:21,272 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 02:52:21,273 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 02:57:21,287 - database - ERROR - Ошибка получения количества поисков: near "days": syntax error
+2026-03-07 02:57:21,287 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 02:57:21,287 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 03:02:21,299 - database - ERROR - Ошибка получения количества поисков: near "days": syntax error
+2026-03-07 03:02:21,299 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 03:02:21,300 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 03:07:21,309 - database - ERROR - Ошибка получения количества поисков: near "days": syntax error
+2026-03-07 03:07:21,309 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 03:07:21,309 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 03:12:21,319 - database - ERROR - Ошибка получения количества поисков: near "days": syntax error
+2026-03-07 03:12:21,319 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 03:12:21,319 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 03:17:21,328 - database - ERROR - Ошибка получения количества поисков: near "days": syntax error
+2026-03-07 03:17:21,329 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 03:17:21,329 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 03:22:21,337 - database - ERROR - Ошибка получения количества поисков: near "days": syntax error
+2026-03-07 03:22:21,337 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 03:22:21,337 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 03:27:21,351 - database - ERROR - Ошибка получения количества поисков: near "days": syntax error
+2026-03-07 03:27:21,351 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 03:27:21,352 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 03:32:21,362 - database - ERROR - Ошибка получения количества поисков: near "days": syntax error
+2026-03-07 03:32:21,362 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 03:32:21,362 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 03:37:21,369 - database - ERROR - Ошибка получения количества поисков: near "days": syntax error
+2026-03-07 03:37:21,370 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 03:37:21,370 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 03:42:21,379 - database - ERROR - Ошибка получения количества поисков: near "days": syntax error
+2026-03-07 03:42:21,379 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 03:42:21,379 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 03:47:21,390 - database - ERROR - Ошибка получения количества поисков: near "days": syntax error
+2026-03-07 03:47:21,390 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 03:47:21,391 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 03:52:21,398 - database - ERROR - Ошибка получения количества поисков: near "days": syntax error
+2026-03-07 03:52:21,399 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 03:52:21,399 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 03:57:21,405 - database - ERROR - Ошибка получения количества поисков: near "days": syntax error
+2026-03-07 03:57:21,405 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 03:57:21,406 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 04:02:21,420 - database - ERROR - Ошибка получения количества поисков: near "days": syntax error
+2026-03-07 04:02:21,420 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 04:02:21,420 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 04:07:21,432 - database - ERROR - Ошибка получения количества поисков: near "days": syntax error
+2026-03-07 04:07:21,432 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 04:07:21,432 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 04:12:21,446 - database - ERROR - Ошибка получения количества поисков: near "days": syntax error
+2026-03-07 04:12:21,446 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 04:12:21,447 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 04:17:21,459 - database - ERROR - Ошибка получения количества поисков: near "days": syntax error
+2026-03-07 04:17:21,459 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 04:17:21,459 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 04:22:21,469 - database - ERROR - Ошибка получения количества поисков: near "days": syntax error
+2026-03-07 04:22:21,469 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 04:22:21,469 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 04:27:21,478 - database - ERROR - Ошибка получения количества поисков: near "days": syntax error
+2026-03-07 04:27:21,478 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 04:27:21,479 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 04:32:21,487 - database - ERROR - Ошибка получения количества поисков: near "days": syntax error
+2026-03-07 04:32:21,488 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 04:32:21,488 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 04:37:21,500 - database - ERROR - Ошибка получения количества поисков: near "days": syntax error
+2026-03-07 04:37:21,501 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 04:37:21,501 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 04:42:21,509 - database - ERROR - Ошибка получения количества поисков: near "days": syntax error
+2026-03-07 04:42:21,509 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 04:42:21,509 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 04:47:21,521 - database - ERROR - Ошибка получения количества поисков: near "days": syntax error
+2026-03-07 04:47:21,522 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 04:47:21,522 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 04:52:21,534 - database - ERROR - Ошибка получения количества поисков: near "days": syntax error
+2026-03-07 04:52:21,535 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 04:52:21,535 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 04:57:21,547 - database - ERROR - Ошибка получения количества поисков: near "days": syntax error
+2026-03-07 04:57:21,547 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 04:57:21,547 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 05:02:21,555 - database - ERROR - Ошибка получения количества поисков: near "days": syntax error
+2026-03-07 05:02:21,556 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 05:02:21,556 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 05:07:21,569 - database - ERROR - Ошибка получения количества поисков: near "days": syntax error
+2026-03-07 05:07:21,569 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 05:07:21,569 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 05:12:21,584 - database - ERROR - Ошибка получения количества поисков: near "days": syntax error
+2026-03-07 05:12:21,584 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 05:12:21,585 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 05:17:21,598 - database - ERROR - Ошибка получения количества поисков: near "days": syntax error
+2026-03-07 05:17:21,598 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 05:17:21,598 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 05:22:21,611 - database - ERROR - Ошибка получения количества поисков: near "days": syntax error
+2026-03-07 05:22:21,612 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 05:22:21,612 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 05:27:21,621 - database - ERROR - Ошибка получения количества поисков: near "days": syntax error
+2026-03-07 05:27:21,622 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 05:27:21,622 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 05:32:21,632 - database - ERROR - Ошибка получения количества поисков: near "days": syntax error
+2026-03-07 05:32:21,632 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 05:32:21,633 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 05:37:21,641 - database - ERROR - Ошибка получения количества поисков: near "days": syntax error
+2026-03-07 05:37:21,641 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 05:37:21,641 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 05:42:21,652 - database - ERROR - Ошибка получения количества поисков: near "days": syntax error
+2026-03-07 05:42:21,652 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 05:42:21,653 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 05:47:21,662 - database - ERROR - Ошибка получения количества поисков: near "days": syntax error
+2026-03-07 05:47:21,663 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 05:47:21,663 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 05:52:21,672 - database - ERROR - Ошибка получения количества поисков: near "days": syntax error
+2026-03-07 05:52:21,673 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 05:52:21,673 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 05:57:21,685 - database - ERROR - Ошибка получения количества поисков: near "days": syntax error
+2026-03-07 05:57:21,685 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 05:57:21,685 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 06:02:21,695 - database - ERROR - Ошибка получения количества поисков: near "days": syntax error
+2026-03-07 06:02:21,695 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 06:02:21,695 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 06:07:21,746 - database - ERROR - Ошибка получения количества поисков: near "days": syntax error
+2026-03-07 06:07:21,746 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 06:07:21,747 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 06:12:21,757 - database - ERROR - Ошибка получения количества поисков: near "days": syntax error
+2026-03-07 06:12:21,758 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 06:12:21,758 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 06:17:21,774 - database - ERROR - Ошибка получения количества поисков: near "days": syntax error
+2026-03-07 06:17:21,775 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 06:17:21,775 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 06:22:21,792 - database - ERROR - Ошибка получения количества поисков: near "days": syntax error
+2026-03-07 06:22:21,792 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 06:22:21,793 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 06:27:21,809 - database - ERROR - Ошибка получения количества поисков: near "days": syntax error
+2026-03-07 06:27:21,809 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 06:27:21,809 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 06:32:21,827 - database - ERROR - Ошибка получения количества поисков: near "days": syntax error
+2026-03-07 06:32:21,827 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 06:32:21,827 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 06:37:21,839 - database - ERROR - Ошибка получения количества поисков: near "days": syntax error
+2026-03-07 06:37:21,839 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 06:37:21,839 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 06:42:21,848 - database - ERROR - Ошибка получения количества поисков: near "days": syntax error
+2026-03-07 06:42:21,849 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 06:42:21,849 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 06:47:21,860 - database - ERROR - Ошибка получения количества поисков: near "days": syntax error
+2026-03-07 06:47:21,861 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 06:47:21,861 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 06:52:21,874 - database - ERROR - Ошибка получения количества поисков: near "days": syntax error
+2026-03-07 06:52:21,874 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 06:52:21,874 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 06:57:21,885 - database - ERROR - Ошибка получения количества поисков: near "days": syntax error
+2026-03-07 06:57:21,885 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 06:57:21,885 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 07:02:21,892 - database - ERROR - Ошибка получения количества поисков: near "days": syntax error
+2026-03-07 07:02:21,892 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 07:02:21,892 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 07:07:21,900 - database - ERROR - Ошибка получения количества поисков: near "days": syntax error
+2026-03-07 07:07:21,901 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 07:07:21,901 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 07:12:21,912 - database - ERROR - Ошибка получения количества поисков: near "days": syntax error
+2026-03-07 07:12:21,912 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 07:12:21,912 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 07:17:21,921 - database - ERROR - Ошибка получения количества поисков: near "days": syntax error
+2026-03-07 07:17:21,921 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 07:17:21,921 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 07:22:21,937 - database - ERROR - Ошибка получения количества поисков: near "days": syntax error
+2026-03-07 07:22:21,937 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 07:22:21,938 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 07:27:21,952 - database - ERROR - Ошибка получения количества поисков: near "days": syntax error
+2026-03-07 07:27:21,953 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 07:27:21,953 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 07:32:21,968 - database - ERROR - Ошибка получения количества поисков: near "days": syntax error
+2026-03-07 07:32:21,968 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 07:32:21,968 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 07:37:21,980 - database - ERROR - Ошибка получения количества поисков: near "days": syntax error
+2026-03-07 07:37:21,981 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 07:37:21,981 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 07:42:21,992 - database - ERROR - Ошибка получения количества поисков: near "days": syntax error
+2026-03-07 07:42:21,993 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 07:42:21,993 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 07:47:22,004 - database - ERROR - Ошибка получения количества поисков: near "days": syntax error
+2026-03-07 07:47:22,005 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 07:47:22,005 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 07:52:22,013 - database - ERROR - Ошибка получения количества поисков: near "days": syntax error
+2026-03-07 07:52:22,014 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 07:52:22,014 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 07:57:22,027 - database - ERROR - Ошибка получения количества поисков: near "days": syntax error
+2026-03-07 07:57:22,028 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 07:57:22,028 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 08:02:22,036 - database - ERROR - Ошибка получения количества поисков: near "days": syntax error
+2026-03-07 08:02:22,037 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 08:02:22,037 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 08:07:22,046 - database - ERROR - Ошибка получения количества поисков: near "days": syntax error
+2026-03-07 08:07:22,046 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 08:07:22,046 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 08:12:22,058 - database - ERROR - Ошибка получения количества поисков: near "days": syntax error
+2026-03-07 08:12:22,058 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 08:12:22,058 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 08:17:22,068 - database - ERROR - Ошибка получения количества поисков: near "days": syntax error
+2026-03-07 08:17:22,069 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 08:17:22,069 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 08:22:22,078 - database - ERROR - Ошибка получения количества поисков: near "days": syntax error
+2026-03-07 08:22:22,078 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 08:22:22,079 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 08:27:22,089 - database - ERROR - Ошибка получения количества поисков: near "days": syntax error
+2026-03-07 08:27:22,089 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 08:27:22,090 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 08:32:22,103 - database - ERROR - Ошибка получения количества поисков: near "days": syntax error
+2026-03-07 08:32:22,104 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 08:32:22,104 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 08:37:22,125 - database - ERROR - Ошибка получения количества поисков: near "days": syntax error
+2026-03-07 08:37:22,125 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 08:37:22,126 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 08:42:22,137 - database - ERROR - Ошибка получения количества поисков: near "days": syntax error
+2026-03-07 08:42:22,139 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 08:42:22,139 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 08:47:22,161 - database - ERROR - Ошибка получения количества поисков: near "days": syntax error
+2026-03-07 08:47:22,162 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 08:47:22,162 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 08:52:22,173 - database - ERROR - Ошибка получения количества поисков: near "days": syntax error
+2026-03-07 08:52:22,173 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 08:52:22,173 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 08:57:22,185 - database - ERROR - Ошибка получения количества поисков: near "days": syntax error
+2026-03-07 08:57:22,186 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 08:57:22,187 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 09:02:22,202 - database - ERROR - Ошибка получения количества поисков: near "days": syntax error
+2026-03-07 09:02:22,202 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 09:02:22,202 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 09:04:36,158 - aiogram.event - INFO - Update id=375093953 is handled. Duration 229 ms by bot id=8554826085
+2026-03-07 09:04:37,003 - aiogram.event - INFO - Update id=375093954 is handled. Duration 99 ms by bot id=8554826085
+2026-03-07 09:04:37,918 - database - INFO - ✅ Добавлено в избранное: user=734480342, movie=58
+2026-03-07 09:04:38,027 - aiogram.event - INFO - Update id=375093955 is handled. Duration 125 ms by bot id=8554826085
+2026-03-07 09:07:22,225 - database - ERROR - Ошибка получения количества поисков: near "days": syntax error
+2026-03-07 09:07:22,225 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 09:07:22,226 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 09:12:22,567 - database - ERROR - Ошибка получения количества поисков: near "days": syntax error
+2026-03-07 09:12:22,567 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error
+2026-03-07 09:12:22,568 - database - ERROR - Ошибка получения количества новых пользователей: near "days": syntax error

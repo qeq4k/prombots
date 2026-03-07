@@ -45,6 +45,9 @@ from rapidfuzz import fuzz
 from shared import DigestGenerator, schedule_digest_for_category
 from shared import TelegramClient  # Для дайджестов
 
+# ✅ WEEKLY DIGEST — дайджест за неделю
+from shared import SourceStats, export_stats_to_pdf
+
 # ✅ SINGLE INSTANCE LOCK - предотвращает запуск нескольких копий бота
 # Не используется при запуске через PM2 (PM2 сам управляет процессами)
 LOCK_FILE = Path("politika.lock")
@@ -2596,6 +2599,95 @@ async def graceful_shutdown(llm: CachedLLMClient):
     metrics.print_summary()
     logger.info("✅ Бот остановлен корректно")
 
+
+# ================= WEEKLY DIGEST =================
+async def schedule_weekly_digest(telegram_client, config, db_path: str):
+    """
+    Планировщик недельного дайджеста (каждое воскресенье в 20:00)
+    """
+    logger.info("📰 Планировщик недельного дайджеста запущен")
+    
+    while state.running:
+        try:
+            now = datetime.now(timezone.utc)
+            
+            # Вычисляем когда следующее воскресенье 20:00
+            days_until_sunday = (6 - now.weekday()) % 7
+            if days_until_sunday == 0 and now.hour >= 20:
+                days_until_sunday = 7
+            
+            next_sunday = now.replace(hour=20, minute=0, second=0, microsecond=0)
+            next_sunday = next_sunday + timedelta(days=days_until_sunday)
+            
+            wait_seconds = (next_sunday - now).total_seconds()
+            
+            logger.info(f"📰 Следующий недельный дайджест через {wait_seconds/3600:.1f} ч")
+            
+            await asyncio.sleep(wait_seconds)
+            
+            # Генерируем дайджест
+            if state.running:
+                await generate_weekly_digest(telegram_client, config, db_path)
+                
+        except asyncio.CancelledError:
+            logger.info("📰 Планировщик недельного дайджеста остановлен")
+            break
+        except Exception as e:
+            logger.error(f"❌ Ошибка планировщика недельного дайджеста: {e}")
+            await asyncio.sleep(3600)
+
+
+async def generate_weekly_digest(telegram_client, config, db_path: str):
+    """
+    Генерация недельного дайджеста — ТОП новостей за неделю
+    """
+    logger.info("📰 Генерация недельного дайджеста...")
+    
+    try:
+        # Получаем топ-10 новостей за неделю по приоритету
+        async with aiosqlite.connect(db_path) as db:
+            db.row_factory = aiosqlite.Row
+            async with db.execute("""
+                SELECT title_normalized, source, priority, posted_at
+                FROM posted
+                WHERE posted_at > datetime('now', '-7 days')
+                ORDER BY priority DESC
+                LIMIT 10
+            """) as cursor:
+                rows = await cursor.fetchall()
+                
+                if not rows:
+                    logger.info("📰 Нет новостей за неделю")
+                    return
+                
+                # Формируем текст
+                text = f"📰 <b>ДАЙДЖЕСТ ЗА НЕДЕЛЮ</b>\n"
+                text += f"📅 {datetime.now().strftime('%d.%m.%Y')}\n\n"
+                text += "=" * 40 + "\n\n"
+                
+                for i, row in enumerate(rows, 1):
+                    title = row[0] or "Без названия"
+                    source = row[1] or "Неизвестно"
+                    priority = row[2] or 0
+                    
+                    # Эмодзи для топ-3
+                    emoji = ["🥇", "🥈", "🥉"][i-1] if i <= 3 else f"{i}."
+                    
+                    text += f"{emoji} <b>{title[:100]}</b>\n"
+                    text += f"   📡 {source} | ⭐ {priority}\n\n"
+                
+                text += "=" * 40 + "\n"
+                text += "🔗 Полная лента: " + config.signature_politics
+        
+        # Отправляем в канал
+        channel_id = config.tg_channel_politics
+        await telegram_client.send_message(channel_id, text, parse_mode="HTML")
+        
+        logger.info("✅ Недельный дайджест отправлен")
+        
+    except Exception as e:
+        logger.error(f"❌ Ошибка генерации недельного дайджеста: {e}", exc_info=True)
+
 # ================= MAIN =================
 async def main():
     # ✅ SINGLE INSTANCE CHECK через PM2
@@ -2617,6 +2709,7 @@ async def main():
 
     # ✅ ЗАПУСК ПЛАНИРОВЩИКА ДАЙДЖЕСТОВ (ежедневно в 22:00)
     digest_task = None
+    weekly_digest_task = None
     if config.autopost_enabled:
         try:
             # Создаём отдельный TelegramClient для дайджестов
@@ -2626,6 +2719,12 @@ async def main():
                 schedule_digest_for_category(llm, tg_client, config, "politics", hour=22)
             )
             logger.info("✅ Планировщик дайджестов запущен (22:00 daily)")
+            
+            # ✅ ЗАПУСК ПЛАНИРОВЩИКА НЕДЕЛЬНОГО ДАЙДЖЕСТА (воскресенье 20:00)
+            weekly_digest_task = asyncio.create_task(
+                schedule_weekly_digest(tg_client, config, config.db_path)
+            )
+            logger.info("✅ Планировщик недельного дайджеста запущен (воскресенье 20:00)")
         except Exception as e:
             logger.warning(f"⚠️ Не удалось запустить планировщик дайджестов: {e}")
 

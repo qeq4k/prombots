@@ -25947,3 +25947,6 @@
 2026-03-06T20:52:36:     return {k: v for ns in self._namespaces for k, v in ns.items()}
 2026-03-06T20:52:36:                                                         ^^^^^^^^^^
 2026-03-06T20:52:36: KeyboardInterrupt
+2026-03-07T06:09:38: /root/projectss/cinema/movie.py:2716: RuntimeWarning: coroutine 'cleanup_old_logs' was never awaited
+2026-03-07T06:09:38:   cleanup_old_logs()  # Очистка логов (синхронная)
+2026-03-07T06:09:38: RuntimeWarning: Enable tracemalloc to get the object allocation traceback

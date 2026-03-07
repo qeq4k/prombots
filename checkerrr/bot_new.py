@@ -245,7 +245,7 @@ async def register_routers():
     dp.include_router(callbacks_router)
     dp.include_router(search_admin_router)
     dp.include_router(search_only_router)
-    
+
     logger.info("✅ Роутеры зарегистрированы")
 
 
@@ -266,26 +266,58 @@ async def init_services():
 
 # ==================== MAIN ====================
 
+async def send_stats_to_dashboard():
+    """Периодическая отправка статистики в дашборд"""
+    import aiohttp
+    
+    dashboard_url = "http://localhost:8080/api/checkerrr_stats"
+    
+    while True:
+        try:
+            await asyncio.sleep(300)  # Каждые 5 минут
+            
+            # Собираем статистику
+            stats = {
+                "movies": db.get_movies_count(),
+                "users": db.get_users_count(),
+                "searches_week": db.get_searches_count_days(7),
+                "favorites": db.get_favorites_count(),
+                "new_users_week": db.get_new_users_count_days(7),
+                "new_users_month": db.get_new_users_count_days(30),
+            }
+            
+            # Отправляем в дашборд
+            async with aiohttp.ClientSession() as session:
+                async with session.post(dashboard_url, json=stats) as resp:
+                    if resp.status == 200:
+                        logger.debug(f"📊 Статистика отправлена: {stats}")
+                    else:
+                        logger.warning(f"⚠️ Ошибка отправки статистики: {resp.status}")
+                        
+        except Exception as e:
+            logger.debug(f"⚠️ Ошибка отправки статистики: {e}")
+
+
 async def main():
     """Основная функция запуска"""
     logger.info("🚀 Запуск бота...")
-    
+
     # Инициализация каналов
     if not db.get_channels():
         for ch in config.CHANNELS:
             if ch.get('id') and ch.get('link'):
                 db.add_channel(ch['name'], ch['link'], ch['id'])
         logger.info("✅ Каналы инициализированы из config")
-    
+
     # Инициализация сервисов
     await init_services()
-    
+
     # Регистрация middleware
     await register_middlewares()
-    
+
     # Регистрация роутеров
     await register_routers()
-    
+
     # Инициализация кэша (Redis с fallback на in-memory)
     cache = init_cache(
         host=config.REDIS_HOST,
@@ -297,14 +329,18 @@ async def main():
         logger.info("✅ Redis кэш инициализирован")
     else:
         logger.warning("⚠️ Redis недоступен, используется in-memory кэш")
-    
+
     # Health check
     if config.ENABLE_HEALTH_CHECK:
         checker = get_health_checker()
         if checker:
             await checker.check_all()
             logger.info(f"✅ Health check: {checker.get_status_text()}")
-    
+
+    # Запуск задачи отправки статистики
+    asyncio.create_task(send_stats_to_dashboard())
+    logger.info("✅ Задача отправки статистики запущена")
+
     # Запуск polling с передачей зависимостей
     try:
         await dp.start_polling(bot, db=db, config=config)

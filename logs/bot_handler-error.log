@@ -14914,3 +14914,685 @@
 2026-03-06T21:22:43: <meta content='index, follow' name='robots'>
 2026-03-06T21:22:43: <meta content='website' property='og:type'>
 2026-03-06T21:22:43: <meta co
+2026-03-06T21:43:37: ❌ LLM API error 404: <!DOCTYPE html>
+2026-03-06T21:43:37: <html lang='ru'>
+2026-03-06T21:43:37: <head>
+2026-03-06T21:43:37: <title>RouterAI ✨</title>
+2026-03-06T21:43:37: <meta content='' name='description'>
+2026-03-06T21:43:37: <meta content='index, follow' name='robots'>
+2026-03-06T21:43:37: <meta content='website' property='og:type'>
+2026-03-06T21:43:37: <meta co
+2026-03-06T21:48:38: ❌ LLM API error 404: <!DOCTYPE html>
+2026-03-06T21:48:38: <html lang='ru'>
+2026-03-06T21:48:38: <head>
+2026-03-06T21:48:38: <title>RouterAI ✨</title>
+2026-03-06T21:48:38: <meta content='' name='description'>
+2026-03-06T21:48:38: <meta content='index, follow' name='robots'>
+2026-03-06T21:48:38: <meta content='website' property='og:type'>
+2026-03-06T21:48:38: <meta co
+2026-03-06T21:53:43: ❌ LLM API error 404: <!DOCTYPE html>
+2026-03-06T21:53:43: <html lang='ru'>
+2026-03-06T21:53:43: <head>
+2026-03-06T21:53:43: <title>RouterAI ✨</title>
+2026-03-06T21:53:43: <meta content='' name='description'>
+2026-03-06T21:53:43: <meta content='index, follow' name='robots'>
+2026-03-06T21:53:43: <meta content='website' property='og:type'>
+2026-03-06T21:53:43: <meta co
+2026-03-06T21:55:43: ❌ LLM API error 404: <!DOCTYPE html>
+2026-03-06T21:55:43: <html lang='ru'>
+2026-03-06T21:55:43: <head>
+2026-03-06T21:55:43: <title>RouterAI ✨</title>
+2026-03-06T21:55:43: <meta content='' name='description'>
+2026-03-06T21:55:43: <meta content='index, follow' name='robots'>
+2026-03-06T21:55:43: <meta content='website' property='og:type'>
+2026-03-06T21:55:43: <meta co
+2026-03-06T22:07:06: ❌ LLM API error 404: <!DOCTYPE html>
+2026-03-06T22:07:06: <html lang='ru'>
+2026-03-06T22:07:06: <head>
+2026-03-06T22:07:06: <title>RouterAI ✨</title>
+2026-03-06T22:07:06: <meta content='' name='description'>
+2026-03-06T22:07:06: <meta content='index, follow' name='robots'>
+2026-03-06T22:07:06: <meta content='website' property='og:type'>
+2026-03-06T22:07:06: <meta co
+2026-03-06T22:07:10: ❌ LLM API error 404: <!DOCTYPE html>
+2026-03-06T22:07:10: <html lang='ru'>
+2026-03-06T22:07:10: <head>
+2026-03-06T22:07:10: <title>RouterAI ✨</title>
+2026-03-06T22:07:10: <meta content='' name='description'>
+2026-03-06T22:07:10: <meta content='index, follow' name='robots'>
+2026-03-06T22:07:10: <meta content='website' property='og:type'>
+2026-03-06T22:07:10: <meta co
+2026-03-06T22:37:59: ❌ LLM API error 404: <!DOCTYPE html>
+2026-03-06T22:37:59: <html lang='ru'>
+2026-03-06T22:37:59: <head>
+2026-03-06T22:37:59: <title>RouterAI ✨</title>
+2026-03-06T22:37:59: <meta content='' name='description'>
+2026-03-06T22:37:59: <meta content='index, follow' name='robots'>
+2026-03-06T22:37:59: <meta content='website' property='og:type'>
+2026-03-06T22:37:59: <meta co
+2026-03-06T22:38:45: ❌ LLM API error 404: <!DOCTYPE html>
+2026-03-06T22:38:45: <html lang='ru'>
+2026-03-06T22:38:45: <head>
+2026-03-06T22:38:45: <title>RouterAI ✨</title>
+2026-03-06T22:38:45: <meta content='' name='description'>
+2026-03-06T22:38:45: <meta content='index, follow' name='robots'>
+2026-03-06T22:38:45: <meta content='website' property='og:type'>
+2026-03-06T22:38:45: <meta co
+2026-03-06T22:42:45: ❌ LLM API error 404: <!DOCTYPE html>
+2026-03-06T22:42:45: <html lang='ru'>
+2026-03-06T22:42:45: <head>
+2026-03-06T22:42:45: <title>RouterAI ✨</title>
+2026-03-06T22:42:45: <meta content='' name='description'>
+2026-03-06T22:42:45: <meta content='index, follow' name='robots'>
+2026-03-06T22:42:45: <meta content='website' property='og:type'>
+2026-03-06T22:42:45: <meta co
+2026-03-06T23:03:01: ⚠️ Crosspost сервис не загружен: No module named 'shared.rubrics'
+2026-03-06T23:03:01: ⚠️ Авто-рубрикатор не загружен: No module named 'shared.rubrics'
+2026-03-06T23:03:01: Traceback (most recent call last):
+2026-03-06T23:03:01:   File "/root/projectss/bot_handler.py", line 118, in <module>
+2026-03-06T23:03:01:     from shared import (
+2026-03-06T23:03:01:   File "/root/projectss/shared/__init__.py", line 664, in <module>
+2026-03-06T23:03:01:     from shared.rubrics import (
+2026-03-06T23:03:01: ModuleNotFoundError: No module named 'shared.rubrics'
+2026-03-06T23:03:06: ⚠️ Crosspost сервис не загружен: No module named 'shared.rubrics'
+2026-03-06T23:03:06: ⚠️ Авто-рубрикатор не загружен: No module named 'shared.rubrics'
+2026-03-06T23:03:06: Traceback (most recent call last):
+2026-03-06T23:03:06:   File "/root/projectss/bot_handler.py", line 118, in <module>
+2026-03-06T23:03:06:     from shared import (
+2026-03-06T23:03:06:   File "/root/projectss/shared/__init__.py", line 664, in <module>
+2026-03-06T23:03:06:     from shared.rubrics import (
+2026-03-06T23:03:06: ModuleNotFoundError: No module named 'shared.rubrics'
+2026-03-06T23:03:11: ⚠️ Crosspost сервис не загружен: No module named 'shared.rubrics'
+2026-03-06T23:03:11: ⚠️ Авто-рубрикатор не загружен: No module named 'shared.rubrics'
+2026-03-06T23:03:11: Traceback (most recent call last):
+2026-03-06T23:03:11:   File "/root/projectss/bot_handler.py", line 118, in <module>
+2026-03-06T23:03:11:     from shared import (
+2026-03-06T23:03:11:   File "/root/projectss/shared/__init__.py", line 664, in <module>
+2026-03-06T23:03:11:     from shared.rubrics import (
+2026-03-06T23:03:11: ModuleNotFoundError: No module named 'shared.rubrics'
+2026-03-06T23:03:16: 🧹 Найден stale PID файл (PID=612535), удаляю
+2026-03-06T23:03:24: 🧹 Найден stale PID файл (PID=640520), удаляю
+2026-03-06T23:04:00: 🧹 Найден stale PID файл (PID=640544), удаляю
+2026-03-06T23:06:13: 🧹 Найден stale PID файл (PID=641013), удаляю
+2026-03-06T23:17:16: ❌ LLM API error 404: <!DOCTYPE html>
+2026-03-06T23:17:16: <html lang='ru'>
+2026-03-06T23:17:16: <head>
+2026-03-06T23:17:16: <title>RouterAI ✨</title>
+2026-03-06T23:17:16: <meta content='' name='description'>
+2026-03-06T23:17:16: <meta content='index, follow' name='robots'>
+2026-03-06T23:17:16: <meta content='website' property='og:type'>
+2026-03-06T23:17:16: <meta co
+2026-03-06T23:34:17: ❌ LLM API error 404: <!DOCTYPE html>
+2026-03-06T23:34:17: <html lang='ru'>
+2026-03-06T23:34:17: <head>
+2026-03-06T23:34:17: <title>RouterAI ✨</title>
+2026-03-06T23:34:17: <meta content='' name='description'>
+2026-03-06T23:34:17: <meta content='index, follow' name='robots'>
+2026-03-06T23:34:17: <meta content='website' property='og:type'>
+2026-03-06T23:34:17: <meta co
+2026-03-06T23:34:17: ❌ LLM API error 404: <!DOCTYPE html>
+2026-03-06T23:34:17: <html lang='ru'>
+2026-03-06T23:34:17: <head>
+2026-03-06T23:34:17: <title>RouterAI ✨</title>
+2026-03-06T23:34:17: <meta content='' name='description'>
+2026-03-06T23:34:17: <meta content='index, follow' name='robots'>
+2026-03-06T23:34:17: <meta content='website' property='og:type'>
+2026-03-06T23:34:17: <meta co
+2026-03-06T23:34:17: ❌ LLM API error 404: <!DOCTYPE html>
+2026-03-06T23:34:17: <html lang='ru'>
+2026-03-06T23:34:17: <head>
+2026-03-06T23:34:17: <title>RouterAI ✨</title>
+2026-03-06T23:34:17: <meta content='' name='description'>
+2026-03-06T23:34:17: <meta content='index, follow' name='robots'>
+2026-03-06T23:34:17: <meta content='website' property='og:type'>
+2026-03-06T23:34:17: <meta co
+2026-03-06T23:37:13: 🧹 Найден stale PID файл (PID=643285), удаляю
+2026-03-06T23:50:15: ❌ LLM API error 404: <!DOCTYPE html>
+2026-03-06T23:50:15: <html lang='ru'>
+2026-03-06T23:50:15: <head>
+2026-03-06T23:50:15: <title>RouterAI ✨</title>
+2026-03-06T23:50:15: <meta content='' name='description'>
+2026-03-06T23:50:15: <meta content='index, follow' name='robots'>
+2026-03-06T23:50:15: <meta content='website' property='og:type'>
+2026-03-06T23:50:15: <meta co
+2026-03-06T23:51:31: ❌ LLM API error 404: <!DOCTYPE html>
+2026-03-06T23:51:31: <html lang='ru'>
+2026-03-06T23:51:31: <head>
+2026-03-06T23:51:31: <title>RouterAI ✨</title>
+2026-03-06T23:51:31: <meta content='' name='description'>
+2026-03-06T23:51:31: <meta content='index, follow' name='robots'>
+2026-03-06T23:51:31: <meta content='website' property='og:type'>
+2026-03-06T23:51:31: <meta co
+2026-03-06T23:51:33: ❌ LLM API error 404: <!DOCTYPE html>
+2026-03-06T23:51:33: <html lang='ru'>
+2026-03-06T23:51:33: <head>
+2026-03-06T23:51:33: <title>RouterAI ✨</title>
+2026-03-06T23:51:33: <meta content='' name='description'>
+2026-03-06T23:51:33: <meta content='index, follow' name='robots'>
+2026-03-06T23:51:33: <meta content='website' property='og:type'>
+2026-03-06T23:51:33: <meta co
+2026-03-06T23:55:16: ❌ LLM API error 404: <!DOCTYPE html>
+2026-03-06T23:55:16: <html lang='ru'>
+2026-03-06T23:55:16: <head>
+2026-03-06T23:55:16: <title>RouterAI ✨</title>
+2026-03-06T23:55:16: <meta content='' name='description'>
+2026-03-06T23:55:16: <meta content='index, follow' name='robots'>
+2026-03-06T23:55:16: <meta content='website' property='og:type'>
+2026-03-06T23:55:16: <meta co
+2026-03-06T23:55:16: ❌ LLM API error 404: <!DOCTYPE html>
+2026-03-06T23:55:16: <html lang='ru'>
+2026-03-06T23:55:16: <head>
+2026-03-06T23:55:16: <title>RouterAI ✨</title>
+2026-03-06T23:55:16: <meta content='' name='description'>
+2026-03-06T23:55:16: <meta content='index, follow' name='robots'>
+2026-03-06T23:55:16: <meta content='website' property='og:type'>
+2026-03-06T23:55:16: <meta co
+2026-03-06T23:55:16: ❌ LLM API error 404: <!DOCTYPE html>
+2026-03-06T23:55:16: <html lang='ru'>
+2026-03-06T23:55:16: <head>
+2026-03-06T23:55:16: <title>RouterAI ✨</title>
+2026-03-06T23:55:16: <meta content='' name='description'>
+2026-03-06T23:55:16: <meta content='index, follow' name='robots'>
+2026-03-06T23:55:16: <meta content='website' property='og:type'>
+2026-03-06T23:55:16: <meta co
+2026-03-06T23:57:11: 🧹 Найден stale PID файл (PID=653605), удаляю
+2026-03-07T00:03:12: 🎯 ПРОСКочивший дубликат обнаружен в -1003635948209
+2026-03-07T00:30:13: ❌ LLM API error 404: <!DOCTYPE html>
+2026-03-07T00:30:13: <html lang='ru'>
+2026-03-07T00:30:13: <head>
+2026-03-07T00:30:13: <title>RouterAI ✨</title>
+2026-03-07T00:30:13: <meta content='' name='description'>
+2026-03-07T00:30:13: <meta content='index, follow' name='robots'>
+2026-03-07T00:30:13: <meta content='website' property='og:type'>
+2026-03-07T00:30:13: <meta co
+2026-03-07T00:38:13: ❌ LLM API error 404: <!DOCTYPE html>
+2026-03-07T00:38:13: <html lang='ru'>
+2026-03-07T00:38:13: <head>
+2026-03-07T00:38:13: <title>RouterAI ✨</title>
+2026-03-07T00:38:13: <meta content='' name='description'>
+2026-03-07T00:38:13: <meta content='index, follow' name='robots'>
+2026-03-07T00:38:13: <meta content='website' property='og:type'>
+2026-03-07T00:38:13: <meta co
+2026-03-07T00:57:14: ❌ LLM API error 404: <!DOCTYPE html>
+2026-03-07T00:57:14: <html lang='ru'>
+2026-03-07T00:57:14: <head>
+2026-03-07T00:57:14: <title>RouterAI ✨</title>
+2026-03-07T00:57:14: <meta content='' name='description'>
+2026-03-07T00:57:14: <meta content='index, follow' name='robots'>
+2026-03-07T00:57:14: <meta content='website' property='og:type'>
+2026-03-07T00:57:14: <meta co
+2026-03-07T00:59:15: ❌ LLM API error 404: <!DOCTYPE html>
+2026-03-07T00:59:15: <html lang='ru'>
+2026-03-07T00:59:15: <head>
+2026-03-07T00:59:15: <title>RouterAI ✨</title>
+2026-03-07T00:59:15: <meta content='' name='description'>
+2026-03-07T00:59:15: <meta content='index, follow' name='robots'>
+2026-03-07T00:59:15: <meta content='website' property='og:type'>
+2026-03-07T00:59:15: <meta co
+2026-03-07T01:19:15: ❌ LLM API error 404: <!DOCTYPE html>
+2026-03-07T01:19:15: <html lang='ru'>
+2026-03-07T01:19:15: <head>
+2026-03-07T01:19:15: <title>RouterAI ✨</title>
+2026-03-07T01:19:15: <meta content='' name='description'>
+2026-03-07T01:19:15: <meta content='index, follow' name='robots'>
+2026-03-07T01:19:15: <meta content='website' property='og:type'>
+2026-03-07T01:19:15: <meta co
+2026-03-07T01:22:15: ❌ LLM API error 404: <!DOCTYPE html>
+2026-03-07T01:22:15: <html lang='ru'>
+2026-03-07T01:22:15: <head>
+2026-03-07T01:22:15: <title>RouterAI ✨</title>
+2026-03-07T01:22:15: <meta content='' name='description'>
+2026-03-07T01:22:15: <meta content='index, follow' name='robots'>
+2026-03-07T01:22:15: <meta content='website' property='og:type'>
+2026-03-07T01:22:15: <meta co
+2026-03-07T01:43:15: 🎯 ПРОСКочивший дубликат обнаружен в -1003635948209
+2026-03-07T01:49:16: ❌ LLM API error 404: <!DOCTYPE html>
+2026-03-07T01:49:16: <html lang='ru'>
+2026-03-07T01:49:16: <head>
+2026-03-07T01:49:16: <title>RouterAI ✨</title>
+2026-03-07T01:49:16: <meta content='' name='description'>
+2026-03-07T01:49:16: <meta content='index, follow' name='robots'>
+2026-03-07T01:49:16: <meta content='website' property='og:type'>
+2026-03-07T01:49:16: <meta co
+2026-03-07T01:49:16: ❌ LLM API error 404: <!DOCTYPE html>
+2026-03-07T01:49:16: <html lang='ru'>
+2026-03-07T01:49:16: <head>
+2026-03-07T01:49:16: <title>RouterAI ✨</title>
+2026-03-07T01:49:16: <meta content='' name='description'>
+2026-03-07T01:49:16: <meta content='index, follow' name='robots'>
+2026-03-07T01:49:16: <meta content='website' property='og:type'>
+2026-03-07T01:49:16: <meta co
+2026-03-07T02:10:17: ❌ LLM API error 404: <!DOCTYPE html>
+2026-03-07T02:10:17: <html lang='ru'>
+2026-03-07T02:10:17: <head>
+2026-03-07T02:10:17: <title>RouterAI ✨</title>
+2026-03-07T02:10:17: <meta content='' name='description'>
+2026-03-07T02:10:17: <meta content='index, follow' name='robots'>
+2026-03-07T02:10:17: <meta content='website' property='og:type'>
+2026-03-07T02:10:17: <meta co
+2026-03-07T02:19:17: ❌ LLM API error 404: <!DOCTYPE html>
+2026-03-07T02:19:17: <html lang='ru'>
+2026-03-07T02:19:17: <head>
+2026-03-07T02:19:17: <title>RouterAI ✨</title>
+2026-03-07T02:19:17: <meta content='' name='description'>
+2026-03-07T02:19:17: <meta content='index, follow' name='robots'>
+2026-03-07T02:19:17: <meta content='website' property='og:type'>
+2026-03-07T02:19:17: <meta co
+2026-03-07T02:24:17: 🎯 ПРОСКочивший дубликат обнаружен в -1003635948209
+2026-03-07T02:30:17: ❌ LLM API error 404: <!DOCTYPE html>
+2026-03-07T02:30:17: <html lang='ru'>
+2026-03-07T02:30:17: <head>
+2026-03-07T02:30:17: <title>RouterAI ✨</title>
+2026-03-07T02:30:17: <meta content='' name='description'>
+2026-03-07T02:30:17: <meta content='index, follow' name='robots'>
+2026-03-07T02:30:17: <meta content='website' property='og:type'>
+2026-03-07T02:30:17: <meta co
+2026-03-07T02:51:18: ❌ LLM API error 404: <!DOCTYPE html>
+2026-03-07T02:51:18: <html lang='ru'>
+2026-03-07T02:51:18: <head>
+2026-03-07T02:51:18: <title>RouterAI ✨</title>
+2026-03-07T02:51:18: <meta content='' name='description'>
+2026-03-07T02:51:18: <meta content='index, follow' name='robots'>
+2026-03-07T02:51:18: <meta content='website' property='og:type'>
+2026-03-07T02:51:18: <meta co
+2026-03-07T02:58:18: ❌ LLM API error 404: <!DOCTYPE html>
+2026-03-07T02:58:18: <html lang='ru'>
+2026-03-07T02:58:18: <head>
+2026-03-07T02:58:18: <title>RouterAI ✨</title>
+2026-03-07T02:58:18: <meta content='' name='description'>
+2026-03-07T02:58:18: <meta content='index, follow' name='robots'>
+2026-03-07T02:58:18: <meta content='website' property='og:type'>
+2026-03-07T02:58:18: <meta co
+2026-03-07T03:14:19: ❌ LLM API error 404: <!DOCTYPE html>
+2026-03-07T03:14:19: <html lang='ru'>
+2026-03-07T03:14:19: <head>
+2026-03-07T03:14:19: <title>RouterAI ✨</title>
+2026-03-07T03:14:19: <meta content='' name='description'>
+2026-03-07T03:14:19: <meta content='index, follow' name='robots'>
+2026-03-07T03:14:19: <meta content='website' property='og:type'>
+2026-03-07T03:14:19: <meta co
+2026-03-07T03:18:19: ❌ LLM API error 404: <!DOCTYPE html>
+2026-03-07T03:18:19: <html lang='ru'>
+2026-03-07T03:18:19: <head>
+2026-03-07T03:18:19: <title>RouterAI ✨</title>
+2026-03-07T03:18:19: <meta content='' name='description'>
+2026-03-07T03:18:19: <meta content='index, follow' name='robots'>
+2026-03-07T03:18:19: <meta content='website' property='og:type'>
+2026-03-07T03:18:19: <meta co
+2026-03-07T03:28:20: ❌ LLM API error 404: <!DOCTYPE html>
+2026-03-07T03:28:20: <html lang='ru'>
+2026-03-07T03:28:20: <head>
+2026-03-07T03:28:20: <title>RouterAI ✨</title>
+2026-03-07T03:28:20: <meta content='' name='description'>
+2026-03-07T03:28:20: <meta content='index, follow' name='robots'>
+2026-03-07T03:28:20: <meta content='website' property='og:type'>
+2026-03-07T03:28:20: <meta co
+2026-03-07T03:41:20: ❌ LLM API error 404: <!DOCTYPE html>
+2026-03-07T03:41:20: <html lang='ru'>
+2026-03-07T03:41:20: <head>
+2026-03-07T03:41:20: <title>RouterAI ✨</title>
+2026-03-07T03:41:20: <meta content='' name='description'>
+2026-03-07T03:41:20: <meta content='index, follow' name='robots'>
+2026-03-07T03:41:20: <meta content='website' property='og:type'>
+2026-03-07T03:41:20: <meta co
+2026-03-07T03:55:21: ❌ LLM API error 404: <!DOCTYPE html>
+2026-03-07T03:55:21: <html lang='ru'>
+2026-03-07T03:55:21: <head>
+2026-03-07T03:55:21: <title>RouterAI ✨</title>
+2026-03-07T03:55:21: <meta content='' name='description'>
+2026-03-07T03:55:21: <meta content='index, follow' name='robots'>
+2026-03-07T03:55:21: <meta content='website' property='og:type'>
+2026-03-07T03:55:21: <meta co
+2026-03-07T04:03:21: ❌ LLM API error 404: <!DOCTYPE html>
+2026-03-07T04:03:21: <html lang='ru'>
+2026-03-07T04:03:21: <head>
+2026-03-07T04:03:21: <title>RouterAI ✨</title>
+2026-03-07T04:03:21: <meta content='' name='description'>
+2026-03-07T04:03:21: <meta content='index, follow' name='robots'>
+2026-03-07T04:03:21: <meta content='website' property='og:type'>
+2026-03-07T04:03:21: <meta co
+2026-03-07T04:10:22: ❌ LLM API error 404: <!DOCTYPE html>
+2026-03-07T04:10:22: <html lang='ru'>
+2026-03-07T04:10:22: <head>
+2026-03-07T04:10:22: <title>RouterAI ✨</title>
+2026-03-07T04:10:22: <meta content='' name='description'>
+2026-03-07T04:10:22: <meta content='index, follow' name='robots'>
+2026-03-07T04:10:22: <meta content='website' property='og:type'>
+2026-03-07T04:10:22: <meta co
+2026-03-07T04:33:22: ❌ LLM API error 404: <!DOCTYPE html>
+2026-03-07T04:33:22: <html lang='ru'>
+2026-03-07T04:33:22: <head>
+2026-03-07T04:33:22: <title>RouterAI ✨</title>
+2026-03-07T04:33:22: <meta content='' name='description'>
+2026-03-07T04:33:22: <meta content='index, follow' name='robots'>
+2026-03-07T04:33:22: <meta content='website' property='og:type'>
+2026-03-07T04:33:22: <meta co
+2026-03-07T04:36:23: ❌ LLM API error 404: <!DOCTYPE html>
+2026-03-07T04:36:23: <html lang='ru'>
+2026-03-07T04:36:23: <head>
+2026-03-07T04:36:23: <title>RouterAI ✨</title>
+2026-03-07T04:36:23: <meta content='' name='description'>
+2026-03-07T04:36:23: <meta content='index, follow' name='robots'>
+2026-03-07T04:36:23: <meta content='website' property='og:type'>
+2026-03-07T04:36:23: <meta co
+2026-03-07T04:36:23: ❌ LLM API error 404: <!DOCTYPE html>
+2026-03-07T04:36:23: <html lang='ru'>
+2026-03-07T04:36:23: <head>
+2026-03-07T04:36:23: <title>RouterAI ✨</title>
+2026-03-07T04:36:23: <meta content='' name='description'>
+2026-03-07T04:36:23: <meta content='index, follow' name='robots'>
+2026-03-07T04:36:23: <meta content='website' property='og:type'>
+2026-03-07T04:36:23: <meta co
+2026-03-07T04:57:23: ❌ LLM API error 404: <!DOCTYPE html>
+2026-03-07T04:57:23: <html lang='ru'>
+2026-03-07T04:57:23: <head>
+2026-03-07T04:57:23: <title>RouterAI ✨</title>
+2026-03-07T04:57:23: <meta content='' name='description'>
+2026-03-07T04:57:23: <meta content='index, follow' name='robots'>
+2026-03-07T04:57:23: <meta content='website' property='og:type'>
+2026-03-07T04:57:23: <meta co
+2026-03-07T05:00:24: ❌ LLM API error 404: <!DOCTYPE html>
+2026-03-07T05:00:24: <html lang='ru'>
+2026-03-07T05:00:24: <head>
+2026-03-07T05:00:24: <title>RouterAI ✨</title>
+2026-03-07T05:00:24: <meta content='' name='description'>
+2026-03-07T05:00:24: <meta content='index, follow' name='robots'>
+2026-03-07T05:00:24: <meta content='website' property='og:type'>
+2026-03-07T05:00:24: <meta co
+2026-03-07T05:05:24: ❌ LLM API error 404: <!DOCTYPE html>
+2026-03-07T05:05:24: <html lang='ru'>
+2026-03-07T05:05:24: <head>
+2026-03-07T05:05:24: <title>RouterAI ✨</title>
+2026-03-07T05:05:24: <meta content='' name='description'>
+2026-03-07T05:05:24: <meta content='index, follow' name='robots'>
+2026-03-07T05:05:24: <meta content='website' property='og:type'>
+2026-03-07T05:05:24: <meta co
+2026-03-07T05:06:24: ❌ LLM API error 404: <!DOCTYPE html>
+2026-03-07T05:06:24: <html lang='ru'>
+2026-03-07T05:06:24: <head>
+2026-03-07T05:06:24: <title>RouterAI ✨</title>
+2026-03-07T05:06:24: <meta content='' name='description'>
+2026-03-07T05:06:24: <meta content='index, follow' name='robots'>
+2026-03-07T05:06:24: <meta content='website' property='og:type'>
+2026-03-07T05:06:24: <meta co
+2026-03-07T05:25:25: ❌ LLM API error 404: <!DOCTYPE html>
+2026-03-07T05:25:25: <html lang='ru'>
+2026-03-07T05:25:25: <head>
+2026-03-07T05:25:25: <title>RouterAI ✨</title>
+2026-03-07T05:25:25: <meta content='' name='description'>
+2026-03-07T05:25:25: <meta content='index, follow' name='robots'>
+2026-03-07T05:25:25: <meta content='website' property='og:type'>
+2026-03-07T05:25:25: <meta co
+2026-03-07T05:32:25: ❌ LLM API error 404: <!DOCTYPE html>
+2026-03-07T05:32:25: <html lang='ru'>
+2026-03-07T05:32:25: <head>
+2026-03-07T05:32:25: <title>RouterAI ✨</title>
+2026-03-07T05:32:25: <meta content='' name='description'>
+2026-03-07T05:32:25: <meta content='index, follow' name='robots'>
+2026-03-07T05:32:25: <meta content='website' property='og:type'>
+2026-03-07T05:32:25: <meta co
+2026-03-07T05:36:25: ❌ LLM API error 404: <!DOCTYPE html>
+2026-03-07T05:36:25: <html lang='ru'>
+2026-03-07T05:36:25: <head>
+2026-03-07T05:36:25: <title>RouterAI ✨</title>
+2026-03-07T05:36:25: <meta content='' name='description'>
+2026-03-07T05:36:25: <meta content='index, follow' name='robots'>
+2026-03-07T05:36:25: <meta content='website' property='og:type'>
+2026-03-07T05:36:25: <meta co
+2026-03-07T05:47:26: ❌ LLM API error 404: <!DOCTYPE html>
+2026-03-07T05:47:26: <html lang='ru'>
+2026-03-07T05:47:26: <head>
+2026-03-07T05:47:26: <title>RouterAI ✨</title>
+2026-03-07T05:47:26: <meta content='' name='description'>
+2026-03-07T05:47:26: <meta content='index, follow' name='robots'>
+2026-03-07T05:47:26: <meta content='website' property='og:type'>
+2026-03-07T05:47:26: <meta co
+2026-03-07T05:49:26: ❌ LLM API error 404: <!DOCTYPE html>
+2026-03-07T05:49:26: <html lang='ru'>
+2026-03-07T05:49:26: <head>
+2026-03-07T05:49:26: <title>RouterAI ✨</title>
+2026-03-07T05:49:26: <meta content='' name='description'>
+2026-03-07T05:49:26: <meta content='index, follow' name='robots'>
+2026-03-07T05:49:26: <meta content='website' property='og:type'>
+2026-03-07T05:49:26: <meta co
+2026-03-07T05:50:27: ❌ LLM API error 404: <!DOCTYPE html>
+2026-03-07T05:50:27: <html lang='ru'>
+2026-03-07T05:50:27: <head>
+2026-03-07T05:50:27: <title>RouterAI ✨</title>
+2026-03-07T05:50:27: <meta content='' name='description'>
+2026-03-07T05:50:27: <meta content='index, follow' name='robots'>
+2026-03-07T05:50:27: <meta content='website' property='og:type'>
+2026-03-07T05:50:27: <meta co
+2026-03-07T06:04:27: ❌ LLM API error 404: <!DOCTYPE html>
+2026-03-07T06:04:27: <html lang='ru'>
+2026-03-07T06:04:27: <head>
+2026-03-07T06:04:27: <title>RouterAI ✨</title>
+2026-03-07T06:04:27: <meta content='' name='description'>
+2026-03-07T06:04:27: <meta content='index, follow' name='robots'>
+2026-03-07T06:04:27: <meta content='website' property='og:type'>
+2026-03-07T06:04:27: <meta co
+2026-03-07T06:15:28: ❌ LLM API error 404: <!DOCTYPE html>
+2026-03-07T06:15:28: <html lang='ru'>
+2026-03-07T06:15:28: <head>
+2026-03-07T06:15:28: <title>RouterAI ✨</title>
+2026-03-07T06:15:28: <meta content='' name='description'>
+2026-03-07T06:15:28: <meta content='index, follow' name='robots'>
+2026-03-07T06:15:28: <meta content='website' property='og:type'>
+2026-03-07T06:15:28: <meta co
+2026-03-07T06:17:28: ❌ LLM API error 404: <!DOCTYPE html>
+2026-03-07T06:17:28: <html lang='ru'>
+2026-03-07T06:17:28: <head>
+2026-03-07T06:17:28: <title>RouterAI ✨</title>
+2026-03-07T06:17:28: <meta content='' name='description'>
+2026-03-07T06:17:28: <meta content='index, follow' name='robots'>
+2026-03-07T06:17:28: <meta content='website' property='og:type'>
+2026-03-07T06:17:28: <meta co
+2026-03-07T06:19:28: 🎯 ПРОСКочивший дубликат обнаружен в -1003635948209
+2026-03-07T06:27:29: ❌ LLM API error 404: <!DOCTYPE html>
+2026-03-07T06:27:29: <html lang='ru'>
+2026-03-07T06:27:29: <head>
+2026-03-07T06:27:29: <title>RouterAI ✨</title>
+2026-03-07T06:27:29: <meta content='' name='description'>
+2026-03-07T06:27:29: <meta content='index, follow' name='robots'>
+2026-03-07T06:27:29: <meta content='website' property='og:type'>
+2026-03-07T06:27:29: <meta co
+2026-03-07T06:40:29: ❌ LLM API error 404: <!DOCTYPE html>
+2026-03-07T06:40:29: <html lang='ru'>
+2026-03-07T06:40:29: <head>
+2026-03-07T06:40:29: <title>RouterAI ✨</title>
+2026-03-07T06:40:29: <meta content='' name='description'>
+2026-03-07T06:40:29: <meta content='index, follow' name='robots'>
+2026-03-07T06:40:29: <meta content='website' property='og:type'>
+2026-03-07T06:40:29: <meta co
+2026-03-07T06:40:29: ❌ LLM API error 404: <!DOCTYPE html>
+2026-03-07T06:40:29: <html lang='ru'>
+2026-03-07T06:40:29: <head>
+2026-03-07T06:40:29: <title>RouterAI ✨</title>
+2026-03-07T06:40:29: <meta content='' name='description'>
+2026-03-07T06:40:29: <meta content='index, follow' name='robots'>
+2026-03-07T06:40:29: <meta content='website' property='og:type'>
+2026-03-07T06:40:29: <meta co
+2026-03-07T06:43:30: ❌ LLM API error 404: <!DOCTYPE html>
+2026-03-07T06:43:30: <html lang='ru'>
+2026-03-07T06:43:30: <head>
+2026-03-07T06:43:30: <title>RouterAI ✨</title>
+2026-03-07T06:43:30: <meta content='' name='description'>
+2026-03-07T06:43:30: <meta content='index, follow' name='robots'>
+2026-03-07T06:43:30: <meta content='website' property='og:type'>
+2026-03-07T06:43:30: <meta co
+2026-03-07T06:53:30: ❌ LLM API error 404: <!DOCTYPE html>
+2026-03-07T06:53:30: <html lang='ru'>
+2026-03-07T06:53:30: <head>
+2026-03-07T06:53:30: <title>RouterAI ✨</title>
+2026-03-07T06:53:30: <meta content='' name='description'>
+2026-03-07T06:53:30: <meta content='index, follow' name='robots'>
+2026-03-07T06:53:30: <meta content='website' property='og:type'>
+2026-03-07T06:53:30: <meta co
+2026-03-07T06:59:30: ❌ LLM API error 404: <!DOCTYPE html>
+2026-03-07T06:59:30: <html lang='ru'>
+2026-03-07T06:59:30: <head>
+2026-03-07T06:59:30: <title>RouterAI ✨</title>
+2026-03-07T06:59:30: <meta content='' name='description'>
+2026-03-07T06:59:30: <meta content='index, follow' name='robots'>
+2026-03-07T06:59:30: <meta content='website' property='og:type'>
+2026-03-07T06:59:30: <meta co
+2026-03-07T07:01:31: ❌ LLM API error 404: <!DOCTYPE html>
+2026-03-07T07:01:31: <html lang='ru'>
+2026-03-07T07:01:31: <head>
+2026-03-07T07:01:31: <title>RouterAI ✨</title>
+2026-03-07T07:01:31: <meta content='' name='description'>
+2026-03-07T07:01:31: <meta content='index, follow' name='robots'>
+2026-03-07T07:01:31: <meta content='website' property='og:type'>
+2026-03-07T07:01:31: <meta co
+2026-03-07T07:03:31: ❌ LLM API error 404: <!DOCTYPE html>
+2026-03-07T07:03:31: <html lang='ru'>
+2026-03-07T07:03:31: <head>
+2026-03-07T07:03:31: <title>RouterAI ✨</title>
+2026-03-07T07:03:31: <meta content='' name='description'>
+2026-03-07T07:03:31: <meta content='index, follow' name='robots'>
+2026-03-07T07:03:31: <meta content='website' property='og:type'>
+2026-03-07T07:03:31: <meta co
+2026-03-07T07:16:32: ❌ LLM API error 404: <!DOCTYPE html>
+2026-03-07T07:16:32: <html lang='ru'>
+2026-03-07T07:16:32: <head>
+2026-03-07T07:16:32: <title>RouterAI ✨</title>
+2026-03-07T07:16:32: <meta content='' name='description'>
+2026-03-07T07:16:32: <meta content='index, follow' name='robots'>
+2026-03-07T07:16:32: <meta content='website' property='og:type'>
+2026-03-07T07:16:32: <meta co
+2026-03-07T07:16:32: ❌ LLM API error 404: <!DOCTYPE html>
+2026-03-07T07:16:32: <html lang='ru'>
+2026-03-07T07:16:32: <head>
+2026-03-07T07:16:32: <title>RouterAI ✨</title>
+2026-03-07T07:16:32: <meta content='' name='description'>
+2026-03-07T07:16:32: <meta content='index, follow' name='robots'>
+2026-03-07T07:16:32: <meta content='website' property='og:type'>
+2026-03-07T07:16:32: <meta co
+2026-03-07T07:28:33: ❌ LLM API error 404: <!DOCTYPE html>
+2026-03-07T07:28:33: <html lang='ru'>
+2026-03-07T07:28:33: <head>
+2026-03-07T07:28:33: <title>RouterAI ✨</title>
+2026-03-07T07:28:33: <meta content='' name='description'>
+2026-03-07T07:28:33: <meta content='index, follow' name='robots'>
+2026-03-07T07:28:33: <meta content='website' property='og:type'>
+2026-03-07T07:28:33: <meta co
+2026-03-07T07:31:33: ❌ LLM API error 404: <!DOCTYPE html>
+2026-03-07T07:31:33: <html lang='ru'>
+2026-03-07T07:31:33: <head>
+2026-03-07T07:31:33: <title>RouterAI ✨</title>
+2026-03-07T07:31:33: <meta content='' name='description'>
+2026-03-07T07:31:33: <meta content='index, follow' name='robots'>
+2026-03-07T07:31:33: <meta content='website' property='og:type'>
+2026-03-07T07:31:33: <meta co
+2026-03-07T07:37:33: ❌ LLM API error 404: <!DOCTYPE html>
+2026-03-07T07:37:33: <html lang='ru'>
+2026-03-07T07:37:33: <head>
+2026-03-07T07:37:33: <title>RouterAI ✨</title>
+2026-03-07T07:37:33: <meta content='' name='description'>
+2026-03-07T07:37:33: <meta content='index, follow' name='robots'>
+2026-03-07T07:37:33: <meta content='website' property='og:type'>
+2026-03-07T07:37:33: <meta co
+2026-03-07T07:44:34: ❌ LLM API error 404: <!DOCTYPE html>
+2026-03-07T07:44:34: <html lang='ru'>
+2026-03-07T07:44:34: <head>
+2026-03-07T07:44:34: <title>RouterAI ✨</title>
+2026-03-07T07:44:34: <meta content='' name='description'>
+2026-03-07T07:44:34: <meta content='index, follow' name='robots'>
+2026-03-07T07:44:34: <meta content='website' property='og:type'>
+2026-03-07T07:44:34: <meta co
+2026-03-07T07:51:34: ❌ LLM API error 404: <!DOCTYPE html>
+2026-03-07T07:51:34: <html lang='ru'>
+2026-03-07T07:51:34: <head>
+2026-03-07T07:51:34: <title>RouterAI ✨</title>
+2026-03-07T07:51:34: <meta content='' name='description'>
+2026-03-07T07:51:34: <meta content='index, follow' name='robots'>
+2026-03-07T07:51:34: <meta content='website' property='og:type'>
+2026-03-07T07:51:34: <meta co
+2026-03-07T07:57:34: ❌ LLM API error 404: <!DOCTYPE html>
+2026-03-07T07:57:34: <html lang='ru'>
+2026-03-07T07:57:34: <head>
+2026-03-07T07:57:34: <title>RouterAI ✨</title>
+2026-03-07T07:57:34: <meta content='' name='description'>
+2026-03-07T07:57:34: <meta content='index, follow' name='robots'>
+2026-03-07T07:57:34: <meta content='website' property='og:type'>
+2026-03-07T07:57:34: <meta co
+2026-03-07T08:07:35: ❌ LLM API error 404: <!DOCTYPE html>
+2026-03-07T08:07:35: <html lang='ru'>
+2026-03-07T08:07:35: <head>
+2026-03-07T08:07:35: <title>RouterAI ✨</title>
+2026-03-07T08:07:35: <meta content='' name='description'>
+2026-03-07T08:07:35: <meta content='index, follow' name='robots'>
+2026-03-07T08:07:35: <meta content='website' property='og:type'>
+2026-03-07T08:07:35: <meta co
+2026-03-07T08:11:35: ❌ LLM API error 404: <!DOCTYPE html>
+2026-03-07T08:11:35: <html lang='ru'>
+2026-03-07T08:11:35: <head>
+2026-03-07T08:11:35: <title>RouterAI ✨</title>
+2026-03-07T08:11:35: <meta content='' name='description'>
+2026-03-07T08:11:35: <meta content='index, follow' name='robots'>
+2026-03-07T08:11:35: <meta content='website' property='og:type'>
+2026-03-07T08:11:35: <meta co
+2026-03-07T08:25:36: ❌ LLM API error 404: <!DOCTYPE html>
+2026-03-07T08:25:36: <html lang='ru'>
+2026-03-07T08:25:36: <head>
+2026-03-07T08:25:36: <title>RouterAI ✨</title>
+2026-03-07T08:25:36: <meta content='' name='description'>
+2026-03-07T08:25:36: <meta content='index, follow' name='robots'>
+2026-03-07T08:25:36: <meta content='website' property='og:type'>
+2026-03-07T08:25:36: <meta co
+2026-03-07T08:29:36: ❌ LLM API error 404: <!DOCTYPE html>
+2026-03-07T08:29:36: <html lang='ru'>
+2026-03-07T08:29:36: <head>
+2026-03-07T08:29:36: <title>RouterAI ✨</title>
+2026-03-07T08:29:36: <meta content='' name='description'>
+2026-03-07T08:29:36: <meta content='index, follow' name='robots'>
+2026-03-07T08:29:36: <meta content='website' property='og:type'>
+2026-03-07T08:29:36: <meta co
+2026-03-07T08:37:36: ❌ LLM API error 404: <!DOCTYPE html>
+2026-03-07T08:37:36: <html lang='ru'>
+2026-03-07T08:37:36: <head>
+2026-03-07T08:37:36: <title>RouterAI ✨</title>
+2026-03-07T08:37:36: <meta content='' name='description'>
+2026-03-07T08:37:36: <meta content='index, follow' name='robots'>
+2026-03-07T08:37:36: <meta content='website' property='og:type'>
+2026-03-07T08:37:36: <meta co
+2026-03-07T08:38:37: ❌ LLM API error 404: <!DOCTYPE html>
+2026-03-07T08:38:37: <html lang='ru'>
+2026-03-07T08:38:37: <head>
+2026-03-07T08:38:37: <title>RouterAI ✨</title>
+2026-03-07T08:38:37: <meta content='' name='description'>
+2026-03-07T08:38:37: <meta content='index, follow' name='robots'>
+2026-03-07T08:38:37: <meta content='website' property='og:type'>
+2026-03-07T08:38:37: <meta co
+2026-03-07T08:52:37: ❌ LLM API error 404: <!DOCTYPE html>
+2026-03-07T08:52:37: <html lang='ru'>
+2026-03-07T08:52:37: <head>
+2026-03-07T08:52:37: <title>RouterAI ✨</title>
+2026-03-07T08:52:37: <meta content='' name='description'>
+2026-03-07T08:52:37: <meta content='index, follow' name='robots'>
+2026-03-07T08:52:37: <meta content='website' property='og:type'>
+2026-03-07T08:52:37: <meta co
+2026-03-07T08:55:38: ❌ LLM API error 404: <!DOCTYPE html>
+2026-03-07T08:55:38: <html lang='ru'>
+2026-03-07T08:55:38: <head>
+2026-03-07T08:55:38: <title>RouterAI ✨</title>
+2026-03-07T08:55:38: <meta content='' name='description'>
+2026-03-07T08:55:38: <meta content='index, follow' name='robots'>
+2026-03-07T08:55:38: <meta content='website' property='og:type'>
+2026-03-07T08:55:38: <meta co
+2026-03-07T08:57:48: ❌ LLM API error 404: <!DOCTYPE html>
+2026-03-07T08:57:48: <html lang='ru'>
+2026-03-07T08:57:48: <head>
+2026-03-07T08:57:48: <title>RouterAI ✨</title>
+2026-03-07T08:57:48: <meta content='' name='description'>
+2026-03-07T08:57:48: <meta content='index, follow' name='robots'>
+2026-03-07T08:57:48: <meta content='website' property='og:type'>
+2026-03-07T08:57:48: <meta co
+2026-03-07T09:03:48: ❌ LLM API error 404: <!DOCTYPE html>
+2026-03-07T09:03:48: <html lang='ru'>
+2026-03-07T09:03:48: <head>
+2026-03-07T09:03:48: <title>RouterAI ✨</title>
+2026-03-07T09:03:48: <meta content='' name='description'>
+2026-03-07T09:03:48: <meta content='index, follow' name='robots'>
+2026-03-07T09:03:48: <meta content='website' property='og:type'>
+2026-03-07T09:03:48: <meta co

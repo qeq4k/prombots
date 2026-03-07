@@ -487,6 +487,52 @@ class Database:
         except Exception as e:
             logger.error(f"Ошибка получения количества фильмов: {e}")
             return 0
+    
+    def get_users_count(self) -> int:
+        """Получает общее количество пользователей"""
+        try:
+            self.cursor.execute("SELECT COUNT(*) FROM users")
+            row = self.cursor.fetchone()
+            return row[0] if row else 0
+        except Exception as e:
+            logger.error(f"Ошибка получения количества пользователей: {e}")
+            return 0
+    
+    def get_searches_count_days(self, days: int = 7) -> int:
+        """Получает количество поисковых запросов за N дней"""
+        try:
+            self.cursor.execute("""
+                SELECT COUNT(*) FROM search_history 
+                WHERE created_at > datetime('now', ? days)
+            """, (-days,))
+            row = self.cursor.fetchone()
+            return row[0] if row else 0
+        except Exception as e:
+            logger.error(f"Ошибка получения количества поисков: {e}")
+            return 0
+    
+    def get_favorites_count(self) -> int:
+        """Получает количество избранных фильмов"""
+        try:
+            self.cursor.execute("SELECT COUNT(*) FROM favorites")
+            row = self.cursor.fetchone()
+            return row[0] if row else 0
+        except Exception as e:
+            logger.error(f"Ошибка получения количества избранных: {e}")
+            return 0
+    
+    def get_new_users_count_days(self, days: int = 7) -> int:
+        """Получает количество новых пользователей за N дней"""
+        try:
+            self.cursor.execute("""
+                SELECT COUNT(*) FROM users 
+                WHERE created_at > datetime('now', ? days)
+            """, (-days,))
+            row = self.cursor.fetchone()
+            return row[0] if row else 0
+        except Exception as e:
+            logger.error(f"Ошибка получения количества новых пользователей: {e}")
+            return 0
 
     def update_movie(self, code: str, **kwargs) -> bool:
         """Обновляет данные фильма"""

@@ -651,6 +651,10 @@ __all__ = [
     # Seasonal Templates
     "SeasonalTemplates",
     "apply_seasonal_template",
+    # Source Stats
+    "SourceStats",
+    # PDF Export
+    "export_stats_to_pdf",
 ]
 
 # Import digest module
@@ -660,14 +664,14 @@ from shared.digest import (
     schedule_digest_for_category,
 )
 
-# Import rubrics module
-from shared.rubrics import (
-    AutoRubrics,
-    add_rubric_to_text,
-)
-
 # Import seasonal module
 from shared.seasonal import (
     SeasonalTemplates,
     apply_seasonal_template,
 )
+
+# Import source stats module
+from shared.source_stats import SourceStats
+
+# Import PDF export
+from shared.pdf_export import export_stats_to_pdf

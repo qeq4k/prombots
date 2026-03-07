@@ -50,6 +50,11 @@ class Config:
         print("⚠️ ПРЕДУПРЕЖДЕНИЕ: Каналы не настроены. Проверка подписки отключена!")
         print("Добавьте в .env: CHANNEL1_NAME, CHANNEL1_LINK, CHANNEL1_ID")
 
+    # ✅ LLM API KEY (для умного поиска)
+    ROUTER_API_KEY = os.getenv("ROUTER_API_KEY", "")
+    if not ROUTER_API_KEY:
+        print("⚠️ ПРЕДУПРЕЖДЕНИЕ: ROUTER_API_KEY не установлен. Умный поиск будет недоступен!")
+
     DATABASE_PATH = os.getenv("DATABASE_PATH", "movies.db")
     CACHE_TTL = int(os.getenv("CACHE_TTL", "60"))
     SUPPORT_LINK = os.getenv("SUPPORT_LINK", "https://t.me/your_support")
